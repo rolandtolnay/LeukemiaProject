@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
+		A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8B199E28C5009D7220 /* CoreGraphics.framework */; };
+		A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
+		A6924E94199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924E92199E28C5009D7220 /* InfoPlist.strings */; };
+		A6924E96199E28C5009D7220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E95199E28C5009D7220 /* main.m */; };
+		A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E99199E28C5009D7220 /* RTAppDelegate.m */; };
+		A6924E9D199E28C5009D7220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6924E9B199E28C5009D7220 /* Main.storyboard */; };
+		A6924EA0199E28C5009D7220 /* RTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E9F199E28C5009D7220 /* RTFirstViewController.m */; };
+		A6924EA3199E28C5009D7220 /* RTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EA2199E28C5009D7220 /* RTSecondViewController.m */; };
+		A6924EA5199E28C5009D7220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6924EA4199E28C5009D7220 /* Images.xcassets */; };
+		A6924EAC199E28C5009D7220 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924EAB199E28C5009D7220 /* XCTest.framework */; };
+		A6924EAD199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
+		A6924EAE199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
+		A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924EB4199E28C5009D7220 /* InfoPlist.strings */; };
+		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6924EAF199E28C5009D7220 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6924E7E199E28C5009D7220 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6924E85199E28C5009D7220;
+			remoteInfo = "Leukemia App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A6924E8D199E28C5009D7220 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A6924E91199E28C5009D7220 /* Leukemia App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Leukemia App-Info.plist"; sourceTree = "<group>"; };
+		A6924E93199E28C5009D7220 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A6924E95199E28C5009D7220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A6924E97199E28C5009D7220 /* Leukemia App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Leukemia App-Prefix.pch"; sourceTree = "<group>"; };
+		A6924E98199E28C5009D7220 /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
+		A6924E99199E28C5009D7220 /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
+		A6924E9C199E28C5009D7220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A6924E9E199E28C5009D7220 /* RTFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTFirstViewController.h; sourceTree = "<group>"; };
+		A6924E9F199E28C5009D7220 /* RTFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTFirstViewController.m; sourceTree = "<group>"; };
+		A6924EA1199E28C5009D7220 /* RTSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTSecondViewController.h; sourceTree = "<group>"; };
+		A6924EA2199E28C5009D7220 /* RTSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTSecondViewController.m; sourceTree = "<group>"; };
+		A6924EA4199E28C5009D7220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leukemia AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6924EAB199E28C5009D7220 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A6924EB3199E28C5009D7220 /* Leukemia AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Leukemia AppTests-Info.plist"; sourceTree = "<group>"; };
+		A6924EB5199E28C5009D7220 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leukemia_AppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A6924E83199E28C5009D7220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */,
+				A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */,
+				A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6924EA7199E28C5009D7220 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924EAC199E28C5009D7220 /* XCTest.framework in Frameworks */,
+				A6924EAE199E28C5009D7220 /* UIKit.framework in Frameworks */,
+				A6924EAD199E28C5009D7220 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A6924E7D199E28C5009D7220 = {
+			isa = PBXGroup;
+			children = (
+				A6924E8F199E28C5009D7220 /* Leukemia App */,
+				A6924EB1199E28C5009D7220 /* Leukemia AppTests */,
+				A6924E88199E28C5009D7220 /* Frameworks */,
+				A6924E87199E28C5009D7220 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A6924E87199E28C5009D7220 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A6924E86199E28C5009D7220 /* Leukemia App.app */,
+				A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A6924E88199E28C5009D7220 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6924E89199E28C5009D7220 /* Foundation.framework */,
+				A6924E8B199E28C5009D7220 /* CoreGraphics.framework */,
+				A6924E8D199E28C5009D7220 /* UIKit.framework */,
+				A6924EAB199E28C5009D7220 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6924E8F199E28C5009D7220 /* Leukemia App */ = {
+			isa = PBXGroup;
+			children = (
+				A6924E98199E28C5009D7220 /* RTAppDelegate.h */,
+				A6924E99199E28C5009D7220 /* RTAppDelegate.m */,
+				A6924E9B199E28C5009D7220 /* Main.storyboard */,
+				A6924E9E199E28C5009D7220 /* RTFirstViewController.h */,
+				A6924E9F199E28C5009D7220 /* RTFirstViewController.m */,
+				A6924EA1199E28C5009D7220 /* RTSecondViewController.h */,
+				A6924EA2199E28C5009D7220 /* RTSecondViewController.m */,
+				A6924EA4199E28C5009D7220 /* Images.xcassets */,
+				A6924E90199E28C5009D7220 /* Supporting Files */,
+			);
+			path = "Leukemia App";
+			sourceTree = "<group>";
+		};
+		A6924E90199E28C5009D7220 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6924E91199E28C5009D7220 /* Leukemia App-Info.plist */,
+				A6924E92199E28C5009D7220 /* InfoPlist.strings */,
+				A6924E95199E28C5009D7220 /* main.m */,
+				A6924E97199E28C5009D7220 /* Leukemia App-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6924EB1199E28C5009D7220 /* Leukemia AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */,
+				A6924EB2199E28C5009D7220 /* Supporting Files */,
+			);
+			path = "Leukemia AppTests";
+			sourceTree = "<group>";
+		};
+		A6924EB2199E28C5009D7220 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6924EB3199E28C5009D7220 /* Leukemia AppTests-Info.plist */,
+				A6924EB4199E28C5009D7220 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A6924E85199E28C5009D7220 /* Leukemia App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6924EBB199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia App" */;
+			buildPhases = (
+				A6924E82199E28C5009D7220 /* Sources */,
+				A6924E83199E28C5009D7220 /* Frameworks */,
+				A6924E84199E28C5009D7220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Leukemia App";
+			productName = "Leukemia App";
+			productReference = A6924E86199E28C5009D7220 /* Leukemia App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A6924EA9199E28C5009D7220 /* Leukemia AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6924EBE199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia AppTests" */;
+			buildPhases = (
+				A6924EA6199E28C5009D7220 /* Sources */,
+				A6924EA7199E28C5009D7220 /* Frameworks */,
+				A6924EA8199E28C5009D7220 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6924EB0199E28C5009D7220 /* PBXTargetDependency */,
+			);
+			name = "Leukemia AppTests";
+			productName = "Leukemia AppTests";
+			productReference = A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A6924E7E199E28C5009D7220 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = RT;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					A6924EA9199E28C5009D7220 = {
+						TestTargetID = A6924E85199E28C5009D7220;
+					};
+				};
+			};
+			buildConfigurationList = A6924E81199E28C5009D7220 /* Build configuration list for PBXProject "Leukemia App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A6924E7D199E28C5009D7220;
+			productRefGroup = A6924E87199E28C5009D7220 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A6924E85199E28C5009D7220 /* Leukemia App */,
+				A6924EA9199E28C5009D7220 /* Leukemia AppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A6924E84199E28C5009D7220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924EA5199E28C5009D7220 /* Images.xcassets in Resources */,
+				A6924E94199E28C5009D7220 /* InfoPlist.strings in Resources */,
+				A6924E9D199E28C5009D7220 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6924EA8199E28C5009D7220 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A6924E82199E28C5009D7220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924EA3199E28C5009D7220 /* RTSecondViewController.m in Sources */,
+				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
+				A6924EA0199E28C5009D7220 /* RTFirstViewController.m in Sources */,
+				A6924E96199E28C5009D7220 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6924EA6199E28C5009D7220 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6924EB0199E28C5009D7220 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A6924E85199E28C5009D7220 /* Leukemia App */;
+			targetProxy = A6924EAF199E28C5009D7220 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A6924E92199E28C5009D7220 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A6924E93199E28C5009D7220 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A6924E9B199E28C5009D7220 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A6924E9C199E28C5009D7220 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A6924EB4199E28C5009D7220 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A6924EB5199E28C5009D7220 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A6924EB9199E28C5009D7220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		A6924EBA199E28C5009D7220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A6924EBC199E28C5009D7220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
+				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A6924EBD199E28C5009D7220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
+				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A6924EBF199E28C5009D7220 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Leukemia AppTests/Leukemia AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A6924EC0199E28C5009D7220 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
+				INFOPLIST_FILE = "Leukemia AppTests/Leukemia AppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A6924E81199E28C5009D7220 /* Build configuration list for PBXProject "Leukemia App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6924EB9199E28C5009D7220 /* Debug */,
+				A6924EBA199E28C5009D7220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6924EBB199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6924EBC199E28C5009D7220 /* Debug */,
+				A6924EBD199E28C5009D7220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A6924EBE199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6924EBF199E28C5009D7220 /* Debug */,
+				A6924EC0199E28C5009D7220 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A6924E7E199E28C5009D7220 /* Project object */;
+}
