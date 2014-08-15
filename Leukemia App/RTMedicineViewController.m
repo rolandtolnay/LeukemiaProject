@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
 //
 
-#import "RTSecondViewController.h"
+#import "RTMedicineViewController.h"
 
-@interface RTSecondViewController ()
+@interface RTMedicineViewController ()
 
 @end
 
-@implementation RTSecondViewController
+@implementation RTMedicineViewController
 
 - (void)viewDidLoad
 {

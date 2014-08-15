@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
 //
 
-#import "RTFirstViewController.h"
+#import "RTPainViewController.h"
 
-@interface RTFirstViewController ()
+@interface RTPainViewController ()
 
 @end
 
-@implementation RTFirstViewController
+@implementation RTPainViewController
 
 - (void)viewDidLoad
 {

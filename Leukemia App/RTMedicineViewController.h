@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTSecondViewController : UIViewController
+@interface RTMedicineViewController : UIViewController
 
 @end

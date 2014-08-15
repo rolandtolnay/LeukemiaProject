@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTFirstViewController : UIViewController
+@interface RTPainViewController : UIViewController
 
 @end
