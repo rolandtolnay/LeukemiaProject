@@ -17,8 +17,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	_btnAdjustPainLevels.layer.borderWidth = .5f;
-    _btnAdjustPainLevels.layer.borderColor = [[UIColor blackColor]CGColor];
 }
 
 - (void)didReceiveMemoryWarning
