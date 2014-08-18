@@ -17,7 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	_btnAdjustPainLevels.layer.borderWidth = .5f;
+    _btnAdjustPainLevels.layer.borderColor = [[UIColor blackColor]CGColor];
 }
 
 - (void)didReceiveMemoryWarning
