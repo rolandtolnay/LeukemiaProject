@@ -23,6 +23,7 @@
 		A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924EB4199E28C5009D7220 /* InfoPlist.strings */; };
 		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
 		A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */; };
+		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leukemia_AppTests.m; sourceTree = "<group>"; };
 		A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDiaryViewController.h; sourceTree = "<group>"; };
 		A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDiaryViewController.m; sourceTree = "<group>"; };
+		A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPainScaleViewController.h; sourceTree = "<group>"; };
+		A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPainScaleViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				A6924E9B199E28C5009D7220 /* Main.storyboard */,
 				A6924E9E199E28C5009D7220 /* RTPainViewController.h */,
 				A6924E9F199E28C5009D7220 /* RTPainViewController.m */,
+				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
+				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
 				A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */,
 				A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */,
 				A6924EA4199E28C5009D7220 /* Images.xcassets */,
@@ -261,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
+				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainViewController.m in Sources */,
@@ -471,6 +477,7 @@
 				A6924EBD199E28C5009D7220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6924EBE199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia AppTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +486,7 @@
 				A6924EC0199E28C5009D7220 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

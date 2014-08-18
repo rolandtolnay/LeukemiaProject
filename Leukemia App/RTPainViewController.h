@@ -10,4 +10,6 @@
 
 @interface RTPainViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *btnAdjustPainLevels;
+
 @end
