@@ -88,6 +88,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
+                                <rect key="frame" x="170" y="458" width="429" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -106,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Adjust Pain Level" id="NQm-VK-eLw"/>
                     <connections>
+                        <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
                         <outlet property="lblSmileyLetter" destination="xXg-RR-2w2" id="XB0-V9-jpd"/>
                         <outlet property="smileyImage" destination="2xM-mj-jJN" id="aAb-cz-KU9"/>
                         <outlet property="smileySlider" destination="Rof-mt-jTI" id="Ef6-5C-uEq"/>

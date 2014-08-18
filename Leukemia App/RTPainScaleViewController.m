@@ -34,6 +34,15 @@
     self.smileySlider.continuous = YES;
     [self.smileySlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     self.smileySlider.value = 0;
+    
+    self.painDescription = @[
+                             @("No hurt"),
+                             @("Hurts little bit"),
+                             @("Hurts little more"),
+                             @("Hurts even more"),
+                             @("Hurts whole lot"),
+                             @("Hurts worst")
+                             ];
 }
 
 -(void)valueChanged:(UISlider *)sender {
@@ -41,6 +50,7 @@
     [self.smileySlider setValue:index animated:NO];
     NSString *smiley = self.smileys[index];
     self.lblSmileyLetter.text = smiley;
+    self.lblPainDescription.text = self.painDescription[index];
     switch(index)
     {
         case 0: self.smileyImage.image = [UIImage imageNamed:@"smileyA"]; break;

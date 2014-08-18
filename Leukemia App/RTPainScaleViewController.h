@@ -12,6 +12,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *smileySlider;
 @property (weak, nonatomic) IBOutlet UIImageView *smileyImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblSmileyLetter;
+@property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
 
 @property (strong,nonatomic) NSArray* smileys;
+@property (strong,nonatomic) NSArray* painDescription;
+
 @end
