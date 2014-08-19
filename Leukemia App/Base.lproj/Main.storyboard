@@ -110,38 +110,37 @@
                                 <rect key="frame" x="263" y="98" width="243" height="242"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Rof-mt-jTI">
-                                <rect key="frame" x="168" y="399" width="433" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXg-RR-2w2">
-                                <rect key="frame" x="666" y="403" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
+                                <rect key="frame" x="170" y="458" width="429" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2uI-d9-yXS">
+                                <rect key="frame" x="168" y="520" width="433" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-70-bZ2">
+                                <rect key="frame" x="666" y="524" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rof-mt-jTI" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="335" id="4ND-rP-rHD"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="34" id="7b6-UX-5RD"/>
-                            <constraint firstAttribute="trailing" secondItem="Rof-mt-jTI" secondAttribute="trailing" constant="169" id="BOh-fj-haj"/>
-                            <constraint firstAttribute="trailing" secondItem="xXg-RR-2w2" secondAttribute="trailing" constant="60" id="Ejd-fz-Y1j"/>
-                            <constraint firstItem="Rof-mt-jTI" firstAttribute="leading" secondItem="nTV-im-hWo" secondAttribute="leading" constant="170" id="O5E-vP-uQ7"/>
-                            <constraint firstAttribute="centerY" secondItem="Rof-mt-jTI" secondAttribute="centerY" constant="98" id="P8z-jk-cDa"/>
                             <constraint firstAttribute="trailing" secondItem="2xM-mj-jJN" secondAttribute="trailing" constant="262" id="R9Q-28-DvF"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="leading" secondItem="nTV-im-hWo" secondAttribute="leading" constant="263" id="b7d-n9-vHt"/>
                             <constraint firstAttribute="centerY" secondItem="2xM-mj-jJN" secondAttribute="centerY" constant="293" id="gSJ-34-JAa"/>
-                            <constraint firstItem="xXg-RR-2w2" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="339" id="jdr-k6-oqd"/>
-                            <constraint firstItem="xXg-RR-2w2" firstAttribute="leading" secondItem="Rof-mt-jTI" secondAttribute="trailing" constant="67" id="pG7-Sq-CL5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Adjust Pain Level" id="NQm-VK-eLw"/>
                     <connections>
-                        <outlet property="lblSmileyLetter" destination="xXg-RR-2w2" id="XB0-V9-jpd"/>
-                        <outlet property="smileyImage" destination="2xM-mj-jJN" id="aAb-cz-KU9"/>
-                        <outlet property="smileySlider" destination="Rof-mt-jTI" id="Ef6-5C-uEq"/>
+                        <outlet property="imageSmiley" destination="2xM-mj-jJN" id="YQG-Tr-mnJ"/>
+                        <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
+                        <outlet property="lblPainNumber" destination="7xF-70-bZ2" id="lse-Vh-ejV"/>
+                        <outlet property="sliderPainNumber" destination="2uI-d9-yXS" id="Obr-vG-KDh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19k-qh-i1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,7 +160,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Diary" id="bvO-7g-SPk"/>
+                    <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jod-lE-rgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,7 +205,7 @@
                             <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" symbolic="YES" id="uRE-52-21w"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Medicine" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Medicine" image="TabBarMedicine" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,7 +235,7 @@
         <scene sceneID="hi9-EO-9Jh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ha9-6x-JQK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pain" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Pain" image="TabBarPain" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nl4-ks-uhk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -249,7 +248,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msn-35-rAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="150"/>
+            <point key="canvasLocation" x="3051" y="150"/>
         </scene>
     </scenes>
     <resources>
