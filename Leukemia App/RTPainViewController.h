@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTPainViewController : UIViewController
+@interface RTPainViewController : UIViewController <UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnAdjustPainLevels;
+@property CGPoint lastPoint;
+@property CGFloat red;
+@property CGFloat green;
+@property CGFloat blue;
+@property CGFloat brush;
+@property CGFloat opacity;
+@property BOOL mouseWiped;
+@property (weak, nonatomic) IBOutlet UIView *drawingView;
+@property (weak, nonatomic) IBOutlet UIImageView *mainImage;
+@property (weak, nonatomic) IBOutlet UIImageView *drawImage;
+
+- (IBAction)colorPressed:(id)sender;
+- (IBAction)resetDrawing:(id)sender;
 
 @end
