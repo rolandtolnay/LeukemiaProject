@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface RTPainScaleViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UISlider *smileySlider;
-@property (weak, nonatomic) IBOutlet UIImageView *smileyImage;
-@property (weak, nonatomic) IBOutlet UILabel *lblSmileyLetter;
+@property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
+@property (weak, nonatomic) IBOutlet UISlider *sliderPainNumber;
+@property (weak, nonatomic) IBOutlet UILabel *lblPainNumber;
 
 @property (strong,nonatomic) NSArray* smileys;
+@property (strong,nonatomic) NSArray* numberScale;
 @property (strong,nonatomic) NSArray* painDescription;
 
 @end
