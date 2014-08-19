@@ -258,6 +258,9 @@
         <image name="painBody" width="612" height="792"/>
         <image name="redbtn.png" width="300" height="300"/>
         <image name="second" width="30" height="30"/>
+        <image name="TabBarDiary" width="64" height="64"/>
+        <image name="TabBarMedicine" width="64" height="64"/>
+        <image name="TabBarPain" width="64" height="64"/>
         <image name="smileyA" width="338" height="338"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
