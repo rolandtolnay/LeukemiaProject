@@ -4,6 +4,25 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="sGd-jQ-IDT">
+            <objects>
+                <viewController id="iAD-Dd-EnW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LKI-MA-Tbc"/>
+                        <viewControllerLayoutGuide type="bottom" id="LKx-8r-1Xr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fcN-1G-5fe">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TyY-xT-6Rt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T20-W4-5I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4015" y="-1026"/>
+        </scene>
         <!--Pain View Controller - Pain-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
@@ -19,7 +38,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hje-pP-Ar1" userLabel="Red button">
                                 <rect key="frame" x="20" y="247" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Red Button" image="redbtn.png">
+                                <state key="normal" title="Red Button" image="redbtn">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -29,7 +48,7 @@
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8b-IJ-hdl" userLabel="Yellow button">
                                 <rect key="frame" x="20" y="345" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btnyellow.png">
+                                <state key="normal" image="btnyellow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -39,7 +58,7 @@
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkc-d1-fde" userLabel="Green button">
                                 <rect key="frame" x="20" y="443" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btngreen.png">
+                                <state key="normal" image="btngreen">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -47,20 +66,20 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-3f-E7R" userLabel="DrawingView">
-                                <rect key="frame" x="118" y="107" width="612" height="792"/>
+                                <rect key="frame" x="196" y="180" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBody" translatesAutoresizingMaskIntoConstraints="NO" id="gz9-vQ-DiO" userLabel="Main image">
-                                <rect key="frame" x="118" y="107" width="612" height="792"/>
+                                <rect key="frame" x="196" y="180" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBody" translatesAutoresizingMaskIntoConstraints="NO" id="U8c-qD-h7h" userLabel="Drawing image">
-                                <rect key="frame" x="118" y="107" width="612" height="792"/>
+                                <rect key="frame" x="196" y="180" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9m-Bi-6WU">
-                                <rect key="frame" x="355" y="889" width="189" height="58"/>
+                                <rect key="frame" x="396" y="869" width="189" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reset drawing">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,7 +89,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXe-7i-3Qi">
-                                <rect key="frame" x="552" y="889" width="189" height="58"/>
+                                <rect key="frame" x="553" y="869" width="189" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Adjust Pain Levels">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -79,10 +98,24 @@
                                     <segue destination="iOi-VK-jme" kind="push" id="QXn-GC-bkC"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBodyText" translatesAutoresizingMaskIntoConstraints="NO" id="fcM-1S-8fy">
+                                <rect key="frame" x="152" y="793" width="522" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBodyTextTop" translatesAutoresizingMaskIntoConstraints="NO" id="zQP-oI-Y4K">
+                                <rect key="frame" x="114" y="116" width="598" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae"/>
+                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="q6K-34-8Is">
+                            <connections>
+                                <segue destination="iAD-Dd-EnW" kind="push" id="4St-SY-SVl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnAdjustPainLevels" destination="XXe-7i-3Qi" id="5lA-nE-0qx"/>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>
@@ -253,11 +286,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btngreen.png" width="300" height="300"/>
-        <image name="btnyellow.png" width="300" height="300"/>
+        <image name="btngreen" width="300" height="300"/>
+        <image name="btnyellow" width="300" height="300"/>
         <image name="first" width="30" height="30"/>
-        <image name="painBody" width="612" height="792"/>
-        <image name="redbtn.png" width="300" height="300"/>
+        <image name="painBody" width="434" height="600"/>
+        <image name="painBodyText" width="522" height="93"/>
+        <image name="painBodyTextTop" width="598" height="66"/>
+        <image name="redbtn" width="300" height="300"/>
         <image name="second" width="30" height="30"/>
         <image name="smileyA" width="338" height="338"/>
     </resources>
