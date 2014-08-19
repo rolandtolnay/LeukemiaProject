@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="sGd-jQ-IDT">
             <objects>
-                <viewController id="iAD-Dd-EnW" sceneMemberID="viewController">
+                <viewController id="iAD-Dd-EnW" customClass="RTSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LKI-MA-Tbc"/>
                         <viewControllerLayoutGuide type="bottom" id="LKx-8r-1Xr"/>
@@ -15,11 +15,64 @@
                     <view key="view" contentMode="scaleToFill" id="fcN-1G-5fe">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-hr-ESo">
+                                <rect key="frame" x="18" y="273" width="448" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="iAD-Dd-EnW" eventType="valueChanged" id="g9V-bS-KQn"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5d-xA-nrG">
+                                <rect key="frame" x="483" y="277" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rDu-uY-zqt">
+                                <rect key="frame" x="571" y="224" width="133" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQG-Bz-Q0B">
+                                <rect key="frame" x="18" y="524" width="448" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="iAD-Dd-EnW" eventType="valueChanged" id="EKZ-Sp-0bc"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83V-6n-zeQ">
+                                <rect key="frame" x="483" y="528" width="71" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hV1-1Z-txg">
+                                <rect key="frame" x="571" y="475" width="133" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TyY-xT-6Rt"/>
+                    <navigationItem key="navigationItem" id="TyY-xT-6Rt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="DvB-T0-ZK9">
+                            <connections>
+                                <segue destination="b5X-Yt-442" kind="unwind" unwindAction="unwindFromSettings:" id="rpY-g3-Rvg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="brushLabel" destination="m5d-xA-nrG" id="h3y-jE-Rkb"/>
+                        <outlet property="brushSlider" destination="TNb-hr-ESo" id="4ZR-uW-QFh"/>
+                        <outlet property="brushView" destination="rDu-uY-zqt" id="GKT-Mn-1ch"/>
+                        <outlet property="opacityLabel" destination="83V-6n-zeQ" id="Jkx-es-H5O"/>
+                        <outlet property="opacitySlider" destination="KQG-Bz-Q0B" id="eIl-DP-XiG"/>
+                        <outlet property="opacityView" destination="hV1-1Z-txg" id="T7S-xk-oVW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T20-W4-5I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="b5X-Yt-442" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4015" y="-1026"/>
         </scene>
@@ -106,16 +159,20 @@
                                 <rect key="frame" x="114" y="116" width="598" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb6-Eb-xUU">
+                                <rect key="frame" x="42" y="883" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="iAD-Dd-EnW" kind="push" identifier="settingsSegue" id="nqB-Zf-FlU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="q6K-34-8Is">
-                            <connections>
-                                <segue destination="iAD-Dd-EnW" kind="push" id="4St-SY-SVl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae"/>
                     <connections>
                         <outlet property="btnAdjustPainLevels" destination="XXe-7i-3Qi" id="5lA-nE-0qx"/>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>

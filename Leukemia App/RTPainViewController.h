@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTSettingsViewController.h"
 
 @interface RTPainViewController : UIViewController <UIActionSheetDelegate>
 
