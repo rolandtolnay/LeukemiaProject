@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Pain View Controller - Pain-->
+        <!--Pain View Controller - Illustrate Pain-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="RTPainViewController" sceneMemberID="viewController">
@@ -69,22 +69,14 @@
                                     <action selector="resetDrawing:" destination="9pv-A4-QxB" eventType="touchUpInside" id="gUf-t9-5ZU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXe-7i-3Qi">
-                                <rect key="frame" x="552" y="889" width="189" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Adjust Pain Levels">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="iOi-VK-jme" kind="push" id="QXn-GC-bkC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae"/>
+                    <navigationItem key="navigationItem" title="Illustrate Pain" id="l26-Ky-1Ae">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="9qD-UK-gdz"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="32i-kj-Of6"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="btnAdjustPainLevels" destination="XXe-7i-3Qi" id="5lA-nE-0qx"/>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>
                         <outlet property="drawingView" destination="PcI-3f-E7R" id="IMK-8y-tTz"/>
                         <outlet property="mainImage" destination="gz9-vQ-DiO" id="Cnz-nI-Wrn"/>
@@ -92,9 +84,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4015" y="150"/>
+            <point key="canvasLocation" x="5967" y="150"/>
         </scene>
-        <!--Pain Scale View Controller - Adjust Pain Level-->
+        <!--Pain Scale View Controller - Pain-->
         <scene sceneID="Fxn-AL-Wpw">
             <objects>
                 <viewController id="iOi-VK-jme" customClass="RTPainScaleViewController" sceneMemberID="viewController">
@@ -111,19 +103,36 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
-                                <rect key="frame" x="170" y="458" width="429" height="21"/>
+                                <rect key="frame" x="170" y="422" width="429" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2uI-d9-yXS">
-                                <rect key="frame" x="168" y="520" width="433" height="31"/>
+                                <rect key="frame" x="168" y="475" width="433" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </slider>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-70-bZ2">
-                                <rect key="frame" x="666" y="524" width="42" height="21"/>
+                                <rect key="frame" x="666" y="479" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBN-Wo-eDZ">
+                                <rect key="frame" x="170" y="552" width="125" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="humanBodyIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="fNy-xu-wBX" kind="modal" id="B2I-wH-xHr"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sE8-86-ofx">
+                                <rect key="frame" x="211" y="624" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -135,7 +144,7 @@
                             <constraint firstAttribute="centerY" secondItem="2xM-mj-jJN" secondAttribute="centerY" constant="293" id="gSJ-34-JAa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Adjust Pain Level" id="NQm-VK-eLw"/>
+                    <navigationItem key="navigationItem" title="Pain" id="NQm-VK-eLw"/>
                     <connections>
                         <outlet property="imageSmiley" destination="2xM-mj-jJN" id="YQG-Tr-mnJ"/>
                         <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
@@ -145,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19k-qh-i1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4906" y="146"/>
+            <point key="canvasLocation" x="4026" y="150"/>
         </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
@@ -222,45 +231,62 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ha9-6x-JQK" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="4RN-FR-fsO" kind="relationship" relationship="viewControllers" id="CAj-n5-dZ8"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="2L9-BR-LhI" kind="relationship" relationship="viewControllers" id="bda-3M-eff"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2023" y="718"/>
+            <point key="canvasLocation" x="1985" y="736"/>
         </scene>
         <!--Navigation Controller - Pain-->
-        <scene sceneID="hi9-EO-9Jh">
+        <scene sceneID="43x-Sl-LdC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ha9-6x-JQK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pain" image="TabBarPain" id="acW-dT-cKf"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4RN-FR-fsO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Pain" image="TabBarPain" id="45W-eR-agi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nl4-ks-uhk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="V7m-ra-srI">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="NYv-yM-H0d"/>
+                        <segue destination="iOi-VK-jme" kind="relationship" relationship="rootViewController" id="4nC-lx-ThW"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="msn-35-rAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9u-Ts-B8D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3051" y="150"/>
+            <point key="canvasLocation" x="3052" y="150"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="C5w-kf-UEL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fNy-xu-wBX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4UW-Ho-dXc">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="NMO-qs-PSH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fl-Km-UTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4989" y="150"/>
         </scene>
     </scenes>
     <resources>
+        <image name="TabBarDiary" width="32" height="32"/>
+        <image name="TabBarMedicine" width="32" height="32"/>
+        <image name="TabBarPain" width="32" height="32"/>
         <image name="btngreen.png" width="300" height="300"/>
         <image name="btnyellow.png" width="300" height="300"/>
-        <image name="first" width="30" height="30"/>
+        <image name="humanBodyIcon" width="32" height="69"/>
         <image name="painBody" width="612" height="792"/>
         <image name="redbtn.png" width="300" height="300"/>
-        <image name="second" width="30" height="30"/>
-        <image name="TabBarDiary" width="64" height="64"/>
-        <image name="TabBarMedicine" width="64" height="64"/>
-        <image name="TabBarPain" width="64" height="64"/>
         <image name="smileyA" width="338" height="338"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
