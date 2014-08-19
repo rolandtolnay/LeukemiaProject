@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTPainViewController : UIViewController <UIActionSheetDelegate>
+@interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *btnAdjustPainLevels;
 @property CGPoint lastPoint;
 @property CGFloat red;
 @property CGFloat green;

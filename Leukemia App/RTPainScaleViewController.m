@@ -23,38 +23,61 @@
     return self;
 }
 
+- (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
-    NSInteger numberOfSteps = ((float)[self.smileys count]-1);
-    self.smileySlider.maximumValue = numberOfSteps;
-    self.smileySlider.minimumValue = 0;
+	
+    [self initSliderPainNumber];
     
-    self.smileySlider.continuous = YES;
-    [self.smileySlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    self.smileySlider.value = 0;
+    self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
+    self.painDescription = @[
+                             @("No hurt"),
+                             @("Hurts little bit"),
+                             @("Hurts little more"),
+                             @("Hurts even more"),
+                             @("Hurts whole lot"),
+                             @("Hurts worst")
+                             ];
 }
 
--(void)valueChanged:(UISlider *)sender {
-    NSUInteger index = (NSUInteger)(self.smileySlider.value+0.5);
-    [self.smileySlider setValue:index animated:NO];
-    NSString *smiley = self.smileys[index];
-    self.lblSmileyLetter.text = smiley;
-    switch(index)
+-(void)initSliderPainNumber
+{
+    self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
+    NSInteger numberOfSteps = ((float)[self.numberScale count]-1);
+    self.sliderPainNumber.maximumValue =numberOfSteps;
+    self.sliderPainNumber.minimumValue = 0;
+    
+    self.sliderPainNumber.continuous = YES;
+    [self.sliderPainNumber addTarget:self action:@selector(sliderPainNumberChanged:) forControlEvents:UIControlEventValueChanged];
+    self.sliderPainNumber.value=0;
+}
+
+-(void)sliderPainNumberChanged:(UISlider *)sender {
+    NSUInteger index = (NSUInteger)(self.sliderPainNumber.value+0.5);
+    [self.sliderPainNumber setValue:index animated:NO];
+    NSNumber *painNumber = self.numberScale[index];
+    self.lblPainNumber.text = [painNumber stringValue];
+    
+    if ([painNumber intValue] == 0)
     {
-        case 0: self.smileyImage.image = [UIImage imageNamed:@"smileyA"]; break;
-        case 1: self.smileyImage.image = [UIImage imageNamed:@"smileyB"]; break;
-        case 2: self.smileyImage.image =[UIImage imageNamed:@"smileyC"]; break;
-        case 3: self.smileyImage.image =[UIImage imageNamed:@"smileyD"]; break;
-        case 4: self.smileyImage.image =[UIImage imageNamed:@"smileyE"]; break;
-        case 5: self.smileyImage.image =[UIImage imageNamed:@"smileyF"]; break;
-        default: NSLog(@"Image index not recognized"); break;
+        self.lblPainDescription.text = self.painDescription[0];
+        self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+    } else if ([painNumber intValue] % 2 == 0) painNumber = @([painNumber intValue]-1);
+        
+    if ([painNumber intValue] % 2 == 1)
+    {
+        int smileyIndex = ([painNumber intValue]+1)/2;
+        
+        self.lblPainDescription.text = self.painDescription[smileyIndex];
+        NSString *imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+        self.imageSmiley.image = [UIImage imageNamed:imageName];
     }
-    
-    
 }
-
 
 - (void)didReceiveMemoryWarning
 {
