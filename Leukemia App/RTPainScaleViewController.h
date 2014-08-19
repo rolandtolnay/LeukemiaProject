@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface RTPainScaleViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISlider *smileySlider;
+@property (weak, nonatomic) IBOutlet UIImageView *smileyImage;
+@property (weak, nonatomic) IBOutlet UILabel *lblSmileyLetter;
 
+@property (strong,nonatomic) NSArray* smileys;
 @end
