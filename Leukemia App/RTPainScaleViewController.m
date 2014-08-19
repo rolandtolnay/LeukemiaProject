@@ -23,6 +23,11 @@
     return self;
 }
 
+- (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

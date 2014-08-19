@@ -14,7 +14,7 @@
 		A6924E96199E28C5009D7220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E95199E28C5009D7220 /* main.m */; };
 		A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E99199E28C5009D7220 /* RTAppDelegate.m */; };
 		A6924E9D199E28C5009D7220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6924E9B199E28C5009D7220 /* Main.storyboard */; };
-		A6924EA0199E28C5009D7220 /* RTPainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E9F199E28C5009D7220 /* RTPainViewController.m */; };
+		A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */; };
 		A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */; };
 		A6924EA5199E28C5009D7220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6924EA4199E28C5009D7220 /* Images.xcassets */; };
 		A6924EAC199E28C5009D7220 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924EAB199E28C5009D7220 /* XCTest.framework */; };
@@ -48,8 +48,8 @@
 		A6924E98199E28C5009D7220 /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
 		A6924E99199E28C5009D7220 /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
 		A6924E9C199E28C5009D7220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A6924E9E199E28C5009D7220 /* RTPainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTPainViewController.h; sourceTree = "<group>"; };
-		A6924E9F199E28C5009D7220 /* RTPainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTPainViewController.m; sourceTree = "<group>"; };
+		A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTPainDrawViewController.h; sourceTree = "<group>"; };
+		A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTPainDrawViewController.m; sourceTree = "<group>"; };
 		A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTMedicineViewController.h; sourceTree = "<group>"; };
 		A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTMedicineViewController.m; sourceTree = "<group>"; };
 		A6924EA4199E28C5009D7220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 				A6924E98199E28C5009D7220 /* RTAppDelegate.h */,
 				A6924E99199E28C5009D7220 /* RTAppDelegate.m */,
 				A6924E9B199E28C5009D7220 /* Main.storyboard */,
-				A6924E9E199E28C5009D7220 /* RTPainViewController.h */,
-				A6924E9F199E28C5009D7220 /* RTPainViewController.m */,
+				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
+				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
 				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
 				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
 				A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */,
@@ -277,7 +277,7 @@
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
-				A6924EA0199E28C5009D7220 /* RTPainViewController.m in Sources */,
+				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

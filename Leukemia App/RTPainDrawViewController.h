@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTPainViewController : UIViewController <UIActionSheetDelegate>
+@interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate>
 
 @property CGPoint lastPoint;
 @property CGFloat red;
