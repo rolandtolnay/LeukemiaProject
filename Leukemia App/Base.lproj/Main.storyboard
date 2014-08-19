@@ -127,7 +127,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Diary" id="bvO-7g-SPk"/>
+                    <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jod-lE-rgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,7 +172,7 @@
                             <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" symbolic="YES" id="uRE-52-21w"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Medicine" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Medicine" image="TabBarMedicine" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,7 +202,7 @@
         <scene sceneID="hi9-EO-9Jh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ha9-6x-JQK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Pain" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Pain" image="TabBarPain" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nl4-ks-uhk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -215,12 +215,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msn-35-rAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3041" y="150"/>
+            <point key="canvasLocation" x="3051" y="150"/>
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="TabBarDiary" width="64" height="64"/>
+        <image name="TabBarMedicine" width="64" height="64"/>
+        <image name="TabBarPain" width="64" height="64"/>
         <image name="smileyA" width="338" height="338"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
