@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 ___FULLUSERNAME___. All rights reserved.
 //
 
-#import "RTPainViewController.h"
+#import "RTPainDrawViewController.h"
 
-@interface RTPainViewController ()
+@interface RTPainDrawViewController ()
 
 @end
 
-@implementation RTPainViewController
+@implementation RTPainDrawViewController
 
 - (void)viewDidLoad
 {
@@ -29,6 +29,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 //Controls drawing part
 
