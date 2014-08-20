@@ -25,7 +25,15 @@
 
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
 {
-    
+    UIViewController *sourceViewController = segue.sourceViewController;
+    if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
+        RTPainDrawViewController *controller = segue.sourceViewController;
+        UIGraphicsBeginImageContextWithOptions(controller.mainImage.bounds.size, NO,0.0);
+        [controller.mainImage.image drawInRect:CGRectMake(0, 0, controller.mainImage.frame.size.width, controller.mainImage.frame.size.height)];
+        UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        [self UIImageWriteToFile:saveImage :@"test.png"];
+    }
 }
 
 - (void)viewDidLoad
@@ -96,4 +104,29 @@
 }
 */
 
+//Saving and reading images
+-(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:filePath atomically:YES];
+}
+
+-(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    *image = [UIImage imageWithContentsOfFile:filePath];
+}
+
+- (IBAction)testImage:(id)sender {
+    UIImage *imageToshow;
+    [self UIImageReadFromFile:&imageToshow :@"test.png"];
+    [self.testImageView setImage:imageToshow];
+}
 @end

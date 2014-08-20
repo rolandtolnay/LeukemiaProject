@@ -148,6 +148,9 @@
     self.opacity = 0.6;
 }
 
+- (IBAction)savingImage:(id)sender {
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"settingsSegue"]){
         RTSettingsViewController *controller = [segue destinationViewController];
