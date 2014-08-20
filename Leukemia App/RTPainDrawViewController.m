@@ -86,6 +86,7 @@
 
 - (IBAction)colorPressed:(id)sender {
     UIButton *pressedButton = (UIButton*)sender;
+    [pressedButton setSelected:YES];
     switch (pressedButton.tag) {
         case 0:
             self.red = 255.0/255.0;
@@ -114,5 +115,25 @@
     self.drawImage.image = painBodyImage;
     self.brush = 15.0;
     self.opacity = 0.6;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"settingsSegue"]){
+        RTSettingsViewController *controller = [segue destinationViewController];
+        controller.brushSlider.value = self.brush;
+        controller.brush = [[NSNumber alloc]initWithFloat:self.brush];
+        
+        controller.opacitySlider.value = self.opacity;
+        controller.opacity = [[NSNumber alloc]initWithFloat:self.opacity];
+    }
+}
+
+-(IBAction)unwindFromSettings:(UIStoryboardSegue*)unwindSegue{
+    UIViewController *sourceViewController = unwindSegue.sourceViewController;
+    if([sourceViewController isKindOfClass:[RTSettingsViewController class]]){
+        RTSettingsViewController *controller = unwindSegue.sourceViewController;
+        self.brush = controller.brushSlider.value;
+        self.opacity = controller.opacitySlider.value;
+    }
 }
 @end

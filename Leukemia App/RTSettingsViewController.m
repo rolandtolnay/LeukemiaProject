@@ -14,19 +14,48 @@
 
 @implementation RTSettingsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+-(NSNumber *)brush{
+    if(!_brush){
+        _brush = [[NSNumber alloc]init];
     }
-    return self;
+    return _brush;
+}
+
+-(NSNumber *)opacity{
+    if(!_opacity){
+        _opacity = [[NSNumber alloc]init];
+    }
+    return _opacity;
 }
 
 - (void)viewDidLoad
 {
+    self.brushSlider.value = [self.brush floatValue];
+    self.brushLabel.text = [NSString stringWithFormat:@"%0.1f",[self.brush floatValue]];
+    
+    self.opacitySlider.value = [self.opacity floatValue];
+    self.opacityLabel.text = [NSString stringWithFormat:@"%0.1f", [self.opacity floatValue]];
+    
+    UIGraphicsBeginImageContext(self.brushView.frame.size);
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), [self.brush floatValue]);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    self.brushView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIGraphicsBeginImageContext(self.opacityView.frame.size);
+    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 20);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, [self.opacity floatValue]);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    self.opacityView.image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,4 +75,35 @@
 }
 */
 
+- (IBAction)sliderChanged:(id)sender {
+    UISlider *changedSlider = (UISlider*)sender;
+    if(changedSlider == self.brushSlider) {
+        self.brush = [[NSNumber alloc ]initWithFloat:self.brushSlider.value];
+        self.brushLabel.text = [NSString stringWithFormat:@"%0.1f",[self.brush floatValue]];
+        
+        UIGraphicsBeginImageContext(self.brushView.frame.size);
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), [self.brush floatValue]);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, 1.0);
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        self.brushView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+    else if (changedSlider == self.opacitySlider){
+        self.opacity = [[NSNumber alloc ]initWithFloat:self.opacitySlider.value];
+        self.opacityLabel.text = [NSString stringWithFormat:@"%0.1f",[self.opacity floatValue]];
+        
+        UIGraphicsBeginImageContext(self.opacityView.frame.size);
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 20);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, [self.opacity floatValue]);
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        self.opacityView.image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+}
 @end
