@@ -146,6 +146,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejl-5V-TJF">
+                                <rect key="frame" x="0.0" y="980" width="797" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Reset Drawing" id="rjl-Bt-d14">
+                                        <connections>
+                                            <action selector="resetDrawing:" destination="9pv-A4-QxB" id="CLb-ow-esr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Settings" id="FeC-p7-P5O">
+                                        <connections>
+                                            <segue destination="iAD-Dd-EnW" kind="push" id="323-eo-Xcg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
