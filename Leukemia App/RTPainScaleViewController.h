@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTPainDrawViewController.h"
 
 @interface RTPainScaleViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
@@ -17,5 +18,9 @@
 @property (strong,nonatomic) NSArray* smileys;
 @property (strong,nonatomic) NSArray* numberScale;
 @property (strong,nonatomic) NSArray* painDescription;
+
+@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
+
+- (IBAction)testImage:(id)sender;
 
 @end
