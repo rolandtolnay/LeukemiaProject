@@ -119,36 +119,33 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-3f-E7R" userLabel="DrawingView">
-                                <rect key="frame" x="196" y="180" width="434" height="600"/>
+                                <rect key="frame" x="167" y="122" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBody" translatesAutoresizingMaskIntoConstraints="NO" id="gz9-vQ-DiO" userLabel="Main image">
-                                <rect key="frame" x="196" y="180" width="434" height="600"/>
+                                <rect key="frame" x="167" y="122" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBody" translatesAutoresizingMaskIntoConstraints="NO" id="U8c-qD-h7h" userLabel="Drawing image">
-                                <rect key="frame" x="196" y="180" width="434" height="600"/>
+                                <rect key="frame" x="167" y="122" width="434" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBodyText" translatesAutoresizingMaskIntoConstraints="NO" id="fcM-1S-8fy">
-                                <rect key="frame" x="152" y="793" width="522" height="93"/>
+                                <rect key="frame" x="123" y="779" width="522" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painBodyTextTop" translatesAutoresizingMaskIntoConstraints="NO" id="zQP-oI-Y4K">
-                                <rect key="frame" x="114" y="116" width="598" height="56"/>
+                                <rect key="frame" x="85" y="65" width="598" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb6-Eb-xUU">
-                                <rect key="frame" x="42" y="883" width="94" height="30"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fzK-sd-mYT">
+                                <rect key="frame" x="123" y="737" width="522" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="iAD-Dd-EnW" kind="push" identifier="settingsSegue" id="nqB-Zf-FlU"/>
-                                </connections>
-                            </button>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -156,7 +153,11 @@
                     <connections>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>
                         <outlet property="drawingView" destination="PcI-3f-E7R" id="IMK-8y-tTz"/>
+                        <outlet property="greenBtn" destination="gkc-d1-fde" id="pBh-3n-vfo"/>
                         <outlet property="mainImage" destination="gz9-vQ-DiO" id="Cnz-nI-Wrn"/>
+                        <outlet property="painDescriptionTxtField" destination="fzK-sd-mYT" id="Laz-t6-foE"/>
+                        <outlet property="redBtn" destination="hje-pP-Ar1" id="V0p-zg-Ls6"/>
+                        <outlet property="yelBtn" destination="b8b-IJ-hdl" id="Q0E-Pg-RTm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -373,7 +374,6 @@
         <!--Navigation Controller-->
         <scene sceneID="C5w-kf-UEL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3fl-Km-UTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fNy-xu-wBX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4UW-Ho-dXc">
@@ -385,6 +385,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="NMO-qs-PSH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fl-Km-UTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4989" y="150"/>
         </scene>

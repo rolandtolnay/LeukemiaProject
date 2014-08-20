@@ -21,6 +21,26 @@
     self.blue = 0.0/255.0;
     self.brush = 15.0;
     self.opacity = 0.6;
+    
+    [self.greenBtn setImage:[UIImage imageNamed:@"btngreen.png"] forState:UIControlStateNormal];
+    [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateSelected];
+    [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateHighlighted];
+    
+    [self.yelBtn setImage:[UIImage imageNamed:@"btnyellow.png"] forState:UIControlStateNormal];
+    [self.yelBtn setImage:[UIImage imageNamed:@"yellowBtnHighligted.png"] forState:UIControlStateSelected];
+    [self.yelBtn setImage:[UIImage imageNamed:@"yellowBtnHighligted.png"] forState:UIControlStateHighlighted];
+    
+    [self.redBtn setImage:[UIImage imageNamed:@"redbtn.png"] forState:UIControlStateNormal];
+    [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateSelected];
+    [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateHighlighted];
+    [self.redBtn setSelected:YES];
+    
+    self.redDescription = @"Rød - Det gør så ondt at det er uudholdeligt";
+    self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
+    self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
+    [self.painDescriptionTxtField setText:self.redDescription];
+    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]];
+    
     [super viewDidLoad];
 }
 
@@ -87,23 +107,34 @@
 - (IBAction)colorPressed:(id)sender {
     UIButton *pressedButton = (UIButton*)sender;
     [pressedButton setSelected:YES];
+    [pressedButton setHighlighted:YES];
     switch (pressedButton.tag) {
         case 0:
             self.red = 255.0/255.0;
             self.green = 0.0/255.0;
             self.blue = 0.0/255.0;
+            [self.yelBtn setSelected:NO];
+            [self.greenBtn setSelected:NO];
+            [self.painDescriptionTxtField setText:self.redDescription];
             break;
         case 1:
             self.red = 255.0/255.0;
             self.green = 255.0/255.0;
             self.blue = 0.0/255.0;
+            [self.redBtn setSelected:NO];
+            [self.greenBtn setSelected:NO];
+            [self.painDescriptionTxtField setText:self.yellowDescription];
             break;
         case 2:
             self.red = 102.0/255.0;
             self.green = 255.0/255.0;
             self.blue = 0.0/255.0;
+            [self.redBtn setSelected:NO];
+            [self.yelBtn setSelected:NO];
+            [self.painDescriptionTxtField setText:self.greenDescription];
             break;
     }
+    [self setTextColor];
 }
 
 - (IBAction)resetDrawing:(id)sender {
@@ -136,4 +167,9 @@
         self.opacity = controller.opacitySlider.value;
     }
 }
+
+-(void)setTextColor{
+    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1.0]];
+}
+
 @end
