@@ -74,7 +74,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T20-W4-5I2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="b5X-Yt-442" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="7143" y="150"/>
+            <point key="canvasLocation" x="7013" y="150"/>
         </scene>
         <!--Pain Draw View Controller - Pain-->
         <scene sceneID="hNz-n2-bh7">
@@ -139,20 +139,37 @@
                                 <rect key="frame" x="114" y="116" width="598" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qb6-Eb-xUU">
-                                <rect key="frame" x="42" y="883" width="94" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="iAD-Dd-EnW" kind="push" identifier="settingsSegue" id="nqB-Zf-FlU"/>
-                                </connections>
-                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejl-5V-TJF">
+                                <rect key="frame" x="0.0" y="980" width="797" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Reset Drawing" id="rjl-Bt-d14">
+                                        <connections>
+                                            <action selector="resetDrawing:" destination="9pv-A4-QxB" id="CLb-ow-esr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Settings" id="FeC-p7-P5O">
+                                        <connections>
+                                            <segue destination="iAD-Dd-EnW" kind="push" id="323-eo-Xcg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae"/>
+                    <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="imO-o4-ovf">
+                            <connections>
+                                <segue destination="FPu-uN-qkJ" kind="unwind" unwindAction="unwindToPainScale:" id="UfQ-iR-fdj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="tEH-OC-23n">
+                            <connections>
+                                <segue destination="FPu-uN-qkJ" kind="unwind" unwindAction="unwindToPainScale:" id="FLB-R8-1U8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>
                         <outlet property="drawingView" destination="PcI-3f-E7R" id="IMK-8y-tTz"/>
@@ -160,6 +177,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <exit id="FPu-uN-qkJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5967" y="150"/>
         </scene>
@@ -384,7 +402,6 @@
         <!--Navigation Controller-->
         <scene sceneID="C5w-kf-UEL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3fl-Km-UTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fNy-xu-wBX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4UW-Ho-dXc">
@@ -396,6 +413,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="NMO-qs-PSH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3fl-Km-UTH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4989" y="150"/>
         </scene>
