@@ -161,7 +161,21 @@
         
         controller.opacitySlider.value = self.opacity;
         controller.opacity = [[NSNumber alloc]initWithFloat:self.opacity];
+        
+        UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        popover.delegate = self;
     }
+}
+
+-(IBAction)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    UIViewController *sourceViewController = popoverController.contentViewController;
+    if([sourceViewController isKindOfClass:[RTSettingsViewController class]]){
+        RTSettingsViewController *controller = (RTSettingsViewController*)sourceViewController;
+        self.brush = controller.brushSlider.value;
+        self.opacity = controller.opacitySlider.value;
+    }
+
 }
 
 -(IBAction)unwindFromSettings:(UIStoryboardSegue*)unwindSegue{

@@ -14,22 +14,10 @@
 
 @implementation RTSettingsViewController
 
--(NSNumber *)brush{
-    if(!_brush){
-        _brush = [[NSNumber alloc]init];
-    }
-    return _brush;
-}
-
--(NSNumber *)opacity{
-    if(!_opacity){
-        _opacity = [[NSNumber alloc]init];
-    }
-    return _opacity;
-}
-
 - (void)viewDidLoad
 {
+    
+    
     self.brushSlider.value = [self.brush floatValue];
     self.brushLabel.text = [NSString stringWithFormat:@"%0.1f",[self.brush floatValue]];
     
