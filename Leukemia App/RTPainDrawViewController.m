@@ -57,16 +57,18 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.mouseWiped = NO;
     UITouch *touch = [touches anyObject];
-    self.lastPoint = [touch locationInView:self.drawingView];
+    if([[touch view]isEqual:self.drawingView]){
+        self.lastPoint = [touch locationInView:self.drawingView];
+    }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
     self.mouseWiped = YES;
     UITouch *touch = [touches anyObject];
+    if([[touch view]isEqual:self.drawingView]){
     CGPoint currentPoint = [touch locationInView:self.drawingView];
-    
-    UIGraphicsBeginImageContext(self.drawingView.frame.size);
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.frame.size.width, self.drawingView.frame.size.height)];
+    UIGraphicsBeginImageContext(self.drawingView.bounds.size);
+    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height)];
     CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
@@ -79,12 +81,13 @@
     [self.drawImage setAlpha:self.opacity];
     UIGraphicsEndImageContext();
     self.lastPoint = currentPoint;
+    }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     if(!self.mouseWiped){
         UIGraphicsBeginImageContext(self.drawingView.frame.size);
-        [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.frame.size.width, self.drawingView.frame.size.height)];
+        [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height)];
         CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
         CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
         CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, self.opacity);
@@ -96,9 +99,9 @@
         UIGraphicsEndImageContext();
     }
     UIGraphicsBeginImageContext(self.mainImage.frame.size);
-    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.frame.size.width, self.drawingView.frame.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.frame.size.width, self.drawingView.frame.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
+    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
     self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
     self.drawImage.image = nil;
     UIGraphicsEndImageContext();
