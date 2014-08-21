@@ -39,7 +39,7 @@
     self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
     self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
     [self.painDescriptionTxtField setText:self.redDescription];
-    //[self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]];
+
     [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
     
     [super viewDidLoad];
@@ -143,7 +143,6 @@
             [self.painDescriptionTxtField setText:self.greenDescription];
             break;
     }
-    //[self setTextColor];
 }
 
 - (IBAction)resetDrawing:(id)sender {
@@ -193,9 +192,5 @@
         self.opacity = controller.opacitySlider.value;
     }
 }
-
-//-(void)setTextColor{
-//    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1.0]];
-//}
 
 @end
