@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RTSettingsViewController.h"
+#import "RTPainScaleViewController.h"
 
 @interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate,UIPopoverControllerDelegate>
 
@@ -38,6 +39,8 @@
 
 - (IBAction)colorPressed:(id)sender;
 - (IBAction)resetDrawing:(id)sender;
+- (IBAction)cancelPressed:(id)sender;
+
 
 
 @end

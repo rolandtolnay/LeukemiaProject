@@ -156,7 +156,8 @@
     self.opacity = 0.6;
 }
 
-- (IBAction)savingImage:(id)sender {
+- (IBAction)cancelPressed:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{

@@ -178,7 +178,7 @@
                     <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="imO-o4-ovf">
                             <connections>
-                                <segue destination="FPu-uN-qkJ" kind="unwind" unwindAction="unwindToPainScale:" id="UfQ-iR-fdj"/>
+                                <action selector="cancelPressed:" destination="9pv-A4-QxB" id="rzN-vr-J8t"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="tEH-OC-23n">
