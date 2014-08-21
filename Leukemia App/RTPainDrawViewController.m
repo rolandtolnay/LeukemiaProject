@@ -20,7 +20,7 @@
     self.green = 0.0/255.0;
     self.blue = 0.0/255.0;
     self.brush = 15.0;
-    self.opacity = 0.6;
+    self.opacity = 0.7;
     
     [self.greenBtn setImage:[UIImage imageNamed:@"btngreen.png"] forState:UIControlStateNormal];
     [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateSelected];
@@ -39,7 +39,8 @@
     self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
     self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
     [self.painDescriptionTxtField setText:self.redDescription];
-    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]];
+
+    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
     
     [super viewDidLoad];
 }
@@ -98,12 +99,14 @@
         self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-    UIGraphicsBeginImageContext(self.mainImage.frame.size);
-    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+//    UIGraphicsBeginImageContext(self.mainImage.frame.size);
+     UIGraphicsBeginImageContext(self.drawImage.frame.size);
+//    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
-    self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    self.drawImage.image = nil;
+    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+//    self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
+//    self.drawImage.image = nil;
     UIGraphicsEndImageContext();
 }
 
@@ -118,6 +121,7 @@
             self.blue = 0.0/255.0;
             [self.yelBtn setSelected:NO];
             [self.greenBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
             [self.painDescriptionTxtField setText:self.redDescription];
             break;
         case 1:
@@ -126,6 +130,7 @@
             self.blue = 0.0/255.0;
             [self.redBtn setSelected:NO];
             [self.greenBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"btnyellow.png" ]];
             [self.painDescriptionTxtField setText:self.yellowDescription];
             break;
         case 2:
@@ -134,10 +139,10 @@
             self.blue = 0.0/255.0;
             [self.redBtn setSelected:NO];
             [self.yelBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"btngreen.png" ]];
             [self.painDescriptionTxtField setText:self.greenDescription];
             break;
     }
-    [self setTextColor];
 }
 
 - (IBAction)resetDrawing:(id)sender {
@@ -145,7 +150,7 @@
     self.red = 255.0/255.0;
     self.green = 0.0/255.0;
     self.blue = 0.0/255.0;
-    self.mainImage.image = painBodyImage;
+    //self.mainImage.image = painBodyImage;
     self.drawImage.image = painBodyImage;
     self.brush = 15.0;
     self.opacity = 0.6;
@@ -186,10 +191,6 @@
         self.brush = controller.brushSlider.value;
         self.opacity = controller.opacitySlider.value;
     }
-}
-
--(void)setTextColor{
-    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1.0]];
 }
 
 @end
