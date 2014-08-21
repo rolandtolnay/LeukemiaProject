@@ -233,7 +233,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBN-Wo-eDZ">
-                                <rect key="frame" x="263" y="547" width="57" height="69"/>
+                                <rect key="frame" x="270" y="536" width="42" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="humanBodyIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -455,7 +455,7 @@
         <image name="btngreen" width="300" height="300"/>
         <image name="btnyellow" width="300" height="300"/>
         <image name="camera-icon" width="256" height="256"/>
-        <image name="humanBodyIcon" width="32" height="69"/>
+        <image name="humanBodyIcon" width="42" height="91"/>
         <image name="painBody" width="434" height="600"/>
         <image name="painBodyText" width="522" height="93"/>
         <image name="painBodyTextTop" width="598" height="66"/>

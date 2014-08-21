@@ -9,7 +9,7 @@
 #import "RTSettingsViewController.h"
 
 @interface RTSettingsViewController ()
-@property UIPopoverController* popover;
+
 @end
 
 @implementation RTSettingsViewController
