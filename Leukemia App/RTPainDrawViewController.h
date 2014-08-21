@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTSettingsViewController.h"
 
-@interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate>
+@interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate,UIPopoverControllerDelegate>
 
 @property CGPoint lastPoint;
 @property CGFloat red;
@@ -34,7 +34,9 @@
 @property (strong,nonatomic) NSString* yellowDescription;
 @property (strong,nonatomic) NSString* greenDescription;
 
+
 - (IBAction)colorPressed:(id)sender;
 - (IBAction)resetDrawing:(id)sender;
+
 
 @end
