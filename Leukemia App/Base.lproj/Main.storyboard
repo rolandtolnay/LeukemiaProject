@@ -306,11 +306,11 @@
                             <constraint firstItem="ZmI-T7-88s" firstAttribute="top" secondItem="2xM-mj-jJN" secondAttribute="bottom" constant="82" id="OZk-65-2Vw"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="centerX" secondItem="2uI-d9-yXS" secondAttribute="centerX" id="Usp-DC-v4F"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="centerX" secondItem="GEf-FO-Ud0" secondAttribute="centerX" id="avv-74-xF7"/>
-                            <constraint firstItem="lBN-Wo-eDZ" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="483" id="buR-pm-bz0"/>
+                            <constraint firstItem="lBN-Wo-eDZ" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="472" id="buR-pm-bz0"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="centerX" secondItem="rWJ-Io-uxB" secondAttribute="centerX" id="cFG-nY-etN"/>
                             <constraint firstItem="2xM-mj-jJN" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="34" id="d3G-eI-MWO"/>
                             <constraint firstItem="4Uz-t9-lJm" firstAttribute="top" secondItem="GEf-FO-Ud0" secondAttribute="bottom" constant="177" id="klq-Fp-Tk1"/>
-                            <constraint firstItem="2xM-mj-jJN" firstAttribute="leading" secondItem="lBN-Wo-eDZ" secondAttribute="leading" id="nyA-tn-Ljz"/>
+                            <constraint firstItem="2xM-mj-jJN" firstAttribute="leading" secondItem="lBN-Wo-eDZ" secondAttribute="leading" constant="-7" id="nyA-tn-Ljz"/>
                             <constraint firstItem="rWJ-Io-uxB" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="853" id="oEp-NC-E0y"/>
                             <constraint firstItem="2uI-d9-yXS" firstAttribute="top" secondItem="aeC-o3-vU1" secondAttribute="bottom" constant="411" id="sdM-GK-yb9"/>
                         </constraints>
