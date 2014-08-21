@@ -28,8 +28,8 @@
     UIViewController *sourceViewController = segue.sourceViewController;
     if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
         RTPainDrawViewController *controller = segue.sourceViewController;
-        UIGraphicsBeginImageContextWithOptions(controller.mainImage.bounds.size, NO,0.0);
-        [controller.mainImage.image drawInRect:CGRectMake(0, 0, controller.mainImage.frame.size.width, controller.mainImage.frame.size.height)];
+        UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
+        [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
         UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         [self UIImageWriteToFile:saveImage :@"test.png"];
