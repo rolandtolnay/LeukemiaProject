@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="LKx-8r-1Xr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fcN-1G-5fe">
-                        <rect key="frame" x="0.0" y="0.0" width="650" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="650" height="150"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="80" translatesAutoresizingMaskIntoConstraints="NO" id="TNb-hr-ESo">
@@ -34,24 +34,6 @@
                                 <rect key="frame" x="515" y="20" width="102" height="97"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQG-Bz-Q0B">
-                                <rect key="frame" x="30" y="171" width="448" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="sliderChanged:" destination="iAD-Dd-EnW" eventType="valueChanged" id="EKZ-Sp-0bc"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83V-6n-zeQ">
-                                <rect key="frame" x="37" y="209" width="71" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hV1-1Z-txg">
-                                <rect key="frame" x="515" y="133" width="102" height="97"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -63,14 +45,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="650" height="250"/>
+                    <size key="freeformSize" width="650" height="150"/>
                     <connections>
                         <outlet property="brushLabel" destination="m5d-xA-nrG" id="h3y-jE-Rkb"/>
                         <outlet property="brushSlider" destination="TNb-hr-ESo" id="4ZR-uW-QFh"/>
                         <outlet property="brushView" destination="rDu-uY-zqt" id="GKT-Mn-1ch"/>
-                        <outlet property="opacityLabel" destination="83V-6n-zeQ" id="Jkx-es-H5O"/>
-                        <outlet property="opacitySlider" destination="KQG-Bz-Q0B" id="eIl-DP-XiG"/>
-                        <outlet property="opacityView" destination="hV1-1Z-txg" id="T7S-xk-oVW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T20-W4-5I2" userLabel="First Responder" sceneMemberID="firstResponder"/>

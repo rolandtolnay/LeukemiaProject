@@ -21,9 +21,6 @@
     self.brushSlider.value = [self.brush floatValue];
     self.brushLabel.text = [NSString stringWithFormat:@"%0.1f",[self.brush floatValue]];
     
-    self.opacitySlider.value = [self.opacity floatValue];
-    self.opacityLabel.text = [NSString stringWithFormat:@"%0.1f", [self.opacity floatValue]];
-    
     UIGraphicsBeginImageContext(self.brushView.frame.size);
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), [self.brush floatValue]);
@@ -34,15 +31,15 @@
     self.brushView.image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIGraphicsBeginImageContext(self.opacityView.frame.size);
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 20);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, [self.opacity floatValue]);
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
-    self.opacityView.image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+//    UIGraphicsBeginImageContext(self.opacityView.frame.size);
+//    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+//    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 20);
+//    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, [self.opacity floatValue]);
+//    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+//    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
+//    CGContextStrokePath(UIGraphicsGetCurrentContext());
+//    self.opacityView.image = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
     [super viewDidLoad];
 }
 
@@ -64,9 +61,7 @@
 */
 
 - (IBAction)sliderChanged:(id)sender {
-    UISlider *changedSlider = (UISlider*)sender;
-    if(changedSlider == self.brushSlider) {
-        self.brush = [[NSNumber alloc ]initWithFloat:self.brushSlider.value];
+            self.brush = [[NSNumber alloc ]initWithFloat:self.brushSlider.value];
         self.brushLabel.text = [NSString stringWithFormat:@"%0.1f",[self.brush floatValue]];
         
         UIGraphicsBeginImageContext(self.brushView.frame.size);
@@ -78,20 +73,6 @@
         CGContextStrokePath(UIGraphicsGetCurrentContext());
         self.brushView.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-    }
-    else if (changedSlider == self.opacitySlider){
-        self.opacity = [[NSNumber alloc ]initWithFloat:self.opacitySlider.value];
-        self.opacityLabel.text = [NSString stringWithFormat:@"%0.1f",[self.opacity floatValue]];
-        
-        UIGraphicsBeginImageContext(self.opacityView.frame.size);
-        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 20);
-        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 0.0, 0.0, 0.0, [self.opacity floatValue]);
-        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 45, 45);
-        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), 45, 45);
-        CGContextStrokePath(UIGraphicsGetCurrentContext());
-        self.opacityView.image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
+    
 }
 @end

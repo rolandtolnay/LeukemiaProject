@@ -179,18 +179,8 @@
     if([sourceViewController isKindOfClass:[RTSettingsViewController class]]){
         RTSettingsViewController *controller = (RTSettingsViewController*)sourceViewController;
         self.brush = controller.brushSlider.value;
-        self.opacity = controller.opacitySlider.value;
     }
 
-}
-
--(IBAction)unwindFromSettings:(UIStoryboardSegue*)unwindSegue{
-    UIViewController *sourceViewController = unwindSegue.sourceViewController;
-    if([sourceViewController isKindOfClass:[RTSettingsViewController class]]){
-        RTSettingsViewController *controller = unwindSegue.sourceViewController;
-        self.brush = controller.brushSlider.value;
-        self.opacity = controller.opacitySlider.value;
-    }
 }
 
 @end
