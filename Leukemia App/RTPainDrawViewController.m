@@ -39,7 +39,8 @@
     self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
     self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
     [self.painDescriptionTxtField setText:self.redDescription];
-    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]];
+    //[self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]];
+    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
     
     [super viewDidLoad];
 }
@@ -120,6 +121,7 @@
             self.blue = 0.0/255.0;
             [self.yelBtn setSelected:NO];
             [self.greenBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
             [self.painDescriptionTxtField setText:self.redDescription];
             break;
         case 1:
@@ -128,6 +130,7 @@
             self.blue = 0.0/255.0;
             [self.redBtn setSelected:NO];
             [self.greenBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"btnyellow.png" ]];
             [self.painDescriptionTxtField setText:self.yellowDescription];
             break;
         case 2:
@@ -136,10 +139,11 @@
             self.blue = 0.0/255.0;
             [self.redBtn setSelected:NO];
             [self.yelBtn setSelected:NO];
+            [self.btnPreview setImage:[UIImage imageNamed:@"btngreen.png" ]];
             [self.painDescriptionTxtField setText:self.greenDescription];
             break;
     }
-    [self setTextColor];
+    //[self setTextColor];
 }
 
 - (IBAction)resetDrawing:(id)sender {
@@ -153,8 +157,11 @@
     self.opacity = 0.6;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"settingsSegue"]){
+- (IBAction)savingImage:(id)sender {
+}
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"settingsPopover"]){
         RTSettingsViewController *controller = [segue destinationViewController];
         controller.brushSlider.value = self.brush;
         controller.brush = [[NSNumber alloc]initWithFloat:self.brush];
@@ -187,8 +194,8 @@
     }
 }
 
--(void)setTextColor{
-    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1.0]];
-}
+//-(void)setTextColor{
+//    [self.painDescriptionTxtField setTextColor:[UIColor colorWithRed:self.red green:self.green blue:self.blue alpha:1.0]];
+//}
 
 @end

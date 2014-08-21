@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *mainImage;
 @property (weak, nonatomic) IBOutlet UIImageView *drawImage;
 @property (weak, nonatomic) IBOutlet UITextView *painDescriptionTxtField;
+@property (weak, nonatomic) IBOutlet UIImageView *btnPreview;
 
 @property (strong,nonatomic) NSString* redDescription;
 @property (strong,nonatomic) NSString* yellowDescription;
