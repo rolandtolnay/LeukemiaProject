@@ -10,7 +10,7 @@
 #import "RTPainDrawViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) NSString *tempImageFileName;
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
+@property (strong,nonatomic) UIImage *cameraImageToBeSaved;
 
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 

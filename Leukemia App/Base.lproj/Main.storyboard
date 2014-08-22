@@ -60,7 +60,7 @@
         <!--Pain Draw View Controller - Pain-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="RTPainDrawViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="painDrawViewController" id="9pv-A4-QxB" customClass="RTPainDrawViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -157,7 +157,7 @@
                     <navigationItem key="navigationItem" title="Pain" id="l26-Ky-1Ae">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="imO-o4-ovf">
                             <connections>
-                                <action selector="cancelPressed:" destination="9pv-A4-QxB" id="rzN-vr-J8t"/>
+                                <segue destination="FPu-uN-qkJ" kind="unwind" unwindAction="unwindToPainScale:" id="B6s-cf-3xY"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="tEH-OC-23n">
@@ -168,6 +168,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnPreview" destination="WlZ-T9-M91" id="E1q-NP-M7T"/>
+                        <outlet property="btnSaveImage" destination="tEH-OC-23n" id="QvR-fk-AJc"/>
                         <outlet property="drawImage" destination="U8c-qD-h7h" id="YVW-ds-uBf"/>
                         <outlet property="drawingView" destination="PcI-3f-E7R" id="IMK-8y-tTz"/>
                         <outlet property="greenBtn" destination="gkc-d1-fde" id="pBh-3n-vfo"/>

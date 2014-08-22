@@ -156,22 +156,18 @@
     self.opacity = 0.6;
 }
 
-- (IBAction)cancelPressed:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"settingsPopover"]){
         RTSettingsViewController *controller = [segue destinationViewController];
         controller.brushSlider.value = self.brush;
         controller.brush = [[NSNumber alloc]initWithFloat:self.brush];
         
-        controller.opacitySlider.value = self.opacity;
-        controller.opacity = [[NSNumber alloc]initWithFloat:self.opacity];
-        
         UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         popover.delegate = self;
     }
+    
+    if (sender!=self.btnSaveImage)
+        self.drawImage.image = nil;
 }
 
 -(IBAction)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController

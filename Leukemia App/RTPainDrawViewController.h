@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *drawImage;
 @property (weak, nonatomic) IBOutlet UITextView *painDescriptionTxtField;
 @property (weak, nonatomic) IBOutlet UIImageView *btnPreview;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnSaveImage;
 
 @property (strong,nonatomic) NSString* redDescription;
 @property (strong,nonatomic) NSString* yellowDescription;
@@ -39,7 +40,7 @@
 
 - (IBAction)colorPressed:(id)sender;
 - (IBAction)resetDrawing:(id)sender;
-- (IBAction)cancelPressed:(id)sender;
+
 
 
 

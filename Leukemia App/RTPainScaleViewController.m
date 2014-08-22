@@ -49,6 +49,7 @@
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.delegate = self;
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
         imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
         imagePicker.allowsEditing = NO;
         [self presentViewController:imagePicker animated:YES completion:nil];
@@ -66,6 +67,9 @@
     
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         UIImage *image = info[UIImagePickerControllerOriginalImage];
+        
+        self.cameraImageToBeSaved = image;
+        
         _testImageView.image = image;
         if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
                                                       self,
@@ -149,10 +153,13 @@
     UIViewController *sourceViewController = segue.sourceViewController;
     if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
         RTPainDrawViewController *controller = segue.sourceViewController;
-        UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
-        [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
-        self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+        if (controller.drawImage.image)
+        {
+            UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
+            [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
+            self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
         //[self UIImageWriteToFile:saveImage :@"test.png"];
     }
 }
@@ -186,9 +193,51 @@
     NSDate *currentTime = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm"];
-    NSString *imageName = [dateFormatter stringFromDate:currentTime];
-    [imageName stringByAppendingString:@"DrawingImage.png"];
-    self.tempImageFileName = imageName;
-    [self UIImageWriteToFile:self.drawingToBeSaved :imageName];
+    NSString *currentDate = [dateFormatter stringFromDate:currentTime];
+   
+    if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
+                                                        message:@"For a more precise diagnostic consider using the Draw and Photo features."
+                                                       delegate:self
+                                              cancelButtonTitle:@"No, thank you"
+                                              otherButtonTitles:@"Draw",@"Photo",nil];
+        [alert show];
+        alert.tag = 100;
+    } else
+    {
+        NSString *imageName;
+        if (self.drawingToBeSaved)
+        {
+            imageName = [currentDate stringByAppendingString:@"DrawingImage.png"];
+            NSLog(@"%@",imageName);
+            self.tempImageFileName = imageName;
+            [self UIImageWriteToFile:self.drawingToBeSaved :imageName];
+            self.drawingToBeSaved = nil;
+        }
+        if (self.cameraImageToBeSaved)
+        {
+            imageName = [currentDate stringByAppendingString:@"CameraImage.jpg"];
+            NSLog(@"%@",imageName);
+            [self UIImageWriteToFile:self.cameraImageToBeSaved :imageName];
+            self.cameraImageToBeSaved = nil;
+        }
+    }
+    
+}
+
+- (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 100)
+    {
+        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Draw"])
+        {
+            RTPainDrawViewController *drawViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"painDrawViewController"];
+            [self.navigationController pushViewController:drawViewController animated:YES];
+        }
+        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photo"])
+            [self useCamera:self];
+            
+    }
 }
 @end
