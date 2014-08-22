@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RTPainDrawViewController.h"
+#import "RTDataManagement.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -25,6 +26,8 @@
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
 
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
+
+@property (strong, nonatomic) RTDataManagement *dataManagement;
 
 @property BOOL newMedia;
 
