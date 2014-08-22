@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "RTPainDrawViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface RTPainScaleViewController : UIViewController
+@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
 @property (weak, nonatomic) IBOutlet UISlider *sliderPainNumber;
@@ -21,6 +23,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 
+@property BOOL newMedia;
+
 - (IBAction)testImage:(id)sender;
+- (IBAction)useCamera:(id)sender;
+
 
 @end

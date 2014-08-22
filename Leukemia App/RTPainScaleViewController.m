@@ -53,6 +53,56 @@
                              ];
 }
 
+-(IBAction)useCamera:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        imagePicker.allowsEditing = NO;
+        [self presentViewController:imagePicker animated:YES completion:nil];
+        _newMedia = YES;
+        
+    }
+}
+
+#pragma mark - #pragma mark UIImagePickerControllerDelegate
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    
+    [self dismissViewControllerAnimated:YES  completion:nil];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        _testImageView.image = image;
+        if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
+                                                      self,
+                                                      @selector(image:finishedSavingWithError:contextInfo:),
+                                                      nil);
+        
+    }
+}
+
+-(void) image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void*)contextInfo {
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Save failed"
+                              message:@"Failed to save image"
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)initSliderPainNumber
 {
     self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
