@@ -271,6 +271,9 @@
                                 <state key="normal" title="Submit Data">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitAndSaveData:" destination="iOi-VK-jme" eventType="touchUpInside" id="NfX-C9-gfa"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6X-EI-2d6">
                                 <rect key="frame" x="473" y="677" width="240" height="201"/>

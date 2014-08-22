@@ -21,12 +21,16 @@
 @property (strong,nonatomic) NSArray* numberScale;
 @property (strong,nonatomic) NSArray* painDescription;
 
+@property (strong, nonatomic) NSString *tempImageFileName;
+@property (strong,nonatomic) UIImage *drawingToBeSaved;
+
 @property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 
 @property BOOL newMedia;
 
 - (IBAction)testImage:(id)sender;
 - (IBAction)useCamera:(id)sender;
+- (IBAction)submitAndSaveData:(id)sender;
 
 
 @end

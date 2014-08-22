@@ -23,18 +23,7 @@
     return self;
 }
 
-- (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
-{
-    UIViewController *sourceViewController = segue.sourceViewController;
-    if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
-        RTPainDrawViewController *controller = segue.sourceViewController;
-        UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
-        [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
-        UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        [self UIImageWriteToFile:saveImage :@"test.png"];
-    }
-}
+
 
 - (void)viewDidLoad
 {
@@ -155,6 +144,19 @@
 */
 
 //Saving and reading images
+- (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
+{
+    UIViewController *sourceViewController = segue.sourceViewController;
+    if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
+        RTPainDrawViewController *controller = segue.sourceViewController;
+        UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
+        [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
+        self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        //[self UIImageWriteToFile:saveImage :@"test.png"];
+    }
+}
+
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
 {
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -176,7 +178,17 @@
 
 - (IBAction)testImage:(id)sender {
     UIImage *imageToshow;
-    [self UIImageReadFromFile:&imageToshow :@"test.png"];
+    [self UIImageReadFromFile:&imageToshow :self.tempImageFileName];
     [self.testImageView setImage:imageToshow];
+}
+
+- (IBAction)submitAndSaveData:(id)sender {
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm"];
+    NSString *imageName = [dateFormatter stringFromDate:currentTime];
+    [imageName stringByAppendingString:@"DrawingImage.png"];
+    self.tempImageFileName = imageName;
+    [self UIImageWriteToFile:self.drawingToBeSaved :imageName];
 }
 @end
