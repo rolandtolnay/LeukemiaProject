@@ -233,6 +233,8 @@
         NSLog(@"%@",str);
     }
     NSLog(@"Entries: %d",self.dataManagement.painData.count);
+    
+    [self resetView];
 }
 
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -248,5 +250,9 @@
             [self useCamera:self];
             
     }
+}
+
+-(void)resetView{
+    self.sliderPainNumber.value = 0.0;
 }
 @end
