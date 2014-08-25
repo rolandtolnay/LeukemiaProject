@@ -1,538 +1,1341 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = A0957E2619A75AF30058EF12 /* RTDataManagement.m */; };
-		A09996F919A3500300EF39A5 /* RTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09996F819A3500300EF39A5 /* RTSettingsViewController.m */; };
-		A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
-		A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8B199E28C5009D7220 /* CoreGraphics.framework */; };
-		A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
-		A6924E94199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924E92199E28C5009D7220 /* InfoPlist.strings */; };
-		A6924E96199E28C5009D7220 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E95199E28C5009D7220 /* main.m */; };
-		A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E99199E28C5009D7220 /* RTAppDelegate.m */; };
-		A6924E9D199E28C5009D7220 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6924E9B199E28C5009D7220 /* Main.storyboard */; };
-		A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */; };
-		A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */; };
-		A6924EA5199E28C5009D7220 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6924EA4199E28C5009D7220 /* Images.xcassets */; };
-		A6924EAC199E28C5009D7220 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924EAB199E28C5009D7220 /* XCTest.framework */; };
-		A6924EAD199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
-		A6924EAE199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
-		A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924EB4199E28C5009D7220 /* InfoPlist.strings */; };
-		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
-		A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */; };
-		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A6924EAF199E28C5009D7220 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A6924E7E199E28C5009D7220 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A6924E85199E28C5009D7220;
-			remoteInfo = "Leukemia App";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		A0957E2519A75AF30058EF12 /* RTDataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDataManagement.h; path = ../RTDataManagement.h; sourceTree = "<group>"; };
-		A0957E2619A75AF30058EF12 /* RTDataManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDataManagement.m; path = ../RTDataManagement.m; sourceTree = "<group>"; };
-		A09996F719A3500300EF39A5 /* RTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTSettingsViewController.h; path = "Leukemia App/RTSettingsViewController.h"; sourceTree = "<group>"; };
-		A09996F819A3500300EF39A5 /* RTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTSettingsViewController.m; path = "Leukemia App/RTSettingsViewController.m"; sourceTree = "<group>"; };
-		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A6924E8D199E28C5009D7220 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A6924E91199E28C5009D7220 /* Leukemia App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Leukemia App-Info.plist"; sourceTree = "<group>"; };
-		A6924E93199E28C5009D7220 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A6924E95199E28C5009D7220 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A6924E97199E28C5009D7220 /* Leukemia App-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Leukemia App-Prefix.pch"; sourceTree = "<group>"; };
-		A6924E98199E28C5009D7220 /* RTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTAppDelegate.h; sourceTree = "<group>"; };
-		A6924E99199E28C5009D7220 /* RTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTAppDelegate.m; sourceTree = "<group>"; };
-		A6924E9C199E28C5009D7220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RTPainDrawViewController.h; path = "Leukemia App/RTPainDrawViewController.h"; sourceTree = "<group>"; };
-		A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RTPainDrawViewController.m; path = "Leukemia App/RTPainDrawViewController.m"; sourceTree = "<group>"; };
-		A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RTMedicineViewController.h; path = "Leukemia App/RTMedicineViewController.h"; sourceTree = "<group>"; };
-		A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RTMedicineViewController.m; path = "Leukemia App/RTMedicineViewController.m"; sourceTree = "<group>"; };
-		A6924EA4199E28C5009D7220 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leukemia AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6924EAB199E28C5009D7220 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A6924EB3199E28C5009D7220 /* Leukemia AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Leukemia AppTests-Info.plist"; sourceTree = "<group>"; };
-		A6924EB5199E28C5009D7220 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leukemia_AppTests.m; sourceTree = "<group>"; };
-		A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDiaryViewController.h; path = "Leukemia App/RTDiaryViewController.h"; sourceTree = "<group>"; };
-		A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryViewController.m; path = "Leukemia App/RTDiaryViewController.m"; sourceTree = "<group>"; };
-		A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTPainScaleViewController.h; path = "Leukemia App/RTPainScaleViewController.h"; sourceTree = "<group>"; };
-		A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTPainScaleViewController.m; path = "Leukemia App/RTPainScaleViewController.m"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		A6924E83199E28C5009D7220 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */,
-				A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */,
-				A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A6924EA7199E28C5009D7220 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6924EAC199E28C5009D7220 /* XCTest.framework in Frameworks */,
-				A6924EAE199E28C5009D7220 /* UIKit.framework in Frameworks */,
-				A6924EAD199E28C5009D7220 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		A0957E2819A75B010058EF12 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */,
-				A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */,
-				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
-				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
-				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
-				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
-				A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */,
-				A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */,
-				A09996F719A3500300EF39A5 /* RTSettingsViewController.h */,
-				A09996F819A3500300EF39A5 /* RTSettingsViewController.m */,
-			);
-			name = Controllers;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		A0957E2919A75B1F0058EF12 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A0957E2519A75AF30058EF12 /* RTDataManagement.h */,
-				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		A09996F619A33EE500EF39A5 /* Graphics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Graphics;
-			sourceTree = "<group>";
-		};
-		A6924E7D199E28C5009D7220 = {
-			isa = PBXGroup;
-			children = (
-				A6924E8F199E28C5009D7220 /* Leukemia App */,
-				A6924EB1199E28C5009D7220 /* Leukemia AppTests */,
-				A6924E88199E28C5009D7220 /* Frameworks */,
-				A6924E87199E28C5009D7220 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A6924E87199E28C5009D7220 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A6924E86199E28C5009D7220 /* Leukemia App.app */,
-				A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A6924E88199E28C5009D7220 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A6924E89199E28C5009D7220 /* Foundation.framework */,
-				A6924E8B199E28C5009D7220 /* CoreGraphics.framework */,
-				A6924E8D199E28C5009D7220 /* UIKit.framework */,
-				A6924EAB199E28C5009D7220 /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A6924E8F199E28C5009D7220 /* Leukemia App */ = {
-			isa = PBXGroup;
-			children = (
-				A0957E2919A75B1F0058EF12 /* Model */,
-				A0957E2819A75B010058EF12 /* Controllers */,
-				A6924E9B199E28C5009D7220 /* Main.storyboard */,
-				A6924EA4199E28C5009D7220 /* Images.xcassets */,
-				A09996F619A33EE500EF39A5 /* Graphics */,
-				A6924E90199E28C5009D7220 /* Supporting Files */,
-			);
-			path = "Leukemia App";
-			sourceTree = "<group>";
-		};
-		A6924E90199E28C5009D7220 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A6924E98199E28C5009D7220 /* RTAppDelegate.h */,
-				A6924E99199E28C5009D7220 /* RTAppDelegate.m */,
-				A6924E91199E28C5009D7220 /* Leukemia App-Info.plist */,
-				A6924E92199E28C5009D7220 /* InfoPlist.strings */,
-				A6924E95199E28C5009D7220 /* main.m */,
-				A6924E97199E28C5009D7220 /* Leukemia App-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A6924EB1199E28C5009D7220 /* Leukemia AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */,
-				A6924EB2199E28C5009D7220 /* Supporting Files */,
-			);
-			path = "Leukemia AppTests";
-			sourceTree = "<group>";
-		};
-		A6924EB2199E28C5009D7220 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A6924EB3199E28C5009D7220 /* Leukemia AppTests-Info.plist */,
-				A6924EB4199E28C5009D7220 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		A6924E85199E28C5009D7220 /* Leukemia App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A6924EBB199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia App" */;
-			buildPhases = (
-				A6924E82199E28C5009D7220 /* Sources */,
-				A6924E83199E28C5009D7220 /* Frameworks */,
-				A6924E84199E28C5009D7220 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Leukemia App";
-			productName = "Leukemia App";
-			productReference = A6924E86199E28C5009D7220 /* Leukemia App.app */;
-			productType = "com.apple.product-type.application";
-		};
-		A6924EA9199E28C5009D7220 /* Leukemia AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A6924EBE199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia AppTests" */;
-			buildPhases = (
-				A6924EA6199E28C5009D7220 /* Sources */,
-				A6924EA7199E28C5009D7220 /* Frameworks */,
-				A6924EA8199E28C5009D7220 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A6924EB0199E28C5009D7220 /* PBXTargetDependency */,
-			);
-			name = "Leukemia AppTests";
-			productName = "Leukemia AppTests";
-			productReference = A6924EAA199E28C5009D7220 /* Leukemia AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		A6924E7E199E28C5009D7220 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				CLASSPREFIX = RT;
-				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = "___FULLUSERNAME___";
-				TargetAttributes = {
-					A6924E85199E28C5009D7220 = {
-						DevelopmentTeam = TF3KX6TP3E;
-					};
-					A6924EA9199E28C5009D7220 = {
-						TestTargetID = A6924E85199E28C5009D7220;
-					};
-				};
-			};
-			buildConfigurationList = A6924E81199E28C5009D7220 /* Build configuration list for PBXProject "Leukemia App" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = A6924E7D199E28C5009D7220;
-			productRefGroup = A6924E87199E28C5009D7220 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				A6924E85199E28C5009D7220 /* Leukemia App */,
-				A6924EA9199E28C5009D7220 /* Leukemia AppTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		A6924E84199E28C5009D7220 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6924EA5199E28C5009D7220 /* Images.xcassets in Resources */,
-				A6924E94199E28C5009D7220 /* InfoPlist.strings in Resources */,
-				A6924E9D199E28C5009D7220 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A6924EA8199E28C5009D7220 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		A6924E82199E28C5009D7220 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A09996F919A3500300EF39A5 /* RTSettingsViewController.m in Sources */,
-				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
-				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
-				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
-				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
-				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
-				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
-				A6924E96199E28C5009D7220 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A6924EA6199E28C5009D7220 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A6924EB0199E28C5009D7220 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A6924E85199E28C5009D7220 /* Leukemia App */;
-			targetProxy = A6924EAF199E28C5009D7220 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A6924E92199E28C5009D7220 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6924E93199E28C5009D7220 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A6924E9B199E28C5009D7220 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6924E9C199E28C5009D7220 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A6924EB4199E28C5009D7220 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6924EB5199E28C5009D7220 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		A6924EB9199E28C5009D7220 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		A6924EBA199E28C5009D7220 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A6924EBC199E28C5009D7220 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
-				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		A6924EBD199E28C5009D7220 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
-				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A6924EBF199E28C5009D7220 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Leukemia AppTests/Leukemia AppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A6924EC0199E28C5009D7220 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
-				INFOPLIST_FILE = "Leukemia AppTests/Leukemia AppTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		A6924E81199E28C5009D7220 /* Build configuration list for PBXProject "Leukemia App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6924EB9199E28C5009D7220 /* Debug */,
-				A6924EBA199E28C5009D7220 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A6924EBB199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6924EBC199E28C5009D7220 /* Debug */,
-				A6924EBD199E28C5009D7220 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A6924EBE199E28C5009D7220 /* Build configuration list for PBXNativeTarget "Leukemia AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6924EBF199E28C5009D7220 /* Debug */,
-				A6924EC0199E28C5009D7220 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = A6924E7E199E28C5009D7220 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>000E19F831AA4ED9907DC336</key>
+		<dict>
+			<key>fileRef</key>
+			<string>23D4AAFAC83C479980D0C816</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>23D4AAFAC83C479980D0C816</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8B45321A25394A86A17FC28E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Pods-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>99AD9414280540CE9F911869</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Pods.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0957E2519A75AF30058EF12</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTDataManagement.h</string>
+			<key>path</key>
+			<string>../RTDataManagement.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0957E2619A75AF30058EF12</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTDataManagement.m</string>
+			<key>path</key>
+			<string>../RTDataManagement.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0957E2719A75AF30058EF12</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A0957E2619A75AF30058EF12</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A0957E2819A75B010058EF12</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924EC1199E2B63009D7220</string>
+				<string>A6924EC2199E2B63009D7220</string>
+				<string>A6924E9E199E28C5009D7220</string>
+				<string>A6924E9F199E28C5009D7220</string>
+				<string>A694A80419A1DF290000B8C8</string>
+				<string>A694A80519A1DF290000B8C8</string>
+				<string>A6924EA1199E28C5009D7220</string>
+				<string>A6924EA2199E28C5009D7220</string>
+				<string>A09996F719A3500300EF39A5</string>
+				<string>A09996F819A3500300EF39A5</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Controllers</string>
+			<key>path</key>
+			<string>..</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A0957E2919A75B1F0058EF12</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A0957E2519A75AF30058EF12</string>
+				<string>A0957E2619A75AF30058EF12</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Model</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A09996F619A33EE500EF39A5</key>
+		<dict>
+			<key>children</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Graphics</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A09996F719A3500300EF39A5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTSettingsViewController.h</string>
+			<key>path</key>
+			<string>Leukemia App/RTSettingsViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A09996F819A3500300EF39A5</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTSettingsViewController.m</string>
+			<key>path</key>
+			<string>Leukemia App/RTSettingsViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A09996F919A3500300EF39A5</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A09996F819A3500300EF39A5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E7D199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E8F199E28C5009D7220</string>
+				<string>A6924EB1199E28C5009D7220</string>
+				<string>A6924E88199E28C5009D7220</string>
+				<string>A6924E87199E28C5009D7220</string>
+				<string>99AD9414280540CE9F911869</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E7E199E28C5009D7220</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>CLASSPREFIX</key>
+				<string>RT</string>
+				<key>LastUpgradeCheck</key>
+				<string>0510</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>___FULLUSERNAME___</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>A6924E85199E28C5009D7220</key>
+					<dict>
+						<key>DevelopmentTeam</key>
+						<string>TF3KX6TP3E</string>
+					</dict>
+					<key>A6924EA9199E28C5009D7220</key>
+					<dict>
+						<key>TestTargetID</key>
+						<string>A6924E85199E28C5009D7220</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>A6924E81199E28C5009D7220</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>A6924E7D199E28C5009D7220</string>
+			<key>productRefGroup</key>
+			<string>A6924E87199E28C5009D7220</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>A6924E85199E28C5009D7220</string>
+				<string>A6924EA9199E28C5009D7220</string>
+			</array>
+		</dict>
+		<key>A6924E81199E28C5009D7220</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>A6924EB9199E28C5009D7220</string>
+				<string>A6924EBA199E28C5009D7220</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>A6924E82199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A09996F919A3500300EF39A5</string>
+				<string>A6924EA3199E28C5009D7220</string>
+				<string>A0957E2719A75AF30058EF12</string>
+				<string>A694A80619A1DF290000B8C8</string>
+				<string>A6924EC3199E2B63009D7220</string>
+				<string>A6924E9A199E28C5009D7220</string>
+				<string>A6924EA0199E28C5009D7220</string>
+				<string>A6924E96199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924E83199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A6924E8C199E28C5009D7220</string>
+				<string>A6924E8E199E28C5009D7220</string>
+				<string>A6924E8A199E28C5009D7220</string>
+				<string>000E19F831AA4ED9907DC336</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924E84199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A6924EA5199E28C5009D7220</string>
+				<string>A6924E94199E28C5009D7220</string>
+				<string>A6924E9D199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924E85199E28C5009D7220</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>A6924EBB199E28C5009D7220</string>
+			<key>buildPhases</key>
+			<array>
+				<string>ECC9D1A32D164018949A869E</string>
+				<string>A6924E82199E28C5009D7220</string>
+				<string>A6924E83199E28C5009D7220</string>
+				<string>A6924E84199E28C5009D7220</string>
+				<string>8B45321A25394A86A17FC28E</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Leukemia App</string>
+			<key>productName</key>
+			<string>Leukemia App</string>
+			<key>productReference</key>
+			<string>A6924E86199E28C5009D7220</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>A6924E86199E28C5009D7220</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Leukemia App.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>A6924E87199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E86199E28C5009D7220</string>
+				<string>A6924EAA199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E88199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E89199E28C5009D7220</string>
+				<string>A6924E8B199E28C5009D7220</string>
+				<string>A6924E8D199E28C5009D7220</string>
+				<string>A6924EAB199E28C5009D7220</string>
+				<string>23D4AAFAC83C479980D0C816</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E89199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>A6924E8A199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E89199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E8B199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>CoreGraphics.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/CoreGraphics.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>A6924E8C199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E8B199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E8D199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>UIKit.framework</string>
+			<key>path</key>
+			<string>System/Library/Frameworks/UIKit.framework</string>
+			<key>sourceTree</key>
+			<string>SDKROOT</string>
+		</dict>
+		<key>A6924E8E199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E8D199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E8F199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A0957E2919A75B1F0058EF12</string>
+				<string>A0957E2819A75B010058EF12</string>
+				<string>A6924E9B199E28C5009D7220</string>
+				<string>A6924EA4199E28C5009D7220</string>
+				<string>A09996F619A33EE500EF39A5</string>
+				<string>A6924E90199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Leukemia App</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E90199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E98199E28C5009D7220</string>
+				<string>A6924E99199E28C5009D7220</string>
+				<string>A6924E91199E28C5009D7220</string>
+				<string>A6924E92199E28C5009D7220</string>
+				<string>A6924E95199E28C5009D7220</string>
+				<string>A6924E97199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E91199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Leukemia App-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E92199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E93199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E93199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E94199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E92199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E95199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>main.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E96199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E95199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E97199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>Leukemia App-Prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E98199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>RTAppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E99199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>RTAppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E9A199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E99199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E9B199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924E9C199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E9C199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E9D199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E9B199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924E9E199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTPainDrawViewController.h</string>
+			<key>path</key>
+			<string>Leukemia App/RTPainDrawViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924E9F199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTPainDrawViewController.m</string>
+			<key>path</key>
+			<string>Leukemia App/RTPainDrawViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EA0199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E9F199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EA1199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTMedicineViewController.h</string>
+			<key>path</key>
+			<string>Leukemia App/RTMedicineViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EA2199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTMedicineViewController.m</string>
+			<key>path</key>
+			<string>Leukemia App/RTMedicineViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EA3199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EA2199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EA4199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EA5199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EA4199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EA6199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A6924EB8199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924EA7199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A6924EAC199E28C5009D7220</string>
+				<string>A6924EAE199E28C5009D7220</string>
+				<string>A6924EAD199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924EA8199E28C5009D7220</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A6924EB6199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A6924EA9199E28C5009D7220</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>A6924EBE199E28C5009D7220</string>
+			<key>buildPhases</key>
+			<array>
+				<string>A6924EA6199E28C5009D7220</string>
+				<string>A6924EA7199E28C5009D7220</string>
+				<string>A6924EA8199E28C5009D7220</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>A6924EB0199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Leukemia AppTests</string>
+			<key>productName</key>
+			<string>Leukemia AppTests</string>
+			<key>productReference</key>
+			<string>A6924EAA199E28C5009D7220</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>A6924EAA199E28C5009D7220</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Leukemia AppTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>A6924EAB199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>XCTest.framework</string>
+			<key>path</key>
+			<string>Library/Frameworks/XCTest.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
+		</dict>
+		<key>A6924EAC199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EAB199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EAD199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E89199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EAE199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924E8D199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EAF199E28C5009D7220</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>A6924E7E199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>A6924E85199E28C5009D7220</string>
+			<key>remoteInfo</key>
+			<string>Leukemia App</string>
+		</dict>
+		<key>A6924EB0199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>A6924E85199E28C5009D7220</string>
+			<key>targetProxy</key>
+			<string>A6924EAF199E28C5009D7220</string>
+		</dict>
+		<key>A6924EB1199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924EB7199E28C5009D7220</string>
+				<string>A6924EB2199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Leukemia AppTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB2199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924EB3199E28C5009D7220</string>
+				<string>A6924EB4199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB3199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Leukemia AppTests-Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB4199E28C5009D7220</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>A6924EB5199E28C5009D7220</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB5199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.strings</string>
+			<key>name</key>
+			<string>en</string>
+			<key>path</key>
+			<string>en.lproj/InfoPlist.strings</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB6199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EB4199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EB7199E28C5009D7220</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>Leukemia_AppTests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EB8199E28C5009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EB7199E28C5009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A6924EB9199E28C5009D7220</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>A6924EBA199E28C5009D7220</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>7.1</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>A6924EBB199E28C5009D7220</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>A6924EBC199E28C5009D7220</string>
+				<string>A6924EBD199E28C5009D7220</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>A6924EBC199E28C5009D7220</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>99AD9414280540CE9F911869</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Leukemia App/Leukemia App-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Leukemia App/Leukemia App-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>A6924EBD199E28C5009D7220</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>99AD9414280540CE9F911869</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME</key>
+				<string>LaunchImage</string>
+				<key>CODE_SIGN_IDENTITY</key>
+				<string>iPhone Developer</string>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Leukemia App/Leukemia App-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Leukemia App/Leukemia App-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PROVISIONING_PROFILE</key>
+				<string></string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>app</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>A6924EBE199E28C5009D7220</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>A6924EBF199E28C5009D7220</string>
+				<string>A6924EC0199E28C5009D7220</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>A6924EBF199E28C5009D7220</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Leukemia App/Leukemia App-Prefix.pch</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>Leukemia AppTests/Leukemia AppTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>A6924EC0199E28C5009D7220</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Leukemia App.app/Leukemia App</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+					<string>$(DEVELOPER_FRAMEWORKS_DIR)</string>
+				</array>
+				<key>GCC_PRECOMPILE_PREFIX_HEADER</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Leukemia App/Leukemia App-Prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Leukemia AppTests/Leukemia AppTests-Info.plist</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>TEST_HOST</key>
+				<string>$(BUNDLE_LOADER)</string>
+				<key>WRAPPER_EXTENSION</key>
+				<string>xctest</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>A6924EC1199E2B63009D7220</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTDiaryViewController.h</string>
+			<key>path</key>
+			<string>Leukemia App/RTDiaryViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EC2199E2B63009D7220</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTDiaryViewController.m</string>
+			<key>path</key>
+			<string>Leukemia App/RTDiaryViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A6924EC3199E2B63009D7220</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A6924EC2199E2B63009D7220</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A694A80419A1DF290000B8C8</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>RTPainScaleViewController.h</string>
+			<key>path</key>
+			<string>Leukemia App/RTPainScaleViewController.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A694A80519A1DF290000B8C8</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>RTPainScaleViewController.m</string>
+			<key>path</key>
+			<string>Leukemia App/RTPainScaleViewController.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A694A80619A1DF290000B8C8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A694A80519A1DF290000B8C8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>ECC9D1A32D164018949A869E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>A6924E7E199E28C5009D7220</string>
+</dict>
+</plist>
