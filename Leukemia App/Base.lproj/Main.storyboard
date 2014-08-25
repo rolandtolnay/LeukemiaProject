@@ -319,6 +319,25 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
+        <!--View Controller - Graphs-->
+        <scene sceneID="5Ei-jS-nRi">
+            <objects>
+                <viewController id="uxV-Io-21U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3052" y="-1028"/>
+        </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
@@ -397,6 +416,7 @@
                         <segue destination="4RN-FR-fsO" kind="relationship" relationship="viewControllers" id="CAj-n5-dZ8"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="2L9-BR-LhI" kind="relationship" relationship="viewControllers" id="bda-3M-eff"/>
+                        <segue destination="uxV-Io-21U" kind="relationship" relationship="viewControllers" id="Uxo-Kg-VfD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -443,6 +463,7 @@
     </scenes>
     <resources>
         <image name="TabBarDiary" width="32" height="32"/>
+        <image name="TabBarGraph" width="32" height="32"/>
         <image name="TabBarMedicine" width="32" height="32"/>
         <image name="TabBarPain" width="32" height="32"/>
         <image name="btngreen" width="300" height="300"/>
