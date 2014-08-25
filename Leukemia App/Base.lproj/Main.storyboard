@@ -311,6 +311,7 @@
                         <outlet property="imageSmiley" destination="2xM-mj-jJN" id="YQG-Tr-mnJ"/>
                         <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
                         <outlet property="lblPainNumber" destination="7xF-70-bZ2" id="lse-Vh-ejV"/>
+                        <outlet property="morphineInput" destination="GEf-FO-Ud0" id="8V4-xw-nRF"/>
                         <outlet property="sliderPainNumber" destination="2uI-d9-yXS" id="Obr-vG-KDh"/>
                         <outlet property="testImageView" destination="y6X-EI-2d6" id="d9N-IM-FHI"/>
                     </connections>

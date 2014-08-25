@@ -10,21 +10,26 @@
 
 @implementation RTDataManagement
 
--(NSMutableDictionary *)painData{
+static RTDataManagement *dataMangement = nil;
+
+-(NSMutableArray *)painData{
     if(!_painData){
-        _painData = [[NSMutableDictionary alloc]init];
+        _painData = [[NSMutableArray alloc]init];
     }
     return _painData;
 }
 
+//Singleton method
+
 + (RTDataManagement *)singleton {
-    static RTDataManagement *dataMangement = nil;
     @synchronized(self) {
         if (dataMangement == nil)
             dataMangement = [[self alloc] initWithPlist];
     }
     return dataMangement;
 }
+
+//Initialises RTDataManagement with values from pList
 
 -(id)initWithPlist{
     if (self = [super init]){
@@ -33,12 +38,33 @@
     return self;
 }
 
+//Path is the filepath of the pList
+-(NSString *)path{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:@"leukemiaApp.plist"];
+}
+
+//readFromPlist either reads data from an existing pList, or creates a new dictionary in the path of the pList, the first time data is saved
+-(NSMutableDictionary *)readFromPlist{
+    NSMutableDictionary *pList;
+    if([[NSFileManager defaultManager] fileExistsAtPath:self.path]){
+        pList = [[NSMutableDictionary alloc]initWithContentsOfFile:self.path];
+    }
+    else{
+        pList = [[NSMutableDictionary alloc]init];
+    }
+    return pList;
+}
+
 -(void)writeToPList{
-    
+    NSMutableDictionary *pList = [self readFromPlist];
+    [pList setObject:self.painData forKey:@"painData"];
+    [pList writeToFile:self.path atomically:YES];
 }
 
 -(void)reloadPlist{
-    
+    self.painData = [[self readFromPlist]objectForKey:@"painData"];
 }
 
 @end
