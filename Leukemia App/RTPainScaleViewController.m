@@ -179,12 +179,18 @@
     [self.testImageView setImage:imageToshow];
 }
 
+//Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
-    NSDate *currentTime = [NSDate date];
+    
+    NSDate *currentDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd-hh-mm"];
-    NSString *currentDate = [dateFormatter stringFromDate:currentTime];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+    NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+    
+    NSString *drawingImagePath = [[NSString alloc]init];
+    NSString *photoPath = [[NSString alloc]init];
    
+    //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
     if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
@@ -196,24 +202,37 @@
         alert.tag = 100;
     } else
     {
-        NSString *imageName;
         if (self.drawingToBeSaved)
         {
-            imageName = [currentDate stringByAppendingString:@"DrawingImage.png"];
-            NSLog(@"%@",imageName);
-            self.tempImageFileName = imageName;
-            [self UIImageWriteToFile:self.drawingToBeSaved :imageName];
+            drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
+            NSLog(@"%@",drawingImagePath);
+            self.tempImageFileName = drawingImagePath;
+            [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
             self.drawingToBeSaved = nil;
         }
         if (self.cameraImageToBeSaved)
         {
-            imageName = [currentDate stringByAppendingString:@"CameraImage.jpg"];
-            NSLog(@"%@",imageName);
-            [self UIImageWriteToFile:self.cameraImageToBeSaved :imageName];
+            photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
+            NSLog(@"%@",photoPath);
+            [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
             self.cameraImageToBeSaved = nil;
         }
     }
     
+    //Save all data to pList
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    [dataToBeSaved setObject:self.lblPainNumber.text forKey:@"painlevel"];
+    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
+    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
+    [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
+    [dataToBeSaved setObject:currentTime forKey:@"time"];
+    [self.dataManagement.painData addObject:dataToBeSaved];
+    [self.dataManagement writeToPList];
+    
+    for (NSString *str in self.dataManagement.painData) {
+        NSLog(@"%@",str);
+    }
+    NSLog(@"Entries: %d",self.dataManagement.painData.count);
 }
 
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

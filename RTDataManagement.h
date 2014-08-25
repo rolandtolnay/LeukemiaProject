@@ -10,12 +10,11 @@
 
 @interface RTDataManagement : NSObject
 
-@property (strong,nonatomic) NSMutableDictionary *painData;
+@property (strong,nonatomic) NSMutableArray *painData;
 @property (strong, nonatomic) NSString *path;
 
 +(RTDataManagement *)singleton;
 -(id)initWithPlist;
 -(void)writeToPList;
 -(void)reloadPlist;
-
 @end

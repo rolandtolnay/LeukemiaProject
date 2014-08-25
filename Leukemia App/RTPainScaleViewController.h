@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
 @property (weak, nonatomic) IBOutlet UISlider *sliderPainNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainNumber;
+@property (weak, nonatomic) IBOutlet UITextField *morphineInput;
 
 @property (strong,nonatomic) NSArray* smileys;
 @property (strong,nonatomic) NSArray* numberScale;
