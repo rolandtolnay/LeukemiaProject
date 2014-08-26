@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RTSettingsViewController.h"
+#import "RTBrushSizeViewController.h"
 #import "RTPainScaleViewController.h"
 
 @interface RTPainDrawViewController : UIViewController <UIActionSheetDelegate,UIPopoverControllerDelegate>

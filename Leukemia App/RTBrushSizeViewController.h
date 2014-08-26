@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTSettingsViewController : UIViewController
+@interface RTBrushSizeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UISlider *brushSlider;
 @property (weak, nonatomic) IBOutlet UILabel *brushLabel;

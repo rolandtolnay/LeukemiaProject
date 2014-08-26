@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 DMU-24. All rights reserved.
 //
 
-#import "RTSettingsViewController.h"
+#import "RTBrushSizeViewController.h"
 
-@interface RTSettingsViewController ()
+@interface RTBrushSizeViewController ()
 
 @end
 
-@implementation RTSettingsViewController
+@implementation RTBrushSizeViewController
 
 - (void)viewDidLoad
 {

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Settings View Controller-->
+        <!--Brush Size View Controller-->
         <scene sceneID="sGd-jQ-IDT">
             <objects>
-                <viewController id="iAD-Dd-EnW" customClass="RTSettingsViewController" sceneMemberID="viewController">
+                <viewController id="iAD-Dd-EnW" customClass="RTBrushSizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LKI-MA-Tbc"/>
                         <viewControllerLayoutGuide type="bottom" id="LKx-8r-1Xr"/>
@@ -123,7 +123,8 @@
                                             <action selector="resetDrawing:" destination="9pv-A4-QxB" id="CLb-ow-esr"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Settings" id="FeC-p7-P5O">
+                                    <barButtonItem width="539" style="plain" systemItem="fixedSpace" id="CrR-Rm-r5m"/>
+                                    <barButtonItem title="Brush size" id="FeC-p7-P5O">
                                         <connections>
                                             <segue destination="iAD-Dd-EnW" kind="popover" identifier="settingsPopover" popoverAnchorBarButtonItem="FeC-p7-P5O" id="323-eo-Xcg">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -320,20 +321,23 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
-        <!--View Controller - Graphs-->
+        <!--Graph View Controller - Graphs-->
         <scene sceneID="5Ei-jS-nRi">
             <objects>
-                <viewController id="uxV-Io-21U" sceneMemberID="viewController">
+                <viewController id="uxV-Io-21U" customClass="RTGraphViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
                         <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR">
+                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR" customClass="NGGraphView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
+                    <connections>
+                        <outlet property="graphView" destination="7P7-H2-IDR" id="7un-NQ-P4C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,11 +422,31 @@
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="2L9-BR-LhI" kind="relationship" relationship="viewControllers" id="bda-3M-eff"/>
                         <segue destination="uxV-Io-21U" kind="relationship" relationship="viewControllers" id="Uxo-Kg-VfD"/>
+                        <segue destination="24N-48-FBr" kind="relationship" relationship="viewControllers" id="Wfb-9j-XbF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985" y="736"/>
+        </scene>
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="SGd-bd-rXA">
+            <objects>
+                <viewController id="24N-48-FBr" customClass="RTSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ap-6t-4SH"/>
+                        <viewControllerLayoutGuide type="bottom" id="NhP-NE-ga2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="taq-Pl-cKA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="BAE-mG-tSA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L4i-7s-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="1947"/>
         </scene>
         <!--Navigation Controller - Pain-->
         <scene sceneID="43x-Sl-LdC">

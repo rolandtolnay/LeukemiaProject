@@ -158,7 +158,7 @@
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"settingsPopover"]){
-        RTSettingsViewController *controller = [segue destinationViewController];
+        RTBrushSizeViewController *controller = [segue destinationViewController];
         controller.brushSlider.value = self.brush;
         controller.brush = [[NSNumber alloc]initWithFloat:self.brush];
         
@@ -173,8 +173,8 @@
 -(IBAction)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     UIViewController *sourceViewController = popoverController.contentViewController;
-    if([sourceViewController isKindOfClass:[RTSettingsViewController class]]){
-        RTSettingsViewController *controller = (RTSettingsViewController*)sourceViewController;
+    if([sourceViewController isKindOfClass:[RTBrushSizeViewController class]]){
+        RTBrushSizeViewController *controller = (RTBrushSizeViewController*)sourceViewController;
         self.brush = controller.brushSlider.value;
     }
 
