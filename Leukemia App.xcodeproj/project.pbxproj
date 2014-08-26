@@ -179,10 +179,10 @@
 			children = (
 				A0957E2919A75B1F0058EF12 /* Model */,
 				A0957E2819A75B010058EF12 /* Controllers */,
-				A6924E9B199E28C5009D7220 /* Main.storyboard */,
-				A6924EA4199E28C5009D7220 /* Images.xcassets */,
 				A09996F619A33EE500EF39A5 /* Graphics */,
 				A6924E90199E28C5009D7220 /* Supporting Files */,
+				A6924EA4199E28C5009D7220 /* Images.xcassets */,
+				A6924E9B199E28C5009D7220 /* Main.storyboard */,
 			);
 			path = "Leukemia App";
 			sourceTree = "<group>";
@@ -495,6 +495,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
 				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -511,6 +512,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
 				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

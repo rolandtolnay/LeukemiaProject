@@ -20,20 +20,21 @@
     // finally you will want to initialize your graph view
     // set it's properties to customize it's appearance
     // and add some data to it...
-    [_graphView setTitle:@"My Test Graph"];
-    [_graphView setSubTitle:@"This is a test."];
-    [_graphView setLineColor:[UIColor blueColor]];
-    [_graphView setLineWidth:1.0];
-    [_graphView setSegments:5];  // this graph is divided up into five sections.
-    [_graphView setShowPoints:YES];
-    [_graphView setPointSize:7];
-    [_graphView setPointColor:[UIColor redColor]];
-    // now add some data, the NGDataPoint is used to add data to the graph view.
-    [_graphView addDataPoint:[NGDataPoint withLabel:@"first" andCount:3]];
-    [_graphView addDataPoint:[NGDataPoint withLabel:@"second" andCount:10]];
-    [_graphView addDataPoint:[NGDataPoint withLabel:@"third" andCount:7]];
-    [_graphView addDataPoint:[NGDataPoint withLabel:@"fourth" andCount:15]];
-    [_graphView addDataPoint:[NGDataPoint withLabel:@"fifth" andCount:19]];}
+//    [_graphView setTitle:@"My Test Graph"];
+//    [_graphView setSubTitle:@"This is a test."];
+//    [_graphView setLineColor:[UIColor blueColor]];
+//    [_graphView setLineWidth:1.0];
+//    [_graphView setSegments:5];  // this graph is divided up into five sections.
+//    [_graphView setShowPoints:YES];
+//    [_graphView setPointSize:7];
+//    [_graphView setPointColor:[UIColor redColor]];
+//    // now add some data, the NGDataPoint is used to add data to the graph view.
+//    [_graphView addDataPoint:[NGDataPoint withLabel:@"first" andCount:3]];
+//    [_graphView addDataPoint:[NGDataPoint withLabel:@"second" andCount:10]];
+//    [_graphView addDataPoint:[NGDataPoint withLabel:@"third" andCount:7]];
+//    [_graphView addDataPoint:[NGDataPoint withLabel:@"fourth" andCount:15]];
+//    [_graphView addDataPoint:[NGDataPoint withLabel:@"fifth" andCount:19]];
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NGGraphView.h"
-#import "NGDataPoint.h"
 
 @interface RTGraphViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet NGGraphView *graphView;
+//@property (weak, nonatomic) IBOutlet NGGraphView *graphView;
 
 
 @end
