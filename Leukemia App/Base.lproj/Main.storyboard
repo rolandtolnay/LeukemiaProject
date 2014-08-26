@@ -276,20 +276,6 @@
                                     <action selector="submitAndSaveData:" destination="iOi-VK-jme" eventType="touchUpInside" id="NfX-C9-gfa"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6X-EI-2d6">
-                                <rect key="frame" x="473" y="677" width="240" height="201"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FL2-vX-qf2">
-                                <rect key="frame" x="570" y="896" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="testImage:" destination="iOi-VK-jme" eventType="touchUpInside" id="TPD-4W-AfY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -313,7 +299,6 @@
                         <outlet property="lblPainNumber" destination="7xF-70-bZ2" id="lse-Vh-ejV"/>
                         <outlet property="morphineInput" destination="GEf-FO-Ud0" id="8V4-xw-nRF"/>
                         <outlet property="sliderPainNumber" destination="2uI-d9-yXS" id="Obr-vG-KDh"/>
-                        <outlet property="testImageView" destination="y6X-EI-2d6" id="d9N-IM-FHI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19k-qh-i1g" userLabel="First Responder" sceneMemberID="firstResponder"/>

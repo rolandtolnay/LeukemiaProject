@@ -60,7 +60,6 @@
         
         self.cameraImageToBeSaved = image;
         
-        _testImageView.image = image;
         if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
                                                       self,
                                                       @selector(image:finishedSavingWithError:contextInfo:),
@@ -173,12 +172,6 @@
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
-- (IBAction)testImage:(id)sender {
-    UIImage *imageToshow;
-    [self UIImageReadFromFile:&imageToshow :self.tempImageFileName];
-    [self.testImageView setImage:imageToshow];
-}
-
 //Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
     
@@ -206,7 +199,6 @@
         {
             drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
-            self.tempImageFileName = drawingImagePath;
             [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
             self.drawingToBeSaved = nil;
         }
