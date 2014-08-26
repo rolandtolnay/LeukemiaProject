@@ -11,7 +11,7 @@
 #import "RTDataManagement.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
+@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
@@ -23,17 +23,14 @@
 @property (strong,nonatomic) NSArray* numberScale;
 @property (strong,nonatomic) NSArray* painDescription;
 
-@property (strong, nonatomic) NSString *tempImageFileName;
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
 @property (strong,nonatomic) UIImage *cameraImageToBeSaved;
 
-@property (weak, nonatomic) IBOutlet UIImageView *testImageView;
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 
 @property BOOL newMedia;
 
-- (IBAction)testImage:(id)sender;
 - (IBAction)useCamera:(id)sender;
 - (IBAction)submitAndSaveData:(id)sender;
 

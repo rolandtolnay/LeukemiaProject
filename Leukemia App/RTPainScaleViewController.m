@@ -18,6 +18,7 @@
 {
     self.dataManagement = [RTDataManagement singleton];
     
+ 
     [self initSliderPainNumber];
     
     self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
@@ -29,6 +30,14 @@
                              @("Hurts whole lot"),
                              @("Hurts worst")
                              ];
+    self.morphineInput.delegate = self;
+
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
+                                                                                    action:@selector(resignFirstResponder)];
+	gestureRecognizer.cancelsTouchesInView = NO;
+	
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     [super viewDidLoad];
 }
 
@@ -60,7 +69,6 @@
         
         self.cameraImageToBeSaved = image;
         
-        _testImageView.image = image;
         if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
                                                       self,
                                                       @selector(image:finishedSavingWithError:contextInfo:),
@@ -173,12 +181,6 @@
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
-- (IBAction)testImage:(id)sender {
-    UIImage *imageToshow;
-    [self UIImageReadFromFile:&imageToshow :self.tempImageFileName];
-    [self.testImageView setImage:imageToshow];
-}
-
 //Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
     
@@ -206,7 +208,6 @@
         {
             drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
-            self.tempImageFileName = drawingImagePath;
             [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
             self.drawingToBeSaved = nil;
         }
@@ -233,6 +234,8 @@
         NSLog(@"%@",str);
     }
     NSLog(@"Entries: %d",self.dataManagement.painData.count);
+    
+    [self resetView];
 }
 
 - (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -248,5 +251,21 @@
             [self useCamera:self];
             
     }
+}
+
+-(void)resetView{
+    self.sliderPainNumber.value = 0.0;
+    self.lblPainNumber.text = @"0";
+    self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+    self.morphineInput.text = @"";
+    self.drawingToBeSaved = nil;
+    self.cameraImageToBeSaved = nil;
+}
+
+//Morphine Input textfield delgates method
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return NO;
 }
 @end
