@@ -254,5 +254,10 @@
 
 -(void)resetView{
     self.sliderPainNumber.value = 0.0;
+    self.lblPainNumber.text = @"0";
+    self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+    self.morphineInput.text = @"";
+    self.drawingToBeSaved = nil;
+    self.cameraImageToBeSaved = nil;
 }
 @end
