@@ -18,6 +18,7 @@
 {
     self.dataManagement = [RTDataManagement singleton];
     
+ 
     [self initSliderPainNumber];
     
     self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
@@ -29,6 +30,14 @@
                              @("Hurts whole lot"),
                              @("Hurts worst")
                              ];
+    self.morphineInput.delegate = self;
+
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
+                                                                                    action:@selector(resignFirstResponder)];
+	gestureRecognizer.cancelsTouchesInView = NO;
+	
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     [super viewDidLoad];
 }
 
@@ -251,5 +260,12 @@
     self.morphineInput.text = @"";
     self.drawingToBeSaved = nil;
     self.cameraImageToBeSaved = nil;
+}
+
+//Morphine Input textfield delgates method
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return NO;
 }
 @end
