@@ -32,6 +32,7 @@
     self.graph.startFromZero = YES;
     
     [self.graph draw];
+    
 }
 
 #pragma mark - Graph Data Init
@@ -46,13 +47,12 @@
     return [painLevels copy];
 }
 
--(NSArray *)timeStamps {
+-(NSArray *)timeStampsAtDay {
     NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
     for (NSDictionary *painRegistration in self.data.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
         NSString *hour = [timeStamp componentsSeparatedByString:@" "][1];
-        NSLog(@"Timestamp: %@, hour: %@",timeStamp,hour);
         [timeStamps addObject:hour];
     }
     return [timeStamps copy];
