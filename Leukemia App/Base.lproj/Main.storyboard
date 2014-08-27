@@ -313,28 +313,6 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
-        <!--Graph View Controller - Graphs-->
-        <scene sceneID="5Ei-jS-nRi">
-            <objects>
-                <viewController id="uxV-Io-21U" customClass="RTGraphViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR" customClass="NGGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
-                    <connections>
-                        <outlet property="graphView" destination="7P7-H2-IDR" id="7un-NQ-P4C"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3052" y="-1028"/>
-        </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
@@ -413,8 +391,8 @@
                         <segue destination="4RN-FR-fsO" kind="relationship" relationship="viewControllers" id="CAj-n5-dZ8"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                         <segue destination="2L9-BR-LhI" kind="relationship" relationship="viewControllers" id="bda-3M-eff"/>
-                        <segue destination="uxV-Io-21U" kind="relationship" relationship="viewControllers" id="Uxo-Kg-VfD"/>
                         <segue destination="24N-48-FBr" kind="relationship" relationship="viewControllers" id="Wfb-9j-XbF"/>
+                        <segue destination="RYn-Rf-O8k" kind="relationship" relationship="viewControllers" id="twW-wx-wIs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -439,6 +417,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4i-7s-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985" y="1947"/>
+        </scene>
+        <!--Graph View Controller - Graphs-->
+        <scene sceneID="Thm-he-4Cp">
+            <objects>
+                <viewController id="RYn-Rf-O8k" customClass="RTGraphViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xzM-hg-kRt"/>
+                        <viewControllerLayoutGuide type="bottom" id="jUd-ew-nhD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Al-PD-1H7">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duV-lw-KWi" customClass="GKLineGraph">
+                                <rect key="frame" x="20" y="20" width="728" height="732"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="qXL-wB-CA0"/>
+                    <connections>
+                        <outlet property="graph" destination="duV-lw-KWi" id="F8J-yi-m0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cp4-5W-92Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3052" y="-995"/>
         </scene>
         <!--Navigation Controller - Pain-->
         <scene sceneID="43x-Sl-LdC">
