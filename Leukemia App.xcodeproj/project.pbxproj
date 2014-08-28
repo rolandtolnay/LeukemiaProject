@@ -26,7 +26,6 @@
 		A6924EB6199E28C5009D7220 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6924EB4199E28C5009D7220 /* InfoPlist.strings */; };
 		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
 		A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */; };
-		A694046D19AC7B6B00797318 /* RTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694046C19AC7B6B00797318 /* RTSettingsViewController.m */; };
 		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
 /* End PBXBuildFile section */
@@ -71,8 +70,6 @@
 		A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Leukemia_AppTests.m; sourceTree = "<group>"; };
 		A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDiaryViewController.h; path = "Leukemia App/RTDiaryViewController.h"; sourceTree = "<group>"; };
 		A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryViewController.m; path = "Leukemia App/RTDiaryViewController.m"; sourceTree = "<group>"; };
-		A694046B19AC7B6B00797318 /* RTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSettingsViewController.h; sourceTree = "<group>"; };
-		A694046C19AC7B6B00797318 /* RTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSettingsViewController.m; sourceTree = "<group>"; };
 		A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTPainScaleViewController.h; path = "Leukemia App/RTPainScaleViewController.h"; sourceTree = "<group>"; };
 		A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTPainScaleViewController.m; path = "Leukemia App/RTPainScaleViewController.m"; sourceTree = "<group>"; };
 		A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphViewController.h; sourceTree = "<group>"; };
@@ -107,8 +104,6 @@
 		A0957E2819A75B010058EF12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A694046B19AC7B6B00797318 /* RTSettingsViewController.h */,
-				A694046C19AC7B6B00797318 /* RTSettingsViewController.m */,
 				A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */,
 				A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */,
 				A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */,
@@ -361,7 +356,6 @@
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
-				A694046D19AC7B6B00797318 /* RTSettingsViewController.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 			);
