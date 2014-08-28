@@ -13,9 +13,15 @@
 
 @interface RTGraphViewController : UIViewController <GKLineGraphDataSource>
 
-
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
 
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
+@property (weak, nonatomic) IBOutlet UILabel *lblError;
+
+
+- (IBAction)refreshGraph:(id)sender;
 
 
 @end

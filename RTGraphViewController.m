@@ -12,9 +12,10 @@
 
 @property RTDataManagement* data;
 
--(NSArray*) painLevels;
--(NSArray*) timeStamps;
+-(NSArray*) painLevelsAtDay:(NSString*) day;
+-(NSArray*) timeStampsAtDay:(NSString*) day;
 
+-(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
 @end
 
 @implementation RTGraphViewController
@@ -23,38 +24,85 @@
 {
     [super viewDidLoad];
     
-    self.data = [RTDataManagement singleton];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    if (screenScale == 2.0) //is retina display
+    {
     
-    self.graph.dataSource = self;
-    self.graph.lineWidth = 3.0;
-    
-    self.graph.valueLabelCount = 6;
-    self.graph.startFromZero = YES;
-    
-    [self.graph draw];
-    
+        self.data = [RTDataManagement singleton];
+        
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *today = [dateFormatter stringFromDate:currentDate];
+        self.dateTextField.text = today;
+        
+        self.graph.dataSource = self;
+        self.graph.lineWidth = 3.0;
+        self.graph.valueLabelCount = 11;
+        self.graph.startFromZero = YES;
+        
+        [self refreshGraph:nil];
+    }
+    else
+    {
+        self.graph.hidden = YES;
+        self.dateTextField.hidden = YES;
+        self.dateLabel.hidden = YES;
+        self.refreshButton.hidden = YES;
+        [self showError:YES withText:@"Graph feature only supported on devices with retina display."];
+    }
+}
+
+-(void)showError:(BOOL) isHidden withText:(NSString *)errorText {
+    self.lblError.hidden = !isHidden;
+    self.graph.hidden = isHidden;
+    self.lblError.text = errorText;
+    [self.lblError setCenter:self.view.center];
+}
+
+-(void)refreshGraph:(id)sender {
+    [self.graph reset];
+    if ([[self painLevelsAtDay:self.dateTextField.text] count] < 2)
+    {
+        [self showError:YES withText:@"Not enough data to show graph."];
+    }
+    else
+    {
+        [self showError:NO withText:nil];
+        [self.graph draw];
+    }
 }
 
 #pragma mark - Graph Data Init
 
-- (NSArray*) painLevels {
+- (NSArray*) painLevelsAtDay:(NSString *) day {
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
     for (NSDictionary *painRegistration in self.data.painData)
     {
         NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
-        [painLevels addObject:painLevel];
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        {
+             [painLevels addObject:painLevel];
+        }
     }
     return [painLevels copy];
 }
 
--(NSArray *)timeStampsAtDay {
+-(NSArray *)timeStampsAtDay:(NSString *) day {
     NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
+    
     for (NSDictionary *painRegistration in self.data.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
-        NSString *hour = [timeStamp componentsSeparatedByString:@" "][1];
-        [timeStamps addObject:hour];
+        NSString *hour = [NSString alloc];
+        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        {
+            hour = [timeStamp componentsSeparatedByString:@" "][1];
+            [timeStamps addObject:hour];
+        }
     }
+    NSLog(@"%@",timeStamps);
     return [timeStamps copy];
 }
 
@@ -62,15 +110,21 @@
 
 
 - (NSArray *)valuesForLineAtIndex:(NSInteger)index {
-    return [self painLevels];
+    NSArray *lines = @[
+                       [self painLevelsAtDay:self.dateTextField.text],
+                       @[@1, @5, @10]
+                       ];
+    return [lines objectAtIndex:index];
 }
 
 - (NSInteger)numberOfLines {
-    return 1;
+    return 2;
 }
 
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {
-    return [UIColor gk_turquoiseColor];
+    id colors = @[[UIColor gk_turquoiseColor],
+                  [UIColor clearColor]];
+    return [colors objectAtIndex:index];
 }
 
 - (CFTimeInterval)animationDurationForLineAtIndex:(NSInteger)index {
@@ -78,8 +132,7 @@
 }
 
 - (NSString *)titleForLineAtIndex:(NSInteger)index {
-    return [[self timeStamps] objectAtIndex:index];
+    return [[self timeStampsAtDay:self.dateTextField.text] objectAtIndex:index];
 }
-
 
 @end

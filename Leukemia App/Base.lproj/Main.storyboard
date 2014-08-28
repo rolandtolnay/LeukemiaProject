@@ -313,25 +313,6 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
-        <!--Graph View Controller - Graphs-->
-        <scene sceneID="5Ei-jS-nRi">
-            <objects>
-                <viewController id="uxV-Io-21U" customClass="RTGraphViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR" customClass="NGGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3052" y="-1028"/>
-        </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
@@ -413,7 +394,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ta1-Xc-Nqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2913" y="3043"/>
+            <point key="canvasLocation" x="2957" y="3123"/>
         </scene>
         <!--Table View Controller - Root View Controller-->
         <scene sceneID="5Bh-Sf-krU">
@@ -472,7 +453,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qsQ-cm-8eC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="2547"/>
+            <point key="canvasLocation" x="1139" y="2751"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -513,7 +494,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L4i-7s-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1985" y="1947"/>
+            <point key="canvasLocation" x="1985" y="1951"/>
         </scene>
         <!--Graph View Controller - Graphs-->
         <scene sceneID="Thm-he-4Cp">
@@ -527,17 +508,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duV-lw-KWi" customClass="GKLineGraph">
-                                <rect key="frame" x="20" y="20" width="728" height="732"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graph feature is only available on devices with retina display." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmE-1s-i5I">
+                                <rect key="frame" x="151" y="501" width="466" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TqV-wx-2L0">
+                                <rect key="frame" x="70" y="49" width="217" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmC-Mn-UbI">
+                                <rect key="frame" x="20" y="52" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frb-Gw-Kb2">
+                                <rect key="frame" x="295" y="49" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshGraph:" destination="RYn-Rf-O8k" eventType="touchUpInside" id="maz-RH-pQ9"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-U7-kCe" customClass="GKLineGraph">
+                                <rect key="frame" x="20" y="130" width="728" height="808"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="SmE-1s-i5I" secondAttribute="centerY" constant="0.5" id="bt6-nF-qE3"/>
+                            <constraint firstAttribute="centerX" secondItem="SmE-1s-i5I" secondAttribute="centerX" id="r5q-Z1-9nh"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="qXL-wB-CA0"/>
                     <connections>
-                        <outlet property="graph" destination="duV-lw-KWi" id="F8J-yi-m0I"/>
+                        <outlet property="dateLabel" destination="fmC-Mn-UbI" id="AYX-u5-Z8s"/>
+                        <outlet property="dateTextField" destination="TqV-wx-2L0" id="w68-N6-uWT"/>
+                        <outlet property="graph" destination="Fdd-U7-kCe" id="dCG-QR-peL"/>
+                        <outlet property="lblError" destination="SmE-1s-i5I" id="eoO-04-Tsw"/>
+                        <outlet property="refreshButton" destination="frb-Gw-Kb2" id="HZO-38-oY2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cp4-5W-92Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
