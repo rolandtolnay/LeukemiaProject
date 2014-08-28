@@ -313,25 +313,6 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
-        <!--Graph View Controller - Graphs-->
-        <scene sceneID="5Ei-jS-nRi">
-            <objects>
-                <viewController id="uxV-Io-21U" customClass="RTGraphViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR" customClass="NGGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3052" y="-1028"/>
-        </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
@@ -513,6 +494,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985" y="736"/>
+        </scene>
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="SGd-bd-rXA">
+            <objects>
+                <viewController id="24N-48-FBr" customClass="RTSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Ap-6t-4SH"/>
+                        <viewControllerLayoutGuide type="bottom" id="NhP-NE-ga2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="taq-Pl-cKA">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="BAE-mG-tSA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L4i-7s-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1985" y="1947"/>
+        </scene>
+        <!--Graph View Controller - Graphs-->
+        <scene sceneID="Thm-he-4Cp">
+            <objects>
+                <viewController id="RYn-Rf-O8k" customClass="RTGraphViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xzM-hg-kRt"/>
+                        <viewControllerLayoutGuide type="bottom" id="jUd-ew-nhD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Al-PD-1H7">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="duV-lw-KWi" customClass="GKLineGraph">
+                                <rect key="frame" x="20" y="20" width="728" height="732"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="qXL-wB-CA0"/>
+                    <connections>
+                        <outlet property="graph" destination="duV-lw-KWi" id="F8J-yi-m0I"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cp4-5W-92Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3052" y="-995"/>
         </scene>
         <!--Navigation Controller - Pain-->
         <scene sceneID="43x-Sl-LdC">

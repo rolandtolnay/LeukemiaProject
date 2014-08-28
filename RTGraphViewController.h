@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTGraphViewController : UIViewController
+#import "RTDataManagement.h"
+#import "GraphKit.h"
 
-//@property (weak, nonatomic) IBOutlet NGGraphView *graphView;
+@interface RTGraphViewController : UIViewController <GKLineGraphDataSource>
+
+
+@property (weak, nonatomic) IBOutlet GKLineGraph *graph;
+
 
 
 @end

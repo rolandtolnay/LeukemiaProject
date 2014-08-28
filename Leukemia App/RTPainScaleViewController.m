@@ -209,14 +209,12 @@
             drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
             [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
-            self.drawingToBeSaved = nil;
         }
         if (self.cameraImageToBeSaved)
         {
             photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
             NSLog(@"%@",photoPath);
             [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
-            self.cameraImageToBeSaved = nil;
         }
     }
     

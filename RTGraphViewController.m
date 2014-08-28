@@ -10,6 +10,11 @@
 
 @interface RTGraphViewController ()
 
+@property RTDataManagement* data;
+
+-(NSArray*) painLevels;
+-(NSArray*) timeStamps;
+
 @end
 
 @implementation RTGraphViewController
@@ -17,40 +22,64 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // finally you will want to initialize your graph view
-    // set it's properties to customize it's appearance
-    // and add some data to it...
-//    [_graphView setTitle:@"My Test Graph"];
-//    [_graphView setSubTitle:@"This is a test."];
-//    [_graphView setLineColor:[UIColor blueColor]];
-//    [_graphView setLineWidth:1.0];
-//    [_graphView setSegments:5];  // this graph is divided up into five sections.
-//    [_graphView setShowPoints:YES];
-//    [_graphView setPointSize:7];
-//    [_graphView setPointColor:[UIColor redColor]];
-//    // now add some data, the NGDataPoint is used to add data to the graph view.
-//    [_graphView addDataPoint:[NGDataPoint withLabel:@"first" andCount:3]];
-//    [_graphView addDataPoint:[NGDataPoint withLabel:@"second" andCount:10]];
-//    [_graphView addDataPoint:[NGDataPoint withLabel:@"third" andCount:7]];
-//    [_graphView addDataPoint:[NGDataPoint withLabel:@"fourth" andCount:15]];
-//    [_graphView addDataPoint:[NGDataPoint withLabel:@"fifth" andCount:19]];
+    
+    self.data = [RTDataManagement singleton];
+    
+    self.graph.dataSource = self;
+    self.graph.lineWidth = 3.0;
+    
+    self.graph.valueLabelCount = 6;
+    self.graph.startFromZero = YES;
+    
+    [self.graph draw];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Graph Data Init
+
+- (NSArray*) painLevels {
+    NSMutableArray *painLevels = [[NSMutableArray alloc] init];
+    for (NSDictionary *painRegistration in self.data.painData)
+    {
+        NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
+        [painLevels addObject:painLevel];
+    }
+    return [painLevels copy];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSArray *)timeStamps {
+    NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
+    for (NSDictionary *painRegistration in self.data.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *hour = [timeStamp componentsSeparatedByString:@" "][1];
+        NSLog(@"Timestamp: %@, hour: %@",timeStamp,hour);
+        [timeStamps addObject:hour];
+    }
+    return [timeStamps copy];
 }
-*/
+
+#pragma mark - GKLineGraphDataSource
+
+
+- (NSArray *)valuesForLineAtIndex:(NSInteger)index {
+    return [self painLevels];
+}
+
+- (NSInteger)numberOfLines {
+    return 1;
+}
+
+- (UIColor *)colorForLineAtIndex:(NSInteger)index {
+    return [UIColor gk_turquoiseColor];
+}
+
+- (CFTimeInterval)animationDurationForLineAtIndex:(NSInteger)index {
+    return 1.0;
+}
+
+- (NSString *)titleForLineAtIndex:(NSInteger)index {
+    return [[self timeStamps] objectAtIndex:index];
+}
+
 
 @end
