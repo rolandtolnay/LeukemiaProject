@@ -135,4 +135,28 @@
     return [[self timeStampsAtDay:self.dateTextField.text] objectAtIndex:index];
 }
 
+#pragma mark - CalendarPicker
+
+- (void)dateSelected:(NSDate *)date
+{
+    NSLog(@"Delegate date selected: %@",date);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *pickedDate = [dateFormatter stringFromDate:date];
+    self.dateTextField.text = pickedDate;
+}
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    NSLog(@"Prepare for segue before ifcheck");
+    if([segue.identifier isEqualToString:@"datePicker"]){
+        NSLog(@"Prepare for segue");
+        RTGraphCalendarViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        
+        UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        popover.delegate = self;
+    }    
+}
+
+
 @end

@@ -472,7 +472,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="eJ4-xl-cqY" kind="popover" popoverAnchorView="f39-t1-Rud" id="bVi-hn-0X6">
+                                    <segue destination="eJ4-xl-cqY" kind="popover" identifier="datePicker" popoverAnchorView="f39-t1-Rud" id="bVi-hn-0X6">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -500,18 +500,18 @@
         <!--Graph Calendar View Controller-->
         <scene sceneID="BPi-dh-gjX">
             <objects>
-                <viewController id="eJ4-xl-cqY" customClass="RTGraphCalendarViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="datePicker" id="eJ4-xl-cqY" customClass="RTGraphCalendarViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j8b-Z0-vy8"/>
                         <viewControllerLayoutGuide type="bottom" id="YZX-N7-Xl4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cTg-8P-IbC" customClass="MDCalendar">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="824"/>
+                        <rect key="frame" x="0.0" y="0.0" width="468" height="724"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="568" height="824"/>
+                    <size key="freeformSize" width="468" height="724"/>
                     <connections>
                         <outlet property="calendarView" destination="cTg-8P-IbC" id="tp1-ZU-YUY"/>
                     </connections>

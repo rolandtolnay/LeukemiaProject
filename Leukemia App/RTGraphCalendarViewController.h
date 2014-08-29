@@ -11,8 +11,16 @@
 #import "NSDate+MDCalendar.h"
 #import "UIColor+MDCalendarDemo.h"
 
+@protocol RTCalendarPickerDelegate <NSObject>
+
+- (void) dateSelected:(NSDate*) date;
+
+@end
+
 @interface RTGraphCalendarViewController : UIViewController <MDCalendarDelegate>
 
 @property (strong, nonatomic) IBOutlet MDCalendar *calendarView;
+
+@property (nonatomic,assign) id delegate;
 
 @end

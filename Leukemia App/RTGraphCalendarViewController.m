@@ -53,5 +53,11 @@
     self.calendarView.contentInset = UIEdgeInsetsMake([self.topLayoutGuide length], 0, [self.bottomLayoutGuide length], 0);
 }
 
+#pragma mark - MDCalendarViewDelegate
+
+- (void)calendarView:(MDCalendar *)calendarView didSelectDate:(NSDate *)date {
+    NSLog(@"Date picked: %@",date);
+    [self.delegate dateSelected:date];
+}
 
 @end
