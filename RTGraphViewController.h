@@ -15,6 +15,7 @@
 
 
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
+- (IBAction)refresh:(id)sender;
 
 
 

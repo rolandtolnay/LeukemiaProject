@@ -13,7 +13,7 @@
 @property RTDataManagement* data;
 
 -(NSArray*) painLevels;
--(NSArray*) timeStamps;
+-(NSArray*) timeStampsAtDay;
 
 @end
 
@@ -32,8 +32,9 @@
     self.graph.startFromZero = YES;
     
     [self.graph draw];
-    
 }
+
+
 
 #pragma mark - Graph Data Init
 
@@ -78,8 +79,12 @@
 }
 
 - (NSString *)titleForLineAtIndex:(NSInteger)index {
-    return [[self timeStamps] objectAtIndex:index];
+    return [[self timeStampsAtDay] objectAtIndex:index];
 }
 
 
+- (IBAction)refresh:(id)sender {
+    [self.graph reset];
+    [self.graph draw];
+}
 @end

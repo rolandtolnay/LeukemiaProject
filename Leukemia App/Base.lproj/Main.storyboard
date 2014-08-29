@@ -313,25 +313,6 @@
             </objects>
             <point key="canvasLocation" x="4026" y="150"/>
         </scene>
-        <!--Graph View Controller - Graphs-->
-        <scene sceneID="5Ei-jS-nRi">
-            <objects>
-                <viewController id="uxV-Io-21U" customClass="RTGraphViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TC4-pX-Rhf"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Zd-0x-hkv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7P7-H2-IDR" customClass="NGGraphView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="lU0-Wa-Ls0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EeJ-l8-vPm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3052" y="-1028"/>
-        </scene>
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
