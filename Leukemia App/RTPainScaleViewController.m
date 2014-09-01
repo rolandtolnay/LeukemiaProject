@@ -30,6 +30,7 @@
                              @("Hurts whole lot"),
                              @("Hurts worst")
                              ];
+    
     self.morphineInput.delegate = self;
 
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
@@ -116,7 +117,11 @@
     {
         self.lblPainDescription.text = self.painDescription[0];
         self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-    } else if ([painNumber intValue] % 2 == 0) painNumber = @([painNumber intValue]-1);
+    }
+    else if ([painNumber intValue] % 2 == 0)
+    {
+        painNumber = @([painNumber intValue]-1);
+    }
         
     if ([painNumber intValue] % 2 == 1)
     {

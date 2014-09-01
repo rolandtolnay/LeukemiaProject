@@ -10,11 +10,22 @@
 
 @interface RTDataManagement : NSObject
 
+//pList properties
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong, nonatomic) NSString *path;
 
+//NSUserDefault - painScaleSettings
+@property NSInteger selectedRowPainScale;
+@property BOOL painScaleWongBaker;
+//NSUserDefault - notificationsettings
+@property NSInteger selectedRowNotification;
+@property BOOL notificationsOn;
+
+@property (nonatomic) NSUserDefaults *prefs;
+
 +(RTDataManagement *)singleton;
--(id)initWithPlist;
+-(void)saveUserPrefrences;
+//-(id)initWithPlistAndUserPreferences;
 -(void)writeToPList;
 -(void)reloadPlist;
 @end
