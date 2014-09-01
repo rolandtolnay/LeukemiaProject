@@ -18,7 +18,6 @@
 {
     self.dataManagement = [RTDataManagement singleton];
     
- 
     [self initSliderPainNumber];
     
     self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
@@ -39,7 +38,13 @@
 	
     [self.view addGestureRecognizer:gestureRecognizer];
     
+    [self initImages];
+    
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self initImages];
 }
 
 -(IBAction)useCamera:(id)sender
@@ -95,6 +100,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//Morphine Input textfield delgates method
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return NO;
+}
+
 -(void)initSliderPainNumber
 {
     self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
@@ -116,7 +128,12 @@
     if ([painNumber intValue] == 0)
     {
         self.lblPainDescription.text = self.painDescription[0];
+        if(self.dataManagement.painScaleWongBaker){
         self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+        }
+        else{
+            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+        }
     }
     else if ([painNumber intValue] % 2 == 0)
     {
@@ -126,9 +143,14 @@
     if ([painNumber intValue] % 2 == 1)
     {
         int smileyIndex = ([painNumber intValue]+1)/2;
-        
         self.lblPainDescription.text = self.painDescription[smileyIndex];
-        NSString *imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+        NSString *imageName;
+        if(self.dataManagement.painScaleWongBaker){
+            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+        }
+        else{
+            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
+        }
         self.imageSmiley.image = [UIImage imageNamed:imageName];
     }
 }
@@ -138,17 +160,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //Saving and reading images
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
@@ -163,7 +174,6 @@
             self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
         }
-        //[self UIImageWriteToFile:saveImage :@"test.png"];
     }
 }
 
@@ -265,10 +275,13 @@
     self.cameraImageToBeSaved = nil;
 }
 
-//Morphine Input textfield delgates method
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	[textField resignFirstResponder];
-	return NO;
+-(void)initImages{
+    if(self.dataManagement.painScaleWongBaker){
+        self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+    }
+    else{
+        self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+    }
 }
+
 @end
