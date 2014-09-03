@@ -41,7 +41,7 @@ static RTDataManagement *dataMangement = nil;
 -(id)initWithPlistAndUserPreferences{
     if (self = [super init]){
         self.selectedRowPainScale = [self.prefs integerForKey:@"selectedRowPainScale"];
-        self.painScaleWongBaker = [self.prefs boolForKey:@"painScaleWongBaker"];
+        self.painScaleBieri = [self.prefs boolForKey:@"painScaleBieri"];
         self.selectedRowNotification = [self.prefs integerForKey:@"selectedRowNotification"];
         self.notificationsOn = [self.prefs boolForKey:@"notificationsOn"];
         [self reloadPlist];
@@ -77,12 +77,12 @@ static RTDataManagement *dataMangement = nil;
 -(void)saveUserPrefrences{
     [self.prefs setInteger:self.selectedRowPainScale forKey:@"selectedRowPainScale"];
     if (self.selectedRowPainScale == 0) {
-        self.painScaleWongBaker = YES;
+        self.painScaleBieri = NO;
     }
     else{
-        self.painScaleWongBaker = NO;
+        self.painScaleBieri = YES;
     }
-    [self.prefs setBool:self.painScaleWongBaker forKey:@"painScaleWongBaker"];
+    [self.prefs setBool:self.painScaleBieri forKey:@"painScaleBieri"];
     
     [self.prefs setInteger:self.selectedRowNotification forKey:@"selectedRowNotification"];
     if (self.selectedRowNotification == 0) {

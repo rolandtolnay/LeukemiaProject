@@ -157,6 +157,10 @@
     self.painScaleSettingTableView.layer.borderWidth = 1.0;
     self.notificationSettingTableView.layer.borderWidth = 1.0;
     
+    self.masterTableview.layer.borderColor = [UIColor grayColor].CGColor;
+    self.painScaleSettingTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.notificationSettingTableView.layer.borderColor = [UIColor grayColor].CGColor;
+    
     [self.masterTableview reloadData];
     [self.painScaleSettingTableView reloadData];
     [self.notificationSettingTableView reloadData];

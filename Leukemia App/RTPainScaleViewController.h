@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UISlider *sliderPainNumber;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainNumber;
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *painTypeSelector;
+
 
 @property (strong,nonatomic) NSArray* smileys;
 @property (strong,nonatomic) NSArray* numberScale;
@@ -26,6 +28,8 @@
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
 @property (strong,nonatomic) UIImage *cameraImageToBeSaved;
 
+@property(strong,nonatomic) NSString *painType;
+
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 
@@ -33,6 +37,7 @@
 
 - (IBAction)useCamera:(id)sender;
 - (IBAction)submitAndSaveData:(id)sender;
+- (IBAction)painTypeSelcected:(id)sender;
 
 
 @end

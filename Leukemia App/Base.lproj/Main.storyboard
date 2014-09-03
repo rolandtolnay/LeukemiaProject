@@ -197,15 +197,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-mj-jJN">
-                                <rect key="frame" x="263" y="98" width="243" height="242"/>
+                                <rect key="frame" x="263" y="125" width="243" height="242"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="L6s-Fi-I7M"/>
                                     <constraint firstAttribute="width" constant="243" id="NqF-Xg-QjY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
-                                <rect key="frame" x="170" y="422" width="429" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
+                                <rect key="frame" x="170" y="446" width="429" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -284,6 +284,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-Dq-3Ox">
+                                <rect key="frame" x="263" y="368" width="243" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Mouth"/>
+                                    <segment title="Stomach"/>
+                                    <segment title="Other"/>
+                                </segments>
+                                <connections>
+                                    <action selector="painTypeSelcected:" destination="iOi-VK-jme" eventType="valueChanged" id="IVz-xr-zIZ"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -306,6 +318,7 @@
                         <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
                         <outlet property="lblPainNumber" destination="7xF-70-bZ2" id="lse-Vh-ejV"/>
                         <outlet property="morphineInput" destination="GEf-FO-Ud0" id="8V4-xw-nRF"/>
+                        <outlet property="painTypeSelector" destination="wzf-Dq-3Ox" id="L9P-vc-UJg"/>
                         <outlet property="sliderPainNumber" destination="2uI-d9-yXS" id="Obr-vG-KDh"/>
                     </connections>
                 </viewController>
