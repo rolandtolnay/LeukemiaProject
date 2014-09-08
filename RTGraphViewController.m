@@ -73,6 +73,8 @@
     }
 }
 
+
+
 #pragma mark - Graph Data Init
 
 - (NSArray*) painLevelsAtDay:(NSString *) day {
@@ -159,4 +161,8 @@
 }
 
 
+- (IBAction)refresh:(id)sender {
+    [self.graph reset];
+    [self.graph draw];
+}
 @end

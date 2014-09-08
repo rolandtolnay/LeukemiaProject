@@ -15,6 +15,7 @@
 @interface RTGraphViewController : UIViewController <GKLineGraphDataSource,RTCalendarPickerDelegate,UIPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
+- (IBAction)refresh:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
