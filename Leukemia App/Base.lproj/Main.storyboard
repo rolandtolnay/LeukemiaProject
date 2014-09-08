@@ -528,25 +528,6 @@
             </objects>
             <point key="canvasLocation" x="1985" y="736"/>
         </scene>
-        <!--Settings View Controller - Settings-->
-        <scene sceneID="SGd-bd-rXA">
-            <objects>
-                <viewController id="24N-48-FBr" customClass="RTSettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Ap-6t-4SH"/>
-                        <viewControllerLayoutGuide type="bottom" id="NhP-NE-ga2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="taq-Pl-cKA">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="BAE-mG-tSA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L4i-7s-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1985" y="1951"/>
-        </scene>
         <!--Graph View Controller - Graphs-->
         <scene sceneID="Thm-he-4Cp">
             <objects>
@@ -719,8 +700,8 @@
         <image name="painBodyText" width="522" height="93"/>
         <image name="painBodyTextTop" width="598" height="66"/>
         <image name="redbtn" width="300" height="300"/>
-        <image name="smileyA" width="338" height="338"/>
         <image name="settings-25" width="25" height="25"/>
+        <image name="smileyA" width="338" height="338"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

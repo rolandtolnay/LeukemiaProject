@@ -14,9 +14,12 @@
 
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
--(BOOL) isEnoughDataAtDay:(NSString *) day
+-(BOOL) isEnoughDataAtDay:(NSString *) day;
 
 -(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
+
+@property (strong, nonatomic) NSArray* lineValues;
+
 @end
 
 @implementation RTGraphViewController
@@ -63,14 +66,22 @@
 
 -(void)refreshGraph:(id)sender {
     [self.graph reset];
-    if ([[self painLevelsAtDay:self.dateTextField.text] count] < 2)
+    NSString* selectedDay = self.dateTextField.text;
+    if ([self isEnoughDataAtDay:selectedDay])
     {
-        [self showError:YES withText:@"Not enough data to show graph."];
+        [self showError:NO withText:nil];
+        self.lineValues = @[
+                            [self painLevelsAtDay:selectedDay forPainType:MouthPain],
+                            [self painLevelsAtDay:selectedDay forPainType:StomachPain],
+                            [self painLevelsAtDay:selectedDay forPainType:OtherPain],
+                            @[@1, @5, @10]
+                            ];
+        
+        [self.graph draw];
     }
     else
     {
-        [self showError:NO withText:nil];
-        [self.graph draw];
+        [self showError:YES withText:@"Not enough data to show graph."];
     }
 }
 
@@ -80,13 +91,16 @@
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
     for (NSDictionary *painRegistration in self.data.painData)
     {
+        NSLog(@"%@",painRegistration);
         NSString *painType = [painRegistration objectForKey:@"paintype"];
-        
-        NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
-        NSString *timeStamp = [painRegistration objectForKey:@"time"];
-        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        if ([painType isEqualToString:painType])
         {
-             [painLevels addObject:painLevel];
+            NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
+            NSString *timeStamp = [painRegistration objectForKey:@"time"];
+            if ([timeStamp rangeOfString:day].location != NSNotFound)
+            {
+                [painLevels addObject:painLevel];
+            }
         }
     }
     return [painLevels copy];
@@ -105,27 +119,26 @@
             [timeStamps addObject:hour];
         }
     }
-    NSLog(@"%@",timeStamps);
     return [timeStamps copy];
 }
 
 -(BOOL) isEnoughDataAtDay:(NSString *) day {
+    if ([[self painLevelsAtDay:day forPainType:MouthPain] count] > 1)  return YES;
+    if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
     
+    return NO;
 }
 
 #pragma mark - GKLineGraphDataSource
 
 
 - (NSArray *)valuesForLineAtIndex:(NSInteger)index {
-    NSArray *lines = @[
-                       [self painLevelsAtDay:self.dateTextField.text],
-                       @[@1, @5, @10]
-                       ];
-    return [lines objectAtIndex:index];
+    return [self.lineValues objectAtIndex:index];
 }
 
 - (NSInteger)numberOfLines {
-    return 4;
+    return [self.lineValues count];
 }
 
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {

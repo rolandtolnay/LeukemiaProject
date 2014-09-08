@@ -11,6 +11,7 @@
 #import "RTDataManagement.h"
 #import "GraphKit.h"
 #import "RTGraphCalendarViewController.h"
+#import "RTConstants.h"
 
 @interface RTGraphViewController : UIViewController <GKLineGraphDataSource,RTCalendarPickerDelegate,UIPopoverControllerDelegate>
 
