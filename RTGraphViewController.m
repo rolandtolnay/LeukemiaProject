@@ -12,8 +12,9 @@
 
 @property RTDataManagement* data;
 
--(NSArray*) painLevelsAtDay:(NSString*) day;
+-(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
+-(BOOL) isEnoughDataAtDay:(NSString *) day
 
 -(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
 @end
@@ -73,14 +74,14 @@
     }
 }
 
-
-
 #pragma mark - Graph Data Init
 
-- (NSArray*) painLevelsAtDay:(NSString *) day {
+- (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
     for (NSDictionary *painRegistration in self.data.painData)
     {
+        NSString *painType = [painRegistration objectForKey:@"paintype"];
+        
         NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
@@ -108,6 +109,10 @@
     return [timeStamps copy];
 }
 
+-(BOOL) isEnoughDataAtDay:(NSString *) day {
+    
+}
+
 #pragma mark - GKLineGraphDataSource
 
 
@@ -120,11 +125,13 @@
 }
 
 - (NSInteger)numberOfLines {
-    return 2;
+    return 4;
 }
 
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {
     id colors = @[[UIColor gk_turquoiseColor],
+                  [UIColor gk_belizeHoleColor],
+                  [UIColor gk_asbestosColor],
                   [UIColor clearColor]];
     return [colors objectAtIndex:index];
 }
@@ -160,9 +167,4 @@
     }    
 }
 
-
-- (IBAction)refresh:(id)sender {
-    [self.graph reset];
-    [self.graph draw];
-}
 @end

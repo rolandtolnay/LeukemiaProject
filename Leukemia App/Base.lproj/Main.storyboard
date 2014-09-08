@@ -346,6 +346,25 @@
         <!--Diary View Controller - Diary-->
         <scene sceneID="goB-Bd-vzi">
             <objects>
+                <viewController id="2L9-BR-LhI" customClass="RTDiaryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aC2-eb-o2d"/>
+                        <viewControllerLayoutGuide type="bottom" id="uj8-9O-70u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ij2-AL-eYJ">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jod-lE-rgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5010" y="1295"/>
+        </scene>
+        <!--Settings View Controller - Settings-->
+        <scene sceneID="qf5-G2-cYD">
+            <objects>
                 <viewController id="6x0-eG-Il3" customClass="RTSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qQy-S2-jn3"/>
@@ -701,6 +720,7 @@
         <image name="painBodyTextTop" width="598" height="66"/>
         <image name="redbtn" width="300" height="300"/>
         <image name="smileyA" width="338" height="338"/>
+        <image name="settings-25" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

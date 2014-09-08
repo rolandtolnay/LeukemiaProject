@@ -200,41 +200,41 @@
 - (IBAction)submitAndSaveData:(id)sender {
     
     if(self.painTypeSelector.selectedSegmentIndex != -1){
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-    NSString *currentTime = [dateFormatter stringFromDate:currentDate];
-    
-    NSString *drawingImagePath = [[NSString alloc]init];
-    NSString *photoPath = [[NSString alloc]init];
-   
-    //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
-    if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
-                                                        message:@"For a more precise diagnostic consider using the Draw and Photo features."
-                                                       delegate:self
-                                              cancelButtonTitle:@"No thank you, just save"
-                                              otherButtonTitles:@"Draw",@"Photo",nil];
-        [alert show];
-        alert.tag = 100;
-    }
-    else
-    {
-        if (self.drawingToBeSaved)
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+        
+        NSString *drawingImagePath = [[NSString alloc]init];
+        NSString *photoPath = [[NSString alloc]init];
+        
+        //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
+        if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
         {
-            drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
-            NSLog(@"%@",drawingImagePath);
-            [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
+                                                            message:@"For a more precise diagnostic consider using the Draw and Photo features."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"No thank you, just save"
+                                                  otherButtonTitles:@"Draw",@"Photo",nil];
+            [alert show];
+            alert.tag = 100;
         }
-        if (self.cameraImageToBeSaved)
+        else
         {
-            photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
-            NSLog(@"%@",photoPath);
-            [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            if (self.drawingToBeSaved)
+            {
+                drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
+                NSLog(@"%@",drawingImagePath);
+                [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            }
+            if (self.cameraImageToBeSaved)
+            {
+                photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
+                NSLog(@"%@",photoPath);
+                [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            }
+            [self saveToPlist:drawingImagePath :photoPath :currentTime];
         }
-        [self saveToPlist:drawingImagePath :photoPath :currentTime];
-    }
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
