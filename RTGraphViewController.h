@@ -11,22 +11,20 @@
 #import "RTDataManagement.h"
 #import "GraphKit.h"
 #import "RTConstants.h"
+#import "RTGraphCalendarViewController.h"
 
-@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate>
+@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
 
-@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
 @property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
 @property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
 
+@property (weak, nonatomic) IBOutlet UIButton *datePicker;
 
-- (IBAction)refreshGraph:(id)sender;
-
+@property (strong,nonatomic) NSDate* currentDate;
 
 @end

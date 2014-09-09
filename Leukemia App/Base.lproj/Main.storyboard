@@ -360,9 +360,19 @@
                     <view key="view" contentMode="scaleToFill" id="Ij2-AL-eYJ">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMx-Yh-eIX">
+                                <rect key="frame" x="284" y="90" width="350" height="330"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
+                    <connections>
+                        <outlet property="calendarView" destination="cMx-Yh-eIX" id="4uD-fm-7m8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jod-lE-rgx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -546,49 +556,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Graph feature is only available on devices with retina display." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmE-1s-i5I">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Graph feature is only available on devices with retina display." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmE-1s-i5I">
                                 <rect key="frame" x="151" y="501" width="466" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TqV-wx-2L0">
-                                <rect key="frame" x="70" y="49" width="217" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmC-Mn-UbI">
-                                <rect key="frame" x="20" y="52" width="41" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frb-Gw-Kb2">
-                                <rect key="frame" x="295" y="49" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Refresh">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="refreshGraph:" destination="RYn-Rf-O8k" eventType="touchUpInside" id="maz-RH-pQ9"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-U7-kCe" customClass="GKLineGraph">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fdd-U7-kCe" customClass="GKLineGraph">
                                 <rect key="frame" x="20" y="130" width="728" height="764"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-t1-Rud">
-                                <rect key="frame" x="612" y="48" width="136" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-t1-Rud">
+                                <rect key="frame" x="20" y="68" width="238" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Pick From Calendar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="CZm-Pe-7ye" kind="popover" identifier="datePicker" popoverAnchorView="f39-t1-Rud" id="2bS-8M-hVf">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzS-pJ-QU2">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzS-pJ-QU2">
                                 <rect key="frame" x="20" y="920" width="105" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
@@ -602,19 +595,19 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mouth" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXW-TH-p1m">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mouth" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BXW-TH-p1m">
                                 <rect key="frame" x="153" y="926" width="50" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stomach" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqs-Z3-GPG">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stomach" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqs-Z3-GPG">
                                 <rect key="frame" x="236" y="926" width="69" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-aD-7Qp">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Other" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbr-aD-7Qp">
                                 <rect key="frame" x="339" y="926" width="43" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -622,55 +615,50 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BXW-TH-p1m" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="153" id="1Pg-iu-AgZ"/>
-                            <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="BXW-TH-p1m" secondAttribute="bottom" constant="28" id="C1n-uP-dfl"/>
-                            <constraint firstItem="MzS-pJ-QU2" firstAttribute="top" secondItem="Fdd-U7-kCe" secondAttribute="bottom" constant="26" id="D8h-ee-Al4"/>
-                            <constraint firstItem="fmC-Mn-UbI" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="32" id="D9i-of-ckJ"/>
-                            <constraint firstItem="gqs-Z3-GPG" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="236" id="DXv-ok-buW"/>
-                            <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="gqs-Z3-GPG" secondAttribute="bottom" constant="28" id="GDb-Od-21x"/>
-                            <constraint firstItem="MzS-pJ-QU2" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="20" id="KPz-Ga-4Ji"/>
-                            <constraint firstItem="gqs-Z3-GPG" firstAttribute="top" secondItem="Fdd-U7-kCe" secondAttribute="bottom" constant="32" id="M8t-kz-lJC"/>
-                            <constraint firstItem="frb-Gw-Kb2" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="29" id="MIn-f4-LD5"/>
-                            <constraint firstItem="frb-Gw-Kb2" firstAttribute="leading" secondItem="TqV-wx-2L0" secondAttribute="trailing" constant="8" id="MTq-Ty-Kq5"/>
-                            <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="MzS-pJ-QU2" secondAttribute="bottom" constant="31" id="O6y-A9-Bwt"/>
-                            <constraint firstItem="fmC-Mn-UbI" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="20" id="QBu-KY-GxA"/>
-                            <constraint firstItem="f39-t1-Rud" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="28" id="RUk-Z4-8Ue"/>
-                            <constraint firstItem="bbr-aD-7Qp" firstAttribute="top" secondItem="Fdd-U7-kCe" secondAttribute="bottom" constant="32" id="SwJ-ja-TOs"/>
-                            <constraint firstItem="BXW-TH-p1m" firstAttribute="top" secondItem="Fdd-U7-kCe" secondAttribute="bottom" constant="32" id="TZC-jq-RHU"/>
-                            <constraint firstAttribute="trailing" secondItem="f39-t1-Rud" secondAttribute="trailing" constant="20" id="WDM-96-WSv"/>
-                            <constraint firstItem="MzS-pJ-QU2" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="900" id="YFb-up-lXN"/>
-                            <constraint firstItem="Fdd-U7-kCe" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="110" id="ap9-nY-Wwf"/>
-                            <constraint firstItem="TqV-wx-2L0" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="70" id="bXG-wl-77W"/>
-                            <constraint firstAttribute="centerY" secondItem="SmE-1s-i5I" secondAttribute="centerY" constant="0.5" id="bt6-nF-qE3"/>
-                            <constraint firstItem="bbr-aD-7Qp" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="906" id="cP6-CY-nbR"/>
-                            <constraint firstItem="TqV-wx-2L0" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="29" id="fKU-KN-UIZ"/>
-                            <constraint firstItem="gqs-Z3-GPG" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="906" id="hQh-Y8-TW3"/>
-                            <constraint firstItem="bbr-aD-7Qp" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="339" id="hum-kP-Q1y"/>
-                            <constraint firstAttribute="trailing" secondItem="Fdd-U7-kCe" secondAttribute="trailing" constant="20" id="i9a-wn-hvF"/>
-                            <constraint firstItem="BXW-TH-p1m" firstAttribute="top" secondItem="xzM-hg-kRt" secondAttribute="bottom" constant="906" id="kgJ-G4-CDb"/>
-                            <constraint firstItem="Fdd-U7-kCe" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="20" id="oGo-aC-Fse"/>
-                            <constraint firstAttribute="centerX" secondItem="SmE-1s-i5I" secondAttribute="centerX" id="r5q-Z1-9nh"/>
-                            <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="Fdd-U7-kCe" secondAttribute="bottom" constant="81" id="rJA-5a-Epf"/>
-                            <constraint firstItem="frb-Gw-Kb2" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="295" id="rTF-dY-G2Z"/>
-                            <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="bbr-aD-7Qp" secondAttribute="bottom" constant="28" id="vq6-Dd-Zma"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Graphs" image="TabBarGraph" id="qXL-wB-CA0"/>
                     <connections>
-                        <outlet property="dateLabel" destination="fmC-Mn-UbI" id="AYX-u5-Z8s"/>
-                        <outlet property="dateTextField" destination="TqV-wx-2L0" id="w68-N6-uWT"/>
+                        <outlet property="datePicker" destination="f39-t1-Rud" id="XDm-Ai-Kq6"/>
                         <outlet property="graph" destination="Fdd-U7-kCe" id="dCG-QR-peL"/>
                         <outlet property="lblError" destination="SmE-1s-i5I" id="eoO-04-Tsw"/>
                         <outlet property="lblMouthColor" destination="BXW-TH-p1m" id="lny-gz-4Gl"/>
                         <outlet property="lblOtherColor" destination="bbr-aD-7Qp" id="IME-PK-mNa"/>
                         <outlet property="lblStomachColor" destination="gqs-Z3-GPG" id="R8v-ZA-AYA"/>
-                        <outlet property="refreshButton" destination="frb-Gw-Kb2" id="HZO-38-oY2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cp4-5W-92Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3052" y="-995"/>
+        </scene>
+        <!--Graph Calendar View Controller-->
+        <scene sceneID="Rqy-l8-HVy">
+            <objects>
+                <viewController id="CZm-Pe-7ye" customClass="RTGraphCalendarViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XYh-fy-Cp5"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Bi-T5-Fdd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZIk-0R-vhT">
+                        <rect key="frame" x="0.0" y="0.0" width="350" height="330"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jn3-IF-cig">
+                                <rect key="frame" x="0.0" y="0.0" width="350" height="330"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="350" height="330"/>
+                    <connections>
+                        <outlet property="calendarView" destination="jn3-IF-cig" id="TFR-6i-vVP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="is7-wz-2hw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4010" y="-1002"/>
         </scene>
         <!--Navigation Controller - Pain-->
         <scene sceneID="43x-Sl-LdC">

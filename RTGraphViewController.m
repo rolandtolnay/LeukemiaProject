@@ -12,17 +12,20 @@
 
 @property RTDataManagement* data;
 
+@property (strong, nonatomic) NSArray* lineValues;
+
+
+@property UIColor *colorStomachPain;
+@property UIColor *colorMouthPain;
+@property UIColor *colorOtherPain;
+
+@property UIPopoverController* popover;
+
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
 
 -(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
-
-@property (strong, nonatomic) NSArray* lineValues;
-
-@property UIColor *colorStomachPain;
-@property UIColor *colorMouthPain;
-@property UIColor *colorOtherPain;
 
 @end
 
@@ -44,7 +47,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *today = [dateFormatter stringFromDate:currentDate];
-        self.dateTextField.text = today;
+        [self.datePicker setTitle:today forState:UIControlStateNormal];
         
         self.graph.dataSource = self;
         self.graph.lineWidth = 3.0;
@@ -58,9 +61,7 @@
     else
     {
         self.graph.hidden = YES;
-        self.dateTextField.hidden = YES;
-        self.dateLabel.hidden = YES;
-        self.refreshButton.hidden = YES;
+        self.datePicker.hidden = YES;
         [self showError:YES withText:@"Graph feature only supported on devices with retina display."];
     }
 }
@@ -86,7 +87,7 @@
 -(void)refreshGraph:(id)sender {
     [self.graph reset];
     [self.view endEditing:YES];
-    NSString* selectedDay = self.dateTextField.text;
+    NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
     if ([self isEnoughDataAtDay:selectedDay])
     {
         [self showError:NO withText:nil];
@@ -113,7 +114,6 @@
         NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
         if ([painTypeReg isEqualToString:painType])
         {
-            NSLog(@"%@",painTypeReg);
             NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
             NSString *timeStamp = [painRegistration objectForKey:@"time"];
             if ([timeStamp rangeOfString:day].location != NSNotFound)
@@ -122,7 +122,6 @@
             }
         }
     }
-    NSLog(@"%@",painLevels);
     return [painLevels copy];
 }
 
@@ -175,29 +174,31 @@
 }
 
 - (NSString *)titleForLineAtIndex:(NSInteger)index {
-    return [[self timeStampsAtDay:self.dateTextField.text] objectAtIndex:index];
+    NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
+    return [[self timeStampsAtDay:selectedDay] objectAtIndex:index];
 }
 
 #pragma mark - CalendarPicker
 
 - (void)dateSelected:(NSDate *)date
 {
-    NSLog(@"Delegate date selected: %@",date);
+    self.currentDate = date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *pickedDate = [dateFormatter stringFromDate:date];
-    self.dateTextField.text = pickedDate;
+    
+    [self.datePicker setTitle:pickedDate forState:UIControlStateNormal];
+    [self.popover dismissPopoverAnimated:YES];
+    [self refreshGraph:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
-    NSLog(@"Prepare for segue before ifcheck");
     if([segue.identifier isEqualToString:@"datePicker"]){
-        NSLog(@"Prepare for segue");
-        //        RTGraphCalendarViewController *controller = [segue destinationViewController];
-        //        controller.delegate = self;
+        RTGraphCalendarViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
         
-        UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        popover.delegate = self;
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
     }
 }
 
