@@ -13,6 +13,7 @@
 #import "RTDataManagement.h"
 
 @interface RTSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *masterTableview;
 @property (weak, nonatomic) IBOutlet UITableView *painScaleSettingTableView;
 @property (weak, nonatomic) IBOutlet UITableView *notificationSettingTableView;

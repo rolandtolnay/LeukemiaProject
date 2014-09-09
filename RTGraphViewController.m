@@ -20,6 +20,10 @@
 
 @property (strong, nonatomic) NSArray* lineValues;
 
+@property UIColor *colorStomachPain;
+@property UIColor *colorMouthPain;
+@property UIColor *colorOtherPain;
+
 @end
 
 @implementation RTGraphViewController
@@ -28,10 +32,12 @@
 {
     [super viewDidLoad];
     
-    CGFloat screenScale = [[UIScreen mainScreen] scale];
-    if (screenScale == 2.0) //is retina display
-    {
+    self.colorMouthPain = [UIColor gk_pomegranateColor];
+    self.colorStomachPain = [UIColor gk_greenSeaColor];
+    self.colorOtherPain = [UIColor gk_belizeHoleColor];
     
+    if ([self isRetinaDisplay])
+    {
         self.data = [RTDataManagement singleton];
         
         NSDate *currentDate = [NSDate date];
@@ -45,7 +51,9 @@
         self.graph.valueLabelCount = 11;
         self.graph.startFromZero = YES;
         
-        [self refreshGraph:nil];
+        [self.lblMouthColor setTextColor:_colorMouthPain];
+        [self.lblStomachColor setTextColor:_colorStomachPain];
+        [self.lblOtherColor setTextColor:_colorOtherPain];
     }
     else
     {
@@ -57,6 +65,17 @@
     }
 }
 
+-(BOOL)isRetinaDisplay{
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    return (screenScale == 2.0);
+}
+
+
+-(void)viewDidLayoutSubviews {
+    if ([self isRetinaDisplay])
+        [self refreshGraph:self];
+}
+
 -(void)showError:(BOOL) isHidden withText:(NSString *)errorText {
     self.lblError.hidden = !isHidden;
     self.graph.hidden = isHidden;
@@ -66,6 +85,7 @@
 
 -(void)refreshGraph:(id)sender {
     [self.graph reset];
+    [self.view endEditing:YES];
     NSString* selectedDay = self.dateTextField.text;
     if ([self isEnoughDataAtDay:selectedDay])
     {
@@ -76,7 +96,6 @@
                             [self painLevelsAtDay:selectedDay forPainType:OtherPain],
                             @[@1, @5, @10]
                             ];
-        
         [self.graph draw];
     }
     else
@@ -91,10 +110,10 @@
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
     for (NSDictionary *painRegistration in self.data.painData)
     {
-        NSLog(@"%@",painRegistration);
-        NSString *painType = [painRegistration objectForKey:@"paintype"];
-        if ([painType isEqualToString:painType])
+        NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
+        if ([painTypeReg isEqualToString:painType])
         {
+            NSLog(@"%@",painTypeReg);
             NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
             NSString *timeStamp = [painRegistration objectForKey:@"time"];
             if ([timeStamp rangeOfString:day].location != NSNotFound)
@@ -103,6 +122,7 @@
             }
         }
     }
+    NSLog(@"%@",painLevels);
     return [painLevels copy];
 }
 
@@ -119,6 +139,7 @@
             [timeStamps addObject:hour];
         }
     }
+    NSLog(@"%@",timeStamps);
     return [timeStamps copy];
 }
 
@@ -142,10 +163,10 @@
 }
 
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {
-    id colors = @[[UIColor gk_turquoiseColor],
-                  [UIColor gk_belizeHoleColor],
-                  [UIColor gk_asbestosColor],
-                  [UIColor clearColor]];
+    id colors = @[ _colorMouthPain,
+                   _colorStomachPain,
+                   _colorOtherPain,
+                   [UIColor clearColor]];
     return [colors objectAtIndex:index];
 }
 
@@ -177,7 +198,7 @@
         
         UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         popover.delegate = self;
-    }    
+    }
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @implementation RTConstants
 
+#pragma mark - Graph
+
 NSString *const MouthPain = @"Mouth";
 NSString *const StomachPain = @"Stomach";
 NSString *const OtherPain = @"Other";

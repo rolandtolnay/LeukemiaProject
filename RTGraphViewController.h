@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
+@property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
+@property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
+
 
 - (IBAction)refreshGraph:(id)sender;
 
