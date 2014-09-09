@@ -131,7 +131,6 @@
 }
 
 -(void)configureSettings{
-    
     RTSettingItem *painScaleSettingItem = [[RTSettingItem alloc]init];
     painScaleSettingItem.settingTitle = @"Pain Scale";
     [painScaleSettingItem.settingValues addObject:@"Wong baker scale"];
