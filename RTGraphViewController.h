@@ -10,13 +10,23 @@
 
 #import "RTDataManagement.h"
 #import "GraphKit.h"
+#import "RTConstants.h"
 
-@interface RTGraphViewController : UIViewController <GKLineGraphDataSource>
-
+@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
-- (IBAction)refresh:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *refreshButton;
+@property (weak, nonatomic) IBOutlet UILabel *lblError;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
+@property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
+@property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
+
+
+- (IBAction)refreshGraph:(id)sender;
 
 
 @end

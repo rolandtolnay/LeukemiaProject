@@ -31,6 +31,7 @@
 		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
 		A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */; };
 		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
+		A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,8 @@
 		A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryViewController.m; path = "Leukemia App/RTDiaryViewController.m"; sourceTree = "<group>"; };
 		A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTPainScaleViewController.h; path = "Leukemia App/RTPainScaleViewController.h"; sourceTree = "<group>"; };
 		A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTPainScaleViewController.m; path = "Leukemia App/RTPainScaleViewController.m"; sourceTree = "<group>"; };
+		A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConstants.h; sourceTree = "<group>"; };
+		A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConstants.m; sourceTree = "<group>"; };
 		A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphViewController.h; sourceTree = "<group>"; };
 		A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTGraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +143,8 @@
 		A0957E2919A75B1F0058EF12 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */,
+				A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */,
 				A0957E2519A75AF30058EF12 /* RTDataManagement.h */,
 				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
 				A089036819AF41EB002BCD8D /* RTSettingItem.h */,
@@ -373,6 +378,7 @@
 				A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */,
 				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
+				A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */,
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
