@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RTConstants.h"
 
 @interface RTDataManagement : NSObject
 
@@ -28,4 +29,11 @@
 //-(id)initWithPlistAndUserPreferences;
 -(void)writeToPList;
 -(void)reloadPlist;
+
+//service methods
+-(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
+-(NSArray*) timeStampsAtDay:(NSString*) day;
+-(BOOL) isEnoughDataAtDay:(NSString *) day;
+-(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
+
 @end

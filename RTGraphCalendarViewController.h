@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "VRGCalendarView.h"
+#import "RTDataManagement.h"
 
 @protocol RTCalendarPickerDelegate <NSObject>
 
@@ -18,6 +19,7 @@
 @interface RTGraphCalendarViewController : UIViewController <VRGCalendarViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *calendarView;
+@property NSDate* currentDate;
 
 @property (nonatomic,assign) id delegate;
 

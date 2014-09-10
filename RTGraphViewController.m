@@ -14,16 +14,13 @@
 
 @property (strong, nonatomic) NSArray* lineValues;
 
-
 @property UIColor *colorStomachPain;
 @property UIColor *colorMouthPain;
 @property UIColor *colorOtherPain;
 
 @property UIPopoverController* popover;
 
--(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
--(NSArray*) timeStampsAtDay:(NSString*) day;
--(BOOL) isEnoughDataAtDay:(NSString *) day;
+
 
 -(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
 
@@ -48,6 +45,7 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSString *today = [dateFormatter stringFromDate:currentDate];
         [self.datePicker setTitle:today forState:UIControlStateNormal];
+        self.currentDate = currentDate;
         
         self.graph.dataSource = self;
         self.graph.lineWidth = 3.0;
@@ -71,7 +69,6 @@
     return (screenScale == 2.0);
 }
 
-
 -(void)viewDidLayoutSubviews {
     if ([self isRetinaDisplay])
         [self refreshGraph:self];
@@ -88,13 +85,13 @@
     [self.graph reset];
     [self.view endEditing:YES];
     NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-    if ([self isEnoughDataAtDay:selectedDay])
+    if ([self.data isEnoughDataAtDay:selectedDay])
     {
         [self showError:NO withText:nil];
         self.lineValues = @[
-                            [self painLevelsAtDay:selectedDay forPainType:MouthPain],
-                            [self painLevelsAtDay:selectedDay forPainType:StomachPain],
-                            [self painLevelsAtDay:selectedDay forPainType:OtherPain],
+                            [self.data painLevelsAtDay:selectedDay forPainType:MouthPain],
+                            [self.data painLevelsAtDay:selectedDay forPainType:StomachPain],
+                            [self.data painLevelsAtDay:selectedDay forPainType:OtherPain],
                             @[@1, @5, @10]
                             ];
         [self.graph draw];
@@ -103,51 +100,6 @@
     {
         [self showError:YES withText:@"Not enough data to show graph."];
     }
-}
-
-#pragma mark - Graph Data Init
-
-- (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
-    NSMutableArray *painLevels = [[NSMutableArray alloc] init];
-    for (NSDictionary *painRegistration in self.data.painData)
-    {
-        NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
-        if ([painTypeReg isEqualToString:painType])
-        {
-            NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
-            NSString *timeStamp = [painRegistration objectForKey:@"time"];
-            if ([timeStamp rangeOfString:day].location != NSNotFound)
-            {
-                [painLevels addObject:painLevel];
-            }
-        }
-    }
-    return [painLevels copy];
-}
-
--(NSArray *)timeStampsAtDay:(NSString *) day {
-    NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
-    
-    for (NSDictionary *painRegistration in self.data.painData)
-    {
-        NSString *timeStamp = [painRegistration objectForKey:@"time"];
-        NSString *hour = [NSString alloc];
-        if ([timeStamp rangeOfString:day].location != NSNotFound)
-        {
-            hour = [timeStamp componentsSeparatedByString:@" "][1];
-            [timeStamps addObject:hour];
-        }
-    }
-    NSLog(@"%@",timeStamps);
-    return [timeStamps copy];
-}
-
--(BOOL) isEnoughDataAtDay:(NSString *) day {
-    if ([[self painLevelsAtDay:day forPainType:MouthPain] count] > 1)  return YES;
-    if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
-    if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
-    
-    return NO;
 }
 
 #pragma mark - GKLineGraphDataSource
@@ -175,7 +127,7 @@
 
 - (NSString *)titleForLineAtIndex:(NSInteger)index {
     NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-    return [[self timeStampsAtDay:selectedDay] objectAtIndex:index];
+    return [[self.data timeStampsAtDay:selectedDay] objectAtIndex:index];
 }
 
 #pragma mark - CalendarPicker
@@ -196,6 +148,7 @@
     if([segue.identifier isEqualToString:@"datePicker"]){
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
+        controller.currentDate = self.currentDate;
         
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;

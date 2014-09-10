@@ -31,8 +31,13 @@ static RTDataManagement *dataMangement = nil;
 + (RTDataManagement *)singleton {
     @synchronized(self) {
         if (dataMangement == nil)
+        {
             dataMangement = [[self alloc] initWithPlistAndUserPreferences];
+        }
     }
+    
+    
+    
     return dataMangement;
 }
 
@@ -98,6 +103,83 @@ static RTDataManagement *dataMangement = nil;
 
 -(void)reloadPlist{
     self.painData = [[self readFromPlist]objectForKey:@"painData"];
+}
+
+#pragma mark - Service methods
+
+//Methods used for graph data-management
+
+- (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
+    NSMutableArray *painLevels = [[NSMutableArray alloc] init];
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
+        if ([painTypeReg isEqualToString:painType])
+        {
+            NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
+            NSString *timeStamp = [painRegistration objectForKey:@"time"];
+            if ([timeStamp rangeOfString:day].location != NSNotFound)
+            {
+                [painLevels addObject:painLevel];
+            }
+        }
+    }
+    return [painLevels copy];
+}
+
+-(NSArray *)timeStampsAtDay:(NSString *) day {
+    NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *hour = [NSString alloc];
+        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        {
+            hour = [timeStamp componentsSeparatedByString:@" "][1];
+            [timeStamps addObject:hour];
+        }
+    }
+    NSLog(@"%@",timeStamps);
+    return [timeStamps copy];
+}
+
+-(BOOL) isEnoughDataAtDay:(NSString *) day {
+    if ([[self painLevelsAtDay:day forPainType:MouthPain] count] > 1)  return YES;
+    if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
+    
+    return NO;
+}
+
+//Returns an array with dates as NSNumber objects for the current month which contain enough data to display a graph
+//Used to mark dates on the calendar in the graph tab
+-(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"-MM-"];
+    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *day = [NSString alloc];
+        if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+        {
+            day = [timeStamp componentsSeparatedByString:@"-"][2];
+            day = [day substringToIndex:2];
+            if ([self isEnoughDataAtDay:day])
+            {
+                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[day intValue]];
+                if ([dates count] < 1 || ![dates[[dates count]-1] isEqualToValue:dateToBeAdded])
+                    [dates addObject:dateToBeAdded];
+            }
+        }
+    }
+    
+    NSLog(@"%@",dates);
+    return [dates copy];
 }
 
 @end
