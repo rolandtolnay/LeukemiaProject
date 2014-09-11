@@ -362,7 +362,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cMx-Yh-eIX">
-                                <rect key="frame" x="284" y="90" width="350" height="330"/>
+                                <rect key="frame" x="398" y="20" width="350" height="330"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -405,7 +405,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
                     <connections>
-                        <outlet property="calendarView" destination="UYT-eh-RSG" id="PTh-uF-4tB"/>
+                        <outlet property="calendarView" destination="cMx-Yh-eIX" id="0fF-Wf-LRU"/>
                         <outlet property="dataTableView" destination="GlT-Lq-b6Q" id="xhl-zt-M2K"/>
                         <outlet property="dayLabel" destination="BGh-HT-AWL" id="w2P-4G-oM3"/>
                         <outlet property="monthLabel" destination="JLc-4f-DHV" id="QmB-jz-CeK"/>
