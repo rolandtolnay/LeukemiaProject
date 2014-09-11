@@ -234,6 +234,7 @@
             [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
         [self saveToPlist:drawingImagePath :photoPath :currentTime];
+        NSLog(@"%@",self.dataManagement.painData);
     }
     }
     else{
