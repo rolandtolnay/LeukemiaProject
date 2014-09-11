@@ -130,18 +130,62 @@ static RTDataManagement *dataMangement = nil;
 -(NSArray *)timeStampsAtDay:(NSString *) day {
     NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
     
+//    NSMutableArray *mouthPain = [[NSMutableArray alloc] init];
+//    NSMutableArray *stomachPain = [[NSMutableArray alloc]init];
+//    NSMutableArray *otherPain = [[NSMutableArray alloc]init];
+    
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
+//            NSString *painType = [painRegistration objectForKey:@"paintype"];
             hour = [timeStamp componentsSeparatedByString:@" "][1];
+            
+//            if ([painType isEqualToString:MouthPain])
+//                [mouthPain addObject:hour];
+//            else if ([painType isEqualToString:StomachPain])
+//                [stomachPain addObject:hour];
+//            else [otherPain addObject:hour];
+            
             [timeStamps addObject:hour];
         }
     }
+    
+//    NSLog(@"Mouthpain times: %@",mouthPain);
+//    NSLog(@"Stomachpain times: %@",stomachPain);
+//    NSLog(@"Otherpain times: %@",otherPain);
+    
     NSLog(@"%@",timeStamps);
+    
+//    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
+    
     return [timeStamps copy];
+}
+
+-(NSArray*) commonHoursForPainTypeMouth:(NSArray*) mouthPain TypeStomach:(NSArray*) stomachPain TypeOther:(NSArray*) otherPain
+{
+    NSMutableArray *commonHours = [[NSMutableArray alloc]init];
+    
+    int index = 0;
+    while ([mouthPain count] > index || [stomachPain count] > index || [otherPain count] > index) {
+        
+        NSString *addedTitle;
+        NSString *mouthPainHours, *stomachPainHours, *otherPainHours;
+        if ([mouthPain count] > index)
+            mouthPainHours = [NSString stringWithFormat:@"%@ (M)",[mouthPain[index] componentsSeparatedByString:@":"][0]];
+        if ([stomachPain count] > index)
+            stomachPainHours = [NSString stringWithFormat:@"%@ (S)",[stomachPain[index] componentsSeparatedByString:@":"][0]];
+        if ([otherPain count] > index)
+            otherPainHours = [NSString stringWithFormat:@"%@ (O)",[otherPain[index] componentsSeparatedByString:@":"][0]];
+        
+        addedTitle = [NSString stringWithFormat:@"%@/%@/%@",mouthPainHours,stomachPainHours,otherPainHours];
+        [commonHours addObject:addedTitle];
+        index++;
+    };
+    
+    return [commonHours copy];
 }
 
 -(BOOL) isEnoughDataAtDay:(NSString *) day {
