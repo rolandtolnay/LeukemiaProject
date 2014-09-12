@@ -157,8 +157,6 @@ static RTDataManagement *dataMangement = nil;
 //    NSLog(@"Stomachpain times: %@",stomachPain);
 //    NSLog(@"Otherpain times: %@",otherPain);
     
-    NSLog(@"%@",timeStamps);
-    
 //    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
     
     return [timeStamps copy];
@@ -222,7 +220,6 @@ static RTDataManagement *dataMangement = nil;
         }
     }
     
-    NSLog(@"%@",dates);
     return [dates copy];
 }
 

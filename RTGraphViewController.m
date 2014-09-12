@@ -110,6 +110,7 @@
 }
 
 - (NSInteger)numberOfLines {
+    NSLog(@"%lu",(unsigned long)[self.lineValues count]);
     return [self.lineValues count];
 }
 

@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UITableView *dataTableView;
 
-@property (strong, nonatomic) RTDataManagement *dataMangement;
+@property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong, nonatomic) NSMutableArray *data;
 
 @end
