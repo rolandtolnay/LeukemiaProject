@@ -11,6 +11,7 @@
 @interface RTDiaryViewController ()
 
 @property VRGCalendarView *calendar;
+@property UIPopoverController *detailPopover;
 
 @end
 
@@ -120,9 +121,13 @@
     return @"Pain Registrations";
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
+    self.popoverAnchorButton.frame = displayFrom;
+    [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
+}
 
 
 @end
