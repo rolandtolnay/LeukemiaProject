@@ -35,7 +35,6 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
                                                                                     action:@selector(resignFirstResponder)];
 	gestureRecognizer.cancelsTouchesInView = NO;
-	
     [self.view addGestureRecognizer:gestureRecognizer];
     
     [self initImages];
@@ -155,12 +154,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 //Saving and reading images
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
 {
@@ -175,25 +168,6 @@
             UIGraphicsEndImageContext();
         }
     }
-}
-
--(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
-{
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectoryPath = dirPaths[0];
-    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [imageData writeToFile:filePath atomically:YES];
-}
-
--(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName
-{
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectoryPath = dirPaths[0];
-    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
-    
-    *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
 //Method that saves images and data to pList
@@ -225,13 +199,13 @@
         {
             drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
-            [self UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
         }
         if (self.cameraImageToBeSaved)
         {
             photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
             NSLog(@"%@",photoPath);
-            [self UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
         [self saveToPlist:drawingImagePath :photoPath :currentTime];
         NSLog(@"%@",self.dataManagement.painData);
@@ -239,7 +213,7 @@
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
-                                                        message:@"You need to select a paintype before you can save!!"
+                                                        message:@"You need to select a paintype before you can save!"
                                                        delegate:self
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil,nil];

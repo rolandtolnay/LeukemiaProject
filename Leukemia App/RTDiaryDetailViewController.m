@@ -7,43 +7,57 @@
 //
 
 #import "RTDiaryDetailViewController.h"
+#import "RTDataManagement.h"
 
 @interface RTDiaryDetailViewController ()
+
+@property RTDataManagement *service;
 
 @end
 
 @implementation RTDiaryDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+    
+    self.service = [RTDataManagement singleton];
+    
+    NSString *date = [self.selectedData objectForKey:@"time"];
+    [self.labelDate setText:[NSString stringWithFormat:@"Date: %@",date]];
+    NSString *painLevel = [self.selectedData objectForKey:@"painlevel"];
+    [self.labelPainLevel setText:[NSString stringWithFormat:@"Pain level: %@",painLevel]];
+    NSString *painType = [self.selectedData objectForKey:@"paintype"];
+    [self.labelPainType setText:[NSString stringWithFormat:@"Pain type: %@",painType]];
+    
+    NSString *morphine = [self.selectedData objectForKey:@"morphinelevel"];
+    if ([morphine isEqualToString:@""])
+        [self.labelMorphine setText:@"Morphine: -"];
+    else
+        [self.labelMorphine setText:[NSString stringWithFormat:@"Morphine: %@ mg",morphine]];
+    
+    
+    
+    NSString *drawingImagePath = [self.selectedData objectForKey:@"drawingpath"];
+    if (![drawingImagePath isEqualToString:@""])
+    {
+        UIImage *drawing;
+        [self.service UIImageReadFromFile:&drawing :drawingImagePath];
+        
+        [self.imageDrawing setImage:drawing];
+    }
+    
+    NSString *cameraPhotoPath = [self.selectedData objectForKey:@"photopath"];
+    if (![cameraPhotoPath isEqualToString:@""])
+    {
+        UIImage *drawing;
+        [self.service UIImageReadFromFile:&drawing :cameraPhotoPath];
+        
+        [self.imagePhoto setImage:drawing];
+    }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

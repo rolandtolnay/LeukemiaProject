@@ -468,33 +468,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="630" height="550"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpI-q5-LF4">
-                                <rect key="frame" x="20" y="20" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PpI-q5-LF4">
+                                <rect key="frame" x="20" y="20" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain Level:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgC-dq-q9h">
-                                <rect key="frame" x="20" y="49" width="91" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pain Level:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgC-dq-q9h">
+                                <rect key="frame" x="20" y="49" width="84" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-WD-O0k">
-                                <rect key="frame" x="20" y="78" width="91" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pain Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-WD-O0k">
+                                <rect key="frame" x="20" y="78" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Morphine:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-hw-ob8">
-                                <rect key="frame" x="20" y="107" width="82" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morphine:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-hw-ob8">
+                                <rect key="frame" x="20" y="107" width="78" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAq-AU-9mA">
-                                <rect key="frame" x="20" y="136" width="64" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oAq-AU-9mA">
+                                <rect key="frame" x="20" y="136" width="61" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -509,9 +509,29 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GgC-dq-q9h" firstAttribute="leading" secondItem="nH8-tm-g51" secondAttribute="leading" constant="20" id="FPu-gl-K2f"/>
+                            <constraint firstItem="SFU-Qp-hTU" firstAttribute="top" secondItem="GgC-dq-q9h" secondAttribute="bottom" constant="480" id="Ilg-Ca-51j"/>
+                            <constraint firstItem="SFU-Qp-hTU" firstAttribute="top" secondItem="ayO-hw-ob8" secondAttribute="bottom" constant="422" id="QpG-aE-ADX"/>
+                            <constraint firstItem="SFU-Qp-hTU" firstAttribute="top" secondItem="K0o-WD-O0k" secondAttribute="bottom" constant="451" id="UXw-Ue-DUo"/>
+                            <constraint firstItem="PpI-q5-LF4" firstAttribute="leading" secondItem="nH8-tm-g51" secondAttribute="leading" constant="20" id="V1P-5K-49n"/>
+                            <constraint firstItem="K0o-WD-O0k" firstAttribute="leading" secondItem="nH8-tm-g51" secondAttribute="leading" constant="20" id="VmX-nl-T3K"/>
+                            <constraint firstItem="SFU-Qp-hTU" firstAttribute="top" secondItem="PpI-q5-LF4" secondAttribute="bottom" constant="509" id="eKk-HU-y4W"/>
+                            <constraint firstItem="ayO-hw-ob8" firstAttribute="leading" secondItem="nH8-tm-g51" secondAttribute="leading" constant="20" id="icY-uU-nqG"/>
+                            <constraint firstItem="SFU-Qp-hTU" firstAttribute="top" secondItem="oAq-AU-9mA" secondAttribute="bottom" constant="393" id="nEs-EM-5bZ"/>
+                            <constraint firstItem="oAq-AU-9mA" firstAttribute="leading" secondItem="nH8-tm-g51" secondAttribute="leading" constant="20" id="sG9-hH-lKX"/>
+                        </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="630" height="550"/>
+                    <connections>
+                        <outlet property="imageDrawing" destination="Kga-rv-eQm" id="Sv5-eT-TpS"/>
+                        <outlet property="imagePhoto" destination="Bch-o6-XUn" id="iab-mq-fRk"/>
+                        <outlet property="labelDate" destination="PpI-q5-LF4" id="aeC-95-1Ge"/>
+                        <outlet property="labelMorphine" destination="ayO-hw-ob8" id="fvm-q7-ex0"/>
+                        <outlet property="labelPainLevel" destination="GgC-dq-q9h" id="YlN-c8-mm6"/>
+                        <outlet property="labelPainType" destination="K0o-WD-O0k" id="LZE-ym-o0w"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7dY-qB-ajE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

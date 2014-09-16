@@ -223,4 +223,24 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+//Methods for writing and reading images
+-(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:filePath atomically:YES];
+}
+
+-(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    *image = [UIImage imageWithContentsOfFile:filePath];
+}
+
 @end

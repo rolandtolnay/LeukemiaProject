@@ -36,4 +36,8 @@
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
 
+//image reading and writing
+-(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
+-(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName;
+
 @end

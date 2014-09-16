@@ -11,7 +11,8 @@
 @interface RTDiaryViewController ()
 
 @property VRGCalendarView *calendar;
-@property UIPopoverController *detailPopover;
+@property UIPopoverController *detailPopoverController;
+@property NSMutableDictionary *selectedRegistration;
 
 @end
 
@@ -121,13 +122,24 @@
     return @"Pain Registrations";
 }
 
+#pragma mark - Show details popover
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.selectedRegistration = [self.data objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
     self.popoverAnchorButton.frame = displayFrom;
     [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"detailPopoverSegue"])
+    {
+        RTDiaryDetailViewController *detailPopover = [segue destinationViewController];
+        detailPopover.selectedData = self.selectedRegistration;
+    }
+}
 
 @end
