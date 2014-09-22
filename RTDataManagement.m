@@ -31,8 +31,13 @@ static RTDataManagement *dataMangement = nil;
 + (RTDataManagement *)singleton {
     @synchronized(self) {
         if (dataMangement == nil)
+        {
             dataMangement = [[self alloc] initWithPlistAndUserPreferences];
+        }
     }
+    
+    
+    
     return dataMangement;
 }
 
@@ -98,6 +103,144 @@ static RTDataManagement *dataMangement = nil;
 
 -(void)reloadPlist{
     self.painData = [[self readFromPlist]objectForKey:@"painData"];
+}
+
+#pragma mark - Service methods
+
+//Methods used for graph data-management
+
+- (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
+    NSMutableArray *painLevels = [[NSMutableArray alloc] init];
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
+        if ([painTypeReg isEqualToString:painType])
+        {
+            NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
+            NSString *timeStamp = [painRegistration objectForKey:@"time"];
+            if ([timeStamp rangeOfString:day].location != NSNotFound)
+            {
+                [painLevels addObject:painLevel];
+            }
+        }
+    }
+    return [painLevels copy];
+}
+
+-(NSArray *)timeStampsAtDay:(NSString *) day {
+    NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
+    
+//    NSMutableArray *mouthPain = [[NSMutableArray alloc] init];
+//    NSMutableArray *stomachPain = [[NSMutableArray alloc]init];
+//    NSMutableArray *otherPain = [[NSMutableArray alloc]init];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *hour = [NSString alloc];
+        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        {
+//            NSString *painType = [painRegistration objectForKey:@"paintype"];
+            hour = [timeStamp componentsSeparatedByString:@" "][1];
+            
+//            if ([painType isEqualToString:MouthPain])
+//                [mouthPain addObject:hour];
+//            else if ([painType isEqualToString:StomachPain])
+//                [stomachPain addObject:hour];
+//            else [otherPain addObject:hour];
+            
+            [timeStamps addObject:hour];
+        }
+    }
+    
+//    NSLog(@"Mouthpain times: %@",mouthPain);
+//    NSLog(@"Stomachpain times: %@",stomachPain);
+//    NSLog(@"Otherpain times: %@",otherPain);
+    
+//    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
+    
+    return [timeStamps copy];
+}
+
+-(NSArray*) commonHoursForPainTypeMouth:(NSArray*) mouthPain TypeStomach:(NSArray*) stomachPain TypeOther:(NSArray*) otherPain
+{
+    NSMutableArray *commonHours = [[NSMutableArray alloc]init];
+    
+    int index = 0;
+    while ([mouthPain count] > index || [stomachPain count] > index || [otherPain count] > index) {
+        
+        NSString *addedTitle;
+        NSString *mouthPainHours, *stomachPainHours, *otherPainHours;
+        if ([mouthPain count] > index)
+            mouthPainHours = [NSString stringWithFormat:@"%@ (M)",[mouthPain[index] componentsSeparatedByString:@":"][0]];
+        if ([stomachPain count] > index)
+            stomachPainHours = [NSString stringWithFormat:@"%@ (S)",[stomachPain[index] componentsSeparatedByString:@":"][0]];
+        if ([otherPain count] > index)
+            otherPainHours = [NSString stringWithFormat:@"%@ (O)",[otherPain[index] componentsSeparatedByString:@":"][0]];
+        
+        addedTitle = [NSString stringWithFormat:@"%@/%@/%@",mouthPainHours,stomachPainHours,otherPainHours];
+        [commonHours addObject:addedTitle];
+        index++;
+    };
+    
+    return [commonHours copy];
+}
+
+-(BOOL) isEnoughDataAtDay:(NSString *) day {
+    if ([[self painLevelsAtDay:day forPainType:MouthPain] count] > 1)  return YES;
+    if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
+    
+    return NO;
+}
+
+//Returns an array with dates as NSNumber objects for the current month which contain enough data to display a graph
+//Used to mark dates on the calendar in the graph tab
+-(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"-MM-"];
+    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *day = [NSString alloc];
+        if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+        {
+            day = [timeStamp componentsSeparatedByString:@"-"][2];
+            day = [day substringToIndex:2];
+            if ([self isEnoughDataAtDay:day])
+            {
+                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[day intValue]];
+                if ([dates count] < 1 || ![dates[[dates count]-1] isEqualToValue:dateToBeAdded])
+                    [dates addObject:dateToBeAdded];
+            }
+        }
+    }
+    
+    return [dates copy];
+}
+
+//Methods for writing and reading images
+-(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    NSData *imageData = UIImagePNGRepresentation(image);
+    [imageData writeToFile:filePath atomically:YES];
+}
+
+-(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName
+{
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectoryPath = dirPaths[0];
+    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
+    
+    *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
 @end

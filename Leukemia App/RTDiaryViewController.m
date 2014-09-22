@@ -10,6 +10,10 @@
 
 @interface RTDiaryViewController ()
 
+@property VRGCalendarView *calendar;
+@property UIPopoverController *detailPopoverController;
+@property NSMutableDictionary *selectedRegistration;
+
 @end
 
 @implementation RTDiaryViewController
@@ -23,15 +27,27 @@
 
 - (void)viewDidLoad
 {
-    self.dataMangement = [RTDataManagement singleton];
-    VRGCalendarView *calendar = [[VRGCalendarView alloc] init];
-    calendar.delegate=self;
-    [self.calendarView addSubview:calendar];
+    self.dataManagement = [RTDataManagement singleton];
+    self.calendar = [[VRGCalendarView alloc] init];
+    self.calendar.delegate=self;
+    [self.calendarView addSubview:self.calendar];
     
-    [self setDateLabels:[NSDate date]];
+    
+    self.dataTableView.delegate = self;
+    self.dataTableView.dataSource = self;
     
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"dd"];
+    NSDate *today = [NSDate date];
+    NSLog(@"String for day: %@",today);
+    self.calendar.currentMonth = today;
+    [self.calendar selectDate:[[dateFormat stringFromDate:today] integerValue]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,15 +64,16 @@
     [self.data removeAllObjects];
     NSString *temp;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    NSDate *tempDate;
-    for (NSMutableDictionary *dict in self.dataMangement.painData){
+    [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm"];
+    NSDate *painRegDate;
+    for (NSMutableDictionary *dict in self.dataManagement.painData){
         temp = [dict objectForKey:@"time"];
-        [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm"];
-        tempDate = [dateFormat dateFromString:temp];
-        if([tempDate day] == [date day] && [tempDate month] == [date month]){
+        painRegDate = [dateFormat dateFromString:temp];
+        if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
             [self.data addObject:dict];
         }
     }
+    [self.dataTableView reloadData];
 }
 
 -(void)setDateLabels: (NSDate *)date{
@@ -67,7 +84,7 @@
         [formatter setDateFormat:@"d"];
     }
     else{
-      [formatter setDateFormat:@"dd"];
+        [formatter setDateFormat:@"dd"];
     }
     self.dayLabel.text = [formatter stringFromDate:date];
     [formatter setDateFormat:@"EEEE"];
@@ -89,16 +106,40 @@
 {
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSMutableDictionary *painRegistration = [self.data objectAtIndex:indexPath.row];
+    NSLog(@"Supposed to show row: %@",painRegistration);
+    NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
+    NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
+    NSString *painType = [painRegistration objectForKey:@"paintype"];
+    NSString *cellText = [NSString stringWithFormat:@"%@ - Pain Level: %@, Type: %@",hour,painLevel,painType];
+    
+    cell.textLabel.text = cellText;
+    
     return cell;
 }
 
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    
-//}
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"Pain Registrations";
+}
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//}
+#pragma mark - Show details popover
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selectedRegistration = [self.data objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
+    self.popoverAnchorButton.frame = displayFrom;
+    [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"detailPopoverSegue"])
+    {
+        RTDiaryDetailViewController *detailPopover = [segue destinationViewController];
+        detailPopover.selectedData = self.selectedRegistration;
+    }
+}
 
 @end
