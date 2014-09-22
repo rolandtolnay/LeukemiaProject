@@ -42,9 +42,10 @@
     [super viewDidLoad];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [self initImages];
-}
+//CAUSED BUG: SLIDER TEXT AND IMAGE RESET AFTER DRAWING OR TAKING PHOTO
+//-(void)viewWillAppear:(BOOL)animated{
+//    [self initImages];
+//}
 
 -(IBAction)useCamera:(id)sender
 {
@@ -195,15 +196,18 @@
     }
     else
     {
+        NSDateFormatter *photoTimeFormatter = [[NSDateFormatter alloc] init];
+        [photoTimeFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+        NSString *photoTime = [photoTimeFormatter stringFromDate:currentDate];
         if (self.drawingToBeSaved)
         {
-            drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
+            drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
             [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
         }
         if (self.cameraImageToBeSaved)
         {
-            photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
+            photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
             NSLog(@"%@",photoPath);
             [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }

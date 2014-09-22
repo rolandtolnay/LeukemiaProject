@@ -47,17 +47,24 @@
         [self.service UIImageReadFromFile:&drawing :drawingImagePath];
         
         [self.imageDrawing setImage:drawing];
+        self.labelNoDrawing.hidden = YES;
     }
     
     NSString *cameraPhotoPath = [self.selectedData objectForKey:@"photopath"];
     if (![cameraPhotoPath isEqualToString:@""])
     {
-        UIImage *drawing;
-        [self.service UIImageReadFromFile:&drawing :cameraPhotoPath];
+        UIImage *photo;
+        [self.service UIImageReadFromFile:&photo :cameraPhotoPath];
+        UIImage *imageToBeShown = [UIImage imageWithCGImage:[photo CGImage]
+                                                      scale:1.0
+                                                orientation: UIImageOrientationRight];
         
-        [self.imagePhoto setImage:drawing];
+        [self.imagePhoto setImage:imageToBeShown];
+        self.labelNoPhoto.hidden = YES;
+//        self.imagePhoto.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+//        self.imagePhoto.contentMode = UIViewContentModeScaleAspectFit;
     }
-
+    
 }
 
 @end

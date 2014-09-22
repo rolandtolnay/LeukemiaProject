@@ -18,5 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageDrawing;
 @property (weak, nonatomic) IBOutlet UIImageView *imagePhoto;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelNoDrawing;
+@property (weak, nonatomic) IBOutlet UILabel *labelNoPhoto;
 
 @end
