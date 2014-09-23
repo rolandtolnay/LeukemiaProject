@@ -20,8 +20,6 @@
 
 @property UIPopoverController* popover;
 
-
-
 -(void) showError:(BOOL) isHidden withText:(NSString*) errorText;
 
 @end
@@ -69,7 +67,14 @@
     return (screenScale == 2.0);
 }
 
--(void)viewDidLayoutSubviews {
+-(void)viewWillAppear:(BOOL)animated
+{
+    if ([self isRetinaDisplay])
+        [self refreshGraph:self];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
     if ([self isRetinaDisplay])
         [self refreshGraph:self];
 }
@@ -99,6 +104,17 @@
     else
     {
         [self showError:YES withText:@"Not enough data to show graph."];
+    }
+}
+
+-(void)pickDate:(id)sender
+{
+    if (self.graphType.selectedSegmentIndex == 0)
+    {
+        [self performSegueWithIdentifier:@"datePicker" sender:nil];
+    } else if (self.graphType.selectedSegmentIndex == 1)
+    {
+        [self performSegueWithIdentifier:@"weekPicker" sender:nil];
     }
 }
 

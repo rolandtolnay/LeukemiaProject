@@ -31,10 +31,10 @@
                              ];
     
     self.morphineInput.delegate = self;
-
+    
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
-                                                                                    action:@selector(resignFirstResponder)];
-	gestureRecognizer.cancelsTouchesInView = NO;
+                                                                                        action:@selector(resignFirstResponder)];
+    gestureRecognizer.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:gestureRecognizer];
     
     [self initImages];
@@ -103,8 +103,8 @@
 //Morphine Input textfield delgates method
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	[textField resignFirstResponder];
-	return NO;
+    [textField resignFirstResponder];
+    return NO;
 }
 
 -(void)initSliderPainNumber
@@ -129,7 +129,7 @@
     {
         self.lblPainDescription.text = self.painDescription[0];
         if(self.dataManagement.painScaleBieri){
-        self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
         }
         else{
             self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
@@ -139,7 +139,7 @@
     {
         painNumber = @([painNumber intValue]-1);
     }
-        
+    
     if ([painNumber intValue] % 2 == 1)
     {
         int smileyIndex = ([painNumber intValue]+1)/2;
@@ -175,45 +175,45 @@
 - (IBAction)submitAndSaveData:(id)sender {
     
     if(self.painTypeSelector.selectedSegmentIndex != -1){
-    NSDate *currentDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-    NSString *currentTime = [dateFormatter stringFromDate:currentDate];
-    
-    NSString *drawingImagePath = [[NSString alloc]init];
-    NSString *photoPath = [[NSString alloc]init];
-   
-    //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
-    if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
-                                                        message:@"For a more precise diagnostic consider using the Draw and Photo features."
-                                                       delegate:self
-                                              cancelButtonTitle:@"No thank you, just save"
-                                              otherButtonTitles:@"Draw",@"Photo",nil];
-        [alert show];
-        alert.tag = 100;
-    }
-    else
-    {
-        NSDateFormatter *photoTimeFormatter = [[NSDateFormatter alloc] init];
-        [photoTimeFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-        NSString *photoTime = [photoTimeFormatter stringFromDate:currentDate];
-        if (self.drawingToBeSaved)
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+        
+        NSString *drawingImagePath = [[NSString alloc]init];
+        NSString *photoPath = [[NSString alloc]init];
+        
+        //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
+        if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
         {
-            drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
-            NSLog(@"%@",drawingImagePath);
-            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
+                                                            message:@"For a more precise diagnostic consider using the Draw and Photo features."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"No thank you, just save"
+                                                  otherButtonTitles:@"Draw",@"Photo",nil];
+            [alert show];
+            alert.tag = 100;
         }
-        if (self.cameraImageToBeSaved)
+        else
         {
-            photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
-            NSLog(@"%@",photoPath);
-            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            NSDateFormatter *photoTimeFormatter = [[NSDateFormatter alloc] init];
+            [photoTimeFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+            NSString *photoTime = [photoTimeFormatter stringFromDate:currentDate];
+            if (self.drawingToBeSaved)
+            {
+                drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
+                NSLog(@"%@",drawingImagePath);
+                [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            }
+            if (self.cameraImageToBeSaved)
+            {
+                photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
+                NSLog(@"%@",photoPath);
+                [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            }
+            [self saveToPlist:drawingImagePath :photoPath :currentTime];
+            NSLog(@"%@",self.dataManagement.painData);
         }
-        [self saveToPlist:drawingImagePath :photoPath :currentTime];
-        NSLog(@"%@",self.dataManagement.painData);
-    }
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
@@ -225,7 +225,7 @@
     }
 }
 
-- (IBAction)painTypeSelcected:(id)sender {
+- (IBAction)painTypeSelected:(id)sender {
     self.painType = [self.painTypeSelector titleForSegmentAtIndex:self.painTypeSelector.selectedSegmentIndex];
     NSLog(@"%@",self.painType);
 }
@@ -271,7 +271,7 @@
     }
     else{
         self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-    [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+        [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
     }
     self.lblPainDescription.text = self.painDescription[0];
 }

@@ -37,6 +37,7 @@
     self.dataTableView.dataSource = self;
     
     self.textFieldWeight.delegate = self;
+    self.textViewNotes.delegate = self;
     
     [super viewDidLoad];
 }
@@ -46,17 +47,62 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"dd"];
     NSDate *today = [NSDate date];
-    NSLog(@"String for day: %@",today);
     self.calendar.currentMonth = today;
     [self.calendar selectDate:[[dateFormat stringFromDate:today] integerValue]];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//Finishes editing of textview/textfield when user taps outside of it
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([_textViewNotes isFirstResponder] && [touch view] != _textViewNotes) {
+        [_textViewNotes resignFirstResponder];
+    }
+    if ([_textFieldWeight isFirstResponder] && [touch view] != _textFieldWeight) {
+        [_textFieldWeight resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - Notes
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text length] > 0) {
+        [textView setBackgroundColor:[UIColor whiteColor]];
+        [self.labelNotesPlaceholder setHidden:YES];
+    } else {
+        [textView setBackgroundColor:[UIColor clearColor]];
+        [self.labelNotesPlaceholder setHidden:NO];
+    }
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
 {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSDate *selectedDate = self.calendar.selectedDate;
-    NSMutableDictionary *dataToBeSaved = [self weightAtDate:selectedDate];
+    NSMutableDictionary *dataToBeSaved = [self dataAtDate:selectedDate];
+    
+    if (dataToBeSaved !=nil)
+    {
+        [dataToBeSaved setObject:textView.text forKey:@"notes"];
+        [self.dataManagement writeToPList];
+    }
+    else
+    {
+        dataToBeSaved = [[NSMutableDictionary alloc]init];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+        [dataToBeSaved setObject:textView.text forKey:@"notes"];
+        [self.dataManagement.diaryData addObject:dataToBeSaved];
+        [self.dataManagement writeToPList];
+    }
+}
+
+#pragma mark - Weight Registration
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSDate *selectedDate = self.calendar.selectedDate;
+    NSMutableDictionary *dataToBeSaved = [self dataAtDate:selectedDate];
     
     if (dataToBeSaved !=nil)
     {
@@ -66,36 +112,31 @@
     else
     {
         dataToBeSaved = [[NSMutableDictionary alloc]init];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
         [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
         [dataToBeSaved setObject:textField.text forKey:@"weight"];
         [self.dataManagement.diaryData addObject:dataToBeSaved];
         [self.dataManagement writeToPList];
     }
-    
-    [textField resignFirstResponder];
-    return NO;
 }
 
--(NSMutableDictionary*) weightAtDate:(NSDate*) date
+-(NSMutableDictionary*) dataAtDate:(NSDate*) date
 {
-    for (NSMutableDictionary *weightRegistration in self.dataManagement.diaryData)
+    for (NSMutableDictionary *diaryRegistration in self.dataManagement.diaryData)
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *weightRegDate = [weightRegistration objectForKey:@"time"];
-        if ([weightRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        NSString *diaryRegDate = [diaryRegistration objectForKey:@"time"];
+        if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
         {
-            return weightRegistration;
+            return diaryRegistration;
         }
     }
     return nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - CalendarView Delegate
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
     
@@ -116,8 +157,10 @@
     }
     [self.dataTableView reloadData];
     
-    NSMutableDictionary *weightReg = [self weightAtDate:date];
-    [self.textFieldWeight setText:[weightReg objectForKey:@"weight"]];
+    NSMutableDictionary *diaryReg = [self dataAtDate:date];
+    [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
+    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
+    [self textViewDidChange:self.textViewNotes];
 }
 
 -(void)setDateLabels: (NSDate *)date{

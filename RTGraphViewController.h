@@ -24,7 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
 
 @property (weak, nonatomic) IBOutlet UIButton *datePicker;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *graphType;
 
 @property (strong,nonatomic) NSDate* currentDate;
+
+-(IBAction)pickDate:(id)sender;
 
 @end
