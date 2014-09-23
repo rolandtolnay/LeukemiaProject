@@ -56,22 +56,41 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSDate *selectedDate = self.calendar.selectedDate;
+    NSMutableDictionary *dataToBeSaved = [self weightAtDate:selectedDate];
     
-    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-    [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
-    [dataToBeSaved setObject:textField.text forKey:@"weight"];
-    [self.dataManagement.diaryData addObject:dataToBeSaved];
-    [self.dataManagement writeToPList];
+    if (dataToBeSaved !=nil)
+    {
+        [dataToBeSaved setObject:textField.text forKey:@"weight"];
+        [self.dataManagement writeToPList];
+    }
+    else
+    {
+        dataToBeSaved = [[NSMutableDictionary alloc]init];
+        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+        [dataToBeSaved setObject:textField.text forKey:@"weight"];
+        [self.dataManagement.diaryData addObject:dataToBeSaved];
+        [self.dataManagement writeToPList];
+    }
+    
     NSLog(@"%@",self.dataManagement.diaryData);
-
     [textField resignFirstResponder];
     return NO;
 }
 
-//-(NSMutableDictionary*) weightAtDate:(NSDate*) date
-//{
-//    
-//}
+-(NSMutableDictionary*) weightAtDate:(NSDate*) date
+{
+    for (NSMutableDictionary *weightRegistration in self.dataManagement.diaryData)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *weightRegDate = [weightRegistration objectForKey:@"time"];
+        if ([weightRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        {
+            return weightRegistration;
+        }
+    }
+    return nil;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -98,6 +117,8 @@
     }
     [self.dataTableView reloadData];
     
+    NSMutableDictionary *weightReg = [self weightAtDate:date];
+    [self.textFieldWeight setText:[weightReg objectForKey:@"weight"]];
 }
 
 -(void)setDateLabels: (NSDate *)date{

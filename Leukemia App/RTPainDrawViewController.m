@@ -166,8 +166,8 @@
         popover.delegate = self;
     }
     
-    if (sender!=self.btnSaveImage)
-        self.drawImage.image = nil;
+//    if (sender!=self.btnSaveImage)
+//        self.drawImage.image = nil;
 }
 
 -(IBAction)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
@@ -176,6 +176,7 @@
     if([sourceViewController isKindOfClass:[RTBrushSizeViewController class]]){
         RTBrushSizeViewController *controller = (RTBrushSizeViewController*)sourceViewController;
         self.brush = controller.brushSlider.value;
+
     }
 
 }
