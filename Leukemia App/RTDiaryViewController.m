@@ -72,7 +72,6 @@
         [self.dataManagement writeToPList];
     }
     
-    NSLog(@"%@",self.dataManagement.diaryData);
     [textField resignFirstResponder];
     return NO;
 }
@@ -153,7 +152,6 @@
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSMutableDictionary *painRegistration = [self.data objectAtIndex:indexPath.row];
-    NSLog(@"Supposed to show row: %@",painRegistration);
     NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
     NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
