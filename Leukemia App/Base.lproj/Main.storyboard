@@ -217,7 +217,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fNy-xu-wBX" kind="modal" id="B2I-wH-xHr"/>
+                                    <segue destination="fNy-xu-wBX" kind="modal" modalPresentationStyle="currentContext" id="B2I-wH-xHr"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sE8-86-ofx">
@@ -386,10 +386,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Xm-VWj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Xm-VWj">
                                 <rect key="frame" x="561" y="453" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsz-cA-dHP">
                                 <rect key="frame" x="586" y="554" width="1" height="1"/>
@@ -412,6 +412,7 @@
                         <outlet property="dayLabel" destination="BGh-HT-AWL" id="w2P-4G-oM3"/>
                         <outlet property="monthLabel" destination="JLc-4f-DHV" id="QmB-jz-CeK"/>
                         <outlet property="popoverAnchorButton" destination="bsz-cA-dHP" id="Odc-FO-pLV"/>
+                        <outlet property="textFieldWeight" destination="gCk-Xm-VWj" id="fYl-Cc-Wvh"/>
                         <outlet property="weekDayLabel" destination="Xjn-LB-KTC" id="qsD-Uo-7QX"/>
                     </connections>
                 </viewController>

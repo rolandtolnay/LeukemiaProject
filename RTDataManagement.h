@@ -13,6 +13,7 @@
 
 //pList properties
 @property (strong,nonatomic) NSMutableArray *painData;
+@property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSString *path;
 
 //NSUserDefault - painScaleSettings
