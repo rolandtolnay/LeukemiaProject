@@ -26,6 +26,13 @@ static RTDataManagement *dataMangement = nil;
     return _painData;
 }
 
+-(NSMutableArray *)diaryData{
+    if(!_diaryData){
+        _diaryData = [[NSMutableArray alloc]init];
+    }
+    return _diaryData;
+}
+
 //Singleton method
 
 + (RTDataManagement *)singleton {
@@ -35,11 +42,11 @@ static RTDataManagement *dataMangement = nil;
             dataMangement = [[self alloc] initWithPlistAndUserPreferences];
         }
     }
-    
-    
-    
+
     return dataMangement;
 }
+
+#pragma mark - PList methods
 
 //Initialises RTDataManagement with values from pList
 
@@ -76,6 +83,7 @@ static RTDataManagement *dataMangement = nil;
 -(void)writeToPList{
     NSMutableDictionary *pList = [self readFromPlist];
     [pList setObject:self.painData forKey:@"painData"];
+    [pList setObject:self.diaryData forKey:@"diaryData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -102,7 +110,9 @@ static RTDataManagement *dataMangement = nil;
 }
 
 -(void)reloadPlist{
-    self.painData = [[self readFromPlist]objectForKey:@"painData"];
+    NSMutableDictionary *pList = [self readFromPlist];
+    self.painData = [pList objectForKey:@"painData"];
+    self.diaryData = [pList objectForKey:@"diaryData"];
 }
 
 #pragma mark - Service methods

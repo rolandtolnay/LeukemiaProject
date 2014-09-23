@@ -36,6 +36,8 @@
     self.dataTableView.delegate = self;
     self.dataTableView.dataSource = self;
     
+    self.textFieldWeight.delegate = self;
+    
     [super viewDidLoad];
 }
 
@@ -47,8 +49,29 @@
     NSLog(@"String for day: %@",today);
     self.calendar.currentMonth = today;
     [self.calendar selectDate:[[dateFormat stringFromDate:today] integerValue]];
-
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd"];
+    NSDate *selectedDate = self.calendar.selectedDate;
+    
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+    [dataToBeSaved setObject:textField.text forKey:@"weight"];
+    [self.dataManagement.diaryData addObject:dataToBeSaved];
+    [self.dataManagement writeToPList];
+    NSLog(@"%@",self.dataManagement.diaryData);
+
+    [textField resignFirstResponder];
+    return NO;
+}
+
+//-(NSMutableDictionary*) weightAtDate:(NSDate*) date
+//{
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -74,6 +97,7 @@
         }
     }
     [self.dataTableView reloadData];
+    
 }
 
 -(void)setDateLabels: (NSDate *)date{
@@ -91,7 +115,8 @@
     self.weekDayLabel.text = [formatter stringFromDate:date];
 }
 
-//TableView delegates methods
+#pragma mark - TableView Delegate
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

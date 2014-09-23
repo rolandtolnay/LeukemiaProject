@@ -42,7 +42,7 @@
     [super viewDidLoad];
 }
 
-//CAUSED BUG: SLIDER TEXT AND IMAGE RESET AFTER DRAWING OR TAKING PHOTO
+//CAUSED BUG: SLIDER TEXT AND IMAGE 9RESET AFTER DRAWING OR TAKING PHOTO
 //-(void)viewWillAppear:(BOOL)animated{
 //    [self initImages];
 //}
@@ -290,7 +290,7 @@
     for (NSString *str in self.dataManagement.painData) {
         NSLog(@"%@",str);
     }
-    NSLog(@"Entries: %d",self.dataManagement.painData.count);
+    NSLog(@"Entries: %lu",(unsigned long)self.dataManagement.painData.count);
     
     NSString *message = @"Your data is saved..";
     

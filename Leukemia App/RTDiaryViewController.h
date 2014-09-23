@@ -12,12 +12,13 @@
 #import "RTDataManagement.h"
 #import "RTDiaryDetailViewController.h"
 
-@interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *calendarView;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UITableView *dataTableView;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldWeight;
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong, nonatomic) NSMutableArray *data;
