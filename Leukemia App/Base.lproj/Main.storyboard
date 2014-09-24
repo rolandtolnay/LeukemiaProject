@@ -761,6 +761,9 @@
                                     <segment title="Pain"/>
                                     <segment title="Weight"/>
                                 </segments>
+                                <connections>
+                                    <action selector="graphTypeChanged:" destination="RYn-Rf-O8k" eventType="valueChanged" id="FBn-AT-jic"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-t1-Rud">
                                 <rect key="frame" x="147" y="64" width="136" height="44"/>

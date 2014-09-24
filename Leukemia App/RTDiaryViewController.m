@@ -39,6 +39,11 @@
     self.textFieldWeight.delegate = self;
     self.textViewNotes.delegate = self;
     
+    [self.textViewNotes setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.10]];
+    self.textViewNotes.layer.cornerRadius = 10;
+    [self.textViewNotes setClipsToBounds:YES];
+    
+    
     [super viewDidLoad];
 }
 
@@ -67,10 +72,11 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView.text length] > 0) {
-        [textView setBackgroundColor:[UIColor whiteColor]];
+//        [textView setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.10]];
+        
         [self.labelNotesPlaceholder setHidden:YES];
     } else {
-        [textView setBackgroundColor:[UIColor clearColor]];
+//        [textView setBackgroundColor:[UIColor clearColor]];
         [self.labelNotesPlaceholder setHidden:NO];
     }
 }

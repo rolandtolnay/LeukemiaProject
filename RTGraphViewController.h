@@ -12,6 +12,7 @@
 #import "GraphKit.h"
 #import "RTConstants.h"
 #import "RTGraphCalendarViewController.h"
+#import "NSDate+convenience.h"
 
 @interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
 
@@ -28,6 +29,7 @@
 
 @property (strong,nonatomic) NSDate* currentDate;
 
+-(IBAction)graphTypeChanged:(id)sender;
 -(IBAction)pickDate:(id)sender;
 
 @end

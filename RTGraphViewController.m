@@ -118,6 +118,25 @@
     }
 }
 
+-(void)graphTypeChanged:(id)sender
+{
+    NSDate *currentDate = [NSDate date];
+    if (self.graphType.selectedSegmentIndex==0)
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *today = [dateFormatter stringFromDate:currentDate];
+        [self.datePicker setTitle:today forState:UIControlStateNormal];
+    }
+    if (self.graphType.selectedSegmentIndex==1)
+    {
+        NSString *weekNumber = [NSString stringWithFormat:@"Week %d",[currentDate week]];
+        [self.datePicker setTitle:weekNumber forState:UIControlStateNormal];
+    }
+    
+}
+
+
 #pragma mark - GKLineGraphDataSource
 
 

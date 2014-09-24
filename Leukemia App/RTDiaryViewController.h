@@ -11,6 +11,7 @@
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTDiaryDetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *calendarView;
