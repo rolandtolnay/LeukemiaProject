@@ -28,10 +28,9 @@
 - (void)viewDidLoad
 {
     self.dataManagement = [RTDataManagement singleton];
-    self.calendar = [[VRGCalendarView alloc] init];
+    self.calendar  = [[VRGCalendarView alloc]initWithDate:[NSDate date]];
     self.calendar.delegate=self;
     [self.calendarView addSubview:self.calendar];
-    
     
     self.dataTableView.delegate = self;
     self.dataTableView.dataSource = self;
@@ -46,9 +45,12 @@
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"dd"];
-    NSDate *today = [NSDate date];
-    self.calendar.currentMonth = today;
-    [self.calendar selectDate:[[dateFormat stringFromDate:today] integerValue]];
+    NSDate *dateToShow = [NSDate date];
+    if(self.currentSelectedDate != nil){
+        dateToShow = self.currentSelectedDate;
+    }
+    self.calendar.currentMonth = dateToShow;
+    [self.calendar selectDate:[[dateFormat stringFromDate:dateToShow] integerValue]];
 }
 
 //Finishes editing of textview/textfield when user taps outside of it
@@ -139,7 +141,9 @@
 #pragma mark - CalendarView Delegate
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
-    
+    if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
+        self.calendar.selectedDate = self.currentSelectedDate;
+    }
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
@@ -155,6 +159,7 @@
             [self.data addObject:dict];
         }
     }
+    self.currentSelectedDate = date;
     [self.dataTableView reloadData];
     
     NSMutableDictionary *diaryReg = [self dataAtDate:date];
