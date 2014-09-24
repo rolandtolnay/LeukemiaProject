@@ -10,6 +10,8 @@
 
 @interface RTPainDrawViewController ()
 
+@property UIPopoverController *popover;
+
 @end
 
 @implementation RTPainDrawViewController
@@ -162,8 +164,9 @@
         controller.brushSlider.value = self.brush;
         controller.brush = [[NSNumber alloc]initWithFloat:self.brush];
         
-        UIPopoverController* popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        popover.delegate = self;
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+        return;
     }
     
     if (sender!=self.btnSaveImage)
@@ -177,7 +180,7 @@
         RTBrushSizeViewController *controller = (RTBrushSizeViewController*)sourceViewController;
         self.brush = controller.brushSlider.value;
     }
-
 }
+
 
 @end

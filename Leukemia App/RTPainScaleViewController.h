@@ -37,7 +37,7 @@
 
 - (IBAction)useCamera:(id)sender;
 - (IBAction)submitAndSaveData:(id)sender;
-- (IBAction)painTypeSelcected:(id)sender;
+- (IBAction)painTypeSelected:(id)sender;
 
 
 @end

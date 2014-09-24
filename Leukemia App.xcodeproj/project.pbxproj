@@ -31,6 +31,7 @@
 		A6924EB8199E28C5009D7220 /* Leukemia_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EB7199E28C5009D7220 /* Leukemia_AppTests.m */; };
 		A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */; };
 		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
+		A695400B19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */; };
 		A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */; };
 		A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */; };
 		A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */; };
@@ -86,6 +87,8 @@
 		A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryViewController.m; path = "Leukemia App/RTDiaryViewController.m"; sourceTree = "<group>"; };
 		A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTPainScaleViewController.h; path = "Leukemia App/RTPainScaleViewController.h"; sourceTree = "<group>"; };
 		A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTPainScaleViewController.m; path = "Leukemia App/RTPainScaleViewController.m"; sourceTree = "<group>"; };
+		A695400919D19C0000AB3E64 /* RTGraphWeekPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTGraphWeekPickerViewController.h; path = "Leukemia App/RTGraphWeekPickerViewController.h"; sourceTree = "<group>"; };
+		A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTGraphWeekPickerViewController.m; path = "Leukemia App/RTGraphWeekPickerViewController.m"; sourceTree = "<group>"; };
 		A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDiaryDetailViewController.h; path = "Leukemia App/RTDiaryDetailViewController.h"; sourceTree = "<group>"; };
 		A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryDetailViewController.m; path = "Leukemia App/RTDiaryDetailViewController.m"; sourceTree = "<group>"; };
 		A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConstants.h; sourceTree = "<group>"; };
@@ -125,26 +128,11 @@
 		A0957E2819A75B010058EF12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */,
-				A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */,
-				A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */,
-				A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */,
-				A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */,
-				A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */,
-				A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */,
-				A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */,
-				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
-				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
-				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
-				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
-				A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */,
-				A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */,
-				A09996F719A3500300EF39A5 /* RTBrushSizeViewController.h */,
-				A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */,
-				A04F2C0719AF201D00B8DCEE /* RTSettingsViewController.h */,
-				A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */,
-				A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */,
-				A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */,
+				A695401019D19C5C00AB3E64 /* Medicine */,
+				A695400F19D19C4800AB3E64 /* Settings */,
+				A695400E19D19C3300AB3E64 /* Pain */,
+				A695400D19D19C2700AB3E64 /* Diary */,
+				A695400C19D19C1600AB3E64 /* Graphs */,
 			);
 			name = Controllers;
 			path = ..;
@@ -245,6 +233,63 @@
 				A6924EB4199E28C5009D7220 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A695400C19D19C1600AB3E64 /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */,
+				A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */,
+				A695400919D19C0000AB3E64 /* RTGraphWeekPickerViewController.h */,
+				A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */,
+				A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */,
+				A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
+		A695400D19D19C2700AB3E64 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */,
+				A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */,
+				A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */,
+				A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */,
+			);
+			name = Diary;
+			sourceTree = "<group>";
+		};
+		A695400E19D19C3300AB3E64 /* Pain */ = {
+			isa = PBXGroup;
+			children = (
+				A09996F719A3500300EF39A5 /* RTBrushSizeViewController.h */,
+				A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */,
+				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
+				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
+				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
+				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
+			);
+			name = Pain;
+			sourceTree = "<group>";
+		};
+		A695400F19D19C4800AB3E64 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A04F2C0719AF201D00B8DCEE /* RTSettingsViewController.h */,
+				A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */,
+				A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */,
+				A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A695401019D19C5C00AB3E64 /* Medicine */ = {
+			isa = PBXGroup;
+			children = (
+				A6924EA1199E28C5009D7220 /* RTMedicineViewController.h */,
+				A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */,
+			);
+			name = Medicine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,6 +435,7 @@
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
 				A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */,
 				A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */,
+				A695400B19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m in Sources */,
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */,
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
