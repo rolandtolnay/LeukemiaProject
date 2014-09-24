@@ -20,27 +20,26 @@
 - (void)viewDidLoad
 {
     self.data = [RTDataManagement singleton];
-    
-    self.calendar = [[VRGCalendarView alloc] init];
+    self.calendar = [[VRGCalendarView alloc] initWithDate:self.currentDate];
     self.calendar.delegate=self;
     [self.calendarView addSubview:self.calendar];
-    [super viewDidLoad];
     
-    self.calendar.selectedDate = self.currentDate;
-//    [self.calendar markDates:[self.data datesWithGraphFromDate:self.currentDate]];
+    [self.calendar markDates:[self.data datesWithGraphFromDate:self.currentDate]];
+    
+    [super viewDidLoad];
 }
 
 
-
 #pragma mark - VRGCalendar Delegate
-
-//FIX CALENDAR DELEGATE METHOD - ONLY CALLED WHEN GOING BACKWARDS IN MONTHS (NICOLAI PLS)
-//ALSO DATE IS COLORED RED AFTER THE MARK IS ADDED, SO MARKS FOR CURRENT DAY ARE NOT DISPLAYED WHEN MOVING BETWEEN MONTHS, BECAUSE COLOR OVERRIDES IT
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
+    if(self.currentDate.month == month && self.currentDate.year == year){
+        self.calendar.selectedDate = self.currentDate;
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM"];
     
-    NSString *monthString = [NSString stringWithFormat: @"%d", (int)month];
+    NSString *monthString = [@(month) stringValue];
+    
     NSDate *newDate = [dateFormatter dateFromString:monthString];
     [self.calendar markDates:[self.data datesWithGraphFromDate:newDate]];
 }
