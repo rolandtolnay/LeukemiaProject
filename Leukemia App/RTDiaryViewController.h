@@ -24,7 +24,7 @@
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong, nonatomic) NSMutableArray *data;
-@property (weak, nonatomic) NSDate *currentSelectedDate;
+@property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
 
 
