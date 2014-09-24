@@ -147,6 +147,7 @@
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"datePicker"]){
+         NSLog(@"Date chosen: %@",self.currentDate);
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
         controller.currentDate = self.currentDate;
