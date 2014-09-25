@@ -254,6 +254,7 @@
     }
 }
 
+
 -(void)resetView{
     self.sliderPainNumber.value = 0.0;
     self.lblPainNumber.text = @"0";

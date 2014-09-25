@@ -38,6 +38,7 @@
 - (IBAction)useCamera:(id)sender;
 - (IBAction)submitAndSaveData:(id)sender;
 - (IBAction)painTypeSelected:(id)sender;
+-(void)initImages;
 
 
 @end
