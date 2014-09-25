@@ -16,6 +16,7 @@
 @property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSString *path;
 
+@property (nonatomic) NSUserDefaults *prefs;
 //NSUserDefault - painScaleSettings
 @property NSInteger selectedRowPainScale;
 @property BOOL painScaleBieri;
@@ -23,19 +24,19 @@
 @property NSInteger selectedRowNotification;
 @property BOOL notificationsOn;
 
-@property (nonatomic) NSUserDefaults *prefs;
-
 +(RTDataManagement *)singleton;
 -(void)saveUserPrefrences;
 //-(id)initWithPlistAndUserPreferences;
 -(void)writeToPList;
 -(void)reloadPlist;
 
-//service methods
+//service methods for graph data-management
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
+-(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
+-(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;

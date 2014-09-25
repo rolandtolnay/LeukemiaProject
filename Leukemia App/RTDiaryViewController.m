@@ -18,11 +18,11 @@
 
 @implementation RTDiaryViewController
 
--(NSMutableArray *)data{
-    if(!_data){
-        _data = [[NSMutableArray alloc]init];
+-(NSMutableArray *)diaryData{
+    if(!_diaryData){
+        _diaryData = [[NSMutableArray alloc]init];
     }
-    return _data;
+    return _diaryData;
 }
 
 - (void)viewDidLoad
@@ -74,11 +74,8 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView.text length] > 0) {
-//        [textView setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.10]];
-        
         [self.labelNotesPlaceholder setHidden:YES];
     } else {
-//        [textView setBackgroundColor:[UIColor clearColor]];
         [self.labelNotesPlaceholder setHidden:NO];
     }
 }
@@ -86,7 +83,7 @@
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
     NSDate *selectedDate = self.calendar.selectedDate;
-    NSMutableDictionary *dataToBeSaved = [self dataAtDate:selectedDate];
+    NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
     
     if (dataToBeSaved !=nil)
     {
@@ -110,50 +107,49 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     NSDate *selectedDate = self.calendar.selectedDate;
-    NSMutableDictionary *dataToBeSaved = [self dataAtDate:selectedDate];
+    NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
     
     if (dataToBeSaved !=nil)
     {
-        [dataToBeSaved setObject:textField.text forKey:@"weight"];
-        [self.dataManagement writeToPList];
+        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
+        {
+            [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            [self.dataManagement writeToPList];
+        }
     }
     else
     {
-        dataToBeSaved = [[NSMutableDictionary alloc]init];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
-        [dataToBeSaved setObject:textField.text forKey:@"weight"];
-        [self.dataManagement.diaryData addObject:dataToBeSaved];
-        [self.dataManagement writeToPList];
-    }
-}
-
--(NSMutableDictionary*) dataAtDate:(NSDate*) date
-{
-    for (NSMutableDictionary *diaryRegistration in self.dataManagement.diaryData)
-    {
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *diaryRegDate = [diaryRegistration objectForKey:@"time"];
-        if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
         {
-            return diaryRegistration;
+            dataToBeSaved = [[NSMutableDictionary alloc]init];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+            [dateFormat setDateFormat:@"yyyy-MM-dd"];
+            [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+            [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            [self.dataManagement.diaryData addObject:dataToBeSaved];
+            [self.dataManagement writeToPList];
         }
     }
-    return nil;
 }
 
 #pragma mark - CalendarView Delegate
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
-        self.calendar.selectedDate = self.currentSelectedDate;
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"dd"];
+        NSDate *dateToShow = [NSDate date];
+        if(self.currentSelectedDate != nil){
+            dateToShow = self.currentSelectedDate;
+        }
+        self.calendar.currentMonth = dateToShow;
+        [self.calendar selectDate:[[dateFormat stringFromDate:dateToShow] integerValue]];
+        
     }
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
-    [self.data removeAllObjects];
+    [self.diaryData removeAllObjects];
     NSString *temp;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm"];
@@ -162,13 +158,13 @@
         temp = [dict objectForKey:@"time"];
         painRegDate = [dateFormat dateFromString:temp];
         if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
-            [self.data addObject:dict];
+            [self.diaryData addObject:dict];
         }
     }
     self.currentSelectedDate = date;
     [self.dataTableView reloadData];
     
-    NSMutableDictionary *diaryReg = [self dataAtDate:date];
+    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
     [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
@@ -198,14 +194,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.data.count;
+    return self.diaryData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSMutableDictionary *painRegistration = [self.data objectAtIndex:indexPath.row];
+    NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
     NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
     NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
@@ -224,7 +220,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.selectedRegistration = [self.data objectAtIndex:indexPath.row];
+    self.selectedRegistration = [self.diaryData objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
     self.popoverAnchorButton.frame = displayFrom;

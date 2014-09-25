@@ -7,10 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NSDate+convenience.h"
+#import "RTDataManagement.h"
+
+@protocol RTWeekPickerDelegate <NSObject>
+
+-(void)weekSelected:(NSArray *)datesInWeek;
+
+@end
 
 @interface RTGraphWeekPickerViewController : UIViewController
 
 @property NSMutableArray *weeks;
 @property NSArray *years;
+@property NSDate *pickedDate;
+@property (weak, nonatomic) IBOutlet UIPickerView *weekPicker;
+
+@property (nonatomic,assign) id delegate;
+
+- (IBAction)showGraph:(id)sender;
+
 
 @end

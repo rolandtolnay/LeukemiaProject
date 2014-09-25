@@ -20,11 +20,11 @@
 - (void)viewDidLoad
 {
     self.data = [RTDataManagement singleton];
-    self.calendar = [[VRGCalendarView alloc] initWithDate:self.currentDate];
+    self.calendar = [[VRGCalendarView alloc] initWithDate:self.pickedDate];
     self.calendar.delegate=self;
     [self.calendarView addSubview:self.calendar];
     
-    [self.calendar markDates:[self.data datesWithGraphFromDate:self.currentDate]];
+    [self.calendar markDates:[self.data datesWithGraphFromDate:self.pickedDate]];
     
     [super viewDidLoad];
 }
@@ -32,8 +32,8 @@
 
 #pragma mark - VRGCalendar Delegate
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
-    if(self.currentDate.month == month && self.currentDate.year == year){
-        self.calendar.selectedDate = self.currentDate;
+    if(self.pickedDate.month == month && self.pickedDate.year == year){
+        self.calendar.selectedDate = self.pickedDate;
     }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM"];

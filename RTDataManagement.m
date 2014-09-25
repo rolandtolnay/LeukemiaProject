@@ -117,7 +117,7 @@ static RTDataManagement *dataMangement = nil;
 
 #pragma mark - Service methods
 
-//Methods used for graph data-management
+#pragma mark - Graph Data Management
 
 - (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
@@ -172,6 +172,7 @@ static RTDataManagement *dataMangement = nil;
     return [timeStamps copy];
 }
 
+//Deprecated, kept for possible later use
 -(NSArray*) commonHoursForPainTypeMouth:(NSArray*) mouthPain TypeStomach:(NSArray*) stomachPain TypeOther:(NSArray*) otherPain
 {
     NSMutableArray *commonHours = [[NSMutableArray alloc]init];
@@ -233,7 +234,62 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
-//Methods for writing and reading images
+//returns an NSMutableDictionary with all diary data if it exists in the storage
+//Date is without format
+-(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date
+{
+    for (NSMutableDictionary *diaryRegistration in self.diaryData)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *diaryRegDate = [diaryRegistration objectForKey:@"time"];
+        if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        {
+            return diaryRegistration;
+        }
+    }
+    return nil;
+}
+
+-(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year{
+    // determine weekday of first day of year:
+    NSCalendar *greg = [[NSCalendar alloc]
+                        initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    comps.day = 1;
+    NSDate *today = [NSDate date];
+    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today options:0];
+    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
+    
+    comps.year = year;
+    today = [greg dateFromComponents:comps];
+    comps = [greg components:NSYearCalendarUnit fromDate:today];
+    NSLog(@"%@",comps);
+    comps.day = 1;
+    comps.month = 1;
+    comps.hour = 12;
+    NSDate *start = [greg dateFromComponents:comps];
+    NSLog(@"NSDate start: %@",start);
+    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
+    
+    
+    if (weekNumber==1) {
+        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
+    } else {
+        start = [start dateByAddingTimeInterval:
+                 kDay*(8-comps.weekday+7*(weekNumber-2))];
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    //Loop makes it start from monday instead of sunday by adding one extra day (i=1)
+    for (int i = 1; i<8; i++) {
+        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
+    }
+    return [NSArray arrayWithArray:result];
+}
+
+
+#pragma mark - Reading and Writing images
+
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
 {
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -252,5 +308,11 @@ static RTDataManagement *dataMangement = nil;
     
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
+
+-(void) initTestData {
+    
+}
+
+
 
 @end

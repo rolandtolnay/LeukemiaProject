@@ -9,7 +9,7 @@
 #import "RTGraphWeekPickerViewController.h"
 
 @interface RTGraphWeekPickerViewController ()
- 
+
 @end
 
 @implementation RTGraphWeekPickerViewController
@@ -24,6 +24,15 @@
     }
     
     self.years = @[@"2014",@"2015",@"2016",@"2017",@"2018"];
+    int pickedWeek = [self.pickedDate week];
+    NSNumber *pickedYear = [NSNumber numberWithInt:[self.pickedDate year]];
+    NSLog(@"yearFromDate: %@",pickedYear);
+    NSInteger pickedYearIndex = [self.years indexOfObject:[pickedYear stringValue]];
+    NSLog(@"pickedYearIndex: %ld",(long)pickedYearIndex);
+    
+    [self.weekPicker selectRow:pickedWeek-1 inComponent:1 animated:YES];
+    [self.weekPicker selectRow:pickedYearIndex inComponent:0 animated:YES];
+    
 }
 
 #pragma mark - Picker View Data Source
@@ -36,9 +45,9 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
     if (component == 0) {
-        return 5;
+        return [self.years count];
     };
-    return 53;
+    return [self.weeks count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
@@ -48,32 +57,11 @@
     return self.weeks[row];
 }
 
--(NSArray*)allDatesInWeek:(int)weekNumber {
-    // determine weekday of first day of year:
-    NSCalendar *greg = [[NSCalendar alloc]
-                        initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    comps.day = 1;
-    NSDate *today = [NSDate date];
-    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today options:0];
-    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
-    comps = [greg components:NSYearCalendarUnit fromDate:[NSDate date]];
-    comps.day = 1;
-    comps.month = 1;
-    comps.hour = 12;
-    NSDate *start = [greg dateFromComponents:comps];
-    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
-    if (weekNumber==1) {
-        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
-    } else {
-        start = [start dateByAddingTimeInterval:
-                 kDay*(8-comps.weekday+7*(weekNumber-2))];
-    }
-    NSMutableArray *result = [NSMutableArray array];
-    for (int i = 0; i<7; i++) {
-        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
-    }
-    return [NSArray arrayWithArray:result];
+-(void)showGraph:(id)sender
+{
+    int year = [self.years[[self.weekPicker selectedRowInComponent:0]] intValue];
+    long weekNumber = [self.weekPicker selectedRowInComponent:1]+1;
+    [self.delegate weekSelected:[[RTDataManagement singleton] allDatesInWeek:weekNumber forYear:year]];
 }
 
 

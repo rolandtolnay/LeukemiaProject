@@ -20,7 +20,7 @@
 @interface RTGraphCalendarViewController : UIViewController <VRGCalendarViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *calendarView;
-@property NSDate* currentDate;
+@property NSDate* pickedDate;
 
 @property (nonatomic,assign) id delegate;
 

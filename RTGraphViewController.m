@@ -10,9 +10,11 @@
 
 @interface RTGraphViewController ()
 
-@property RTDataManagement* data;
+@property RTDataManagement* dataManagement;
 
-@property (strong, nonatomic) NSArray* lineValues;
+@property (strong, nonatomic) NSArray* painValues;
+@property (strong, nonatomic) NSMutableArray* weightTimestamps;
+@property (strong, nonatomic) NSMutableArray* weightValues;
 
 @property UIColor *colorStomachPain;
 @property UIColor *colorMouthPain;
@@ -34,9 +36,12 @@
     self.colorStomachPain = [UIColor gk_greenSeaColor];
     self.colorOtherPain = [UIColor gk_belizeHoleColor];
     
+    self.weightTimestamps = [[NSMutableArray alloc] init];
+    self.weightValues = [[NSMutableArray alloc]init];
+    
     if ([self isRetinaDisplay])
     {
-        self.data = [RTDataManagement singleton];
+        self.dataManagement = [RTDataManagement singleton];
         
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -67,16 +72,24 @@
     return (screenScale == 2.0);
 }
 
+-(BOOL) isPainGraph{
+    return (self.graphType.selectedSegmentIndex==0);
+}
+
+-(BOOL) isWeightGraph{
+    return (self.graphType.selectedSegmentIndex==1);
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     if ([self isRetinaDisplay])
-        [self refreshGraph:self];
+        [self refreshGraph];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if ([self isRetinaDisplay])
-        [self refreshGraph:self];
+        [self refreshGraph];
 }
 
 -(void)showError:(BOOL) isHidden withText:(NSString *)errorText {
@@ -86,33 +99,49 @@
     [self.lblError setCenter:self.view.center];
 }
 
--(void)refreshGraph:(id)sender {
+-(void)refreshGraph {
     [self.graph reset];
     [self.view endEditing:YES];
-    NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-    if ([self.data isEnoughDataAtDay:selectedDay])
+    if ([self isPainGraph])
     {
-        [self showError:NO withText:nil];
-        self.lineValues = @[
-                            [self.data painLevelsAtDay:selectedDay forPainType:MouthPain],
-                            [self.data painLevelsAtDay:selectedDay forPainType:StomachPain],
-                            [self.data painLevelsAtDay:selectedDay forPainType:OtherPain],
-                            @[@1, @5, @10]
-                            ];
-        [self.graph draw];
+        NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
+        if ([self.dataManagement isEnoughDataAtDay:selectedDay])
+        {
+            [self showError:NO withText:nil];
+            self.painValues = @[
+                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
+                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
+                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
+                                @[@1, @5, @10]
+                                ];
+            [self.graph draw];
+        }
+        else
+        {
+            [self showError:YES withText:@"Not enough data to show graph."];
+        }
     }
-    else
+    if ([self isWeightGraph])
     {
-        [self showError:YES withText:@"Not enough data to show graph."];
+        NSLog(@"Weight timestamps: %@",self.weightTimestamps);
+        if ([self.weightTimestamps count] > 1)
+        {
+            [self showError:NO withText:nil];
+            [self.graph draw];
+        }
+        else
+        {
+            [self showError:YES withText:@"Not enough data to show graph."];
+        }
     }
 }
 
 -(void)pickDate:(id)sender
 {
-    if (self.graphType.selectedSegmentIndex == 0)
+    if ([self isPainGraph])
     {
         [self performSegueWithIdentifier:@"datePicker" sender:nil];
-    } else if (self.graphType.selectedSegmentIndex == 1)
+    } else if ([self isWeightGraph])
     {
         [self performSegueWithIdentifier:@"weekPicker" sender:nil];
     }
@@ -120,20 +149,22 @@
 
 -(void)graphTypeChanged:(id)sender
 {
-    NSDate *currentDate = [NSDate date];
-    if (self.graphType.selectedSegmentIndex==0)
+    self.currentDate = [NSDate date];
+    if ([self isPainGraph])
     {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *today = [dateFormatter stringFromDate:currentDate];
+        NSString *today = [dateFormatter stringFromDate:self.currentDate];
         [self.datePicker setTitle:today forState:UIControlStateNormal];
+        
+        self.graph.startFromZero = YES;
+        [self refreshGraph];
     }
-    if (self.graphType.selectedSegmentIndex==1)
+    if ([self isWeightGraph])
     {
-        NSString *weekNumber = [NSString stringWithFormat:@"Week %d",[currentDate week]];
-        [self.datePicker setTitle:weekNumber forState:UIControlStateNormal];
+        self.graph.startFromZero = NO;
+        [self weekSelected:[[RTDataManagement singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
     }
-    
 }
 
 
@@ -141,20 +172,35 @@
 
 
 - (NSArray *)valuesForLineAtIndex:(NSInteger)index {
-    return [self.lineValues objectAtIndex:index];
+    if ([self isPainGraph])
+        return [self.painValues objectAtIndex:index];
+    if ([self isWeightGraph])
+        return self.weightValues;
+    return nil;
 }
 
 - (NSInteger)numberOfLines {
-    NSLog(@"%lu",(unsigned long)[self.lineValues count]);
-    return [self.lineValues count];
+    if ([self isPainGraph])
+        return [self.painValues count];
+    if ([self isWeightGraph])
+        return 1;
+    return 0;
 }
 
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {
-    id colors = @[ _colorMouthPain,
-                   _colorStomachPain,
-                   _colorOtherPain,
-                   [UIColor clearColor]];
-    return [colors objectAtIndex:index];
+    if ([self isPainGraph])
+    {
+        id colors = @[ _colorMouthPain,
+                       _colorStomachPain,
+                       _colorOtherPain,
+                       [UIColor clearColor]];
+        return [colors objectAtIndex:index];
+    }
+    if ([self isWeightGraph])
+    {
+        return [UIColor gk_concreteColor];
+    }
+    return [UIColor clearColor];
 }
 
 - (CFTimeInterval)animationDurationForLineAtIndex:(NSInteger)index {
@@ -162,11 +208,19 @@
 }
 
 - (NSString *)titleForLineAtIndex:(NSInteger)index {
-    NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-    return [[self.data timeStampsAtDay:selectedDay] objectAtIndex:index];
+    if ([self isPainGraph])
+    {
+        NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
+        return [[self.dataManagement timeStampsAtDay:selectedDay] objectAtIndex:index];
+    }
+    if ([self isWeightGraph])
+    {
+        return [self.weightTimestamps objectAtIndex:index];
+    }
+    return @"";
 }
 
-#pragma mark - CalendarPicker
+#pragma mark - CalendarPicker delegate
 
 - (void)dateSelected:(NSDate *)date
 {
@@ -177,19 +231,64 @@
     
     [self.datePicker setTitle:pickedDate forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:YES];
-    [self refreshGraph:nil];
+    [self refreshGraph];
+}
+
+#pragma mark - WeekPicker delegate
+
+-(void)weekSelected:(NSArray *)datesInWeek
+{
+    [self.popover dismissPopoverAnimated:YES];
+    self.currentDate = datesInWeek[0];
+    
+    NSString *pickedWeek = [NSString stringWithFormat:@"%d - Week %d",[self.currentDate year],[self.currentDate week]];
+    [self.datePicker setTitle:pickedWeek forState:UIControlStateNormal];
+    
+    [self.weightTimestamps removeAllObjects];
+    [self.weightValues removeAllObjects];
+    
+    for (NSDate *dayInWeek in datesInWeek)
+    {
+        NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:dayInWeek];
+        
+        if (diaryReg!=nil)
+        {
+            NSNumber *weight = [NSNumber numberWithInt:[[diaryReg objectForKey:@"weight"] intValue]];
+            NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
+            if (![[diaryReg objectForKey:@"weight"] isEqualToString:@""] && [weight intValue]>0)
+            {
+                [self.weightValues addObject:weight];
+                
+                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d-%d",[dayInWeek month],[dayInWeek day]];
+                NSLog(@"weightTimestamp: %@",monthDayTimestamp);
+                
+                [self.weightTimestamps addObject:monthDayTimestamp];
+            }
+        }
+    }
+    
+    [self refreshGraph];
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"datePicker"]){
-         NSLog(@"Date chosen: %@",self.currentDate);
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
-        controller.currentDate = self.currentDate;
+        controller.pickedDate = self.currentDate;
         
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
     }
+    if([segue.identifier isEqualToString:@"weekPicker"]){
+        RTGraphWeekPickerViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        controller.pickedDate = self.currentDate;
+        
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
+    
 }
 
 @end

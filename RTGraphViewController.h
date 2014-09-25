@@ -12,9 +12,10 @@
 #import "GraphKit.h"
 #import "RTConstants.h"
 #import "RTGraphCalendarViewController.h"
+#import "RTGraphWeekPickerViewController.h"
 #import "NSDate+convenience.h"
 
-@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
+@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate,RTWeekPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet GKLineGraph *graph;
 
