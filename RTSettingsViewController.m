@@ -29,6 +29,8 @@
     
     [self configureSettings];
     
+    self.tabBarController.delegate = self;
+    
     [super viewDidLoad];
 }
 
@@ -128,6 +130,14 @@
         }
         [self.dataManagement saveUserPrefrences];
     }
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
+    self.painScaleViewController = (RTPainScaleViewController *) [nav.viewControllers objectAtIndex:0];
+    
+    [self.painScaleViewController initImages];
 }
 
 -(void)configureSettings{

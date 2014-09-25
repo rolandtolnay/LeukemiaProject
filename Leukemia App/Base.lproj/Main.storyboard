@@ -550,6 +550,35 @@
             </objects>
             <point key="canvasLocation" x="4741" y="1036"/>
         </scene>
+        <!--Medicine-->
+        <scene sceneID="Rr6-ti-viA">
+            <objects>
+                <viewController id="9J2-l6-Zlt" customClass="RTMedicineViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5c9-eZ-13T"/>
+                        <viewControllerLayoutGuide type="bottom" id="YUN-fu-eg4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jnS-di-fFh">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9D-Zx-Syv">
+                                <rect key="frame" x="0.0" y="20" width="768" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="xpD-mC-xCx"/>
+                    <navigationItem key="navigationItem" title="Medicine" id="TYl-uO-O4N"/>
+                    <connections>
+                        <outlet property="weekSelectorView" destination="c9D-Zx-Syv" id="nff-mi-aQx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vFx-ad-asV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4702" y="1960"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="qf5-G2-cYD">
             <objects>
@@ -643,51 +672,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="We5-TR-mHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3890" y="3099"/>
-        </scene>
-        <!--Medicine-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="RTMedicineViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="20" y="250" width="728" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Loaded by the Second View Controller — an instance of RTSecondViewController — specified in the app delegate." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="235" y="350" width="297" height="70"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="297" id="IyQ-6U-9uS"/>
-                                    <constraint firstAttribute="height" constant="70" id="OL4-RV-e9h"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="zEq-FU-wV5" secondAttribute="trailing" constant="20" symbolic="YES" id="1Sm-Ed-d0Z"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="235" id="ILQ-Iy-aLh"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="350" id="WdQ-18-vtZ"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="250" id="YLo-4G-u9r"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="20" symbolic="YES" id="uRE-52-21w"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Medicine" id="U4h-HS-Uds"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3890" y="1960"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -978,7 +962,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="zYC-9G-Vxl"/>
+                        <segue destination="9J2-l6-Zlt" kind="relationship" relationship="rootViewController" id="zHf-y4-GBM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SBW-fP-mlI" userLabel="First Responder" sceneMemberID="firstResponder"/>

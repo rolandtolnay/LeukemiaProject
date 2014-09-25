@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LSWeekView.h"
 
 @interface RTMedicineViewController : UIViewController
+
+@property (strong,nonatomic) LSWeekView *weekSelector;
+@property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
 
 @end
