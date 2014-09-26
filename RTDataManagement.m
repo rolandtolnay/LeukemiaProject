@@ -42,7 +42,7 @@ static RTDataManagement *dataMangement = nil;
             dataMangement = [[self alloc] initWithPlistAndUserPreferences];
         }
     }
-
+    
     return dataMangement;
 }
 
@@ -140,9 +140,9 @@ static RTDataManagement *dataMangement = nil;
 -(NSArray *)timeStampsAtDay:(NSString *) day {
     NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
     
-//    NSMutableArray *mouthPain = [[NSMutableArray alloc] init];
-//    NSMutableArray *stomachPain = [[NSMutableArray alloc]init];
-//    NSMutableArray *otherPain = [[NSMutableArray alloc]init];
+    //    NSMutableArray *mouthPain = [[NSMutableArray alloc] init];
+    //    NSMutableArray *stomachPain = [[NSMutableArray alloc]init];
+    //    NSMutableArray *otherPain = [[NSMutableArray alloc]init];
     
     for (NSDictionary *painRegistration in self.painData)
     {
@@ -150,24 +150,24 @@ static RTDataManagement *dataMangement = nil;
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
-//            NSString *painType = [painRegistration objectForKey:@"paintype"];
+            //            NSString *painType = [painRegistration objectForKey:@"paintype"];
             hour = [timeStamp componentsSeparatedByString:@" "][1];
             
-//            if ([painType isEqualToString:MouthPain])
-//                [mouthPain addObject:hour];
-//            else if ([painType isEqualToString:StomachPain])
-//                [stomachPain addObject:hour];
-//            else [otherPain addObject:hour];
+            //            if ([painType isEqualToString:MouthPain])
+            //                [mouthPain addObject:hour];
+            //            else if ([painType isEqualToString:StomachPain])
+            //                [stomachPain addObject:hour];
+            //            else [otherPain addObject:hour];
             
             [timeStamps addObject:hour];
         }
     }
     
-//    NSLog(@"Mouthpain times: %@",mouthPain);
-//    NSLog(@"Stomachpain times: %@",stomachPain);
-//    NSLog(@"Otherpain times: %@",otherPain);
+    //    NSLog(@"Mouthpain times: %@",mouthPain);
+    //    NSLog(@"Stomachpain times: %@",stomachPain);
+    //    NSLog(@"Otherpain times: %@",otherPain);
     
-//    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
+    //    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
     
     return [timeStamps copy];
 }
@@ -310,7 +310,47 @@ static RTDataManagement *dataMangement = nil;
 }
 
 -(void) initTestData {
+    int painRegToGenerate = 30;
+    for (int idx=0; idx < painRegToGenerate;idx++)
+    {
+        
+        NSMutableDictionary *painRegistration = [[NSMutableDictionary alloc]init];
+        
+        NSNumber *painLevel = [NSNumber numberWithInt:arc4random_uniform(11)];
+        [painRegistration setObject:[painLevel stringValue] forKey:@"painlevel"];
+        
+        [painRegistration setObject:@"" forKey:@"drawingpath"];
+        [painRegistration setObject:@"" forKey:@"photopath"];
+        
+        NSNumber *morphineLevel = [NSNumber numberWithInt:arc4random_uniform(40)+10];
+        [painRegistration setObject:[morphineLevel stringValue] forKey:@"morphinelevel"];
+        
+        NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:abs(idx/2-10)] offsetMinutes:idx*2];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+        [painRegistration setObject:currentTime forKey:@"time"];
+        
+        NSString *painType;
+        switch (arc4random_uniform(3)) {
+            case 0:
+                painType = @"Mouth";
+                break;
+            case 1:
+                painType = @"Stomach";
+                break;
+            case 2:
+                painType = @"Other";
+                break;
+            default:
+                break;
+        }
+        [painRegistration setObject:painType forKey:@"paintype"];
+        
+        [self.painData addObject:painRegistration];
+    }
     
+    [self writeToPList];
 }
 
 

@@ -389,6 +389,9 @@
                                 <rect key="frame" x="561" y="453" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="weightInputFinished:" destination="2L9-BR-LhI" eventType="editingDidEndOnExit" id="vEd-6T-Gb1"/>
+                                </connections>
                             </textField>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsz-cA-dHP">
                                 <rect key="frame" x="586" y="554" width="1" height="1"/>

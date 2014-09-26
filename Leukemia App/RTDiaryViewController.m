@@ -106,6 +106,12 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    if ([textField.text isEqualToString:@"test"])
+    {
+        [[RTDataManagement singleton] initTestData];
+        return;
+    }
+    
     NSDate *selectedDate = self.calendar.selectedDate;
     NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
     
@@ -130,6 +136,11 @@
             [self.dataManagement writeToPList];
         }
     }
+}
+
+-(void)weightInputFinished:(id)sender
+{
+    [sender resignFirstResponder];
 }
 
 #pragma mark - CalendarView Delegate
