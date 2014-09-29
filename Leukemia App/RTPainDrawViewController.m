@@ -47,12 +47,17 @@
     [super viewDidLoad];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
+    {
+        self.lblBodyParts.hidden = YES;
+        self.lblInstructions.hidden = YES;
+    } else {
+        self.lblBodyParts.hidden = NO;
+        self.lblInstructions.hidden = NO;
+    }
 }
-
 
 
 //Controls drawing part

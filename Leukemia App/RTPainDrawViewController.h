@@ -37,6 +37,8 @@
 @property (strong,nonatomic) NSString* yellowDescription;
 @property (strong,nonatomic) NSString* greenDescription;
 
+@property (weak, nonatomic) IBOutlet UIImageView *lblInstructions;
+@property (weak, nonatomic) IBOutlet UIImageView *lblBodyParts;
 
 - (IBAction)colorPressed:(id)sender;
 - (IBAction)resetDrawing:(id)sender;
