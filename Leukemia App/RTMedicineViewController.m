@@ -39,15 +39,6 @@
     __weak typeof(self) weakSelf = self;
     self.weekSelector.didChangeSelectedDateBlock = ^(NSDate *selectedDate)
     {
-//        //Check if there is a sample on this day
-//        //if sample - Show it make it editable
-//        if([weakSelf.dataManagement.bloodSampleData objectForKey:[weakSelf.dateFormatter stringFromDate:weakSelf.weekSelector.selectedDate]] != nil){
-//            [weakSelf showBloodSampleUI:weakSelf.weekSelector.selectedDate];
-//        }
-//        //if no sample - Make it possible to add a sample
-//        else{
-//            [weakSelf noBloodSampleUI];
-//        }
         [weakSelf checkDate];
     };
     
