@@ -318,49 +318,49 @@ static RTDataManagement *dataMangement = nil;
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
-//-(void) initTestData {
-//    int painRegToGenerate = 30;
-//    for (int idx=0; idx < painRegToGenerate;idx++)
-//    {
-//        
-//        NSMutableDictionary *painRegistration = [[NSMutableDictionary alloc]init];
-//        
-//        NSNumber *painLevel = [NSNumber numberWithInt:arc4random_uniform(11)];
-//        [painRegistration setObject:[painLevel stringValue] forKey:@"painlevel"];
-//        
-//        [painRegistration setObject:@"" forKey:@"drawingpath"];
-//        [painRegistration setObject:@"" forKey:@"photopath"];
-//        
-//        NSNumber *morphineLevel = [NSNumber numberWithInt:arc4random_uniform(40)+10];
-//        [painRegistration setObject:[morphineLevel stringValue] forKey:@"morphinelevel"];
-//        
-//        NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:abs(idx/2-10)] offsetMinutes:idx*2];
-//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-//        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
-//        [painRegistration setObject:currentTime forKey:@"time"];
-//        
-//        NSString *painType;
-//        switch (arc4random_uniform(3)) {
-//            case 0:
-//                painType = @"Mouth";
-//                break;
-//            case 1:
-//                painType = @"Stomach";
-//                break;
-//            case 2:
-//                painType = @"Other";
-//                break;
-//            default:
-//                break;
-//        }
-//        [painRegistration setObject:painType forKey:@"paintype"];
-//        
-//        [self.painData addObject:painRegistration];
-//    }
-//    
-//    [self writeToPList];
-//}
+-(void) initTestData {
+    int painRegToGenerate = 30;
+    for (int idx=0; idx < painRegToGenerate;idx++)
+    {
+        
+        NSMutableDictionary *painRegistration = [[NSMutableDictionary alloc]init];
+        
+        NSNumber *painLevel = [NSNumber numberWithInt:arc4random_uniform(11)];
+        [painRegistration setObject:[painLevel stringValue] forKey:@"painlevel"];
+        
+        [painRegistration setObject:@"" forKey:@"drawingpath"];
+        [painRegistration setObject:@"" forKey:@"photopath"];
+        
+        NSNumber *morphineLevel = [NSNumber numberWithInt:arc4random_uniform(40)+10];
+        [painRegistration setObject:[morphineLevel stringValue] forKey:@"morphinelevel"];
+        
+        NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:abs(idx/2-10)] offsetMinutes:idx*2];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+        [painRegistration setObject:currentTime forKey:@"time"];
+        
+        NSString *painType;
+        switch (arc4random_uniform(3)) {
+            case 0:
+                painType = @"Mouth";
+                break;
+            case 1:
+                painType = @"Stomach";
+                break;
+            case 2:
+                painType = @"Other";
+                break;
+            default:
+                break;
+        }
+        [painRegistration setObject:painType forKey:@"paintype"];
+        
+        [self.painData addObject:painRegistration];
+    }
+    
+    [self writeToPList];
+}
 
 
 
