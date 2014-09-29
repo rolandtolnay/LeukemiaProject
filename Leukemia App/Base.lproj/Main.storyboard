@@ -616,22 +616,22 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6l4-3h-7Vb">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6l4-3h-7Vb" userLabel="Hemo Text">
                                         <rect key="frame" x="249" y="18" width="271" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-rL-6hB">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yrD-rL-6hB" userLabel="Thrombo Text">
                                         <rect key="frame" x="249" y="63" width="271" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BE6-3K-W9E">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BE6-3K-W9E" userLabel="CRP Text">
                                         <rect key="frame" x="249" y="144" width="271" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBq-e3-Rmb">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JBq-e3-Rmb" userLabel="Natrium Text">
                                         <rect key="frame" x="249" y="182" width="271" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -675,11 +675,20 @@
                                             <action selector="saveSample:" destination="9J2-l6-Zlt" eventType="touchUpInside" id="rZB-de-PoW"/>
                                         </connections>
                                     </button>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="50s-zS-r1s">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="50s-zS-r1s" userLabel="Neutro Text">
                                         <rect key="frame" x="249" y="106" width="271" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p8-gW-4a3">
+                                        <rect key="frame" x="339" y="220" width="90" height="30"/>
+                                        <state key="normal" title="Edit Sample">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editSample:" destination="9J2-l6-Zlt" eventType="touchUpInside" id="QLn-gS-wrb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -695,14 +704,15 @@
                     <connections>
                         <outlet property="addSampleButton" destination="oIn-Ri-zrc" id="XX0-pr-VzC"/>
                         <outlet property="bloodSampleView" destination="5je-6i-q9i" id="Mr6-9O-tVL"/>
-                        <outlet property="crptext" destination="BE6-3K-W9E" id="f4N-rO-UVC"/>
+                        <outlet property="crpText" destination="BE6-3K-W9E" id="kjY-Rd-J0k"/>
+                        <outlet property="editSampleButton" destination="8p8-gW-4a3" id="s4U-m8-oMT"/>
                         <outlet property="hemoText" destination="6l4-3h-7Vb" id="PW8-Xa-6md"/>
                         <outlet property="medicineView" destination="8Mv-IH-ZNG" id="BdX-UR-gPM"/>
-                        <outlet property="natriumtext" destination="JBq-e3-Rmb" id="xSn-MR-9M0"/>
+                        <outlet property="natriumText" destination="JBq-e3-Rmb" id="MVj-V2-0rR"/>
                         <outlet property="neutroText" destination="50s-zS-r1s" id="FDU-ex-2o4"/>
                         <outlet property="noSampleLabel" destination="LgY-9i-LVJ" id="i9o-4a-rub"/>
                         <outlet property="saveSampleButton" destination="VnS-aj-HqJ" id="0nU-Nu-cET"/>
-                        <outlet property="thrombotext" destination="yrD-rL-6hB" id="6R1-Ut-a3E"/>
+                        <outlet property="thromboText" destination="yrD-rL-6hB" id="mex-LY-FkW"/>
                         <outlet property="weekSelectorView" destination="c9D-Zx-Syv" id="nff-mi-aQx"/>
                         <outletCollection property="bloodSampleLabels" destination="uFp-62-g7w" id="vms-XI-hIF"/>
                         <outletCollection property="bloodSampleLabels" destination="QnB-5L-PPv" id="sOK-5l-qwa"/>

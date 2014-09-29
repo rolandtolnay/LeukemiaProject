@@ -32,20 +32,10 @@
     
     self.morphineInput.delegate = self;
     
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.morphineInput
-                                                                                        action:@selector(resignFirstResponder)];
-    gestureRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:gestureRecognizer];
-    
     [self initImages];
     
     [super viewDidLoad];
 }
-
-//CAUSED BUG: SLIDER TEXT AND IMAGE RESET AFTER DRAWING OR TAKING PHOTO
-//-(void)viewWillAppear:(BOOL)animated{
-//    [self initImages];
-//}
 
 -(IBAction)useCamera:(id)sender
 {
@@ -100,11 +90,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//Morphine Input textfield delgates method
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return NO;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.morphineInput isFirstResponder] && [touch view] != self.morphineInput) {
+        [self.morphineInput resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
 }
 
 -(void)initSliderPainNumber
@@ -160,11 +151,19 @@
 {
     UIViewController *sourceViewController = segue.sourceViewController;
     if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
+       
         RTPainDrawViewController *controller = segue.sourceViewController;
-        if (controller.drawImage.image)
+//        if (controller.drawImage.image)
+//        {
+//            UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
+//            [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
+//            self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
+//            UIGraphicsEndImageContext();
+//        }
+        if (controller.mainImage.image)
         {
-            UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
-            [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
+            UIGraphicsBeginImageContextWithOptions(controller.mainImage.bounds.size, NO,0.0);
+            [controller.mainImage.image drawInRect:CGRectMake(0, 0, controller.mainImage.frame.size.width, controller.mainImage.frame.size.height)];
             self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
         }
@@ -310,5 +309,4 @@
     
     [self resetView];
 }
-
 @end

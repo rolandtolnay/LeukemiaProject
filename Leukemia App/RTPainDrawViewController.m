@@ -101,14 +101,13 @@
         self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
     }
-//    UIGraphicsBeginImageContext(self.mainImage.frame.size);
-     UIGraphicsBeginImageContext(self.drawImage.frame.size);
-//    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
-    
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    UIGraphicsBeginImageContext(self.mainImage.frame.size);
+//     UIGraphicsBeginImageContext(self.drawImage.frame.size);
+    [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
+    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
     self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-//    self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
-//    self.drawImage.image = nil;
+    self.mainImage.image = UIGraphicsGetImageFromCurrentImageContext();
+    self.drawImage.image = nil;
     UIGraphicsEndImageContext();
 }
 
@@ -152,10 +151,10 @@
     self.red = 255.0/255.0;
     self.green = 0.0/255.0;
     self.blue = 0.0/255.0;
-    //self.mainImage.image = painBodyImage;
+    self.mainImage.image = painBodyImage;
     self.drawImage.image = painBodyImage;
     self.brush = 15.0;
-    self.opacity = 0.6;
+    self.opacity = 0.7;
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
@@ -181,6 +180,7 @@
         self.brush = controller.brushSlider.value;
     }
 }
+
 
 
 @end
