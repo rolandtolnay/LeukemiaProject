@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "RTConstants.h"
+#include <stdlib.h>
+#import "NSDate+convenience.h"
 
 @interface RTDataManagement : NSObject
 
@@ -41,5 +43,8 @@
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
 -(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName;
+
+//testing
+-(void) initTestData;
 
 @end

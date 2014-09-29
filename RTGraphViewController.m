@@ -159,6 +159,7 @@
         
         self.graph.startFromZero = YES;
         [self refreshGraph];
+        self.graph.valueLabelCount = 11;
     }
     if ([self isWeightGraph])
     {
@@ -253,13 +254,13 @@
         
         if (diaryReg!=nil)
         {
-            NSNumber *weight = [NSNumber numberWithInt:[[diaryReg objectForKey:@"weight"] intValue]];
+            NSNumber *weight = [NSNumber numberWithFloat:[[diaryReg objectForKey:@"weight"] floatValue]];
             NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
             if (![[diaryReg objectForKey:@"weight"] isEqualToString:@""] && [weight intValue]>0)
             {
                 [self.weightValues addObject:weight];
                 
-                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d-%d",[dayInWeek month],[dayInWeek day]];
+                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek month],[dayInWeek day]];
                 NSLog(@"weightTimestamp: %@",monthDayTimestamp);
                 
                 [self.weightTimestamps addObject:monthDayTimestamp];
@@ -267,6 +268,7 @@
         }
     }
     
+    self.graph.valueLabelCount = 11;
     [self refreshGraph];
     
 }
