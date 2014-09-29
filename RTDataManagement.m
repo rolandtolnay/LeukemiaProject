@@ -33,6 +33,13 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
+-(NSMutableDictionary *)bloodSampleData{
+    if(!_bloodSampleData){
+        _bloodSampleData = [[NSMutableDictionary alloc]init];
+    }
+    return _bloodSampleData;
+}
+
 //Singleton method
 
 + (RTDataManagement *)singleton {
@@ -84,6 +91,7 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
+    [pList setObject:self.bloodSampleData forKey:@"bloodSampleData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -113,6 +121,7 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
+    self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
 }
 
 #pragma mark - Service methods
