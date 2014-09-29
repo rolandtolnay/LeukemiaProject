@@ -49,7 +49,6 @@
         imagePicker.allowsEditing = NO;
         [self presentViewController:imagePicker animated:YES completion:nil];
         _newMedia = YES;
-        
     }
 }
 
@@ -274,6 +273,22 @@
         [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
     }
     self.lblPainDescription.text = self.painDescription[0];
+    [self setButtonImageHighlight];
+}
+
+-(void)setButtonImageHighlight{
+    if (self.drawingToBeSaved != nil)
+    {
+        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDrawComplete.png"] forState:UIControlStateNormal];
+    } else {
+        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDraw.png"] forState:UIControlStateNormal];
+    }
+    if (self.cameraImageToBeSaved != nil) {
+        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhotoComplete.png"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhoto.png"] forState:UIControlStateNormal];
+    }
 }
 
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime{

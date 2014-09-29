@@ -36,7 +36,9 @@
 //service methods for graph data-management
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
+-(NSArray *)timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
+-(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType;
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
 -(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;

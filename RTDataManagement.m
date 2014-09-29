@@ -181,6 +181,27 @@ static RTDataManagement *dataMangement = nil;
     return [timeStamps copy];
 }
 
+-(NSArray *)timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType {
+    NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *hour = [NSString alloc];
+        if ([timeStamp rangeOfString:day].location != NSNotFound)
+        {
+            NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
+            if ([painTypeReg isEqualToString:painType])
+            {
+                hour = [timeStamp componentsSeparatedByString:@" "][1];
+                [timeStamps addObject:hour];
+            }
+        }
+    }
+    
+    return [timeStamps copy];
+}
+
 //Deprecated, kept for possible later use
 -(NSArray*) commonHoursForPainTypeMouth:(NSArray*) mouthPain TypeStomach:(NSArray*) stomachPain TypeOther:(NSArray*) otherPain
 {
@@ -211,6 +232,11 @@ static RTDataManagement *dataMangement = nil;
     if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
     if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
     
+    return NO;
+}
+
+-(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType {
+    if ([[self painLevelsAtDay:day forPainType:painType] count] >1) return YES;
     return NO;
 }
 
@@ -318,6 +344,8 @@ static RTDataManagement *dataMangement = nil;
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
+#pragma mark - Test Data
+
 -(void) initTestData {
     int painRegToGenerate = 30;
     for (int idx=0; idx < painRegToGenerate;idx++)
@@ -334,7 +362,7 @@ static RTDataManagement *dataMangement = nil;
         NSNumber *morphineLevel = [NSNumber numberWithInt:arc4random_uniform(40)+10];
         [painRegistration setObject:[morphineLevel stringValue] forKey:@"morphinelevel"];
         
-        NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:abs(idx/2-10)] offsetMinutes:idx*2];
+        NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:11] offsetMinutes:idx*2];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
         NSString *currentTime = [dateFormatter stringFromDate:currentDate];

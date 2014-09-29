@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *painTypeSelector;
 
+@property (weak, nonatomic) IBOutlet UIButton *btnDrawPain;
+@property (weak, nonatomic) IBOutlet UIButton *btnPhoto;
 
 @property (strong,nonatomic) NSArray* smileys;
 @property (strong,nonatomic) NSArray* numberScale;

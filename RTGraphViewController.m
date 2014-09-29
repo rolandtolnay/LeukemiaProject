@@ -55,9 +55,9 @@
         self.graph.valueLabelCount = 11;
         self.graph.startFromZero = YES;
         
-        [self.lblMouthColor setTextColor:_colorMouthPain];
-        [self.lblStomachColor setTextColor:_colorStomachPain];
-        [self.lblOtherColor setTextColor:_colorOtherPain];
+        //        [self.lblMouthColor setTextColor:_colorMouthPain];
+        //        [self.lblStomachColor setTextColor:_colorStomachPain];
+        //        [self.lblOtherColor setTextColor:_colorOtherPain];
     }
     else
     {
@@ -74,6 +74,22 @@
 
 -(BOOL) isPainGraph{
     return (self.graphType.selectedSegmentIndex==0);
+}
+
+-(BOOL) isPainMouthGraph{
+    return (self.painType.selectedSegmentIndex == 0);
+}
+
+-(BOOL) isPainStomachGraph {
+    return (self.painType.selectedSegmentIndex == 1);
+}
+
+-(BOOL) isPainOtherGraph {
+    return (self.painType.selectedSegmentIndex == 2);
+}
+
+-(BOOL) isPainAllGraph {
+    return (self.painType.selectedSegmentIndex == 3);
 }
 
 -(BOOL) isWeightGraph{
@@ -105,20 +121,64 @@
     if ([self isPainGraph])
     {
         NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-        if ([self.dataManagement isEnoughDataAtDay:selectedDay])
+        
+        if ([self isPainAllGraph])
         {
-            [self showError:NO withText:nil];
-            self.painValues = @[
-                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
-                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
-                                [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
-                                @[@1, @5, @10]
-                                ];
-            [self.graph draw];
-        }
-        else
+            if ([self.dataManagement isEnoughDataAtDay:selectedDay])
+            {
+                [self showError:NO withText:nil];
+                self.painValues = @[
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
+                                    @[@1, @5, @10]
+                                    ];
+                [self.graph draw];
+            }
+            else
+            {
+                [self showError:YES withText:@"Not enough data to show graph."];
+            }
+        } else if ([self isPainMouthGraph])
         {
-            [self showError:YES withText:@"Not enough data to show graph."];
+            if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:MouthPain])
+            {
+                [self showError:NO withText:nil];
+                self.painValues = @[
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
+                                    @[@1, @5, @10]
+                                    ];
+                [self.graph draw];
+            } else {
+                [self showError:YES withText:@"Not enough data to show graph."];
+            }
+            
+        } else if ([self isPainStomachGraph])
+        {
+            if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:StomachPain])
+            {
+                [self showError:NO withText:nil];
+                self.painValues = @[
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
+                                    @[@1, @5, @10]
+                                    ];
+                [self.graph draw];
+            } else {
+                [self showError:YES withText:@"Not enough data to show graph."];
+            }
+        } else if ([self isPainOtherGraph])
+        {
+            if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:OtherPain])
+            {
+                [self showError:NO withText:nil];
+                self.painValues = @[
+                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
+                                    @[@1, @5, @10]
+                                    ];
+                [self.graph draw];
+            } else {
+                [self showError:YES withText:@"Not enough data to show graph."];
+            }
         }
     }
     if ([self isWeightGraph])
@@ -158,14 +218,25 @@
         [self.datePicker setTitle:today forState:UIControlStateNormal];
         
         self.graph.startFromZero = YES;
-        [self refreshGraph];
         self.graph.valueLabelCount = 11;
+        
+        self.painType.hidden = NO;
+        self.lblPainType.hidden = NO;
+        [self.painType setSelectedSegmentIndex:3];
+        [self refreshGraph];
     }
     if ([self isWeightGraph])
     {
+        self.painType.hidden = YES;
+        self.lblPainType.hidden = YES;
         self.graph.startFromZero = NO;
         [self weekSelected:[[RTDataManagement singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
     }
+}
+
+-(void)painTypeChanged:(id)sender
+{
+    [self refreshGraph];
 }
 
 
@@ -191,11 +262,29 @@
 - (UIColor *)colorForLineAtIndex:(NSInteger)index {
     if ([self isPainGraph])
     {
-        id colors = @[ _colorMouthPain,
-                       _colorStomachPain,
-                       _colorOtherPain,
-                       [UIColor clearColor]];
-        return [colors objectAtIndex:index];
+        if ([self isPainAllGraph])
+        {
+            id colors = @[ _colorMouthPain,
+                           _colorStomachPain,
+                           _colorOtherPain,
+                           [UIColor clearColor]];
+            return [colors objectAtIndex:index];
+        } else if ([self isPainMouthGraph])
+        {
+            id colors = @[ _colorMouthPain,
+                           [UIColor clearColor]];
+            return [colors objectAtIndex:index];
+        } else if ([self isPainStomachGraph])
+        {
+            id colors = @[ _colorStomachPain,
+                           [UIColor clearColor]];
+            return [colors objectAtIndex:index];
+        } else if ([self isPainOtherGraph])
+        {
+            id colors = @[ _colorOtherPain,
+                           [UIColor clearColor]];
+            return [colors objectAtIndex:index];
+        }
     }
     if ([self isWeightGraph])
     {
@@ -212,7 +301,14 @@
     if ([self isPainGraph])
     {
         NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-        return [[self.dataManagement timeStampsAtDay:selectedDay] objectAtIndex:index];
+        if ([self isPainAllGraph])
+            return @"";
+        if ([self isPainMouthGraph])
+            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:MouthPain] objectAtIndex:index];
+        if ([self isPainStomachGraph])
+            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:StomachPain] objectAtIndex:index];
+        if ([self isPainOtherGraph])
+            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:OtherPain] objectAtIndex:index];
     }
     if ([self isWeightGraph])
     {
