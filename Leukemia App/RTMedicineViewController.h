@@ -26,6 +26,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *neutroText;
 @property (weak, nonatomic) IBOutlet UITextField *crpText;
 @property (weak, nonatomic) IBOutlet UITextField *natriumText;
+@property (weak, nonatomic) IBOutlet UITextField *mtxText;
+@property (weak, nonatomic) IBOutlet UITextField *m6Text;
+@property (weak, nonatomic) IBOutlet UIButton *saveDose;
+@property (weak, nonatomic) IBOutlet UIButton *editDose;
 
 @property (strong,nonatomic) LSWeekView *weekSelector;
 @property (strong,nonatomic) RTDataManagement *dataManagement;
@@ -36,5 +40,8 @@
 - (IBAction)addSample:(id)sender;
 - (IBAction)saveSample:(id)sender;
 - (IBAction)editSample:(id)sender;
+- (IBAction)saveDose:(id)sender;
+- (IBAction)editDose:(id)sender;
+
 
 @end
