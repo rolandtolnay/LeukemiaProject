@@ -2,7 +2,8 @@
   "images" : [
     {
       "idiom" : "ipad",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "camera-icon - 1x-1.png"
     },
     {
       "idiom" : "ipad",

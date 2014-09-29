@@ -21,16 +21,19 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
-@property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
-@property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
+//@property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
+//@property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
+//@property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
 
 @property (weak, nonatomic) IBOutlet UIButton *datePicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *graphType;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *painType;
+@property (weak, nonatomic) IBOutlet UILabel *lblPainType;
 
 @property (strong,nonatomic) NSDate* currentDate;
 
 -(IBAction)graphTypeChanged:(id)sender;
+-(IBAction)painTypeChanged:(id)sender;
 -(IBAction)pickDate:(id)sender;
 
 @end
