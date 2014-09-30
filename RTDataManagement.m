@@ -269,6 +269,36 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+-(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"-MM-"];
+    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    for (NSDictionary *diaryRegistration in self.diaryData)
+    {
+        NSString *timeStamp = [diaryRegistration objectForKey:@"time"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+        {
+            NSMutableDictionary *diaryData = [self diaryDataAtDate:[dateFormatter dateFromString:timeStamp]];
+            if (diaryData!=nil)
+            {
+                NSString *weight = [diaryData objectForKey:@"weight"];
+                NSString *notes = [diaryData objectForKey:@"notes"];
+                if (![weight isEqualToString:@""] || ![notes isEqualToString:@""])
+                {
+                    NSNumber *dateToBeAdded = [NSNumber numberWithInt:[[dateFormatter dateFromString:timeStamp] day]];
+                    [dates addObject:dateToBeAdded];
+                }
+            }
+        }
+    }
+    
+    return [dates copy];
+}
+
 //returns an NSMutableDictionary with all diary data if it exists in the storage
 //Date is without format
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date

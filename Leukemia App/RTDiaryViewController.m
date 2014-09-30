@@ -42,6 +42,8 @@
     self.textViewNotes.layer.cornerRadius = 10;
     [self.textViewNotes setClipsToBounds:YES];
     
+    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:[NSDate date]]];
+    
     
     [super viewDidLoad];
 }
@@ -100,6 +102,7 @@
         [self.dataManagement.diaryData addObject:dataToBeSaved];
         [self.dataManagement writeToPList];
     }
+    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
 }
 
 #pragma mark - Weight Registration
@@ -136,6 +139,7 @@
             [self.dataManagement writeToPList];
         }
     }
+    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
 }
 
 -(void)weightInputFinished:(id)sender
@@ -146,6 +150,7 @@
 #pragma mark - CalendarView Delegate
 
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
+    
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"dd"];
@@ -155,8 +160,16 @@
         }
         self.calendar.currentMonth = dateToShow;
         [self.calendar selectDate:[[dateFormat stringFromDate:dateToShow] integerValue]];
-        
     }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM"];
+    
+    NSString *monthString = [@(month) stringValue];
+    
+    NSDate *newDate = [dateFormatter dateFromString:monthString];
+    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:newDate]];
+
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
@@ -179,6 +192,8 @@
     [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
+    
+//    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:date]];
 }
 
 -(void)setDateLabels: (NSDate *)date{

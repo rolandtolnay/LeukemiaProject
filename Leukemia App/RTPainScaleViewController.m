@@ -52,6 +52,11 @@
     }
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setButtonImageHighlight];
+}
+
 #pragma mark - #pragma mark UIImagePickerControllerDelegate
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -166,7 +171,7 @@
             self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
         }
-    }
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 }
 
 //Method that saves images and data to pList

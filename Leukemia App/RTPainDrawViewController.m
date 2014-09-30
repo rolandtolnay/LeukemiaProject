@@ -41,7 +41,7 @@
     self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
     self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
     [self.painDescriptionTxtField setText:self.redDescription];
-
+    
     [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
     
     [super viewDidLoad];
@@ -49,16 +49,30 @@
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation))
+    [self layoutForOrientation:toInterfaceOrientation];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self layoutForOrientation:self.interfaceOrientation];
+}
+
+-(void) layoutForOrientation:(UIInterfaceOrientation) orientation
+{
+    if (UIInterfaceOrientationIsLandscape(orientation))
     {
         self.lblBodyParts.hidden = YES;
         self.lblInstructions.hidden = YES;
+        self.painDescriptionTxtField.hidden = YES;
+        self.btnPreview.hidden = YES;
     } else {
         self.lblBodyParts.hidden = NO;
         self.lblInstructions.hidden = NO;
+        self.painDescriptionTxtField.hidden = NO;
+        self.btnPreview.hidden = NO;
     }
+    
 }
-
 
 //Controls drawing part
 
@@ -74,21 +88,21 @@
     self.mouseWiped = YES;
     UITouch *touch = [touches anyObject];
     if([[touch view]isEqual:self.drawingView]){
-    CGPoint currentPoint = [touch locationInView:self.drawingView];
-    UIGraphicsBeginImageContext(self.drawingView.bounds.size);
-    [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height)];
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
-    CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, 1.0);
-    CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
-    
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
-    self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
-    [self.drawImage setAlpha:self.opacity];
-    UIGraphicsEndImageContext();
-    self.lastPoint = currentPoint;
+        CGPoint currentPoint = [touch locationInView:self.drawingView];
+        UIGraphicsBeginImageContext(self.drawingView.bounds.size);
+        [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height)];
+        CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.lastPoint.x, self.lastPoint.y);
+        CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), currentPoint.x, currentPoint.y);
+        CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
+        CGContextSetLineWidth(UIGraphicsGetCurrentContext(), self.brush);
+        CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), self.red, self.green, self.blue, 1.0);
+        CGContextSetBlendMode(UIGraphicsGetCurrentContext(), kCGBlendModeNormal);
+        
+        CGContextStrokePath(UIGraphicsGetCurrentContext());
+        self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
+        [self.drawImage setAlpha:self.opacity];
+        UIGraphicsEndImageContext();
+        self.lastPoint = currentPoint;
     }
 }
 
@@ -107,7 +121,7 @@
         UIGraphicsEndImageContext();
     }
     UIGraphicsBeginImageContext(self.mainImage.frame.size);
-//     UIGraphicsBeginImageContext(self.drawImage.frame.size);
+    //     UIGraphicsBeginImageContext(self.drawImage.frame.size);
     [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
     self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
