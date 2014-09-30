@@ -40,6 +40,13 @@ static RTDataManagement *dataMangement = nil;
     return _bloodSampleData;
 }
 
+-(NSMutableDictionary *)medicineData{
+    if (!_medicineData) {
+        _medicineData = [[NSMutableDictionary alloc]init];
+    }
+    return  _medicineData;
+}
+
 //Singleton method
 
 + (RTDataManagement *)singleton {
@@ -92,6 +99,7 @@ static RTDataManagement *dataMangement = nil;
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
     [pList setObject:self.bloodSampleData forKey:@"bloodSampleData"];
+    [pList setObject:self.medicineData forKey:@"medicineData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -122,6 +130,7 @@ static RTDataManagement *dataMangement = nil;
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
     self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
+    self.medicineData = [pList objectForKey:@"medicineData"];
 }
 
 #pragma mark - Service methods

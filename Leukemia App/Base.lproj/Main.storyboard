@@ -698,7 +698,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgY-9i-LVJ" userLabel="noSampleLabel">
-                                        <rect key="frame" x="8" y="77" width="752" height="65"/>
+                                        <rect key="frame" x="0.0" y="50" width="768" height="65"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -811,8 +811,80 @@
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Mv-IH-ZNG" userLabel="Medicine View">
                                 <rect key="frame" x="-5" y="463" width="778" height="512"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kemo behandling:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldu-Aq-VH3">
+                                        <rect key="frame" x="18" y="25" width="140" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tablet MTX" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTc-tx-p2J">
+                                        <rect key="frame" x="98" y="145" width="143" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tablet M-6" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIY-Ka-tMz">
+                                        <rect key="frame" x="98" y="193" width="143" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ufh-zQ-F9d">
+                                        <rect key="frame" x="249" y="142" width="271" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d84-AK-1hY">
+                                        <rect key="frame" x="249" y="189" width="271" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mG/uge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uS6-oc-kdo">
+                                        <rect key="frame" x="534" y="145" width="62" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mG/dgl" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-fh-9wa">
+                                        <rect key="frame" x="534" y="193" width="63" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*Husk pause med tbl. MTX samme uge som Høj-dosis MTX" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPG-8G-zmE">
+                                        <rect key="frame" x="159" y="245" width="461" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m8-JX-UF4">
+                                        <rect key="frame" x="347" y="305" width="74" height="30"/>
+                                        <state key="normal" title="Save Dose">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveDose:" destination="9J2-l6-Zlt" eventType="touchUpInside" id="W4C-5j-ArH"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZrC-1J-DYw">
+                                        <rect key="frame" x="347" y="305" width="74" height="30"/>
+                                        <state key="normal" title="Edit Dose">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editDose:" destination="9J2-l6-Zlt" eventType="touchUpInside" id="R0J-Jh-Eec"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Blodprøver:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Uy-wY-RDo">
+                                <rect key="frame" x="18" y="173" width="90" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -822,12 +894,16 @@
                         <outlet property="addSampleButton" destination="oIn-Ri-zrc" id="XX0-pr-VzC"/>
                         <outlet property="bloodSampleView" destination="5je-6i-q9i" id="Mr6-9O-tVL"/>
                         <outlet property="crpText" destination="BE6-3K-W9E" id="kjY-Rd-J0k"/>
+                        <outlet property="editDose" destination="ZrC-1J-DYw" id="xhM-jd-x79"/>
                         <outlet property="editSampleButton" destination="8p8-gW-4a3" id="s4U-m8-oMT"/>
                         <outlet property="hemoText" destination="6l4-3h-7Vb" id="PW8-Xa-6md"/>
+                        <outlet property="m6Text" destination="d84-AK-1hY" id="bpw-lg-G6a"/>
                         <outlet property="medicineView" destination="8Mv-IH-ZNG" id="BdX-UR-gPM"/>
+                        <outlet property="mtxText" destination="ufh-zQ-F9d" id="lMS-iJ-4Te"/>
                         <outlet property="natriumText" destination="JBq-e3-Rmb" id="MVj-V2-0rR"/>
                         <outlet property="neutroText" destination="50s-zS-r1s" id="FDU-ex-2o4"/>
                         <outlet property="noSampleLabel" destination="LgY-9i-LVJ" id="i9o-4a-rub"/>
+                        <outlet property="saveDose" destination="0m8-JX-UF4" id="amL-0a-TLh"/>
                         <outlet property="saveSampleButton" destination="VnS-aj-HqJ" id="0nU-Nu-cET"/>
                         <outlet property="thromboText" destination="yrD-rL-6hB" id="mex-LY-FkW"/>
                         <outlet property="weekSelectorView" destination="c9D-Zx-Syv" id="nff-mi-aQx"/>
