@@ -44,6 +44,7 @@
     
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:[NSDate date]]];
     
+     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [super viewDidLoad];
 }
