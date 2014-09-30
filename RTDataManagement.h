@@ -41,8 +41,11 @@
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
 -(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType;
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
--(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
 -(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;
+
+//diary
+-(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate;
+-(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
