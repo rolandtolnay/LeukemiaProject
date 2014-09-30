@@ -10,6 +10,8 @@
 
 @interface RTMedicineViewController ()
 
+@property UIPopoverController *popover;
+
 @end
 
 @implementation RTMedicineViewController
@@ -192,4 +194,21 @@
     }
     [super touchesBegan:touches withEvent:event];
 }
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"selectKemo"]){
+        RTSelectKemoTableViewController *controller = [segue destinationViewController];
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+        controller.delegate = self;
+    }
+}
+
+-(void)didSelectedRowInPopover:(NSString *)kemoType{
+    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    [self.popover dismissPopoverAnimated:YES];
+    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
+    self.highDoseKemoButton.titleLabel.text = @"Edit high-dose kemo";
+}
+
 @end

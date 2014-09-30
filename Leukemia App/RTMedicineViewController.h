@@ -10,8 +10,9 @@
 #import "LSWeekView.h"
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
+#import "RTSelectKemoTableViewController.h"
 
-@interface RTMedicineViewController : UIViewController
+@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate>
 
 @property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
 @property (weak, nonatomic) IBOutlet UIView *bloodSampleView;
@@ -20,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *addSampleButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveSampleButton;
 @property (weak, nonatomic) IBOutlet UIButton *editSampleButton;
+@property (weak, nonatomic) IBOutlet UILabel *highDoseKemoLabel;
+@property (weak, nonatomic) IBOutlet UIButton *highDoseKemoButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *hemoText;
 @property (weak, nonatomic) IBOutlet UITextField *thromboText;
@@ -34,6 +37,7 @@
 @property (strong,nonatomic) LSWeekView *weekSelector;
 @property (strong,nonatomic) RTDataManagement *dataManagement;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSString *kemoTypePicked;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *bloodSampleLabels;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
 
