@@ -156,7 +156,6 @@
 }
 
 -(void)initMedicineView{
-    NSLog(@"Count: %d",self.dataManagement.medicineData.count);
     if (self.dataManagement.medicineData.count == 0) {
         self.mtxText.enabled = YES;
         self.m6Text.enabled = YES;

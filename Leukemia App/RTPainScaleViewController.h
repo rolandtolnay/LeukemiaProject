@@ -41,6 +41,7 @@
 - (IBAction)submitAndSaveData:(id)sender;
 - (IBAction)painTypeSelected:(id)sender;
 -(void)initImages;
+-(void)setButtonImageHighlight;
 
 
 @end
