@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="7F9-mV-PDM">
+            <objects>
+                <viewController id="64Z-Ed-Ece" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xjn-mM-wGh"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZUH-q0-nnE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="htR-Lw-fze">
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pain Information" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Yg-2dN">
+                                <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="700" height="800"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AWp-Ld-1af" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5835" y="-774"/>
+        </scene>
         <!--Brush Size View Controller-->
         <scene sceneID="sGd-jQ-IDT">
             <objects>
@@ -379,7 +404,22 @@
                             <constraint firstAttribute="centerX" secondItem="wzf-Dq-3Ox" secondAttribute="centerX" constant="-0.5" id="xcK-MM-IkQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Pain" id="NQm-VK-eLw"/>
+                    <navigationItem key="navigationItem" title="Pain" id="NQm-VK-eLw">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="2ae-m3-aUw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ygH-D7-E7b">
+                                <rect key="frame" x="578" y="7" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="64Z-Ed-Ece" kind="popover" popoverAnchorView="ygH-D7-E7b" id="voK-23-oPz">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnDrawPain" destination="lBN-Wo-eDZ" id="ffA-3T-gqu"/>
                         <outlet property="btnPhoto" destination="7aq-F8-Dxb" id="wmE-SQ-b9r"/>
@@ -1347,7 +1387,7 @@
         <scene sceneID="Lwd-UC-bVE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1hP-Ov-T1q" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiary" id="bvO-7g-SPk"/>
+                    <tabBarItem key="tabBarItem" title="Diary" image="TabBarDiaryUpdated" id="bvO-7g-SPk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="R0x-3P-LA2">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -1366,7 +1406,7 @@
         <scene sceneID="phY-rB-gY0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eFF-gE-LwW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Medicine" image="TabBarMedicine" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Medicine" image="TabBarMedicineUpdated" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IJI-Jg-Y8V">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
@@ -1383,9 +1423,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabBarDiary" width="32" height="32"/>
+        <image name="Pain Information" width="705" height="807"/>
+        <image name="TabBarDiaryUpdated" width="32" height="32"/>
         <image name="TabBarGraph" width="32" height="32"/>
-        <image name="TabBarMedicine" width="32" height="32"/>
+        <image name="TabBarMedicineUpdated" width="32" height="32"/>
         <image name="TabBarPain" width="32" height="32"/>
         <image name="btngreen" width="300" height="300"/>
         <image name="btnyellow" width="300" height="300"/>
