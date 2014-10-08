@@ -178,47 +178,33 @@
 
 //Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
-    
     if(self.painTypeSelector.selectedSegmentIndex != -1){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
         
-        //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
-        if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
-                                                            message:@"For a more precise diagnostic consider using the Draw and Photo features."
-                                                           delegate:self
-                                                  cancelButtonTitle:@"No thank you, just save"
-                                                  otherButtonTitles:@"Draw",@"Photo",nil];
-            [alert show];
-            alert.tag = 100;
-        }
-        else
-        {
-            NSDateFormatter *photoTimeFormatter = [[NSDateFormatter alloc] init];
-            [photoTimeFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-            NSString *photoTime = [photoTimeFormatter stringFromDate:currentDate];
-            if (self.drawingToBeSaved)
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+
+        NSString *photoTime = [dateFormatter stringFromDate:currentDate];
+        
+        if (self.drawingToBeSaved)
             {
                 drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
                 NSLog(@"%@",drawingImagePath);
                 [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
             }
-            if (self.cameraImageToBeSaved)
+        if (self.cameraImageToBeSaved)
             {
                 photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
                 NSLog(@"%@",photoPath);
                 [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
             }
             [self saveToPlist:drawingImagePath :photoPath :currentTime];
-            NSLog(@"%@",self.dataManagement.painData);
-        }
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
@@ -366,7 +352,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [toast dismissWithClickedButtonIndex:0 animated:YES];
     });
-    
     [self resetView];
 }
 @end
