@@ -34,6 +34,7 @@
 		A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */; };
 		A695400B19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */; };
 		A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */; };
+		A695673F19E6A33500C69FA9 /* RTSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695673E19E6A33500C69FA9 /* RTSwipeViewController.m */; };
 		A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */; };
 		A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
@@ -94,6 +95,8 @@
 		A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTGraphWeekPickerViewController.m; path = "Leukemia App/RTGraphWeekPickerViewController.m"; sourceTree = "<group>"; };
 		A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDiaryDetailViewController.h; path = "Leukemia App/RTDiaryDetailViewController.h"; sourceTree = "<group>"; };
 		A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryDetailViewController.m; path = "Leukemia App/RTDiaryDetailViewController.m"; sourceTree = "<group>"; };
+		A695673D19E6A33500C69FA9 /* RTSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTSwipeViewController.h; path = ../RTSwipeViewController.h; sourceTree = "<group>"; };
+		A695673E19E6A33500C69FA9 /* RTSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTSwipeViewController.m; path = ../RTSwipeViewController.m; sourceTree = "<group>"; };
 		A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConstants.h; sourceTree = "<group>"; };
 		A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConstants.m; sourceTree = "<group>"; };
 		A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphCalendarViewController.h; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		A0957E2919A75B1F0058EF12 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A695673D19E6A33500C69FA9 /* RTSwipeViewController.h */,
+				A695673E19E6A33500C69FA9 /* RTSwipeViewController.m */,
 				A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */,
 				A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */,
 				A0957E2519A75AF30058EF12 /* RTDataManagement.h */,
@@ -446,6 +451,7 @@
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
+				A695673F19E6A33500C69FA9 /* RTSwipeViewController.m in Sources */,
 				A04F2C0919AF201D00B8DCEE /* RTSettingsViewController.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,

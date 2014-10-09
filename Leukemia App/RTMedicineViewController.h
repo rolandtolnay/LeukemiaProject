@@ -11,6 +11,7 @@
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTSelectKemoTableViewController.h"
+#import "RTSwipeViewController.h"
 
 @interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate, UITextFieldDelegate>
 
