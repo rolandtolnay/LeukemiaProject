@@ -120,34 +120,36 @@
     NSNumber *painNumber = self.numberScale[index];
     self.lblPainNumber.text = [painNumber stringValue];
     
-    if ([painNumber intValue] == 0)
-    {
-        self.lblPainDescription.text = self.painDescription[0];
-        if(self.dataManagement.painScaleBieri){
-            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
-        }
-        else{
-            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-        }
-    }
-    else if ([painNumber intValue] % 2 == 0)
-    {
-        painNumber = @([painNumber intValue]-1);
-    }
+    [self initImages];
     
-    if ([painNumber intValue] % 2 == 1)
-    {
-        int smileyIndex = ([painNumber intValue]+1)/2;
-        self.lblPainDescription.text = self.painDescription[smileyIndex];
-        NSString *imageName;
-        if(self.dataManagement.painScaleBieri){
-            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
-        }
-        else{
-            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
-        }
-        self.imageSmiley.image = [UIImage imageNamed:imageName];
-    }
+//    if ([painNumber intValue] == 0)
+//    {
+//        self.lblPainDescription.text = self.painDescription[0];
+//        if(self.dataManagement.painScaleBieri){
+//            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+//        }
+//        else{
+//            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+//        }
+//    }
+//    else if ([painNumber intValue] % 2 == 0)
+//    {
+//        painNumber = @([painNumber intValue]-1);
+//    }
+//    
+//    if ([painNumber intValue] % 2 == 1)
+//    {
+//        int smileyIndex = ([painNumber intValue]+1)/2;
+//        self.lblPainDescription.text = self.painDescription[smileyIndex];
+//        NSString *imageName;
+//        if(self.dataManagement.painScaleBieri){
+//            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
+//        }
+//        else{
+//            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+//        }
+//        self.imageSmiley.image = [UIImage imageNamed:imageName];
+//    }
 }
 
 //Saving and reading images
@@ -176,47 +178,33 @@
 
 //Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
-    
     if(self.painTypeSelector.selectedSegmentIndex != -1){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
         
-        //Checks if there is a drawing/photo to be saved, and if there is, creates drawing/photo path
-        if (!self.drawingToBeSaved && !self.cameraImageToBeSaved)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Add extra features"
-                                                            message:@"For a more precise diagnostic consider using the Draw and Photo features."
-                                                           delegate:self
-                                                  cancelButtonTitle:@"No thank you, just save"
-                                                  otherButtonTitles:@"Draw",@"Photo",nil];
-            [alert show];
-            alert.tag = 100;
-        }
-        else
-        {
-            NSDateFormatter *photoTimeFormatter = [[NSDateFormatter alloc] init];
-            [photoTimeFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-            NSString *photoTime = [photoTimeFormatter stringFromDate:currentDate];
-            if (self.drawingToBeSaved)
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+
+        NSString *photoTime = [dateFormatter stringFromDate:currentDate];
+        
+        if (self.drawingToBeSaved)
             {
                 drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
                 NSLog(@"%@",drawingImagePath);
                 [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
             }
-            if (self.cameraImageToBeSaved)
+        if (self.cameraImageToBeSaved)
             {
                 photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
                 NSLog(@"%@",photoPath);
                 [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
             }
             [self saveToPlist:drawingImagePath :photoPath :currentTime];
-            NSLog(@"%@",self.dataManagement.painData);
-        }
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
@@ -268,16 +256,54 @@
     [self initImages];
 }
 
+//-(void)initImages{
+//    if(self.dataManagement.painScaleBieri){
+//        self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+//        [self.painTypeSelector setTintColor:[UIColor blackColor]];
+//    }
+//    else{
+//        self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+//        [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+//    }
+//    self.lblPainDescription.text = self.painDescription[0];
+//    [self setButtonImageHighlight];
+//}
+
 -(void)initImages{
-    if(self.dataManagement.painScaleBieri){
-        self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
-        [self.painTypeSelector setTintColor:[UIColor blackColor]];
+    NSLog(@"initImages kaldt");
+    int painNumber = (int)self.sliderPainNumber.value;
+    if (painNumber == 0)
+    {
+        self.lblPainDescription.text = self.painDescription[0];
+        if(self.dataManagement.painScaleBieri){
+            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+            [self.painTypeSelector setTintColor:[UIColor blackColor]];
+        }
+        else{
+            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+            [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+        }
     }
-    else{
-        self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-        [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+    else if (painNumber % 2 == 0)
+    {
+        painNumber = painNumber-1;
     }
-    self.lblPainDescription.text = self.painDescription[0];
+    
+    if (painNumber % 2 == 1)
+    {
+        int smileyIndex = (painNumber+1)/2;
+        self.lblPainDescription.text = self.painDescription[smileyIndex];
+        NSString *imageName;
+        if(self.dataManagement.painScaleBieri){
+            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
+            [self.painTypeSelector setTintColor:[UIColor blackColor]];
+        }
+        else{
+            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+            [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+        }
+        self.imageSmiley.image = [UIImage imageNamed:imageName];
+    }
     [self setButtonImageHighlight];
 }
 
@@ -326,7 +352,6 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [toast dismissWithClickedButtonIndex:0 animated:YES];
     });
-    
     [self resetView];
 }
 @end

@@ -28,9 +28,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *thromboText;
 @property (weak, nonatomic) IBOutlet UITextField *neutroText;
 @property (weak, nonatomic) IBOutlet UITextField *crpText;
-@property (weak, nonatomic) IBOutlet UITextField *natriumText;
+@property (weak, nonatomic) IBOutlet UITextField *leukocytterText;
 @property (weak, nonatomic) IBOutlet UITextField *mtxText;
 @property (weak, nonatomic) IBOutlet UITextField *m6Text;
+@property (weak, nonatomic) IBOutlet UITextField *alatText;
+@property (weak, nonatomic) IBOutlet UITextField *otherText;
 @property (weak, nonatomic) IBOutlet UIButton *saveDose;
 @property (weak, nonatomic) IBOutlet UIButton *editDose;
 
