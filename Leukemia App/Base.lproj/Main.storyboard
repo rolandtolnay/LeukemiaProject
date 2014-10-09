@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -30,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWp-Ld-1af" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5835" y="-774"/>
+            <point key="canvasLocation" x="5552" y="-462"/>
         </scene>
         <!--Brush Size View Controller-->
         <scene sceneID="sGd-jQ-IDT">
@@ -133,26 +132,26 @@
                                     <action selector="colorPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="auA-Jx-Rkz"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" text="Test text to see placement" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fzK-sd-mYT" userLabel="Button description">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fzK-sd-mYT" userLabel="Button description">
                                 <rect key="frame" x="227" y="923" width="448" height="34"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PcI-3f-E7R" userLabel="DrawingView">
-                                <rect key="frame" x="135" y="82" width="610" height="820"/>
+                                <rect key="frame" x="135" y="75" width="610" height="838"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painDrawBody" translatesAutoresizingMaskIntoConstraints="NO" id="U8c-qD-h7h" userLabel="Drawing image">
-                                        <rect key="frame" x="0.0" y="0.0" width="610" height="820"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painDrawBody" translatesAutoresizingMaskIntoConstraints="NO" id="gz9-vQ-DiO" userLabel="Main image">
-                                        <rect key="frame" x="0.0" y="0.0" width="610" height="820"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="610" height="838"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painDrawBody" translatesAutoresizingMaskIntoConstraints="NO" id="U8c-qD-h7h" userLabel="Drawing image">
+                                        <rect key="frame" x="0.0" y="0.0" width="610" height="838"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="820" id="AQ9-fG-Fzy"/>
-                                    <constraint firstAttribute="width" secondItem="PcI-3f-E7R" secondAttribute="height" multiplier="61:82" id="Zfz-FB-UdI"/>
+                                    <constraint firstAttribute="height" constant="838" id="AQ9-fG-Fzy"/>
+                                    <constraint firstAttribute="width" secondItem="PcI-3f-E7R" secondAttribute="height" multiplier="61:82" constant="-13.390243902439011" id="Zfz-FB-UdI"/>
                                     <constraint firstAttribute="width" constant="610" id="ogC-Ts-6jW"/>
                                 </constraints>
                             </view>
@@ -191,13 +190,13 @@
                             <constraint firstItem="b8b-IJ-hdl" firstAttribute="top" secondItem="hje-pP-Ar1" secondAttribute="bottom" constant="8" id="Ly7-Pn-hp5"/>
                             <constraint firstItem="gkc-d1-fde" firstAttribute="top" secondItem="b8b-IJ-hdl" secondAttribute="bottom" constant="8" id="N8c-De-fcN"/>
                             <constraint firstAttribute="bottom" secondItem="ejl-5V-TJF" secondAttribute="bottom" constant="4" id="OJ0-OW-47X"/>
-                            <constraint firstItem="PcI-3f-E7R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="18" id="esH-fF-YGt"/>
+                            <constraint firstItem="PcI-3f-E7R" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="11" id="esH-fF-YGt"/>
                             <constraint firstItem="ejl-5V-TJF" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="ohu-8d-rMV"/>
-                            <constraint firstItem="PcI-3f-E7R" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" priority="950" constant="18" id="qUf-Jf-KBN"/>
+                            <constraint firstItem="PcI-3f-E7R" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" priority="950" constant="11" id="qUf-Jf-KBN"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PcI-3f-E7R" secondAttribute="bottom" constant="28" id="t6m-Vp-lZh"/>
                             <constraint firstItem="hje-pP-Ar1" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="8" id="xGb-sY-S2S"/>
                             <constraint firstItem="b8b-IJ-hdl" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="8" id="yRU-O3-jqj"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="PcI-3f-E7R" secondAttribute="bottom" priority="800" constant="73" id="zOG-kq-s1F"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="PcI-3f-E7R" secondAttribute="bottom" priority="800" constant="62" id="zOG-kq-s1F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pain Illustration" id="l26-Ky-1Ae">
@@ -399,12 +398,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Pain" id="NQm-VK-eLw">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="2ae-m3-aUw">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ygH-D7-E7b">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ygH-D7-E7b">
                                 <rect key="frame" x="578" y="7" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                                 <connections>
                                     <segue destination="64Z-Ed-Ece" kind="popover" popoverAnchorView="ygH-D7-E7b" id="voK-23-oPz">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -1467,7 +1463,7 @@
         <image name="btnyellow" width="300" height="300"/>
         <image name="camera-icon" width="256" height="256"/>
         <image name="humanBodyIcon" width="42" height="91"/>
-        <image name="painDrawBody" width="437" height="600"/>
+        <image name="painDrawBody" width="610" height="838"/>
         <image name="redbtn" width="300" height="300"/>
         <image name="settings-25" width="25" height="25"/>
         <image name="smileyA" width="338" height="338"/>

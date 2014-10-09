@@ -22,7 +22,7 @@
     self.green = 0.0/255.0;
     self.blue = 0.0/255.0;
     self.brush = 15.0;
-    self.opacity = 0.7;
+    self.opacity = 0.0;
     
     [self.greenBtn setImage:[UIImage imageNamed:@"btngreen.png"] forState:UIControlStateNormal];
     [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateSelected];
@@ -35,44 +35,50 @@
     [self.redBtn setImage:[UIImage imageNamed:@"redbtn.png"] forState:UIControlStateNormal];
     [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateSelected];
     [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateHighlighted];
-    [self.redBtn setSelected:YES];
+//    [self.redBtn setSelected:YES];
     
     self.redDescription = @"Rød - Det gør så ondt at det er uudholdeligt";
     self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
     self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
-    [self.painDescriptionTxtField setText:self.redDescription];
-    
-    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
+//    [self.painDescriptionTxtField setText:self.redDescription];
+//    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
+
     
     [super viewDidLoad];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [self layoutForOrientation:toInterfaceOrientation];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [self layoutForOrientation:self.interfaceOrientation];
-}
-
--(void) layoutForOrientation:(UIInterfaceOrientation) orientation
-{
-    if (UIInterfaceOrientationIsLandscape(orientation))
-    {
-        self.lblBodyParts.hidden = YES;
-        self.lblInstructions.hidden = YES;
-        self.painDescriptionTxtField.hidden = YES;
-        self.btnPreview.hidden = YES;
-    } else {
-        self.lblBodyParts.hidden = NO;
-        self.lblInstructions.hidden = NO;
-        self.painDescriptionTxtField.hidden = NO;
-        self.btnPreview.hidden = NO;
-    }
-    
-}
+//---
+//
+// Code regarding orientation layout
+//
+//---
+//
+//-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+//{
+//    [self layoutForOrientation:toInterfaceOrientation];
+//}
+//
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [self layoutForOrientation:self.interfaceOrientation];
+//}
+//
+//-(void) layoutForOrientation:(UIInterfaceOrientation) orientation
+//{
+//    if (UIInterfaceOrientationIsLandscape(orientation))
+//    {
+//        self.lblBodyParts.hidden = YES;
+//        self.lblInstructions.hidden = YES;
+//        self.painDescriptionTxtField.hidden = YES;
+//        self.btnPreview.hidden = YES;
+//    } else {
+//        self.lblBodyParts.hidden = NO;
+//        self.lblInstructions.hidden = NO;
+//        self.painDescriptionTxtField.hidden = NO;
+//        self.btnPreview.hidden = NO;
+//    }
+//    
+//}
 
 //Controls drawing part
 
@@ -134,6 +140,8 @@
     UIButton *pressedButton = (UIButton*)sender;
     [pressedButton setSelected:YES];
     [pressedButton setHighlighted:YES];
+    if (self.opacity == 0.0)
+        self.opacity = 0.7;
     switch (pressedButton.tag) {
         case 0:
             self.red = 255.0/255.0;
@@ -166,14 +174,19 @@
 }
 
 - (IBAction)resetDrawing:(id)sender {
-    UIImage *painBodyImage = [UIImage imageNamed:@"painBody.png"];
+    UIImage *painBodyImage = [UIImage imageNamed:@"painDrawBody.png"];
     self.red = 255.0/255.0;
     self.green = 0.0/255.0;
     self.blue = 0.0/255.0;
     self.mainImage.image = painBodyImage;
     self.drawImage.image = painBodyImage;
     self.brush = 15.0;
-    self.opacity = 0.7;
+    self.opacity = 0.0;
+    [self.redBtn setSelected:NO];
+    [self.yelBtn setSelected:NO];
+    [self.greenBtn setSelected:NO];
+    [self.painDescriptionTxtField setText:@""];
+    [self.btnPreview setImage:[UIImage alloc]];
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
@@ -188,7 +201,7 @@
     }
     
     if (sender!=self.btnSaveImage)
-        self.drawImage.image = nil;
+        self.mainImage.image = nil;
 }
 
 -(IBAction)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController

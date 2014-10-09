@@ -11,8 +11,9 @@
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTSelectKemoTableViewController.h"
+#import "RTSwipeViewController.h"
 
-@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate>
+@interface RTMedicineViewController : RTSwipeViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate>
 
 @property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
 @property (weak, nonatomic) IBOutlet UIView *bloodSampleView;
