@@ -35,6 +35,9 @@
 		A695400B19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */; };
 		A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */; };
 		A695673F19E6A33500C69FA9 /* RTSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695673E19E6A33500C69FA9 /* RTSwipeViewController.m */; };
+		A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674119E6AA4C00C69FA9 /* RTTabAnimator.m */; };
+		A695674619E6AD6700C69FA9 /* RTTabInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674519E6AD6700C69FA9 /* RTTabInteractiveTransition.m */; };
+		A695674919E6B1B300C69FA9 /* RTRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */; };
 		A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */; };
 		A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
@@ -97,6 +100,12 @@
 		A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDiaryDetailViewController.m; path = "Leukemia App/RTDiaryDetailViewController.m"; sourceTree = "<group>"; };
 		A695673D19E6A33500C69FA9 /* RTSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTSwipeViewController.h; path = ../RTSwipeViewController.h; sourceTree = "<group>"; };
 		A695673E19E6A33500C69FA9 /* RTSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTSwipeViewController.m; path = ../RTSwipeViewController.m; sourceTree = "<group>"; };
+		A695674019E6AA4C00C69FA9 /* RTTabAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTabAnimator.h; sourceTree = "<group>"; };
+		A695674119E6AA4C00C69FA9 /* RTTabAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTabAnimator.m; sourceTree = "<group>"; };
+		A695674419E6AD6700C69FA9 /* RTTabInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTTabInteractiveTransition.h; sourceTree = "<group>"; };
+		A695674519E6AD6700C69FA9 /* RTTabInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTabInteractiveTransition.m; sourceTree = "<group>"; };
+		A695674719E6B1B300C69FA9 /* RTRootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTRootTabBarController.h; path = "Leukemia App/RTRootTabBarController.h"; sourceTree = "<group>"; };
+		A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTRootTabBarController.m; path = "Leukemia App/RTRootTabBarController.m"; sourceTree = "<group>"; };
 		A6A3D4B119BF1DEC003DEF56 /* RTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTConstants.h; sourceTree = "<group>"; };
 		A6A3D4B219BF1DEC003DEF56 /* RTConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTConstants.m; sourceTree = "<group>"; };
 		A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphCalendarViewController.h; sourceTree = "<group>"; };
@@ -134,6 +143,8 @@
 		A0957E2819A75B010058EF12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A695674719E6B1B300C69FA9 /* RTRootTabBarController.h */,
+				A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */,
 				A695401019D19C5C00AB3E64 /* Medicine */,
 				A695400F19D19C4800AB3E64 /* Settings */,
 				A695400E19D19C3300AB3E64 /* Pain */,
@@ -202,6 +213,7 @@
 		A6924E8F199E28C5009D7220 /* Leukemia App */ = {
 			isa = PBXGroup;
 			children = (
+				A695674319E6AD0F00C69FA9 /* Animators */,
 				A0957E2919A75B1F0058EF12 /* Model */,
 				A0957E2819A75B010058EF12 /* Controllers */,
 				A09996F619A33EE500EF39A5 /* Graphics */,
@@ -300,6 +312,17 @@
 				A095897819DAAA3E006BE617 /* RTSelectKemoTableViewController.m */,
 			);
 			name = Medicine;
+			sourceTree = "<group>";
+		};
+		A695674319E6AD0F00C69FA9 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				A695674019E6AA4C00C69FA9 /* RTTabAnimator.h */,
+				A695674119E6AA4C00C69FA9 /* RTTabAnimator.m */,
+				A695674419E6AD6700C69FA9 /* RTTabInteractiveTransition.h */,
+				A695674519E6AD6700C69FA9 /* RTTabInteractiveTransition.m */,
+			);
+			name = Animators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,6 +462,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A09996F919A3500300EF39A5 /* RTBrushSizeViewController.m in Sources */,
+				A695674919E6B1B300C69FA9 /* RTRootTabBarController.m in Sources */,
+				A695674619E6AD6700C69FA9 /* RTTabInteractiveTransition.m in Sources */,
 				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
 				A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */,
 				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
@@ -456,6 +481,7 @@
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 				A089036A19AF41EB002BCD8D /* RTSettingItem.m in Sources */,
+				A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
