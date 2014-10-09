@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [[UIView alloc] init] ;
-    self.kemoTypes = @[@"Methotrexat",@"Asparginase"];
+    self.kemoTypes = @[@"Højdosis-Methotrexat",@"Asparaginase", @"Dexametason",@"Prednisolon", @"Doxorubicin", @"Vincristin", @"Cyclofosfamid"];
 }
 
 - (void)didReceiveMemoryWarning {

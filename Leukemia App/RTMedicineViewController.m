@@ -33,11 +33,11 @@
 
     self.weekSelector.selectedDate = [NSDate date];
     
-    [self checkDate];
-    
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
+    [self checkDate];
+
     __weak typeof(self) weakSelf = self;
     self.weekSelector.didChangeSelectedDateBlock = ^(NSDate *selectedDate)
     {
@@ -65,7 +65,9 @@
     [dataToBeSaved setObject:self.thromboText.text forKey:@"thrombo"];
     [dataToBeSaved setObject:self.neutroText.text forKey:@"neutro"];
     [dataToBeSaved setObject:self.crpText.text forKey:@"crp"];
-    [dataToBeSaved setObject:self.natriumText.text forKey:@"natrium"];
+    [dataToBeSaved setObject:self.leukocytterText.text forKey:@"leukocytter"];
+    [dataToBeSaved setObject:self.alatText.text forKey:@"alat"];
+    [dataToBeSaved setObject:self.otherText.text forKey:@"other"];
     [self.dataManagement.bloodSampleData setObject:dataToBeSaved forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
     [self.dataManagement writeToPList];
 }
@@ -130,7 +132,9 @@
     self.thromboText.text = [tempDict objectForKey:@"thrombo"];
     self.neutroText.text = [tempDict objectForKey:@"neutro"];
     self.crpText.text = [tempDict objectForKey:@"crp"];
-    self.natriumText.text = [tempDict objectForKey:@"natrium"];
+    self.leukocytterText.text = [tempDict objectForKey:@"leukocytter"];
+    self.alatText.text = [tempDict objectForKey:@"alat"];
+    self.otherText.text = [tempDict objectForKey:@"other"];
     self.addSampleButton.hidden = YES;
     self.saveSampleButton.hidden = YES;
     self.editSampleButton.hidden = NO;
@@ -182,8 +186,14 @@
     else if ([self.crpText isFirstResponder] && [touch view] != self.crpText) {
         [self.crpText resignFirstResponder];
     }
-    else if ([self.natriumText isFirstResponder] && [touch view] != self.natriumText) {
-        [self.natriumText resignFirstResponder];
+    else if ([self.leukocytterText isFirstResponder] && [touch view] != self.leukocytterText) {
+        [self.leukocytterText resignFirstResponder];
+    }
+    else if ([self.alatText isFirstResponder] && [touch view] != self.alatText) {
+        [self.alatText resignFirstResponder];
+    }
+    else if ([self.otherText isFirstResponder] && [touch view] != self.otherText) {
+        [self.otherText resignFirstResponder];
     }
     else if ([self.mtxText isFirstResponder] && [touch view] != self.mtxText) {
         [self.mtxText resignFirstResponder];
