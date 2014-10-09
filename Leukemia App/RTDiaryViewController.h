@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UITableView *dataTableView;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldWeight;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldProtocol;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;
 

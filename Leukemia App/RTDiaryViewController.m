@@ -36,6 +36,7 @@
     self.dataTableView.dataSource = self;
     
     self.textFieldWeight.delegate = self;
+    self.textFieldProtocol.delegate = self;
     self.textViewNotes.delegate = self;
     
     [self.textViewNotes setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.10]];
@@ -69,6 +70,9 @@
     }
     if ([_textFieldWeight isFirstResponder] && [touch view] != _textFieldWeight) {
         [_textFieldWeight resignFirstResponder];
+    }
+    if ([_textFieldProtocol isFirstResponder] && [touch view] != _textFieldProtocol) {
+        [_textFieldProtocol resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
 }
@@ -107,7 +111,6 @@
 }
 
 #pragma mark - Weight Registration
-
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if ([textField.text isEqualToString:@"test"])
@@ -115,15 +118,18 @@
         [[RTDataManagement singleton] initTestData];
         return;
     }
-    
     NSDate *selectedDate = self.calendar.selectedDate;
     NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
-    
     if (dataToBeSaved !=nil)
     {
         if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
         {
-            [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            if([textField isEqual:self.textFieldWeight]){
+                [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            }
+            else if ([textField isEqual:self.textFieldProtocol]){
+                [dataToBeSaved setObject:textField.text forKey:@"protocol"];
+            }
             [self.dataManagement writeToPList];
         }
     }
@@ -135,17 +141,30 @@
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
-            [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            if([textField isEqual:self.textFieldWeight]){
+                [dataToBeSaved setObject:textField.text forKey:@"weight"];
+            }
+            else if ([textField isEqual:self.textFieldProtocol]){
+                [dataToBeSaved setObject:textField.text forKey:@"protocol"];
+            }
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
         }
     }
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
+    NSLog(@"%@", self.dataManagement.diaryData);
 }
 
--(void)weightInputFinished:(id)sender
+//-(void)weightInputFinished:(id)sender
+//{
+//    [sender resignFirstResponder];
+//}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [sender resignFirstResponder];
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - CalendarView Delegate
@@ -191,6 +210,7 @@
     
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
     [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
+    [self.textFieldProtocol setText:[diaryReg objectForKey:@"protocol"]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
     
