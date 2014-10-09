@@ -12,9 +12,8 @@
 #import "RTDetailTableViewCell.h"
 #import "RTDataManagement.h"
 #import "RTPainScaleViewController.h"
-#import "RTSwipeViewController.h"
 
-@interface RTSettingsViewController : RTSwipeViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
+@interface RTSettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *masterTableview;
 @property (weak, nonatomic) IBOutlet UITableView *painScaleSettingTableView;
 @property (weak, nonatomic) IBOutlet UITableView *notificationSettingTableView;

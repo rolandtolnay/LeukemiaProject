@@ -12,9 +12,9 @@
 #import "RTDataManagement.h"
 #import "RTDiaryDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "RTSwipeViewController.h"
 
-@interface RTDiaryViewController : RTSwipeViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
+@interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *calendarView;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weekDayLabel;

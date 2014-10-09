@@ -121,7 +121,7 @@
     
     if (dataToBeSaved !=nil)
     {
-        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
+        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             [dataToBeSaved setObject:textField.text forKey:@"weight"];
             [self.dataManagement writeToPList];
@@ -129,7 +129,7 @@
     }
     else
     {
-        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
+        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
