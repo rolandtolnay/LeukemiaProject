@@ -67,6 +67,8 @@
     }
 }
 
+#pragma mark - BOOL's
+
 -(BOOL)isRetinaDisplay{
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     return (screenScale == 2.0);
@@ -95,6 +97,8 @@
 -(BOOL) isWeightGraph{
     return (self.graphType.selectedSegmentIndex==1);
 }
+
+#pragma mark
 
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -206,6 +210,8 @@
         [self performSegueWithIdentifier:@"weekPicker" sender:nil];
     }
 }
+
+#pragma mark - Type Handlers
 
 -(void)graphTypeChanged:(id)sender
 {

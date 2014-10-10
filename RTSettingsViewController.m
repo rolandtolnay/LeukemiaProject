@@ -136,7 +136,7 @@
 {
     UINavigationController *nav = [self.tabBarController.viewControllers objectAtIndex:0];
     self.painScaleViewController = (RTPainScaleViewController *) [nav.viewControllers objectAtIndex:0];
-    [self.painScaleViewController initImages];
+    [self.painScaleViewController syncImagesWithSlider];
 }
 
 -(void)configureSettings{

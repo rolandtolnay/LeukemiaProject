@@ -136,7 +136,7 @@
             
         case UIGestureRecognizerStateEnded:
             self.completionSpeed = 0.5;
-            if (percent > 0.5)
+            if (percent > 0.3)
             {
                 [self finishInteractiveTransition];
             }
