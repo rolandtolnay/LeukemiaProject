@@ -15,6 +15,7 @@
 		A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = A0957E2619A75AF30058EF12 /* RTDataManagement.m */; };
 		A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A095897819DAAA3E006BE617 /* RTSelectKemoTableViewController.m */; };
 		A09996F919A3500300EF39A5 /* RTBrushSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */; };
+		A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */; };
 		A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
 		A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8B199E28C5009D7220 /* CoreGraphics.framework */; };
 		A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
@@ -66,6 +67,8 @@
 		A095897819DAAA3E006BE617 /* RTSelectKemoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSelectKemoTableViewController.m; sourceTree = "<group>"; };
 		A09996F719A3500300EF39A5 /* RTBrushSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTBrushSizeViewController.h; path = "Leukemia App/RTBrushSizeViewController.h"; sourceTree = "<group>"; };
 		A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTBrushSizeViewController.m; path = "Leukemia App/RTBrushSizeViewController.m"; sourceTree = "<group>"; };
+		A09E24F119E7CF650026FC73 /* RTChangepainScaleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTChangepainScaleTableViewController.h; sourceTree = "<group>"; };
+		A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangepainScaleTableViewController.m; sourceTree = "<group>"; };
 		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -276,6 +279,8 @@
 				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
 				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
 				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
+				A09E24F119E7CF650026FC73 /* RTChangepainScaleTableViewController.h */,
+				A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */,
 			);
 			name = Pain;
 			sourceTree = "<group>";
@@ -449,6 +454,7 @@
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */,
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
+				A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */,
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
 				A695673F19E6A33500C69FA9 /* RTSwipeViewController.m in Sources */,

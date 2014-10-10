@@ -10,6 +10,8 @@
 
 @interface RTPainScaleViewController ()
 
+@property UIPopoverController *popover;
+
 @end
 
 @implementation RTPainScaleViewController
@@ -360,5 +362,19 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"changePainScale"]){
+        RTChangepainScaleTableViewController *controller = [segue destinationViewController];
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+        controller.delegate = self;
+    }
+}
+
+-(void)didSelectPainScale{
+    [self.popover dismissPopoverAnimated:YES];
+    [self initImages];
 }
 @end
