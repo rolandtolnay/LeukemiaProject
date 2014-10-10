@@ -281,6 +281,8 @@
 				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
 				A09E24F119E7CF650026FC73 /* RTChangepainScaleTableViewController.h */,
 				A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */,
+				A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */,
+				A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */,
 			);
 			name = Pain;
 			sourceTree = "<group>";
@@ -290,8 +292,6 @@
 			children = (
 				A04F2C0719AF201D00B8DCEE /* RTSettingsViewController.h */,
 				A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */,
-				A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */,
-				A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
