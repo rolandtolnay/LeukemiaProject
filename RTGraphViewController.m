@@ -96,7 +96,7 @@
     return (self.graphType.selectedSegmentIndex==1);
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     if ([self isRetinaDisplay])
         [self refreshGraph];

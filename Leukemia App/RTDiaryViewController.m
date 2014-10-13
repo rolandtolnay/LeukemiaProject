@@ -122,7 +122,7 @@
     NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
     if (dataToBeSaved !=nil)
     {
-        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
+        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             if([textField isEqual:self.textFieldWeight]){
                 [dataToBeSaved setObject:textField.text forKey:@"weight"];
@@ -135,7 +135,7 @@
     }
     else
     {
-        if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
+        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];

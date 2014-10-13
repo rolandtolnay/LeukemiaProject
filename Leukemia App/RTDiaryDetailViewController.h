@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelPainLevel;
 @property (weak, nonatomic) IBOutlet UILabel *labelPainType;
 @property (weak, nonatomic) IBOutlet UILabel *labelMorphine;
+@property (weak, nonatomic) IBOutlet UILabel *labelParacetamol;
 @property (weak, nonatomic) IBOutlet UIImageView *imageDrawing;
 @property (weak, nonatomic) IBOutlet UIImageView *imagePhoto;
 
