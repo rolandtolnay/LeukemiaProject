@@ -23,10 +23,6 @@
 {
     [super viewDidLoad];
     
-    self.imageDrawing.translatesAutoresizingMaskIntoConstraints = NO;
-    self.imagePhoto.translatesAutoresizingMaskIntoConstraints = NO;
-    self.scollView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     self.service = [RTDataManagement singleton];
     
     NSString *date = [self.selectedData objectForKey:@"time"];
@@ -42,10 +38,7 @@
     else
         [self.labelMorphine setText:[NSString stringWithFormat:@"Morphine: %@ mg",morphine]];
     
-    NSString *parmol = [self.selectedData objectForKey:@"parmol"];
-    if ([parmol intValue] == 1)
-        [self.labelParmol setText:@"Parmol/panodil: Yes"];
-    else [self.labelParmol setText:@"Parmol/panodil: No"];
+    
     
     NSString *drawingImagePath = [self.selectedData objectForKey:@"drawingpath"];
     if (![drawingImagePath isEqualToString:@""])

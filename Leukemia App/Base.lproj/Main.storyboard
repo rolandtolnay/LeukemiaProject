@@ -32,6 +32,34 @@
             </objects>
             <point key="canvasLocation" x="5552" y="-462"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="dwR-QL-kCD">
+            <objects>
+                <viewController id="Seb-5g-86m" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SLY-VQ-PBy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kdi-ie-Lj6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pc7-US-jHM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01p-Mp-PoJ">
+                                <rect key="frame" x="251" y="200" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="500"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nU4-3o-bGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6370" y="-350"/>
+        </scene>
         <!--Brush Size View Controller-->
         <scene sceneID="sGd-jQ-IDT">
             <objects>
@@ -241,12 +269,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smileyA" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-mj-jJN">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smileyA" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-mj-jJN">
                                 <rect key="frame" x="263" y="98" width="243" height="242"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="L5n-gS-CvK"/>
                                     <constraint firstAttribute="width" constant="243" id="c4A-Jt-d2m"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="79P-uq-tCf" appends="YES" id="QdT-tr-76v"/>
+                                </connections>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
                                 <rect key="frame" x="323" y="422" width="124" height="21"/>
@@ -422,6 +454,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19k-qh-i1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="79P-uq-tCf">
+                    <connections>
+                        <segue destination="Seb-5g-86m" kind="popover" identifier="smileyTable" popoverAnchorView="2xM-mj-jJN" id="F0Z-RI-lvH">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3890" y="-350"/>
         </scene>
