@@ -11,6 +11,7 @@
 @interface RTPainScaleViewController ()
 
 @property UIPopoverController *popover;
+@property UIPopoverController *smileyTablePopover;
 
 @end
 
@@ -149,6 +150,12 @@
         
         self.smileyTablePopover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.smileyTablePopover.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"changePainScale"]){
+        RTChangepainScaleTableViewController *controller = [segue destinationViewController];
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+        controller.delegate = self;
     }
 }
 
@@ -340,17 +347,8 @@
     return YES;
 }
 
--(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"changePainScale"]){
-        RTChangepainScaleTableViewController *controller = [segue destinationViewController];
-        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        self.popover.delegate = self;
-        controller.delegate = self;
-    }
-}
-
 -(void)didSelectPainScale{
     [self.popover dismissPopoverAnimated:YES];
-    [self initImages];
+    [self syncImagesWithSlider];
 }
 @end

@@ -11,8 +11,9 @@
 #import "RTDataManagement.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "RTChangepainScaleTableViewController.h"
+#import "RTSmileyTableViewController.h"
 
-@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate, RTChangePainScalePopoverDelegate, UIPopoverControllerDelegate>
+@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate, RTSmileyTableDelegate,RTChangePainScalePopoverDelegate, UIPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
