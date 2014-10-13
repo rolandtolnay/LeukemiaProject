@@ -34,7 +34,7 @@
     
     self.morphineInput.delegate = self;
     
-    [self initImages];
+    [self syncImagesWithSlider];
     
     [super viewDidLoad];
 }
@@ -119,39 +119,8 @@
 -(void)sliderPainNumberChanged:(UISlider *)sender {
     NSUInteger index = (NSUInteger)(self.sliderPainNumber.value+0.5);
     [self.sliderPainNumber setValue:index animated:NO];
-    NSNumber *painNumber = self.numberScale[index];
-    self.lblPainNumber.text = [painNumber stringValue];
     
-    [self initImages];
-    
-//    if ([painNumber intValue] == 0)
-//    {
-//        self.lblPainDescription.text = self.painDescription[0];
-//        if(self.dataManagement.painScaleBieri){
-//            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
-//        }
-//        else{
-//            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-//        }
-//    }
-//    else if ([painNumber intValue] % 2 == 0)
-//    {
-//        painNumber = @([painNumber intValue]-1);
-//    }
-//    
-//    if ([painNumber intValue] % 2 == 1)
-//    {
-//        int smileyIndex = ([painNumber intValue]+1)/2;
-//        self.lblPainDescription.text = self.painDescription[smileyIndex];
-//        NSString *imageName;
-//        if(self.dataManagement.painScaleBieri){
-//            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
-//        }
-//        else{
-//            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
-//        }
-//        self.imageSmiley.image = [UIImage imageNamed:imageName];
-//    }
+    [self syncImagesWithSlider];
 }
 
 //Saving and reading images
@@ -159,15 +128,8 @@
 {
     UIViewController *sourceViewController = segue.sourceViewController;
     if([sourceViewController isKindOfClass:[RTPainDrawViewController class]]){
-       
+        
         RTPainDrawViewController *controller = segue.sourceViewController;
-//        if (controller.drawImage.image)
-//        {
-//            UIGraphicsBeginImageContextWithOptions(controller.drawImage.bounds.size, NO,0.0);
-//            [controller.drawImage.image drawInRect:CGRectMake(0, 0, controller.drawImage.frame.size.width, controller.drawImage.frame.size.height)];
-//            self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
-//            UIGraphicsEndImageContext();
-//        }
         if (controller.mainImage.image)
         {
             UIGraphicsBeginImageContextWithOptions(controller.mainImage.bounds.size, NO,0.0);
@@ -175,7 +137,28 @@
             self.drawingToBeSaved = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
         }
-    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"smileyTable"])
+    {
+        RTSmileyTableViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        
+        self.smileyTablePopover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.smileyTablePopover.delegate = self;
+    }
+}
+
+#pragma mark - RTSmileyTable Delegate
+
+-(void)didSelectSmiley:(NSInteger)smiley
+{
+    [self.smileyTablePopover dismissPopoverAnimated:YES];
+    [self.sliderPainNumber setValue:(float)smiley];
+    [self syncImagesWithSlider];
 }
 
 //Method that saves images and data to pList
@@ -191,22 +174,22 @@
         NSString *photoPath = [[NSString alloc]init];
         
         [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-
+        
         NSString *photoTime = [dateFormatter stringFromDate:currentDate];
         
         if (self.drawingToBeSaved)
-            {
-                drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
-                NSLog(@"%@",drawingImagePath);
-                [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
-            }
+        {
+            drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
+            NSLog(@"%@",drawingImagePath);
+            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+        }
         if (self.cameraImageToBeSaved)
-            {
-                photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
-                NSLog(@"%@",photoPath);
-                [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
-            }
-            [self saveToPlist:drawingImagePath :photoPath :currentTime];
+        {
+            photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
+            NSLog(@"%@",photoPath);
+            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+        }
+        [self saveToPlist:drawingImagePath :photoPath :currentTime];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
@@ -223,29 +206,31 @@
     NSLog(@"%@",self.painType);
 }
 
-- (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 100)
-    {
-        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Draw"])
-        {
-            RTPainDrawViewController *drawViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"painDrawViewController"];
-            [self.navigationController pushViewController:drawViewController animated:YES];
-        }
-        else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photo"])
-        {
-            [self useCamera:self];
-        }
-        else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"No thank you, just save"])
-        {
-            NSDate *currentDate = [NSDate date];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
-            NSString *currentTime = [dateFormatter stringFromDate:currentDate];
-            [self saveToPlist:@"" :@"" :currentTime];
-        }
-    }
-}
+
+//FEATURE REMOVED BY CUSTOMER REQUEST
+//- (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if (alertView.tag == 100)
+//    {
+//        if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Draw"])
+//        {
+//            RTPainDrawViewController *drawViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"painDrawViewController"];
+//            [self.navigationController pushViewController:drawViewController animated:YES];
+//        }
+//        else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Photo"])
+//        {
+//            [self useCamera:self];
+//        }
+//        else if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"No thank you, just save"])
+//        {
+//            NSDate *currentDate = [NSDate date];
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+//            [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+//            NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+//            [self saveToPlist:@"" :@"" :currentTime];
+//        }
+//    }
+//}
 
 
 -(void)resetView{
@@ -255,25 +240,13 @@
     self.drawingToBeSaved = nil;
     self.cameraImageToBeSaved = nil;
     self.painTypeSelector.selectedSegmentIndex = -1;
-    [self initImages];
+    self.switchParmol.on = NO;
+    [self syncImagesWithSlider];
 }
 
-//-(void)initImages{
-//    if(self.dataManagement.painScaleBieri){
-//        self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
-//        [self.painTypeSelector setTintColor:[UIColor blackColor]];
-//    }
-//    else{
-//        self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-//        [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
-//    }
-//    self.lblPainDescription.text = self.painDescription[0];
-//    [self setButtonImageHighlight];
-//}
-
--(void)initImages{
-    NSLog(@"initImages kaldt");
+-(void)syncImagesWithSlider{
     int painNumber = (int)self.sliderPainNumber.value;
+    self.lblPainNumber.text = [[NSNumber numberWithInt:painNumber] stringValue];
     if (painNumber == 0)
     {
         self.lblPainDescription.text = self.painDescription[0];
@@ -324,6 +297,8 @@
     }
 }
 
+#pragma mark - PList methods
+
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     [dataToBeSaved setObject:self.lblPainNumber.text forKey:@"painlevel"];
@@ -332,6 +307,7 @@
     [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
     [dataToBeSaved setObject:currentTime forKey:@"time"];
     [dataToBeSaved setObject:self.painType forKey:@"paintype"];
+    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
     [self.dataManagement.painData addObject:dataToBeSaved];
     [self.dataManagement writeToPList];
     

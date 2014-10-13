@@ -280,6 +280,8 @@
 		A695400E19D19C3300AB3E64 /* Pain */ = {
 			isa = PBXGroup;
 			children = (
+				A610475619EBC619007B044D /* RTSmileyTableViewController.h */,
+				A610475719EBC619007B044D /* RTSmileyTableViewController.m */,
 				A09996F719A3500300EF39A5 /* RTBrushSizeViewController.h */,
 				A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */,
 				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
@@ -467,6 +469,7 @@
 				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
 				A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */,
 				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
+				A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */,
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
 				A6A3D4B319BF1DEC003DEF56 /* RTConstants.m in Sources */,
 				A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */,
