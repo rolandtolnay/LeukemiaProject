@@ -10,8 +10,10 @@
 #import "RTPainDrawViewController.h"
 #import "RTDataManagement.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "RTSmileyTableViewController.h"
 
-@interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface RTPainScaleViewController : UIViewController
+<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate,RTSmileyTableDelegate,UIPopoverControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageSmiley;
 @property (weak, nonatomic) IBOutlet UILabel *lblPainDescription;
@@ -19,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPainNumber;
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *painTypeSelector;
+@property (weak, nonatomic) IBOutlet UISwitch *switchParmol;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnDrawPain;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhoto;
@@ -40,7 +43,7 @@
 - (IBAction)useCamera:(id)sender;
 - (IBAction)submitAndSaveData:(id)sender;
 - (IBAction)painTypeSelected:(id)sender;
--(void)initImages;
+-(void)syncImagesWithSlider;
 -(void)setButtonImageHighlight;
 -(void)sliderPainNumberChanged:(UISlider *)sender;
 
