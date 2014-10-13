@@ -18,6 +18,7 @@
 @property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSMutableDictionary *bloodSampleData;
 @property (strong, nonatomic) NSMutableDictionary *medicineData;
+@property (strong, nonatomic) NSMutableDictionary *kemoTreatment;
 @property (strong, nonatomic) NSString *path;
 
 @property (nonatomic) NSUserDefaults *prefs;

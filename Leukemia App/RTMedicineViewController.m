@@ -20,6 +20,13 @@
 {
 	[super viewDidLoad];
     
+    for(UITextField *txtField in self.bloodSampleTextFields){
+        txtField.delegate = self;
+    }
+    
+    self.mtxText.delegate = self;
+    self.m6Text.delegate = self;
+    
     self.dataManagement = [RTDataManagement singleton];
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -125,6 +132,12 @@
 
 }
 
+-(void)noKemoUI{
+    self.highDoseKemoLabel.text = @"Ingen høj-dosis kemo i dag";
+    self.highDoseKemoButton.hidden = NO;
+    self.editHighDoseKemo.hidden = YES;
+}
+
 -(void)showBloodSampleUI:(NSDate *)date{
     NSDictionary *tempDict = [self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
     self.noSampleLabel.text = @"";
@@ -147,6 +160,13 @@
     }
 }
 
+-(void)showKemoUI: (NSDate *)date{
+    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    self.highDoseKemoLabel.text = [labelText stringByAppendingString:[self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]]];
+    self.highDoseKemoButton.hidden = YES;
+    self.editHighDoseKemo.hidden = NO;
+}
+
 -(void)checkDate{
     //Check if there is a sample on this day
     //if sample - Show it make it editable
@@ -156,6 +176,14 @@
     //if no sample - Make it possible to add a sample
     else{
         [self noBloodSampleUI];
+    }
+    //Checks if there is highdosekemo this day
+    if([self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]] != nil){
+        [self showKemoUI:self.weekSelector.selectedDate];
+    }
+    //if no high-dose kemo - Make it possible to add
+    else{
+        [self noKemoUI];
     }
 }
 
@@ -210,6 +238,8 @@
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
         controller.delegate = self;
+        self.highDoseKemoButton.hidden = YES;
+        self.editHighDoseKemo.hidden = NO;
     }
 }
 
@@ -217,7 +247,17 @@
     NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
     [self.popover dismissPopoverAnimated:YES];
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
-    self.highDoseKemoButton.titleLabel.text = @"Edit high-dose kemo";
+    [self.dataManagement.kemoTreatment setObject:kemoType forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
+    [self.dataManagement writeToPList];
+}
+
+#pragma  mark - TextField delegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 @end
