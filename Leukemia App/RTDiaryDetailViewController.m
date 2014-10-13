@@ -38,7 +38,12 @@
     else
         [self.labelMorphine setText:[NSString stringWithFormat:@"Morphine: %@ mg",morphine]];
     
-    
+    NSString *paracetamol = [self.selectedData objectForKey:@"paracetamol"];
+    if ([paracetamol intValue] == 1)
+    {
+        [self.labelParacetamol setText:@"Paracetamol: Yes"];
+    } else
+        [self.labelParacetamol setText:@"Paracetamol: No"];
     
     NSString *drawingImagePath = [self.selectedData objectForKey:@"drawingpath"];
     if (![drawingImagePath isEqualToString:@""])

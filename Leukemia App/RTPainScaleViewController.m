@@ -240,6 +240,7 @@
     self.drawingToBeSaved = nil;
     self.cameraImageToBeSaved = nil;
     self.painTypeSelector.selectedSegmentIndex = -1;
+    self.switchParmol.on = NO;
     [self syncImagesWithSlider];
 }
 
