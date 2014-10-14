@@ -12,6 +12,8 @@
 
 static RTDataManagement *dataMangement = nil;
 
+#pragma mark - Initializers
+
 -(NSUserDefaults *)prefs{
     if (!_prefs) {
         _prefs = [NSUserDefaults standardUserDefaults];

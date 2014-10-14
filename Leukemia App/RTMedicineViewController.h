@@ -14,9 +14,13 @@
 
 @interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate, UITextFieldDelegate>
 
+//Views
 @property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
 @property (weak, nonatomic) IBOutlet UIView *bloodSampleView;
 @property (weak, nonatomic) IBOutlet UIView *medicineView;
+@property (weak, nonatomic) IBOutlet UIView *addBloodSampleView;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *noSampleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addSampleButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveSampleButton;

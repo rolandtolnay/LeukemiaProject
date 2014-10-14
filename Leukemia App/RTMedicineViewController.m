@@ -56,9 +56,7 @@
     [self initMedicineView];
 }
 
-- (IBAction)addSample:(id)sender {
-    [self addBloodSampleUI];
-}
+#pragma mark - Blood sample data management
 
 - (IBAction)saveSample:(id)sender {
     self.saveSampleButton.hidden = YES;
@@ -87,35 +85,21 @@
     }
 }
 
-- (IBAction)saveDose:(id)sender {
-    [self.dataManagement.medicineData setObject:self.mtxText.text forKey:@"mtx"];
-    [self.dataManagement.medicineData setObject:self.m6Text.text forKey:@"m6"];
-    self.mtxText.enabled = NO;
-    self.m6Text.enabled = NO;
-    self.saveDose.hidden = YES;
-    self.editDose.hidden = NO;
-    [self.dataManagement writeToPList];
-}
+#pragma mark - Blood sample UI
 
-- (IBAction)editDose:(id)sender {
-    self.mtxText.enabled = YES;
-    self.m6Text.enabled = YES;
-    self.saveDose.hidden = NO;
-    self.editDose.hidden = YES;
-}
-
--(void)addBloodSampleUI{
+- (IBAction)addSample:(id)sender {
     self.addSampleButton.hidden = YES;
     self.noSampleLabel.text = @"";
-    for (UILabel *label in self.bloodSampleLabels) {
-        label.hidden = NO;
-    }
-    for(UITextField *txtField in self.bloodSampleTextFields){
-        txtField.hidden = NO;
-        txtField.text = @"";
-        txtField.enabled = YES;
-    }
-    self.saveSampleButton.hidden = NO;
+//    for (UILabel *label in self.bloodSampleLabels) {
+//        label.hidden = NO;
+//    }
+//    for(UITextField *txtField in self.bloodSampleTextFields){
+//        txtField.hidden = NO;
+//        txtField.text = @"";
+//        txtField.enabled = YES;
+//    }
+//    self.saveSampleButton.hidden = NO;
+    
 }
 
 -(void)noBloodSampleUI{
@@ -129,13 +113,7 @@
     self.editSampleButton.hidden = YES;
     self.addSampleButton.hidden = NO;
     self.noSampleLabel.text = @"There is no bloodsample for this date";
-
-}
-
--(void)noKemoUI{
-    self.highDoseKemoLabel.text = @"Ingen høj-dosis kemo i dag";
-    self.highDoseKemoButton.hidden = NO;
-    self.editHighDoseKemo.hidden = YES;
+    
 }
 
 -(void)showBloodSampleUI:(NSDate *)date{
@@ -160,12 +138,41 @@
     }
 }
 
+#pragma mark - Doses
+
+- (IBAction)saveDose:(id)sender {
+    [self.dataManagement.medicineData setObject:self.mtxText.text forKey:@"mtx"];
+    [self.dataManagement.medicineData setObject:self.m6Text.text forKey:@"m6"];
+    self.mtxText.enabled = NO;
+    self.m6Text.enabled = NO;
+    self.saveDose.hidden = YES;
+    self.editDose.hidden = NO;
+    [self.dataManagement writeToPList];
+}
+
+- (IBAction)editDose:(id)sender {
+    self.mtxText.enabled = YES;
+    self.m6Text.enabled = YES;
+    self.saveDose.hidden = NO;
+    self.editDose.hidden = YES;
+}
+
+#pragma mark - Kemo
+
+-(void)noKemoUI{
+    self.highDoseKemoLabel.text = @"Ingen høj-dosis kemo i dag";
+    self.highDoseKemoButton.hidden = NO;
+    self.editHighDoseKemo.hidden = YES;
+}
+
 -(void)showKemoUI: (NSDate *)date{
     NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:[self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]]];
     self.highDoseKemoButton.hidden = YES;
     self.editHighDoseKemo.hidden = NO;
 }
+
+#pragma mark
 
 -(void)checkDate{
     //Check if there is a sample on this day
