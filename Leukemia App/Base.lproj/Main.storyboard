@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -525,7 +524,7 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="2ae-m3-aUw">
+                        <barButtonItem key="rightBarButtonItem" id="2ae-m3-aUw">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="ygH-D7-E7b">
                                 <rect key="frame" x="578" y="7" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1786,6 +1785,9 @@
                                         <state key="normal" title="Add New Blood Sample">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="Y1d-Cn-n8O" kind="unwind" unwindAction="unwindToBloodSamples:" id="qiP-kd-WNb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1794,8 +1796,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="alatText" destination="5QS-8d-T49" id="kb5-bc-7Yh"/>
+                        <outlet property="crpText" destination="FTk-sP-QlI" id="sRq-bn-4sc"/>
+                        <outlet property="hemoText" destination="3nD-f8-Asq" id="x7C-Vv-C8M"/>
+                        <outlet property="leukocytterText" destination="rRo-5s-e5A" id="AcV-5u-0Xj"/>
+                        <outlet property="neutroText" destination="QKx-vL-Z9w" id="tce-Oo-PDh"/>
+                        <outlet property="otherText" destination="Chp-VU-cFW" id="C74-pb-wcw"/>
+                        <outlet property="thromboText" destination="UzH-WV-u0h" id="8o5-7b-SP5"/>
+                        <outletCollection property="bloodSampleTextFields" destination="3nD-f8-Asq" id="bsa-2b-Dxg"/>
+                        <outletCollection property="bloodSampleTextFields" destination="UzH-WV-u0h" id="dHA-NZ-QSn"/>
+                        <outletCollection property="bloodSampleTextFields" destination="QKx-vL-Z9w" id="Gp2-HO-Gmv"/>
+                        <outletCollection property="bloodSampleTextFields" destination="FTk-sP-QlI" id="xFF-Y1-jPi"/>
+                        <outletCollection property="bloodSampleTextFields" destination="rRo-5s-e5A" id="ffn-Qo-yl1"/>
+                        <outletCollection property="bloodSampleTextFields" destination="5QS-8d-T49" id="rHX-CO-6fR"/>
+                        <outletCollection property="bloodSampleTextFields" destination="Chp-VU-cFW" id="68r-3E-7gz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laZ-QV-3kB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Y1d-Cn-n8O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4825" y="1660"/>
         </scene>

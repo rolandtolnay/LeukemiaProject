@@ -90,16 +90,21 @@
 - (IBAction)addSample:(id)sender {
     self.addSampleButton.hidden = YES;
     self.noSampleLabel.text = @"";
-//    for (UILabel *label in self.bloodSampleLabels) {
-//        label.hidden = NO;
-//    }
-//    for(UITextField *txtField in self.bloodSampleTextFields){
-//        txtField.hidden = NO;
-//        txtField.text = @"";
-//        txtField.enabled = YES;
-//    }
-//    self.saveSampleButton.hidden = NO;
-    
+
+    self.addBloodSampleView.hidden = NO;
+}
+
+- (IBAction)unwindToBloodSamples:(UIStoryboardSegue *)segue
+{
+    UIViewController *sourceViewController = segue.sourceViewController;
+    if([sourceViewController isKindOfClass:[RTAddBloodSampleViewController class]]){
+        
+        RTAddBloodSampleViewController *controller = segue.sourceViewController;
+        [controller saveSampleWithDate:self.weekSelector.selectedDate];
+        
+        [self checkDate];
+    }
+
 }
 
 -(void)noBloodSampleUI{
@@ -192,6 +197,9 @@
     else{
         [self noKemoUI];
     }
+    
+    //always hides the view for adding samples when you change date
+    self.addBloodSampleView.hidden = YES;
 }
 
 -(void)initMedicineView{

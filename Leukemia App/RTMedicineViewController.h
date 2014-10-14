@@ -11,6 +11,7 @@
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTSelectKemoTableViewController.h"
+#import "RTAddBloodSampleViewController.h"
 
 @interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate, UITextFieldDelegate>
 

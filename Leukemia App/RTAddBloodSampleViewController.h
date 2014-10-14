@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTDataManagement.h"
 
 @interface RTAddBloodSampleViewController : UIViewController
 
-- (IBAction)addBloodSample:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *hemoText;
+@property (weak, nonatomic) IBOutlet UITextField *thromboText;
+@property (weak, nonatomic) IBOutlet UITextField *neutroText;
+@property (weak, nonatomic) IBOutlet UITextField *crpText;
+@property (weak, nonatomic) IBOutlet UITextField *leukocytterText;
+@property (weak, nonatomic) IBOutlet UITextField *alatText;
+@property (weak, nonatomic) IBOutlet UITextField *otherText;
+
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
+
+-(void)saveSampleWithDate:(NSDate*) selectedDate;
+-(void)clearTextfields;
 
 @end
