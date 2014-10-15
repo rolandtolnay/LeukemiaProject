@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+    [super viewDidLoad];
     
     for(UITextField *txtField in self.bloodSampleTextFields){
         txtField.delegate = self;
@@ -37,14 +37,14 @@
     self.weekSelector = [[LSWeekView alloc] initWithFrame:CGRectZero style:LSWeekViewStyleDefault];
     self.weekSelector.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.weekSelector.calendar = [NSCalendar currentCalendar];
-
+    
     self.weekSelector.selectedDate = [NSDate date];
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     [self checkDate];
-
+    
     __weak typeof(self) weakSelf = self;
     self.weekSelector.didChangeSelectedDateBlock = ^(NSDate *selectedDate)
     {
@@ -90,7 +90,7 @@
 - (IBAction)addSample:(id)sender {
     self.addSampleButton.hidden = YES;
     self.noSampleLabel.text = @"";
-
+    
     self.addBloodSampleView.hidden = NO;
 }
 
@@ -104,7 +104,7 @@
         
         [self checkDate];
     }
-
+    
 }
 
 -(void)noBloodSampleUI{
@@ -116,8 +116,15 @@
     }
     self.saveSampleButton.hidden = YES;
     self.editSampleButton.hidden = YES;
-    self.addSampleButton.hidden = NO;
     self.noSampleLabel.text = @"There is no bloodsample for this date";
+    
+    //bloodsamples can only be added to current date or past dates
+    NSDate *today = [NSDate date];
+    NSComparisonResult result = [self.weekSelector.selectedDate compare:today];
+    if (result == NSOrderedSame || result == NSOrderedAscending)
+        self.addSampleButton.hidden = NO;
+    else self.addSampleButton.hidden = YES;
+    
     
 }
 
@@ -215,6 +222,34 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"selectKemo"]){
+        RTSelectKemoTableViewController *controller = [segue destinationViewController];
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+        controller.delegate = self;
+        self.highDoseKemoButton.hidden = YES;
+        self.editHighDoseKemo.hidden = NO;
+    }
+}
+
+-(void)didSelectedRowInPopover:(NSString *)kemoType{
+    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    [self.popover dismissPopoverAnimated:YES];
+    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
+    [self.dataManagement.kemoTreatment setObject:kemoType forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
+    [self.dataManagement writeToPList];
+}
+
+#pragma  mark - TextField delegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.hemoText isFirstResponder] && [touch view] != self.hemoText) {
@@ -245,34 +280,6 @@
         [self.m6Text resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
-}
-
--(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"selectKemo"]){
-        RTSelectKemoTableViewController *controller = [segue destinationViewController];
-        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        self.popover.delegate = self;
-        controller.delegate = self;
-        self.highDoseKemoButton.hidden = YES;
-        self.editHighDoseKemo.hidden = NO;
-    }
-}
-
--(void)didSelectedRowInPopover:(NSString *)kemoType{
-    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
-    [self.popover dismissPopoverAnimated:YES];
-    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
-    [self.dataManagement.kemoTreatment setObject:kemoType forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
-    [self.dataManagement writeToPList];
-}
-
-#pragma  mark - TextField delegate methods
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    
-    return YES;
 }
 
 @end
