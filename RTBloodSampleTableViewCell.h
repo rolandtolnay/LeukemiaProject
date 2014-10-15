@@ -22,4 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *separatorDay6;
 @property (weak, nonatomic) IBOutlet UILabel *labelDay6;
 
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *dayLabels;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *daySeparators;
+
 @end

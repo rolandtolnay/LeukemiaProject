@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "RTDataManagement.h"
 #import "NSDate+convenience.h"
+#import "RTBloodSampleTableViewCell.h"
 
-@interface RTAddBloodSampleViewController : UIViewController
+@interface RTAddBloodSampleViewController : UIViewController <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITextField *hemoText;
 @property (weak, nonatomic) IBOutlet UITextField *thromboText;
@@ -20,9 +21,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *alatText;
 @property (weak, nonatomic) IBOutlet UITextField *otherText;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableViewPreviousBloodSamples;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
 
 -(void)saveSampleWithDate:(NSDate*) selectedDate;
--(void)clearTextfields;
+-(void)resetView;
 
 @end
