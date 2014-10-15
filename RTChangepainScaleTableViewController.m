@@ -34,7 +34,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -46,10 +46,13 @@
     else if (indexPath.row == 1){
         cell.detailCellLabel.text = @"Bieri Faces pain scale";
     }
+    else if (indexPath.row == 2){
+        cell.detailCellLabel.text = @"FLACC skala";
+    }
     cell.detailCellImage.image = [UIImage imageNamed: cell.detailCellLabel.text];
+    
     if (indexPath.row == self.dataManagement.selectedRowPainScale) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        cell.imageView.backgroundColor = [UIColor lightGrayColor];
     }
     else{
         cell.accessoryType = UITableViewCellAccessoryNone;
