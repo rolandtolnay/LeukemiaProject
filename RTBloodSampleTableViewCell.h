@@ -8,19 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RTBloodSampleTableViewCell : UITableViewCell
+@interface RTBloodSampleTableViewCell : UITableViewCell <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *labelDay1;
-@property (weak, nonatomic) IBOutlet UIView *separatorDay2;
-@property (weak, nonatomic) IBOutlet UILabel *labelDay2;
-@property (weak, nonatomic) IBOutlet UIView *separatorDay3;
-@property (weak, nonatomic) IBOutlet UILabel *labelDay3;
-@property (weak, nonatomic) IBOutlet UIView *separatorDay4;
-@property (weak, nonatomic) IBOutlet UILabel *labelDay4;
-@property (weak, nonatomic) IBOutlet UIView *separatorDay5;
-@property (weak, nonatomic) IBOutlet UILabel *labelDay5;
-@property (weak, nonatomic) IBOutlet UIView *separatorDay6;
-@property (weak, nonatomic) IBOutlet UILabel *labelDay6;
+@property (weak, nonatomic) IBOutlet UITextField *txfBloodSample;
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *dayLabels;
 @property (strong, nonatomic) IBOutletCollection(UIView) NSArray *daySeparators;

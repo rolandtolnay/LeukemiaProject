@@ -11,7 +11,7 @@
 @implementation RTBloodSampleTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.txfBloodSample.delegate = self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -19,5 +19,20 @@
 
     // Configure the view for the selected state
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    UITouch *touch = [[event allTouches] anyObject];
+    if ([self.txfBloodSample isFirstResponder] && [touch view] != self.txfBloodSample) {
+        [self.txfBloodSample resignFirstResponder];
+    }
+}
+
 
 @end

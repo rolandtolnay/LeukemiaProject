@@ -356,7 +356,7 @@
             {
                 [self.weightValues addObject:weight];
                 
-                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek month],[dayInWeek day]];
+                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek day],[dayInWeek month]];
                 NSLog(@"weightTimestamp: %@",monthDayTimestamp);
                 
                 [self.weightTimestamps addObject:monthDayTimestamp];

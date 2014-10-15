@@ -13,16 +13,8 @@
 
 @interface RTAddBloodSampleViewController : UIViewController <UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITextField *hemoText;
-@property (weak, nonatomic) IBOutlet UITextField *thromboText;
-@property (weak, nonatomic) IBOutlet UITextField *neutroText;
-@property (weak, nonatomic) IBOutlet UITextField *crpText;
-@property (weak, nonatomic) IBOutlet UITextField *leukocytterText;
-@property (weak, nonatomic) IBOutlet UITextField *alatText;
-@property (weak, nonatomic) IBOutlet UITextField *otherText;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPreviousBloodSamples;
-@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *dateLabels;
 
 -(void)saveSampleWithDate:(NSDate*) selectedDate;
 -(void)resetView;

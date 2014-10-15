@@ -20,47 +20,67 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.dataManagement = [RTDataManagement singleton];
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     self.tableViewPreviousBloodSamples.dataSource = self;
+    
+    [self resetView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self datesWithBloodSamples];
-
+    
 }
 
 -(void)saveSampleWithDate:(NSDate*) selectedDate
 {
-    //sets placeholder for empty blood sample values
-    for (UITextField *txtField in self.bloodSampleTextFields)
-    {
-        if ([txtField.text isEqualToString:@""])
-            txtField.text = @"-";
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    
+    for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
+        
+        RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
+        NSString *bloodSampleValue = cell.txfBloodSample.text;
+        
+        switch (path.row) {
+            case 0:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"hemo"];
+                break;
+            case 1:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"thrombo"];
+                break;
+            case 2:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"neutro"];
+                break;
+            case 3:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"crp"];
+                break;
+            case 4:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"leukocytter"];
+                break;
+            case 5:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"alat"];
+                break;
+            case 6:
+                [dataToBeSaved setObject:bloodSampleValue forKey:@"other"];
+                break;
+            default:
+                break;
+        }
     }
     
-    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-    [dataToBeSaved setObject:self.hemoText.text forKey:@"hemo"];
-    [dataToBeSaved setObject:self.thromboText.text forKey:@"thrombo"];
-    [dataToBeSaved setObject:self.neutroText.text forKey:@"neutro"];
-    [dataToBeSaved setObject:self.crpText.text forKey:@"crp"];
-    [dataToBeSaved setObject:self.leukocytterText.text forKey:@"leukocytter"];
-    [dataToBeSaved setObject:self.alatText.text forKey:@"alat"];
-    [dataToBeSaved setObject:self.otherText.text forKey:@"other"];
     [self.dataManagement.bloodSampleData setObject:dataToBeSaved forKey:[self.dateFormatter stringFromDate:selectedDate]];
     [self.dataManagement writeToPList];
     [self resetView];
 }
 
 -(void)resetView {
-    for (UITextField *txtField in self.bloodSampleTextFields) {
-        [txtField setText:@""];
-    }
+    
+    //resets tableview cells
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
         RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
         for (UILabel *dayLabel in cell.dayLabels)
@@ -71,7 +91,34 @@
         {
             separator.hidden = NO;
         }
+        cell.txfBloodSample.text = @"";
     }
+    //resets dateLabels
+    for (UILabel *dateLabel in self.dateLabels)
+    {
+        dateLabel.hidden = NO;
+    }
+
+    [self.tableViewPreviousBloodSamples reloadData];
+    
+    //initializes dateLabels
+    //TODO: move this method to main one being called when view is displayed
+    NSArray *datesWithBS = [self datesWithBloodSamples];
+    NSUInteger entries = [datesWithBS count];
+    for (int i = 0; i < 6;i++)
+    {
+        UILabel *dateLabel = self.dateLabels[i];
+        if (i > entries-1 || entries==0)
+            dateLabel.hidden = YES;
+        else
+        {
+            NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
+            [shortFormatter setDateFormat:@"dd/MM"];
+            dateLabel.text = [shortFormatter stringFromDate:datesWithBS[i]];
+        }
+        
+    }
+    
 }
 
 -(NSArray *)bloodSampleForDay:(NSDate*) date
@@ -103,7 +150,8 @@
     //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
     //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
     NSUInteger found = 0;
-    NSDate *dateToSearch = [NSDate date];
+    NSDate *dateToSearch = [[NSDate date] offsetDay:1];
+    
     
     while (found<entries) {
         
@@ -169,10 +217,6 @@
     }
     
     return cell;
-}
-
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Pain Registrations";
 }
 
 @end
