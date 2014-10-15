@@ -581,12 +581,6 @@
                                     <segue destination="9pv-A4-QxB" kind="push" id="UJw-0y-Itz"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4el-dB-mK0">
-                                <rect key="frame" x="442" y="691" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sE8-86-ofx">
                                 <rect key="frame" x="262" y="691" width="40" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -615,6 +609,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4el-dB-mK0">
+                                <rect key="frame" x="442" y="691" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -641,16 +641,22 @@
                     <connections>
                         <outlet property="btnDrawPain" destination="lBN-Wo-eDZ" id="ffA-3T-gqu"/>
                         <outlet property="btnPhoto" destination="7aq-F8-Dxb" id="wmE-SQ-b9r"/>
+                        <outlet property="drawLabel" destination="sE8-86-ofx" id="0e8-d5-bM4"/>
                         <outlet property="flaccScaleView" destination="Cai-1G-7gB" id="vmH-9n-ger"/>
                         <outlet property="imageSmiley" destination="2xM-mj-jJN" id="YQG-Tr-mnJ"/>
                         <outlet property="lblPainDescription" destination="ZmI-T7-88s" id="mn1-Rx-Rj0"/>
                         <outlet property="lblPainNumber" destination="7xF-70-bZ2" id="lse-Vh-ejV"/>
                         <outlet property="morphineInput" destination="GEf-FO-Ud0" id="8V4-xw-nRF"/>
+                        <outlet property="morphineLabel" destination="8Gc-cC-52v" id="6nZ-Xh-mts"/>
                         <outlet property="painScoreLabel" destination="hfc-2f-v8I" id="wFY-YC-Ghk"/>
                         <outlet property="painTypeSelectorFlacc" destination="umN-XN-VNw" id="BN3-zz-6lq"/>
                         <outlet property="painTypeSelectorSmiley" destination="wzf-Dq-3Ox" id="c2u-Ue-bkc"/>
+                        <outlet property="paracetamolLabel" destination="kRv-cP-9HI" id="in0-qa-KA6"/>
+                        <outlet property="photoLabel" destination="4el-dB-mK0" id="zYq-UE-rHR"/>
                         <outlet property="sliderPainNumber" destination="2uI-d9-yXS" id="Obr-vG-KDh"/>
                         <outlet property="smileyScaleView" destination="kGf-k7-2HO" id="0Ar-F3-Osn"/>
+                        <outlet property="submitButton" destination="rWJ-Io-uxB" id="YHx-hB-BeN"/>
+                        <outlet property="switchPainScaleButton" destination="6fg-6g-cVd" id="ZGB-0e-6ID"/>
                         <outlet property="switchParmol" destination="MZk-Cz-CDH" id="OgA-RQ-baX"/>
                         <outletCollection property="comfortButtons" destination="W0J-Hi-gVu" id="GI1-xW-eNe"/>
                         <outletCollection property="comfortButtons" destination="Xtf-gQ-M7W" id="MYm-wR-Oso"/>

@@ -40,11 +40,17 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *allButtons;
 @property (strong,nonatomic) UIColor *btnPressedColor;
 
-//Properties connected to both smileyScaleView and flaccScaleView
+//General properties
 @property (weak, nonatomic) IBOutlet UISwitch *switchParmol;
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
 @property (weak, nonatomic) IBOutlet UIButton *btnDrawPain;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *drawLabel;
+@property (weak, nonatomic) IBOutlet UILabel *photoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *morphineLabel;
+@property (weak, nonatomic) IBOutlet UILabel *paracetamolLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *switchPainScaleButton;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
 @property (strong,nonatomic) UIImage *cameraImageToBeSaved;
 @property(strong,nonatomic) NSString *painType;
