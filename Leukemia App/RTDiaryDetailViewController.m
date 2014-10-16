@@ -26,24 +26,24 @@
     self.service = [RTDataManagement singleton];
     
     NSString *date = [self.selectedData objectForKey:@"time"];
-    [self.labelDate setText:[NSString stringWithFormat:@"Date: %@",date]];
+    [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),date]];
     NSString *painLevel = [self.selectedData objectForKey:@"painlevel"];
-    [self.labelPainLevel setText:[NSString stringWithFormat:@"Pain level: %@",painLevel]];
+    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),painLevel]];
     NSString *painType = [self.selectedData objectForKey:@"paintype"];
-    [self.labelPainType setText:[NSString stringWithFormat:@"Pain type: %@",painType]];
+    [self.labelPainType setText:[NSString stringWithFormat:NSLocalizedString(@"Pain type: %@", nil),painType]];
     
     NSString *morphine = [self.selectedData objectForKey:@"morphinelevel"];
     if ([morphine isEqualToString:@""])
-        [self.labelMorphine setText:@"Morphine: -"];
+        [self.labelMorphine setText: NSLocalizedString(@"Morphine: -", nil)];
     else
-        [self.labelMorphine setText:[NSString stringWithFormat:@"Morphine: %@ mg",morphine]];
+        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ mg", nil),morphine]];
     
     NSString *paracetamol = [self.selectedData objectForKey:@"paracetamol"];
     if ([paracetamol intValue] == 1)
     {
-        [self.labelParacetamol setText:@"Paracetamol: Yes"];
+        [self.labelParacetamol setText: NSLocalizedString( @"Paracetamol: Yes", nil)];
     } else
-        [self.labelParacetamol setText:@"Paracetamol: No"];
+        [self.labelParacetamol setText:NSLocalizedString(@"Paracetamol: No", nil)];
     
     NSString *drawingImagePath = [self.selectedData objectForKey:@"drawingpath"];
     if (![drawingImagePath isEqualToString:@""])

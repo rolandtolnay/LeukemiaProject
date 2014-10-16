@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  Leukemia App
+
+  Created by DMU-24 on 15/10/14.
+  Copyright (c) 2014 DMU-24. All rights reserved.
+*/
+
+//Pain-scale tab
+"No hurt" = "Ingen smerte";
+"Hurts little bit" = "Gør en smule ondt";
+"Hurts little more" = "Gør lidt mere ondt";
+"Hurts even more" = "Gør endnu mere ondt";
+"Hurts whole lot" = "Gør rigtig meget ondt";
+"Hurts worst" = "Gør mest ondt";
+"Painscore is: 0" = "Smertescore er: 0";
+"The painscore is: " = "Smertescoren er: ";
+"Your data is saved.." = "Dine data er gemt..";
+"Saving" = "Gemmer";
+"No paintype selected" = "Ingen smertetype valgt";
+"You need to select a paintype before you can save!" = "Du skal vælge en smertetype før du kan gemme!";
+"Save failed" = "Gemning fejlede";
+"Failed to save image" = "Gemning af billede fejlede";
+//Graph tab
+"Week %d" = "Uge %d";
+"%d - Week %d" = "%d - Uge %d";
+"Not enough data to show graph." = "Ikke nok data til at vise graf.";
+"Pain types:" = "Smerte typer:";
+//Medicine tab
+"There is no bloodsample for this date" = "Der er ingen blodprøve for denne dato";
+"No high-dose kemo today" = "Ingen høj-dosis kemo i dag";
+"High-dose kemo treatment today: " = "Høj-dosis kemo behandling i dag: ";
+"High-dose Methotrexat" = "Høj-dosis Methotrexat";
+"Kemo types" = "Kemo typer";
+//Draw part
+"Red - It hurts so much that it's unbearable" = "Rød - Det gør så ondt at det er uudholdeligt";
+"Yellow - It hurts, but it's bearable" = "Gul - Det gør ondt, men det er til at holde ud";
+"Green - It hurts a bit, but I hardly notice the pain" = "Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
+//Select PainScale
+"Wong baker pain scale" = "Wong baker skala";
+"Bieri Faces pain scale" = "Bieri Faces skala";
+"FLACC pain scale" = "FLACC skala";
+//Diary detail
+"Morphine: -" = "Morfin: -";
+"Morphine: %@ mg" = "Morfin: %@ mg";
+"Paracetamol: Yes" = "Paracetamol: Ja";
+"Paracetamol: No" = "Paracetamol: Nej";
+"Date: %@" = "Dato: %@";
+"Pain level: %@" = "Smerte score: %@";
+"Pain type: %@" = "Smerte type: %@";
+//Diary tab
+"Pain Registrations" = "Smerte registreringer";
+"%@ - Pain Level: %@, Type: %@" = "%@ - Smerte score: %@, Type: %@";
+"Mouth" = "Mund";
+"Stomach" = "Mave";
+"Other" = "Andet";

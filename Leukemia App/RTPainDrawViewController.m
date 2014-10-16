@@ -37,9 +37,9 @@
     [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateHighlighted];
 //    [self.redBtn setSelected:YES];
     
-    self.redDescription = @"Rød - Det gør så ondt at det er uudholdeligt";
-    self.yellowDescription = @"Gul - Det gør ondt, men det er til at holde ud";
-    self.greenDescription = @"Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
+    self.redDescription = NSLocalizedString(@"Red - It hurts so much that it's unbearable", nil);
+    self.yellowDescription = NSLocalizedString(@"Yellow - It hurts, but it's bearable", nil);
+    self.greenDescription = NSLocalizedString(@"Green - It hurts a bit, but I hardly notice the pain", nil);
 //    [self.painDescriptionTxtField setText:self.redDescription];
 //    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
 

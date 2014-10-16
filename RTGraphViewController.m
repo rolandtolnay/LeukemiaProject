@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.lblPainType.text = NSLocalizedString(@"Pain types:", nil);
     self.colorMouthPain = [UIColor gk_pomegranateColor];
     self.colorStomachPain = [UIColor gk_greenSeaColor];
     self.colorOtherPain = [UIColor gk_belizeHoleColor];
@@ -137,7 +137,7 @@
             }
             else
             {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         } else if ([self isPainMouthGraph])
         {
@@ -150,7 +150,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
             
         } else if ([self isPainStomachGraph])
@@ -164,7 +164,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         } else if ([self isPainOtherGraph])
         {
@@ -177,7 +177,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         }
     }
@@ -338,7 +338,7 @@
     [self.popover dismissPopoverAnimated:YES];
     self.currentDate = datesInWeek[0];
     
-    NSString *pickedWeek = [NSString stringWithFormat:@"%d - Week %d",[self.currentDate year],[self.currentDate week]];
+    NSString *pickedWeek = [NSString stringWithFormat:NSLocalizedString(@"%d - Week %d", nil),[self.currentDate year],[self.currentDate week]];
     [self.datePicker setTitle:pickedWeek forState:UIControlStateNormal];
     
     [self.weightTimestamps removeAllObjects];

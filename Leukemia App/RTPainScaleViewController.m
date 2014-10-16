@@ -19,12 +19,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.dataManagement = [RTDataManagement singleton];
     
     [self.dataManagement saveUserPrefrences]; //To make sure that there is a current painscale, the very first time the app is run
-    
-    //Set up UI properties
-    self.switchPainScaleButton.title = NSLocalizedString(@"Switch Pain-Scale", @"Button that switches between scales");
     
     //Set up smileyView properties
     [self initSliderPainNumber];
@@ -38,26 +36,13 @@
                              (NSLocalizedString(@"Hurts worst", @"10 on painscale"))
                              ];
     
-    [self.painTypeSelectorSmiley setTitle:NSLocalizedString(@"Mouth", nil) forSegmentAtIndex:0];
-    [self.painTypeSelectorSmiley setTitle:NSLocalizedString(@"Stomach", nil) forSegmentAtIndex:1];
-    [self.painTypeSelectorSmiley setTitle:NSLocalizedString(@"Other", nil) forSegmentAtIndex:2];
-    
     //Set up flaccScaleView properties
     self.btnPressedColor = [UIColor colorWithRed:137.0/255.0 green:76.0/255.0 blue:137.0/255.0 alpha:1.0];
-    [self.painTypeSelectorFlacc setTitle:NSLocalizedString(@"Mouth", nil) forSegmentAtIndex:0];
-    [self.painTypeSelectorFlacc setTitle:NSLocalizedString(@"Stomach", nil) forSegmentAtIndex:1];
-    [self.painTypeSelectorFlacc setTitle:NSLocalizedString(@"Other", nil) forSegmentAtIndex:2];
     self.painScoreLabel.text = NSLocalizedString(@"Painscore is: 0", nil);
 
     //Setting up general properties
     self.morphineInput.delegate = self;
     self.painScore = 0;
-    self.drawLabel.text = NSLocalizedString(@"Draw", @"Label on draw button");
-    self.photoLabel.text = NSLocalizedString(@"Photo", @"Label on photo button");
-    self.morphineLabel.text = NSLocalizedString(@"Morphine", nil);
-    self.paracetamolLabel.text = NSLocalizedString(@"Paracetamol", nil);
-    self.submitButton.titleLabel.text = NSLocalizedString(@"Submit data", @"Text on submit button");
-    
     
     if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
         self.smileyScaleView.hidden = NO;
@@ -68,7 +53,7 @@
         self.smileyScaleView.hidden = YES;
         self.flaccScaleView.hidden = NO;
     }
-    [super viewDidLoad];
+   
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -166,7 +151,16 @@
 
 - (IBAction)painTypeSelected:(id)sender {
     UISegmentedControl *control = sender;
-    self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
+    if([control selectedSegmentIndex]==0){
+        self.painType = @"Mouth";
+    }
+    else if([control selectedSegmentIndex]==1){
+        self.painType = @"Stomach";
+    }
+    else if([control selectedSegmentIndex]==2){
+        self.painType = @"Other";
+    }
+    //self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
     NSLog(@"%@",self.painType);
 }
 
@@ -213,6 +207,7 @@
     self.cameraImageToBeSaved = nil;
     self.switchParmol.on = NO;
     self.painScore = 0;
+    self.painType = nil;
     
     //Reset properties connected to smileyView
     self.sliderPainNumber.value = 0.0;

@@ -128,12 +128,12 @@
     self.saveSampleButton.hidden = YES;
     self.editSampleButton.hidden = YES;
     self.addSampleButton.hidden = NO;
-    self.noSampleLabel.text = @"There is no bloodsample for this date";
+    self.noSampleLabel.text = NSLocalizedString(@"There is no bloodsample for this date", nil);
 
 }
 
 -(void)noKemoUI{
-    self.highDoseKemoLabel.text = @"Ingen høj-dosis kemo i dag";
+    self.highDoseKemoLabel.text = NSLocalizedString(@"No high-dose kemo today", nil) ;
     self.highDoseKemoButton.hidden = NO;
     self.editHighDoseKemo.hidden = YES;
 }
@@ -161,7 +161,7 @@
 }
 
 -(void)showKemoUI: (NSDate *)date{
-    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:[self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]]];
     self.highDoseKemoButton.hidden = YES;
     self.editHighDoseKemo.hidden = NO;
@@ -244,7 +244,7 @@
 }
 
 -(void)didSelectedRowInPopover:(NSString *)kemoType{
-    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
     [self.popover dismissPopoverAnimated:YES];
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
     [self.dataManagement.kemoTreatment setObject:kemoType forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
