@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pain Information" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Yg-2dN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painInformation" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Yg-2dN">
                                 <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
                             </imageView>
                         </subviews>
@@ -1955,7 +1955,6 @@
     </scenes>
     <resources>
         <image name="FLACCscale" width="654" height="379"/>
-        <image name="Pain Information" width="705" height="807"/>
         <image name="TabBarDiaryUpdated" width="32" height="32"/>
         <image name="TabBarGraph" width="32" height="32"/>
         <image name="TabBarMedicineUpdated" width="32" height="32"/>
@@ -1965,6 +1964,7 @@
         <image name="camera-icon" width="256" height="256"/>
         <image name="humanBodyIcon" width="42" height="91"/>
         <image name="painDrawBody" width="610" height="838"/>
+        <image name="painInformation" width="705" height="807"/>
         <image name="redbtn" width="300" height="300"/>
         <image name="smileyA" width="338" height="338"/>
     </resources>
