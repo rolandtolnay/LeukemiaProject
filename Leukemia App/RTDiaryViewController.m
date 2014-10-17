@@ -155,11 +155,6 @@
     NSLog(@"%@", self.dataManagement.diaryData);
 }
 
-//-(void)weightInputFinished:(id)sender
-//{
-//    [sender resignFirstResponder];
-//}
-
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -261,6 +256,17 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return @"Pain Registrations";
+}
+
+//Delete a registration
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSMutableDictionary *selectedReg = [self.diaryData objectAtIndex:indexPath.row];
+        [self.dataManagement.painData removeObject:selectedReg];
+        [self.diaryData removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark - Show details popover

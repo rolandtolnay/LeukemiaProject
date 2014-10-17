@@ -30,6 +30,4 @@
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
 
--(IBAction)weightInputFinished:(id)sender;
-
 @end
