@@ -7,12 +7,12 @@
 */
 
 //Pain-scale tab
-"No hurt" = "Ingen smerte";
-"Hurts little bit" = "Gør en smule ondt";
-"Hurts little more" = "Gør lidt mere ondt";
-"Hurts even more" = "Gør endnu mere ondt";
-"Hurts whole lot" = "Gør rigtig meget ondt";
-"Hurts worst" = "Gør mest ondt";
+"No hurt" = "Man kan gøre fuldstændig, som man plejer uden at tænke på, at det gør ondt";
+"Hurts little bit" = "Man kan gøre, som man plejer, men af og til må man standse op, fordi det gør ondt";
+"Hurts little more" = "Man har mest lyst til at sidde stille og få læst en historie eller se fjernsyn, fordi det gør ondt";
+"Hurts even more" = "Man tænker på, at det gør ondt hele tiden";
+"Hurts whole lot" = "Man har så ondt, at man har lyst til at græde fordi det gør ondt";
+"Hurts worst" = "Man har så ondt, at man slet ikke kan holde det ud";
 "Painscore is: 0" = "Smertescore er: 0";
 "The painscore is: " = "Smertescoren er: ";
 "Your data is saved.." = "Dine data er gemt..";
