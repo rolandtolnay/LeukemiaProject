@@ -378,10 +378,10 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cai-1G-7gB" userLabel="flaccScaleView">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cai-1G-7gB" userLabel="flaccScaleView">
                                 <rect key="frame" x="47" y="72" width="675" height="512"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Pain information-1" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FLACCscale" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
                                         <rect key="frame" x="10" y="13" width="654" height="379"/>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="umN-XN-VNw">
@@ -539,9 +539,6 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="lnI-tC-bxM" firstAttribute="leading" secondItem="Cai-1G-7gB" secondAttribute="leading" constant="10" id="WIW-px-BON"/>
-                                </constraints>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MZk-Cz-CDH">
                                 <rect key="frame" x="388" y="802" width="51" height="31"/>
@@ -1804,8 +1801,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FLACCscale" width="654" height="379"/>
         <image name="Pain Information" width="25" height="25"/>
-        <image name="Pain information-1" width="654" height="379"/>
         <image name="TabBarDiaryUpdated" width="32" height="32"/>
         <image name="TabBarGraph" width="32" height="32"/>
         <image name="TabBarMedicineUpdated" width="32" height="32"/>
