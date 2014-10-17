@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.dataManagement = [RTDataManagement singleton];
     
     [self.dataManagement saveUserPrefrences]; //To make sure that there is a current painscale, the very first time the app is run
@@ -27,19 +28,17 @@
     [self initSliderPainNumber];
     self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
     self.painDescription = @[
-                             @("No hurt"),
-                             @("Hurts little bit"),
-                             @("Hurts little more"),
-                             @("Hurts even more"),
-                             @("Hurts whole lot"),
-                             @("Hurts worst")
+                             (NSLocalizedString(@"No hurt", @"0-1 on painscale")),
+                             (NSLocalizedString(@"Hurts little bit", @"2-3 on painscale")),
+                             (NSLocalizedString(@"Hurts little more", @"4-5 on painscale")),
+                             (NSLocalizedString(@"Hurts even more", @"6-7 on painscale")),
+                             (NSLocalizedString(@"Hurts whole lot", @"8-9 on painscale")),
+                             (NSLocalizedString(@"Hurts worst", @"10 on painscale"))
                              ];
-    
-  
     
     //Set up flaccScaleView properties
     self.btnPressedColor = [UIColor colorWithRed:137.0/255.0 green:76.0/255.0 blue:137.0/255.0 alpha:1.0];
-    self.painScoreLabel.text = @"Smertescoren er: 0";
+    self.painScoreLabel.text = NSLocalizedString(@"Painscore is: 0", nil);
 
     //Setting up general properties
     self.morphineInput.delegate = self;
@@ -54,7 +53,7 @@
         self.smileyScaleView.hidden = YES;
         self.flaccScaleView.hidden = NO;
     }
-    [super viewDidLoad];
+   
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -113,7 +112,7 @@
             self.painScore = self.painScore + button.tag;
         }
     }
-    self.painScoreLabel.text = [@"Smertescoren er: " stringByAppendingString:[NSString stringWithFormat:@"%d", (int)self.painScore]];
+    self.painScoreLabel.text = [NSLocalizedString(@"The painscore is: ", @"Sets text on flacc scale when score changes") stringByAppendingString:[NSString stringWithFormat:@"%d", (int)self.painScore]];
 }
 
 #pragma Method related to camera
@@ -152,7 +151,16 @@
 
 - (IBAction)painTypeSelected:(id)sender {
     UISegmentedControl *control = sender;
-    self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
+    if([control selectedSegmentIndex]==0){
+        self.painType = @"Mouth";
+    }
+    else if([control selectedSegmentIndex]==1){
+        self.painType = @"Stomach";
+    }
+    else if([control selectedSegmentIndex]==2){
+        self.painType = @"Other";
+    }
+    //self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
     NSLog(@"%@",self.painType);
 }
 
@@ -199,6 +207,7 @@
     self.cameraImageToBeSaved = nil;
     self.switchParmol.on = NO;
     self.painScore = 0;
+    self.painType = nil;
     
     //Reset properties connected to smileyView
     self.sliderPainNumber.value = 0.0;
@@ -210,7 +219,7 @@
         button.backgroundColor = nil;
     }
     self.painTypeSelectorFlacc.selectedSegmentIndex = -1;
-    self.painScoreLabel.text = @"Smertescoren er: 0";
+    self.painScoreLabel.text = NSLocalizedString(@"Painscore is: 0", nil);;
     [self syncImagesWithSlider];
 }
 
@@ -297,9 +306,9 @@
     }
     NSLog(@"Entries: %lu",(unsigned long)self.dataManagement.painData.count);
     
-    NSString *message = @"Your data is saved..";
+    NSString *message = NSLocalizedString(@"Your data is saved..", @"Shown when data is saved") ;
     
-    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Saving"
+    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Saving", @"Title on saving alertview")
                                                     message:message
                                                    delegate:nil
                                           cancelButtonTitle:nil
@@ -345,8 +354,8 @@
         [self saveToPlist:drawingImagePath :photoPath :currentTime];
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No paintype selected"
-                                                        message:@"You need to select a paintype before you can save!"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")
+                                                        message:NSLocalizedString(@"You need to select a paintype before you can save!", @"Shown when no paintype is selected")
                                                        delegate:self
                                               cancelButtonTitle:@"Ok"
                                               otherButtonTitles:nil,nil];
@@ -430,8 +439,8 @@
 -(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void*)contextInfo {
     if (error) {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Save failed"
-                              message:@"Failed to save image"
+                              initWithTitle:NSLocalizedString(@"Save failed", @"Title on saving image alert")
+                              message:NSLocalizedString(@"Failed to save image", @"Shown when saving image fails")
                               delegate:nil
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];

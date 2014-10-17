@@ -178,7 +178,7 @@
 }
 
 -(void)showKemoUI: (NSDate *)date{
-    NSString *labelText = @"Høj-dosis kemo behandling i dag: ";
+    NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:[self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]]];
     self.highDoseKemoButton.hidden = YES;
     self.editHighDoseKemo.hidden = NO;

@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  Leukemia App
+
+  Created by DMU-24 on 15/10/14.
+  Copyright (c) 2014 DMU-24. All rights reserved.
+*/
+
+//Pain-scale tab
+"No hurt" = "You can do as usual, without thinking that it hurts";
+"Hurts little bit" = "You can do as usual, but now and then you have to stop what you are doing, because it hurts";
+"Hurts little more" = "You want to sit still and get read a story or watch television, because it hurts";
+"Hurts even more" = "You think about taht it hurts, all the time";
+"Hurts whole lot" = "It hurts so much, that you feel like crying, because of the pain";
+"Hurts worst" = "It hurts som much that it's unbearable";
+"Painscore is: 0" = "Painscore is: 0";
+"The painscore is: " = "The painscore is: ";
+"Your data is saved.." = "Your data is saved..";
+"Saving" = "Saving";
+"No paintype selected" = "No paintype selected";
+"You need to select a paintype before you can save!" = "You need to select a paintype before you can save!";
+"Save failed" = "Save failed";
+"Failed to save image" = "Failed to save image";
+//Graph tab
+"Week %d" = "Week %d";
+"%d - Week %d" = "%d - Week %d";
+"Not enough data to show graph." = "Not enough data to show graph.";
+"Pain types:" = "Pain types:";
+//Medicine Tab
+"There is no bloodsample for this date" = "There is no bloodsample for this date";
+"No high-dose kemo today" = "No high-dose kemo today";
+"High-dose kemo treatment today: " = "High-dose kemo treatment today: ";
+"High-dose Methotrexat" = "High-dose Methotrexat";
+"Kemo types" = "Kemo types";
+//Draw part
+"Red - It hurts so much that it's unbearable" = "Red - It hurts so much that it's unbearable";
+"Yellow - It hurts, but it's bearable" = "Yellow - It hurts, but it's bearable";
+"Green - It hurts a bit, but I hardly notice the pain" = "Green - It hurts a bit, but I hardly notice the pain";
+//Select PainScale
+"Wong baker pain scale" = "Wong baker scale";
+"Bieri Faces pain scale" = "Bieri Faces scale";
+"FLACC pain scale" = "FLACC scale";
+//Diary detail
+"Morphine: -" = "Morphine: -";
+"Morphine: %@ mg" = "Morphine: %@ mg";
+"Paracetamol: Yes" = "Paracetamol: Yes";
+"Paracetamol: No" = "Paracetamol: No";
+"Date: %@" = "Date: %@";
+"Pain level: %@" = "Pain level: %@";
+"Pain type: %@" = "Pain type: %@";
+//Diary tab
+"Pain Registrations" = "Pain Registrations";
+"%@ - Pain Level: %@, Type: %@" = "%@ - Pain Level: %@, Type: %@";
+"Mouth" = "Mouth";
+"Stomach" = "Stomach";
+"Other" = "Other";

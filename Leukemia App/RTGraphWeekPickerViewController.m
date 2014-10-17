@@ -19,7 +19,7 @@
     
     self.weeks = [[NSMutableArray alloc] init];
     for (int i=1; i < 54; i++) {
-        NSString *week = [NSString stringWithFormat:@"Week %d",i];
+        NSString *week = [NSString stringWithFormat:NSLocalizedString(@"Week %d", nil) ,i];
         [self.weeks addObject:week];
     }
     

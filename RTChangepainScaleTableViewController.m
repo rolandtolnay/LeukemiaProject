@@ -41,16 +41,17 @@
     static NSString *cellIdentifier = @"painScaleCell";
     RTDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if(indexPath.row == 0){
-        cell.detailCellLabel.text = @"Wong baker scale";
+        cell.detailCellLabel.text = NSLocalizedString(@"Wong baker pain scale", nil);
+        cell.detailCellImage.image = [UIImage imageNamed:@"Wong baker scale"];
     }
     else if (indexPath.row == 1){
-        cell.detailCellLabel.text = @"Bieri Faces pain scale";
+        cell.detailCellLabel.text = NSLocalizedString(@"Bieri Faces pain scale",nil);
+        cell.detailCellImage.image = [UIImage imageNamed: @"Bieri Faces pain scale"];
     }
     else if (indexPath.row == 2){
-        cell.detailCellLabel.text = @"FLACC skala";
+        cell.detailCellLabel.text = NSLocalizedString(@"FLACC pain scale", nil);
+        cell.detailCellImage.image = [UIImage imageNamed: @"FLACC skala"];
     }
-    cell.detailCellImage.image = [UIImage imageNamed: cell.detailCellLabel.text];
-    
     if (indexPath.row == self.dataManagement.selectedRowPainScale) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }

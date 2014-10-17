@@ -189,13 +189,13 @@
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
     [self.diaryData removeAllObjects];
-    NSString *temp;
+    NSString *tempTime;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm"];
     NSDate *painRegDate;
     for (NSMutableDictionary *dict in self.dataManagement.painData){
-        temp = [dict objectForKey:@"time"];
-        painRegDate = [dateFormat dateFromString:temp];
+        tempTime = [dict objectForKey:@"time"];
+        painRegDate = [dateFormat dateFromString:tempTime];
         if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
             [self.diaryData addObject:dict];
         }
@@ -247,7 +247,16 @@
     NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
     NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
-    NSString *cellText = [NSString stringWithFormat:@"%@ - Pain Level: %@, Type: %@",hour,painLevel,painType];
+    if ([painType isEqualToString:@"Mouth"]){
+        painType = NSLocalizedString(@"Mouth", nil);
+    }
+    else if([painType isEqualToString:@"Stomach"]){
+        painType = NSLocalizedString(@"Stomach", nil);
+    }
+    else if([painType isEqualToString:@"Other"]){
+        painType = NSLocalizedString(@"Other", nil);
+    }
+    NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Pain Level: %@, Type: %@", nil),hour,painLevel,painType];
     
     cell.textLabel.text = cellText;
     
@@ -255,7 +264,7 @@
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"Pain Registrations";
+    return NSLocalizedString(@"Pain Registrations", nil);
 }
 
 //Delete a registration

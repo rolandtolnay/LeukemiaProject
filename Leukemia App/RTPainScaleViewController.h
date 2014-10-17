@@ -40,7 +40,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *allButtons;
 @property (strong,nonatomic) UIColor *btnPressedColor;
 
-//Properties connected to both smileyScaleView and flaccScaleView
+//General properties
 @property (weak, nonatomic) IBOutlet UISwitch *switchParmol;
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
 @property (weak, nonatomic) IBOutlet UIButton *btnDrawPain;
