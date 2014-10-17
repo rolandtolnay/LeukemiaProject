@@ -77,6 +77,8 @@ static RTDataManagement *dataMangement = nil;
     if (self = [super init]){
         self.selectedRowPainScale = [self.prefs integerForKey:@"selectedRowPainScale"];
         self.painScaleBieri = [self.prefs boolForKey:@"painScaleBieri"];
+        self.painScaleWongBaker = [self.prefs boolForKey:@"painScaleWongBaker"];
+        self.flaccScale = [self.prefs boolForKey:@"flaccScale"];
         self.selectedRowNotification = [self.prefs integerForKey:@"selectedRowNotification"];
         self.notificationsOn = [self.prefs boolForKey:@"notificationsOn"];
         [self reloadPlist];
@@ -117,11 +119,22 @@ static RTDataManagement *dataMangement = nil;
     [self.prefs setInteger:self.selectedRowPainScale forKey:@"selectedRowPainScale"];
     if (self.selectedRowPainScale == 0) {
         self.painScaleBieri = NO;
+        self.painScaleWongBaker = YES;
+        self.flaccScale = NO;
     }
-    else{
+    else if(self.selectedRowPainScale == 1){
         self.painScaleBieri = YES;
+        self.painScaleWongBaker = NO;
+        self.flaccScale = NO;
+    }
+    else if (self.selectedRowPainScale == 2){
+        self.painScaleBieri = NO;
+        self.painScaleWongBaker = NO;
+        self.flaccScale = YES;
     }
     [self.prefs setBool:self.painScaleBieri forKey:@"painScaleBieri"];
+    [self.prefs setBool:self.painScaleWongBaker forKey:@"painScaleWongBaker"];
+    [self.prefs setBool:self.flaccScale forKey:@"flaccScale"];
     
     [self.prefs setInteger:self.selectedRowNotification forKey:@"selectedRowNotification"];
     if (self.selectedRowNotification == 0) {

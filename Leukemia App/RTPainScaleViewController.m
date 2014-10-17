@@ -21,8 +21,10 @@
 {
     self.dataManagement = [RTDataManagement singleton];
     
-    [self initSliderPainNumber];
+    [self.dataManagement saveUserPrefrences]; //To make sure that there is a current painscale, the very first time the app is run
     
+    //Set up smileyView properties
+    [self initSliderPainNumber];
     self.smileys = @[@("A"),@("B"),@("C"),@("D"),@("E"),@("F")];
     self.painDescription = @[
                              @("No hurt"),
@@ -33,13 +35,88 @@
                              @("Hurts worst")
                              ];
     
+  
+    
+    //Set up flaccScaleView properties
+    self.btnPressedColor = [UIColor colorWithRed:137.0/255.0 green:76.0/255.0 blue:137.0/255.0 alpha:1.0];
+    self.painScoreLabel.text = @"Smertescoren er: 0";
+
+    //Setting up general properties
     self.morphineInput.delegate = self;
+    self.painScore = 0;
     
-    [self syncImagesWithSlider];
-    
+    if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
+        self.smileyScaleView.hidden = NO;
+        self.flaccScaleView.hidden = YES;
+        [self syncImagesWithSlider];
+    }
+    else{
+        self.smileyScaleView.hidden = YES;
+        self.flaccScaleView.hidden = NO;
+    }
     [super viewDidLoad];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setButtonImageHighlight];
+}
+
+#pragma Methods related specific to FLACC scale
+- (IBAction)flaccScalePressed:(id)sender {
+    UIButton *selectedButton = sender;
+    self.painScore = 0;
+    if(!selectedButton.backgroundColor){
+        selectedButton.backgroundColor = self.btnPressedColor;
+        selectedButton.alpha = 0.4;
+    }
+    else{
+        selectedButton.backgroundColor = nil;
+    }
+    if([self.faceButtons containsObject:selectedButton]){
+        for(UIButton *btnInSelectedRow in self.faceButtons){
+            if(selectedButton != btnInSelectedRow){
+                btnInSelectedRow.backgroundColor = nil;
+            }
+        }
+    }
+    else if([self.legsButtons containsObject:selectedButton]){
+        for(UIButton *btnInSelectedRow in self.legsButtons){
+            if(selectedButton != btnInSelectedRow){
+                btnInSelectedRow.backgroundColor = nil;
+            }
+        }
+    }
+    else if([self.activityButtons containsObject:selectedButton]){
+        for(UIButton *btnInSelectedRow in self.activityButtons){
+            if(selectedButton != btnInSelectedRow){
+                btnInSelectedRow.backgroundColor = nil;
+            }
+        }
+    }
+    else if([self.cryingButtons containsObject:selectedButton]){
+        for(UIButton *btnInSelectedRow in self.cryingButtons){
+            if(selectedButton != btnInSelectedRow){
+                btnInSelectedRow.backgroundColor = nil;
+            }
+        }
+    }
+    else if([self.comfortButtons containsObject:selectedButton]){
+        for(UIButton *btnInSelectedRow in self.comfortButtons){
+            if(selectedButton != btnInSelectedRow){
+                btnInSelectedRow.backgroundColor = nil;
+            }
+        }
+    }
+    for (UIButton *button in self.allButtons) {
+        if (button.backgroundColor) {
+            self.painScore = self.painScore + button.tag;
+        }
+    }
+    self.painScoreLabel.text = [@"Smertescoren er: " stringByAppendingString:[NSString stringWithFormat:@"%d", (int)self.painScore]];
+}
+
+#pragma Method related to camera
 -(IBAction)useCamera:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -55,48 +132,7 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self setButtonImageHighlight];
-}
-
-#pragma mark - #pragma mark UIImagePickerControllerDelegate
-
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    NSString *mediaType = info[UIImagePickerControllerMediaType];
-    
-    [self dismissViewControllerAnimated:YES  completion:nil];
-    
-    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
-        UIImage *image = info[UIImagePickerControllerOriginalImage];
-        
-        self.cameraImageToBeSaved = image;
-        
-        if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
-                                                      self,
-                                                      @selector(image:finishedSavingWithError:contextInfo:),
-                                                      nil);
-        
-    }
-}
-
--(void) image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void*)contextInfo {
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Save failed"
-                              message:@"Failed to save image"
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
+#pragma  Method related to UITouch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.morphineInput isFirstResponder] && [touch view] != self.morphineInput) {
@@ -105,26 +141,22 @@
     [super touchesBegan:touches withEvent:event];
 }
 
--(void)initSliderPainNumber
-{
-    self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
-    NSInteger numberOfSteps = ((float)[self.numberScale count]-1);
-    self.sliderPainNumber.maximumValue =numberOfSteps;
-    self.sliderPainNumber.minimumValue = 0;
-    
-    self.sliderPainNumber.continuous = YES;
-    [self.sliderPainNumber addTarget:self action:@selector(sliderPainNumberChanged:) forControlEvents:UIControlEventValueChanged];
-    self.sliderPainNumber.value=0;
-}
 
+#pragma Methods related to UISlider
 -(void)sliderPainNumberChanged:(UISlider *)sender {
     NSUInteger index = (NSUInteger)(self.sliderPainNumber.value+0.5);
     [self.sliderPainNumber setValue:index animated:NO];
-    
+    self.painScore = index;
     [self syncImagesWithSlider];
 }
 
-//Saving and reading images
+- (IBAction)painTypeSelected:(id)sender {
+    UISegmentedControl *control = sender;
+    self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
+    NSLog(@"%@",self.painType);
+}
+
+#pragma Methods related to segues
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
 {
     UIViewController *sourceViewController = segue.sourceViewController;
@@ -159,18 +191,132 @@
     }
 }
 
-#pragma mark - RTSmileyTable Delegate
-
--(void)didSelectSmiley:(NSInteger)smiley
-{
-    [self.smileyTablePopover dismissPopoverAnimated:YES];
-    [self.sliderPainNumber setValue:(float)smiley];
+#pragma Convenience methods
+-(void)resetView{
+    //reset general properties
+    self.morphineInput.text = @"";
+    self.drawingToBeSaved = nil;
+    self.cameraImageToBeSaved = nil;
+    self.switchParmol.on = NO;
+    self.painScore = 0;
+    
+    //Reset properties connected to smileyView
+    self.sliderPainNumber.value = 0.0;
+    self.lblPainNumber.text = @"0";
+    self.painTypeSelectorSmiley.selectedSegmentIndex = -1;
+    
+    //Reset properties connected to flaccView
+    for(UIButton *button in self.allButtons){
+        button.backgroundColor = nil;
+    }
+    self.painTypeSelectorFlacc.selectedSegmentIndex = -1;
+    self.painScoreLabel.text = @"Smertescoren er: 0";
     [self syncImagesWithSlider];
+}
+
+-(void)syncImagesWithSlider{
+    int painNumber = (int)self.sliderPainNumber.value;
+    self.lblPainNumber.text = [[NSNumber numberWithInt:painNumber] stringValue];
+    if (painNumber == 0)
+    {
+        self.lblPainDescription.text = self.painDescription[0];
+        if(self.dataManagement.painScaleBieri){
+            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
+            [self.painTypeSelectorSmiley setTintColor:[UIColor blackColor]];
+        }
+        else if (self.dataManagement.painScaleWongBaker){
+            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
+            [self.painTypeSelectorSmiley setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+        }
+    }
+    else if (painNumber % 2 == 0)
+    {
+        painNumber = painNumber-1;
+    }
+    
+    if (painNumber % 2 == 1)
+    {
+        int smileyIndex = (painNumber+1)/2;
+        self.lblPainDescription.text = self.painDescription[smileyIndex];
+        NSString *imageName;
+        if(self.dataManagement.painScaleBieri){
+            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
+            [self.painTypeSelectorSmiley setTintColor:[UIColor blackColor]];
+        }
+        else if (self.dataManagement.painScaleWongBaker){
+            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
+            [self.painTypeSelectorSmiley setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
+        }
+        self.imageSmiley.image = [UIImage imageNamed:imageName];
+    }
+    [self setButtonImageHighlight];
+}
+
+-(void)setButtonImageHighlight{
+    if (self.drawingToBeSaved != nil)
+    {
+        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDrawComplete.png"] forState:UIControlStateNormal];
+    } else {
+        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDraw.png"] forState:UIControlStateNormal];
+    }
+    if (self.cameraImageToBeSaved != nil) {
+        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhotoComplete.png"] forState:UIControlStateNormal];
+    }
+    else {
+        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhoto.png"] forState:UIControlStateNormal];
+    }
+}
+
+-(void)initSliderPainNumber
+{
+    self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
+    NSInteger numberOfSteps = ((float)[self.numberScale count]-1);
+    self.sliderPainNumber.maximumValue =numberOfSteps;
+    self.sliderPainNumber.minimumValue = 0;
+    
+    self.sliderPainNumber.continuous = YES;
+    [self.sliderPainNumber addTarget:self action:@selector(sliderPainNumberChanged:) forControlEvents:UIControlEventValueChanged];
+    self.sliderPainNumber.value=0;
+}
+
+#pragma mark - PList methods
+-(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime{
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    [dataToBeSaved setObject:[NSString stringWithFormat:@"%d",(int)self.painScore]forKey:@"painlevel"];
+    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
+    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
+    [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
+    [dataToBeSaved setObject:currentTime forKey:@"time"];
+    [dataToBeSaved setObject:self.painType forKey:@"paintype"];
+    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
+    [self.dataManagement.painData addObject:dataToBeSaved];
+    [self.dataManagement writeToPList];
+    
+    for (NSString *str in self.dataManagement.painData) {
+        NSLog(@"%@",str);
+    }
+    NSLog(@"Entries: %lu",(unsigned long)self.dataManagement.painData.count);
+    
+    NSString *message = @"Your data is saved..";
+    
+    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Saving"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:nil, nil];
+    [toast show];
+    
+    int duration = 0.5; // duration in seconds
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [toast dismissWithClickedButtonIndex:0 animated:YES];
+    });
+    [self resetView];
 }
 
 //Method that saves images and data to pList
 - (IBAction)submitAndSaveData:(id)sender {
-    if(self.painTypeSelector.selectedSegmentIndex != -1){
+    if(self.painType){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         
@@ -208,12 +354,6 @@
     }
 }
 
-- (IBAction)painTypeSelected:(id)sender {
-    self.painType = [self.painTypeSelector titleForSegmentAtIndex:self.painTypeSelector.selectedSegmentIndex];
-    NSLog(@"%@",self.painType);
-}
-
-
 //FEATURE REMOVED BY CUSTOMER REQUEST
 //- (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 //{
@@ -239,107 +379,7 @@
 //    }
 //}
 
-
--(void)resetView{
-    self.sliderPainNumber.value = 0.0;
-    self.lblPainNumber.text = @"0";
-    self.morphineInput.text = @"";
-    self.drawingToBeSaved = nil;
-    self.cameraImageToBeSaved = nil;
-    self.painTypeSelector.selectedSegmentIndex = -1;
-    self.switchParmol.on = NO;
-    [self syncImagesWithSlider];
-}
-
--(void)syncImagesWithSlider{
-    int painNumber = (int)self.sliderPainNumber.value;
-    self.lblPainNumber.text = [[NSNumber numberWithInt:painNumber] stringValue];
-    if (painNumber == 0)
-    {
-        self.lblPainDescription.text = self.painDescription[0];
-        if(self.dataManagement.painScaleBieri){
-            self.imageSmiley.image = [UIImage imageNamed:@"bieriSmileyA"];
-            [self.painTypeSelector setTintColor:[UIColor blackColor]];
-        }
-        else{
-            self.imageSmiley.image = [UIImage imageNamed:@"smileyA"];
-            [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
-        }
-    }
-    else if (painNumber % 2 == 0)
-    {
-        painNumber = painNumber-1;
-    }
-    
-    if (painNumber % 2 == 1)
-    {
-        int smileyIndex = (painNumber+1)/2;
-        self.lblPainDescription.text = self.painDescription[smileyIndex];
-        NSString *imageName;
-        if(self.dataManagement.painScaleBieri){
-            imageName = [@"bieriSmiley" stringByAppendingString:self.smileys[smileyIndex]];
-            [self.painTypeSelector setTintColor:[UIColor blackColor]];
-        }
-        else{
-            imageName = [@"smiley" stringByAppendingString:self.smileys[smileyIndex]];
-            [self.painTypeSelector setTintColor:[UIColor colorWithRed:31.0/255.0 green:64.0/255.0 blue:129.0/255.0 alpha:1.0]];
-        }
-        self.imageSmiley.image = [UIImage imageNamed:imageName];
-    }
-    [self setButtonImageHighlight];
-}
-
--(void)setButtonImageHighlight{
-    if (self.drawingToBeSaved != nil)
-    {
-        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDrawComplete.png"] forState:UIControlStateNormal];
-    } else {
-        [self.btnDrawPain setImage:[UIImage imageNamed:@"btnPainDraw.png"] forState:UIControlStateNormal];
-    }
-    if (self.cameraImageToBeSaved != nil) {
-        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhotoComplete.png"] forState:UIControlStateNormal];
-    }
-    else {
-        [self.btnPhoto setImage:[UIImage imageNamed:@"btnPainPhoto.png"] forState:UIControlStateNormal];
-    }
-}
-
-#pragma mark - PList methods
-
--(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime{
-    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-    [dataToBeSaved setObject:self.lblPainNumber.text forKey:@"painlevel"];
-    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
-    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
-    [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
-    [dataToBeSaved setObject:currentTime forKey:@"time"];
-    [dataToBeSaved setObject:self.painType forKey:@"paintype"];
-    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
-    [self.dataManagement.painData addObject:dataToBeSaved];
-    [self.dataManagement writeToPList];
-    
-    for (NSString *str in self.dataManagement.painData) {
-        NSLog(@"%@",str);
-    }
-    NSLog(@"Entries: %lu",(unsigned long)self.dataManagement.painData.count);
-    
-    NSString *message = @"Your data is saved..";
-    
-    UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Saving"
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:nil, nil];
-    [toast show];
-    
-    int duration = 0.5; // duration in seconds
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, duration * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [toast dismissWithClickedButtonIndex:0 animated:YES];
-    });
-    [self resetView];
-}
-
+#pragma UITextField delegate method
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -347,8 +387,60 @@
     return YES;
 }
 
+#pragma RTChangePainScalePopoverDelegate method
 -(void)didSelectPainScale{
     [self.popover dismissPopoverAnimated:YES];
+    if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
+        self.smileyScaleView.hidden = NO;
+        self.flaccScaleView.hidden = YES;
+        [self syncImagesWithSlider];
+    }
+    else if(self.dataManagement.flaccScale){
+        self.smileyScaleView.hidden = YES;
+        self.flaccScaleView.hidden = NO;
+    }
+}
+
+#pragma mark - RTSmileyTable Delegate
+-(void)didSelectSmiley:(NSInteger)smiley
+{
+    [self.smileyTablePopover dismissPopoverAnimated:YES];
+    [self.sliderPainNumber setValue:(float)smiley];
     [self syncImagesWithSlider];
+}
+
+#pragma mark - #pragma mark UIImagePickerControllerDelegate
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    NSString *mediaType = info[UIImagePickerControllerMediaType];
+    
+    [self dismissViewControllerAnimated:YES  completion:nil];
+    
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+        UIImage *image = info[UIImagePickerControllerOriginalImage];
+        
+        self.cameraImageToBeSaved = image;
+        
+        if (_newMedia) UIImageWriteToSavedPhotosAlbum(image,
+                                                      self,
+                                                      @selector(image:finishedSavingWithError:contextInfo:),
+                                                      nil);
+    }
+}
+
+-(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void*)contextInfo {
+    if (error) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Save failed"
+                              message:@"Failed to save image"
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

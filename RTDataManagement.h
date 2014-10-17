@@ -25,6 +25,8 @@
 //NSUserDefault - painScaleSettings
 @property NSInteger selectedRowPainScale;
 @property BOOL painScaleBieri;
+@property BOOL painScaleWongBaker;
+@property BOOL flaccScale;
 //NSUserDefault - notificationsettings
 @property NSInteger selectedRowNotification;
 @property BOOL notificationsOn;
