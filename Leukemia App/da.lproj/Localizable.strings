@@ -21,6 +21,7 @@
 "You need to select a paintype before you can save!" = "Du skal vælge en smertetype før du kan gemme!";
 "Save failed" = "Gemning fejlede";
 "Failed to save image" = "Gemning af billede fejlede";
+"No info on this pain scale" = "Ingen information tilgængelig for denne smerte skala";
 //Graph tab
 "Week %d" = "Uge %d";
 "%d - Week %d" = "%d - Uge %d";

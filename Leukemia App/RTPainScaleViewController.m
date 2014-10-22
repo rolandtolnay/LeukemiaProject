@@ -61,7 +61,7 @@
     [self setButtonImageHighlight];
 }
 
-#pragma Methods related specific to FLACC scale
+#pragma mark - Methods related specific to FLACC scale
 - (IBAction)flaccScalePressed:(id)sender {
     UIButton *selectedButton = sender;
     self.painScore = 0;
@@ -115,7 +115,7 @@
     self.painScoreLabel.text = [NSLocalizedString(@"The painscore is: ", @"Sets text on flacc scale when score changes") stringByAppendingString:[NSString stringWithFormat:@"%d", (int)self.painScore]];
 }
 
-#pragma Method related to camera
+#pragma mark - Method related to camera
 -(IBAction)useCamera:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -131,7 +131,7 @@
     }
 }
 
-#pragma  Method related to UITouch
+#pragma mark - Method related to UITouch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.morphineInput isFirstResponder] && [touch view] != self.morphineInput) {
@@ -141,7 +141,7 @@
 }
 
 
-#pragma Methods related to UISlider
+#pragma mark - Methods related to UISlider
 -(void)sliderPainNumberChanged:(UISlider *)sender {
     NSUInteger index = (NSUInteger)(self.sliderPainNumber.value+0.5);
     [self.sliderPainNumber setValue:index animated:NO];
@@ -164,7 +164,7 @@
     NSLog(@"%@",self.painType);
 }
 
-#pragma Methods related to segues
+#pragma mark - Methods related to segues
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
 {
     UIViewController *sourceViewController = segue.sourceViewController;
@@ -191,15 +191,20 @@
         self.smileyTablePopover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.smileyTablePopover.delegate = self;
     }
-    if([segue.identifier isEqualToString:@"changePainScale"]){
+    else if([segue.identifier isEqualToString:@"changePainScale"]){
         RTChangepainScaleTableViewController *controller = [segue destinationViewController];
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
         controller.delegate = self;
     }
+    else if([segue.identifier isEqualToString:@"infoSegue"]){
+        RTPainInfoViewController *controller = [segue destinationViewController];
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
 }
 
-#pragma Convenience methods
+#pragma mark - Convenience methods
 -(void)resetView{
     //reset general properties
     self.morphineInput.text = @"";
@@ -388,7 +393,7 @@
 //    }
 //}
 
-#pragma UITextField delegate method
+#pragma mark - UITextField delegate method
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -396,7 +401,7 @@
     return YES;
 }
 
-#pragma RTChangePainScalePopoverDelegate method
+#pragma mark - RTChangePainScalePopoverDelegate method
 -(void)didSelectPainScale{
     [self.popover dismissPopoverAnimated:YES];
     if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
@@ -418,7 +423,7 @@
     [self syncImagesWithSlider];
 }
 
-#pragma mark - #pragma mark UIImagePickerControllerDelegate
+#pragma mark - UIImagePickerControllerDelegate
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     

@@ -7,26 +7,36 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Pain Info View Controller-->
         <scene sceneID="7F9-mV-PDM">
             <objects>
-                <viewController id="64Z-Ed-Ece" sceneMemberID="viewController">
+                <viewController id="64Z-Ed-Ece" customClass="RTPainInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xjn-mM-wGh"/>
                         <viewControllerLayoutGuide type="bottom" id="ZUH-q0-nnE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="htR-Lw-fze">
-                        <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="675"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painInformation" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Yg-2dN">
-                                <rect key="frame" x="0.0" y="0.0" width="700" height="800"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="li4-sf-Nop" userLabel="noInfoLabel">
+                                <rect key="frame" x="23" y="380" width="424" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="painInformation" translatesAutoresizingMaskIntoConstraints="NO" id="fz1-Yg-2dN">
+                                <rect key="frame" x="5" y="28" width="470" height="630"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="700" height="800"/>
+                    <size key="freeformSize" width="480" height="675"/>
+                    <connections>
+                        <outlet property="noInfoLabel" destination="li4-sf-Nop" id="LzX-Rh-6dz"/>
+                        <outlet property="painInformation" destination="fz1-Yg-2dN" id="UMm-MC-vtj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWp-Ld-1af" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -350,7 +360,7 @@
                                         <rect key="frame" x="121" y="419" width="433" height="31"/>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-70-bZ2" userLabel="Pain level - number">
-                                        <rect key="frame" x="583" y="419" width="14" height="30"/>
+                                        <rect key="frame" x="565" y="419" width="32" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -372,8 +382,8 @@
                                             <outletCollection property="gestureRecognizers" destination="79P-uq-tCf" appends="YES" id="QdT-tr-76v"/>
                                         </connections>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
-                                        <rect key="frame" x="237" y="365" width="200" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
+                                        <rect key="frame" x="65" y="358" width="544" height="53"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -541,42 +551,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kGf-k7-2HO" userLabel="smileyScaleView">
-                                <rect key="frame" x="47" y="72" width="675" height="512"/>
-                                <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2uI-d9-yXS" userLabel="Pain-level slider">
-                                        <rect key="frame" x="121" y="419" width="433" height="31"/>
-                                    </slider>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xF-70-bZ2" userLabel="Pain level - number">
-                                        <rect key="frame" x="565" y="419" width="32" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-Dq-3Ox">
-                                        <rect key="frame" x="216" y="309" width="243" height="29"/>
-                                        <segments>
-                                            <segment title="Mouth"/>
-                                            <segment title="Stomach"/>
-                                            <segment title="Other"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="painTypeSelected:" destination="iOi-VK-jme" eventType="valueChanged" id="Nbv-aK-GVQ"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="smileyA" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-mj-jJN">
-                                        <rect key="frame" x="216" y="44" width="243" height="242"/>
-                                        <gestureRecognizers/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="79P-uq-tCf" appends="YES" id="QdT-tr-76v"/>
-                                        </connections>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pain description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZmI-T7-88s">
-                                        <rect key="frame" x="65" y="358" width="544" height="53"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MZk-Cz-CDH">
                                 <rect key="frame" x="388" y="802" width="51" height="31"/>
                                 <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -665,7 +639,7 @@
                                 <rect key="frame" x="578" y="7" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <segue destination="64Z-Ed-Ece" kind="popover" popoverAnchorView="ygH-D7-E7b" id="voK-23-oPz">
+                                    <segue destination="64Z-Ed-Ece" kind="popover" identifier="infoSegue" popoverAnchorView="ygH-D7-E7b" id="voK-23-oPz">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -1056,7 +1030,7 @@
                                 <rect key="frame" x="0.0" y="193" width="768" height="405"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIn-Ri-zrc">
-                                        <rect key="frame" x="342" y="211" width="85" height="30"/>
+                                        <rect key="frame" x="327" y="211" width="115" height="30"/>
                                         <state key="normal" title="Add Sample">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1199,7 +1173,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p8-gW-4a3">
-                                        <rect key="frame" x="342" y="344" width="90" height="30"/>
+                                        <rect key="frame" x="312" y="344" width="150" height="30"/>
                                         <state key="normal" title="Edit Sample">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>

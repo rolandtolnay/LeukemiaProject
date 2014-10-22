@@ -191,7 +191,7 @@
         }
         else
         {
-            [self showError:YES withText:@"Not enough data to show graph."];
+            [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
         }
     }
 }

@@ -21,6 +21,7 @@
 "You need to select a paintype before you can save!" = "You need to select a paintype before you can save!";
 "Save failed" = "Save failed";
 "Failed to save image" = "Failed to save image";
+"No info on this pain scale" = "No info on this pain scale";
 //Graph tab
 "Week %d" = "Week %d";
 "%d - Week %d" = "%d - Week %d";
