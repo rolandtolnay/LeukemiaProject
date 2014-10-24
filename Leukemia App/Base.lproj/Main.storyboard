@@ -858,7 +858,13 @@
                             <constraint firstItem="GlT-Lq-b6Q" firstAttribute="centerX" secondItem="Ij2-AL-eYJ" secondAttribute="centerX" id="zda-HA-Qdk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Diary" id="oe0-Ok-DBU"/>
+                    <navigationItem key="navigationItem" title="Diary" id="oe0-Ok-DBU">
+                        <barButtonItem key="rightBarButtonItem" title="Export data" id="JAl-I6-0DS">
+                            <connections>
+                                <action selector="exportData:" destination="2L9-BR-LhI" id="FO4-Wk-Boo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="cMx-Yh-eIX" id="0fF-Wf-LRU"/>
                         <outlet property="dataTableView" destination="GlT-Lq-b6Q" id="hfN-J7-21g"/>
@@ -1984,6 +1990,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="m6O-FT-ZlV"/>
+        <segue reference="7S3-4s-P1j"/>
     </inferredMetricsTieBreakers>
 </document>

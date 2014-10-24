@@ -198,7 +198,7 @@
         controller.delegate = self;
     }
     else if([segue.identifier isEqualToString:@"infoSegue"]){
-        RTPainInfoViewController *controller = [segue destinationViewController];
+        //RTPainInfoViewController *controller = [segue destinationViewController];
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
     }

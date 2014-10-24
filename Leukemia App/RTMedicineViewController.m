@@ -238,6 +238,7 @@
     [self.popover dismissPopoverAnimated:YES];
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
     [self.dataManagement.kemoTreatment setObject:kemoType forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
+    NSLog(@"%@", self.dataManagement.kemoTreatment);
     [self.dataManagement writeToPList];
 }
 

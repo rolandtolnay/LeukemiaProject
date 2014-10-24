@@ -57,4 +57,6 @@
 //testing
 -(void) initTestData;
 
+-(NSMutableDictionary *)readFromPlist;
+
 @end

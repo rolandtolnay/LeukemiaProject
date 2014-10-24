@@ -298,4 +298,22 @@
     }
 }
 
+- (IBAction)exportData:(id)sender {
+    NSError* error;
+    //convert object to data
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self.dataManagement readFromPlist]
+                                                       options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
+    NSString *jsonText = [[NSString alloc] initWithData:jsonData
+                                             encoding:NSUTF8StringEncoding];
+    NSLog(@"JSON:%@",jsonText);
+    //NSLog(@"%@",[self.dataManagement readFromPlist]);
+    
+    //Export as XML
+    NSString *errorDesc;
+    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
+                                                                 format:NSPropertyListXMLFormat_v1_0
+                                                       errorDescription:&errorDesc];
+    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
+    NSLog(@"XML:%@",xmlText);
+}
 @end
