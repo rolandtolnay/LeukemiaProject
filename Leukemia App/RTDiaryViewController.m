@@ -306,7 +306,6 @@
     NSString *jsonText = [[NSString alloc] initWithData:jsonData
                                              encoding:NSUTF8StringEncoding];
     NSLog(@"JSON:%@",jsonText);
-    //NSLog(@"%@",[self.dataManagement readFromPlist]);
     
     //Export as XML
     NSString *errorDesc;
@@ -315,5 +314,7 @@
                                                        errorDescription:&errorDesc];
     NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
     NSLog(@"XML:%@",xmlText);
+    
+    NSLog(@"Device name: %@",[[UIDevice currentDevice] name]);
 }
 @end

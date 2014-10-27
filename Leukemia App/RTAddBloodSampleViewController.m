@@ -143,8 +143,6 @@
     //Number of past entries to look for in dictionary
     NSUInteger entries = 6;
     if ([self.dataManagement.bloodSampleData count]<6) entries = [self.dataManagement.bloodSampleData count];
-    NSLog(@"Entries to look for: %lu",(unsigned long)entries);
-    NSLog(@"Dictionary with blood samples: %@",self.dataManagement.bloodSampleData);
     
     //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
     //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
@@ -157,7 +155,6 @@
         
         dateToSearch = [dateToSearch offsetDay:-1];
         NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
-        NSLog(@"keyToSearch: %@",keyToSearch);
         if ([self.dataManagement.bloodSampleData objectForKey:keyToSearch]!=nil)
         {
             found++;
@@ -165,7 +162,6 @@
         }
         
     };
-    NSLog(@"Dates with bloodsamples: %@",dates);
     
     return [dates copy];
 }

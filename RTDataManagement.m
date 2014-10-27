@@ -102,6 +102,7 @@ static RTDataManagement *dataMangement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
+    [pList setObject:[[UIDevice currentDevice]name] forKey:@"dataID"];
     return pList;
 }
 
