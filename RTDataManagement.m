@@ -418,7 +418,11 @@ static RTDataManagement *dataMangement = nil;
 -(NSMutableDictionary*)newData: (NSDate*)date{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSLog(@"Stringfromdate: %@",[dateFormatter stringFromDate:date]);
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dataToBeSaved setObject:idString forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
@@ -469,7 +473,7 @@ static RTDataManagement *dataMangement = nil;
         
         NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:11] offsetMinutes:idx*2];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         [painRegistration setObject:currentTime forKey:@"time"];
         

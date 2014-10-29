@@ -244,7 +244,7 @@
     //Checks if there is highdosekemo this day
     if(dataToCheck != nil){
         
-        if(![[dataToCheck objectForKey:@"kemoTreatment"]isEqualToString:@""]){
+        if([[dataToCheck objectForKey:@"kemoTreatment"]length]>1){
             
             [self showKemoUI:self.weekSelector.selectedDate];
         }

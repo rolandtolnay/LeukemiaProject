@@ -186,8 +186,9 @@
     NSMutableDictionary *tempDict = [self daysWithBloodSamples];
     //Number of past entries to look for in dictionary
     NSUInteger entries = 6;
-    if ([self.dataManagement.bloodSampleData count]<6) entries = [self.dataManagement.bloodSampleData count];
-    
+    if (tempDict.count<6){
+        entries = tempDict.count;
+    }
     //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
     //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
     //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
@@ -196,7 +197,7 @@
     while (found<entries) {
         dateToSearch = [dateToSearch offsetDay:-1];
         NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
-        if ([self.dataManagement.bloodSampleData objectForKey:keyToSearch]!=nil)
+                if ([tempDict objectForKey:keyToSearch]!=nil)
         {
             found++;
             [dates addObject:[self.dateFormatter dateFromString:keyToSearch]];
