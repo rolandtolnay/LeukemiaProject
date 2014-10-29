@@ -16,9 +16,10 @@
 //pList properties
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong,nonatomic) NSMutableArray *diaryData;
-@property (strong, nonatomic) NSMutableDictionary *bloodSampleData;
-@property (strong, nonatomic) NSMutableDictionary *medicineData;
-@property (strong, nonatomic) NSMutableDictionary *kemoTreatment;
+//@property (strong, nonatomic) NSMutableDictionary *bloodSampleData;
+@property (strong, nonatomic) NSMutableArray *medicineData;
+@property (strong, nonatomic) NSMutableDictionary *kemoTabletData;
+//@property (strong, nonatomic) NSMutableDictionary *kemoTreatment;
 @property (strong, nonatomic) NSString *path;
 
 @property (nonatomic) NSUserDefaults *prefs;
@@ -49,6 +50,10 @@
 //diary
 -(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate;
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
+
+//medicine
+-(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
+-(NSMutableDictionary*)newData:(NSDate*)date;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;

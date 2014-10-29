@@ -35,26 +35,33 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
--(NSMutableDictionary *)bloodSampleData{
-    if(!_bloodSampleData){
-        _bloodSampleData = [[NSMutableDictionary alloc]init];
+-(NSMutableDictionary *)kemoTabletData{
+    if(!_kemoTabletData){
+        _kemoTabletData = [[NSMutableDictionary alloc]init];
     }
-    return _bloodSampleData;
+    return _kemoTabletData;
 }
 
--(NSMutableDictionary *)medicineData{
+//-(NSMutableDictionary *)bloodSampleData{
+//    if(!_bloodSampleData){
+//        _bloodSampleData = [[NSMutableDictionary alloc]init];
+//    }
+//    return _bloodSampleData;
+//}
+
+-(NSMutableArray *)medicineData{
     if (!_medicineData) {
-        _medicineData = [[NSMutableDictionary alloc]init];
+        _medicineData = [[NSMutableArray alloc]init];
     }
     return  _medicineData;
 }
 
--(NSMutableDictionary *)kemoTreatment{
-    if(!_kemoTreatment){
-        _kemoTreatment = [[NSMutableDictionary alloc]init];
-    }
-    return _kemoTreatment;
-}
+//-(NSMutableDictionary *)kemoTreatment{
+//    if(!_kemoTreatment){
+//        _kemoTreatment = [[NSMutableDictionary alloc]init];
+//    }
+//    return _kemoTreatment;
+//}
 
 //Singleton method
 
@@ -110,9 +117,10 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
-    [pList setObject:self.bloodSampleData forKey:@"bloodSampleData"];
+//    [pList setObject:self.bloodSampleData forKey:@"bloodSampleData"];
     [pList setObject:self.medicineData forKey:@"medicineData"];
-    [pList setObject:self.kemoTreatment forKey:@"kemoTreatment"];
+//    [pList setObject:self.kemoTreatment forKey:@"kemoTreatment"];
+    [pList setObject:self.kemoTabletData forKey:@"kemoTabletData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -153,9 +161,10 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
-    self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
+//    self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
-    self.kemoTreatment = [pList objectForKey:@"kemoTreatment"];
+    self.kemoTabletData = [pList objectForKey:@"kemoTabletData"];
+//    self.kemoTreatment = [pList objectForKey:@"kemoTreatment"];
 }
 
 #pragma mark - Service methods
@@ -313,7 +322,7 @@ static RTDataManagement *dataMangement = nil;
     
     for (NSDictionary *diaryRegistration in self.diaryData)
     {
-        NSString *timeStamp = [diaryRegistration objectForKey:@"time"];
+        NSString *timeStamp = [diaryRegistration objectForKey:@"date"];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
         {
@@ -342,10 +351,27 @@ static RTDataManagement *dataMangement = nil;
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *diaryRegDate = [diaryRegistration objectForKey:@"time"];
+        NSString *diaryRegDate = [diaryRegistration objectForKey:@"date"];
         if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
         {
             return diaryRegistration;
+        }
+    }
+    return nil;
+}
+
+//returns an NSMutableDictionary with all medicine data if it exists in the storage
+//Date is without format
+-(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date
+{
+    for (NSMutableDictionary *medicineRegistration in self.medicineData)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *medicineRegDate = [medicineRegistration objectForKey:@"date"];
+        if ([medicineRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        {
+            return medicineRegistration;
         }
     }
     return nil;
@@ -387,6 +413,20 @@ static RTDataManagement *dataMangement = nil;
     return [NSArray arrayWithArray:result];
 }
 
+#pragma mark - Init data method
+
+-(NSMutableDictionary*)newData: (NSDate*)date{
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
+    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
+    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
+    [dataToBeSaved setObject:[[NSMutableDictionary alloc]init]forKey:@"bloodSample"];
+    [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+    [self.medicineData addObject:dataToBeSaved];
+    return dataToBeSaved;
+}
 
 #pragma mark - Reading and Writing images
 

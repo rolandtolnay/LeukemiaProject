@@ -102,7 +102,7 @@
         dataToBeSaved = [[NSMutableDictionary alloc]init];
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
         [dataToBeSaved setObject:textView.text forKey:@"notes"];
         [self.dataManagement.diaryData addObject:dataToBeSaved];
         [self.dataManagement writeToPList];
@@ -128,7 +128,7 @@
                 [dataToBeSaved setObject:textField.text forKey:@"weight"];
             }
             else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocol"];
+                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
             }
             [self.dataManagement writeToPList];
         }
@@ -140,19 +140,19 @@
             dataToBeSaved = [[NSMutableDictionary alloc]init];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"yyyy-MM-dd"];
-            [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"time"];
+            [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
             if([textField isEqual:self.textFieldWeight]){
                 [dataToBeSaved setObject:textField.text forKey:@"weight"];
             }
             else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocol"];
+                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
             }
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
         }
     }
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
-    NSLog(@"%@", self.dataManagement.diaryData);
+//    NSLog(@"%@", self.dataManagement.diaryData);
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -205,7 +205,7 @@
     
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
     [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
-    [self.textFieldProtocol setText:[diaryReg objectForKey:@"protocol"]];
+    [self.textFieldProtocol setText:[diaryReg objectForKey:@"protocolTreatmentDay"]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
     
