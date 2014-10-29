@@ -48,6 +48,7 @@
 @property (strong, nonatomic) NSString *kemoTypePicked;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *bloodSampleLabels;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
+@property (strong,nonatomic) NSMutableDictionary *dataAtselectedDate;
 
 - (IBAction)addSample:(id)sender;
 - (IBAction)saveSample:(id)sender;
