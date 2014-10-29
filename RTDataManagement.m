@@ -190,6 +190,7 @@ static RTDataManagement *dataMangement = nil;
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
+
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {

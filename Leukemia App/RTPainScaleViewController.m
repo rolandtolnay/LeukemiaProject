@@ -334,14 +334,11 @@
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
         
         NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
-        
         NSString *photoTime = [dateFormatter stringFromDate:currentDate];
         
         if (self.drawingToBeSaved)
