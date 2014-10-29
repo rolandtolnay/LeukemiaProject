@@ -191,7 +191,7 @@
     [self.diaryData removeAllObjects];
     NSString *tempTime;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSDate *painRegDate;
     for (NSMutableDictionary *dict in self.dataManagement.painData){
         tempTime = [dict objectForKey:@"time"];
@@ -245,6 +245,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
     NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
+    hour = [NSString stringWithFormat:@"%@:%@",[hour componentsSeparatedByString:@":"][0],[hour componentsSeparatedByString:@":"][1]];
     NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
     if ([painType isEqualToString:@"Mouth"]){
