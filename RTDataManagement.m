@@ -102,7 +102,7 @@ static RTDataManagement *dataMangement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
-    [pList setObject:[[UIDevice currentDevice]name] forKey:@"dataID"];
+    [pList setObject:[self UniqueAppId] forKey:@"dataID"];
     return pList;
 }
 
@@ -455,6 +455,19 @@ static RTDataManagement *dataMangement = nil;
     [self writeToPList];
 }
 
+#pragma mark - App ID
+
+-(NSString*)UniqueAppId
+{
+    NSString *Appname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    NSString *strApplicationUUID = [SSKeychain passwordForService:Appname account:@"manab"];
+    if (strApplicationUUID == nil)
+    {
+        strApplicationUUID  = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        [SSKeychain setPassword:strApplicationUUID forService:Appname account:@"manab"];
+    }
+    return strApplicationUUID;
+}
 
 
 @end

@@ -10,6 +10,8 @@
 #import "RTConstants.h"
 #include <stdlib.h>
 #import "NSDate+convenience.h"
+#import "SSKeyChain.h"
+@import AdSupport;
 
 @interface RTDataManagement : NSObject
 
@@ -57,5 +59,8 @@
 //testing
 -(void) initTestData;
 -(NSMutableDictionary *)readFromPlist;
+
+//app-ID
+-(NSString*)UniqueAppId;
 
 @end
