@@ -18,29 +18,25 @@
 //pList properties
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong,nonatomic) NSMutableArray *diaryData;
-//@property (strong, nonatomic) NSMutableDictionary *bloodSampleData;
 @property (strong, nonatomic) NSMutableArray *medicineData;
 @property (strong, nonatomic) NSMutableDictionary *kemoTabletData;
-//@property (strong, nonatomic) NSMutableDictionary *kemoTreatment;
 @property (strong, nonatomic) NSString *path;
 
+//NSUserDefault
 @property (nonatomic) NSUserDefaults *prefs;
-//NSUserDefault - painScaleSettings
 @property NSInteger selectedRowPainScale;
 @property BOOL painScaleBieri;
 @property BOOL painScaleWongBaker;
 @property BOOL flaccScale;
-//NSUserDefault - notificationsettings
-@property NSInteger selectedRowNotification;
-@property BOOL notificationsOn;
 
+//pList methods
 +(RTDataManagement *)singleton;
 -(void)saveUserPrefrences;
-//-(id)initWithPlistAndUserPreferences;
 -(void)writeToPList;
 -(void)reloadPlist;
+-(NSMutableDictionary *)readFromPlist;
 
-//service methods for graph data-management
+//Service methods for graph data-management
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
 -(NSArray *)timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
@@ -49,11 +45,11 @@
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
 -(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;
 
-//diary
+//Service methods for diary data-managenment
 -(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate;
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
 
-//medicine
+//Service methods for medicine data-managenment
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
 -(NSMutableDictionary*)newData:(NSDate*)date;
 
@@ -63,7 +59,6 @@
 
 //testing
 -(void) initTestData;
--(NSMutableDictionary *)readFromPlist;
 
 //app-ID
 -(NSString*)UniqueAppId;

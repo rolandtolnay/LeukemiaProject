@@ -103,8 +103,8 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
         [dataToBeSaved setObject:idString forKey:@"id"];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
         [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
         [dataToBeSaved setObject:textView.text forKey:@"notes"];
         [self.dataManagement.diaryData addObject:dataToBeSaved];
@@ -144,8 +144,8 @@
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
-            [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:idString forKey:@"id"];
+            [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
             if([textField isEqual:self.textFieldWeight]){
                 [dataToBeSaved setObject:textField.text forKey:@"weight"];
@@ -321,7 +321,5 @@
 //                                                       errorDescription:&errorDesc];
 //    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
 //    NSLog(@"XML:%@",xmlText);
-    
-    NSLog(@"Device name: %@",[[UIDevice currentDevice] name]);
 }
 @end
