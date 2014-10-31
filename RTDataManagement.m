@@ -403,7 +403,7 @@ static RTDataManagement *dataMangement = nil;
 
 #pragma mark - Init data method
 
--(NSMutableDictionary*)newData: (NSDate*)date{
+-(NSMutableDictionary*)newMedicineData: (NSDate*)date{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSLog(@"Stringfromdate: %@",[dateFormatter stringFromDate:date]);
@@ -414,7 +414,17 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
-    [dataToBeSaved setObject:[[NSMutableDictionary alloc]init]forKey:@"bloodSample"];
+    
+    NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
+    [bloodSampleData setObject:@"" forKey:@"hemoglobin"];
+    [bloodSampleData setObject:@"" forKey:@"thrombocytes"];
+    [bloodSampleData setObject:@"" forKey:@"neutrofile"];
+    [bloodSampleData setObject:@"" forKey:@"crp"];
+    [bloodSampleData setObject:@"" forKey:@"leukocytes"];
+    [bloodSampleData setObject:@"" forKey:@"alat"];
+    [bloodSampleData setObject:@"" forKey:@"other"];
+    [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
+    
     [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
     [self.medicineData addObject:dataToBeSaved];
     return dataToBeSaved;

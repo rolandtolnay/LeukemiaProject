@@ -54,6 +54,7 @@
     [self.weekSelectorView addSubview:self.weekSelector];
     
     [self initMedicineView];
+    NSLog(@"medicine data: %@",self.dataManagement.medicineData);
 }
 
 #pragma mark - Blood sample data management
@@ -67,25 +68,16 @@
     //Save sample in datamangement
     NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
     if(dataToBeSaved == nil){
-        dataToBeSaved = [self.dataManagement newData:self.weekSelector.selectedDate];
-//        dataTobeSaved = [[NSMutableDictionary alloc]init];
-//        [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//        [dataTobeSaved setObject:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate] forKey:@"date"];
-//        [dataTobeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
-//        [dataTobeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
-//        [self.dataManagement.medicineData addObject:dataTobeSaved];
+        dataToBeSaved = [self.dataManagement newMedicineData:self.weekSelector.selectedDate];
     }
-        NSMutableDictionary *bloodSampleData = [dataToBeSaved objectForKey:@"bloodSample"];
-        [bloodSampleData setObject:self.hemoText.text forKey:@"hemoglobin"];
-        [bloodSampleData setObject:self.thromboText.text forKey:@"thrombocytes"];
-        [bloodSampleData setObject:self.neutroText.text forKey:@"neutrofile"];
-        [bloodSampleData setObject:self.crpText.text forKey:@"crp"];
-        [bloodSampleData setObject:self.leukocytterText.text forKey:@"leukocytes"];
-        [bloodSampleData setObject:self.alatText.text forKey:@"alat"];
-        [bloodSampleData setObject:self.otherText.text forKey:@"other"];
-//        [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
-  
-//    [self.dataManagement.medicineData setObject:dataToBeSaved forKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
+    NSMutableDictionary *bloodSampleData = [dataToBeSaved objectForKey:@"bloodSample"];
+    [bloodSampleData setObject:self.hemoText.text forKey:@"hemoglobin"];
+    [bloodSampleData setObject:self.thromboText.text forKey:@"thrombocytes"];
+    [bloodSampleData setObject:self.neutroText.text forKey:@"neutrofile"];
+    [bloodSampleData setObject:self.crpText.text forKey:@"crp"];
+    [bloodSampleData setObject:self.leukocytterText.text forKey:@"leukocytes"];
+    [bloodSampleData setObject:self.alatText.text forKey:@"alat"];
+    [bloodSampleData setObject:self.otherText.text forKey:@"other"];
     
     [self.dataManagement writeToPList];
 }
@@ -141,7 +133,7 @@
 }
 
 -(void)showBloodSampleUI:(NSDate *)date{
-//    NSDictionary *tempDict = [self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
+    //    NSDictionary *tempDict = [self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]];
     NSMutableDictionary *bloodSampleData = [[self.dataManagement medicineDataAtDate:date]objectForKey:@"bloodSample"];
     self.noSampleLabel.text = @"";
     self.hemoText.text = [bloodSampleData objectForKey:@"hemoglobin"];
@@ -217,7 +209,7 @@
 //    else{
 //        [self noKemoUI];
 //    }
-//    
+//
 //    //always hides the view for adding samples when you change date
 //    self.addBloodSampleView.hidden = YES;
 //}
@@ -287,14 +279,14 @@
     NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
     
     if(dataToBeSaved == nil){
-        dataToBeSaved = [self.dataManagement newData:self.weekSelector.selectedDate];
-//        dataToBeSaved = [[NSMutableDictionary alloc]init];
-//        [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//        [dataToBeSaved setObject:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate] forKey:@"date"];
-//        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
-//        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
-//        [dataToBeSaved setObject:[[NSMutableDictionary alloc]init]forKey:@"bloodSample"];
-//        [self.dataManagement.medicineData addObject:dataToBeSaved];
+        dataToBeSaved = [self.dataManagement newMedicineData:self.weekSelector.selectedDate];
+        //        dataToBeSaved = [[NSMutableDictionary alloc]init];
+        //        [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        //        [dataToBeSaved setObject:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate] forKey:@"date"];
+        //        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
+        //        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
+        //        [dataToBeSaved setObject:[[NSMutableDictionary alloc]init]forKey:@"bloodSample"];
+        //        [self.dataManagement.medicineData addObject:dataToBeSaved];
     }
     
     [self.popover dismissPopoverAnimated:YES];

@@ -45,7 +45,7 @@
     NSMutableDictionary *dataTobeSaved = [self.dataManagement medicineDataAtDate:selectedDate];
     
     if(dataTobeSaved == nil){
-        dataTobeSaved = [self.dataManagement newData:selectedDate];
+        dataTobeSaved = [self.dataManagement newMedicineData:selectedDate];
     }
     
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
