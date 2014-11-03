@@ -108,8 +108,8 @@
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
             [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
-            [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:idString forKey:@"id"];
+            [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
             [dataToBeSaved setObject:textView.text forKey:@"notes"];
             [self.dataManagement.diaryData addObject:dataToBeSaved];

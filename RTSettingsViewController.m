@@ -73,19 +73,7 @@
         }
         return detailCell;
     }
-    else if (tableView == self.notificationSettingTableView){
-        CellIdentifier = @"notificationCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        cell.textLabel.text = [self.actualItem.settingValues objectAtIndex:indexPath.row];
-        if (indexPath.row == self.dataManagement.selectedRowNotification) {
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        return cell;
-    }
-    else if (tableView == self.masterTableview){
+        else if (tableView == self.masterTableview){
         CellIdentifier = @"masterCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.textLabel.text = [[self.settingItems objectAtIndex:indexPath.row]settingTitle];
@@ -123,10 +111,6 @@
         if([self.actualItem.settingTitle isEqualToString:@"Pain Scale"]){
             self.dataManagement.selectedRowPainScale = indexPath.row;
             [self.painScaleSettingTableView reloadData];
-        }
-        else if ([self.actualItem.settingTitle isEqualToString:@"Notification settings"]){
-            self.dataManagement.selectedRowNotification = indexPath.row;
-            [self.notificationSettingTableView reloadData];
         }
         [self.dataManagement saveUserPrefrences];
     }
