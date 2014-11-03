@@ -322,13 +322,11 @@
     NSLog(@"JSON:%@",jsonText);
     
     //Export as XML
-    //    NSString *errorDesc;
-    //    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
-    //                                                                 format:NSPropertyListXMLFormat_v1_0
-    //                                                       errorDescription:&errorDesc];
-    //    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
-    //    NSLog(@"XML:%@",xmlText);
-    
-    NSLog(@"Device name: %@",[[UIDevice currentDevice] name]);
+//    NSString *errorDesc;
+//    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
+//                                                                 format:NSPropertyListXMLFormat_v1_0
+//                                                       errorDescription:&errorDesc];
+//    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
+//    NSLog(@"XML:%@",xmlText);
 }
 @end
