@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol RTPopoverContentDelegate <NSObject>
-- (void)didSelectedRowInPopover:(NSString *)kemoType;
+@protocol RTSelectKemoDelegate <NSObject>
+
+- (void)didSelectKemo:(NSString *)kemoType;
+
 @end
 
 @interface RTSelectKemoTableViewController : UITableViewController

@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.lblPainType.text = NSLocalizedString(@"Pain types:", nil);
     self.colorMouthPain = [UIColor gk_pomegranateColor];
     self.colorStomachPain = [UIColor gk_greenSeaColor];
     self.colorOtherPain = [UIColor gk_belizeHoleColor];
@@ -67,6 +67,20 @@
     }
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    if ([self isRetinaDisplay])
+        [self refreshGraph];
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if ([self isRetinaDisplay])
+        [self refreshGraph];
+}
+
+#pragma mark - BOOL's
+
 -(BOOL)isRetinaDisplay{
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     return (screenScale == 2.0);
@@ -96,17 +110,7 @@
     return (self.graphType.selectedSegmentIndex==1);
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    if ([self isRetinaDisplay])
-        [self refreshGraph];
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    if ([self isRetinaDisplay])
-        [self refreshGraph];
-}
+#pragma mark - Convenience methods
 
 -(void)showError:(BOOL) isHidden withText:(NSString *)errorText {
     self.lblError.hidden = !isHidden;
@@ -114,6 +118,8 @@
     self.lblError.text = errorText;
     [self.lblError setCenter:self.view.center];
 }
+
+#pragma mark - Graph Data Display methods
 
 -(void)refreshGraph {
     [self.graph reset];
@@ -137,7 +143,7 @@
             }
             else
             {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         } else if ([self isPainMouthGraph])
         {
@@ -150,7 +156,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
             
         } else if ([self isPainStomachGraph])
@@ -164,7 +170,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         } else if ([self isPainOtherGraph])
         {
@@ -177,7 +183,7 @@
                                     ];
                 [self.graph draw];
             } else {
-                [self showError:YES withText:@"Not enough data to show graph."];
+                [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
         }
     }
@@ -191,19 +197,8 @@
         }
         else
         {
-            [self showError:YES withText:@"Not enough data to show graph."];
+            [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
         }
-    }
-}
-
--(void)pickDate:(id)sender
-{
-    if ([self isPainGraph])
-    {
-        [self performSegueWithIdentifier:@"datePicker" sender:nil];
-    } else if ([self isWeightGraph])
-    {
-        [self performSegueWithIdentifier:@"weekPicker" sender:nil];
     }
 }
 
@@ -239,9 +234,40 @@
     [self refreshGraph];
 }
 
+#pragma mark - Navigation
 
-#pragma mark - GKLineGraphDataSource
+-(void)pickDate:(id)sender
+{
+    if ([self isPainGraph])
+    {
+        [self performSegueWithIdentifier:@"datePicker" sender:nil];
+    } else if ([self isWeightGraph])
+    {
+        [self performSegueWithIdentifier:@"weekPicker" sender:nil];
+    }
+}
 
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"datePicker"]){
+        RTGraphCalendarViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        controller.pickedDate = self.currentDate;
+        
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"weekPicker"]){
+        RTGraphWeekPickerViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        controller.pickedDate = self.currentDate;
+        
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
+    
+}
+
+#pragma mark - GKLineGraph DataSource
 
 - (NSArray *)valuesForLineAtIndex:(NSInteger)index {
     if ([self isPainGraph])
@@ -338,7 +364,7 @@
     [self.popover dismissPopoverAnimated:YES];
     self.currentDate = datesInWeek[0];
     
-    NSString *pickedWeek = [NSString stringWithFormat:@"%d - Week %d",[self.currentDate year],[self.currentDate week]];
+    NSString *pickedWeek = [NSString stringWithFormat:NSLocalizedString(@"%d - Week %d", nil),[self.currentDate year],[self.currentDate week]];
     [self.datePicker setTitle:pickedWeek forState:UIControlStateNormal];
     
     [self.weightTimestamps removeAllObjects];
@@ -366,26 +392,6 @@
     
     self.graph.valueLabelCount = 11;
     [self refreshGraph];
-    
-}
-
--(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"datePicker"]){
-        RTGraphCalendarViewController *controller = [segue destinationViewController];
-        controller.delegate = self;
-        controller.pickedDate = self.currentDate;
-        
-        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        self.popover.delegate = self;
-    }
-    if([segue.identifier isEqualToString:@"weekPicker"]){
-        RTGraphWeekPickerViewController *controller = [segue destinationViewController];
-        controller.delegate = self;
-        controller.pickedDate = self.currentDate;
-        
-        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        self.popover.delegate = self;
-    }
     
 }
 

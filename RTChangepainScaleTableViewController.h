@@ -16,6 +16,7 @@
 
 @interface RTChangepainScaleTableViewController : UITableViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *painScaleTableView;
 @property (strong,nonatomic) RTDataManagement *dataManagement;
 @property (nonatomic,assign) id delegate;
 

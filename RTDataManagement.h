@@ -10,32 +10,33 @@
 #import "RTConstants.h"
 #include <stdlib.h>
 #import "NSDate+convenience.h"
+#import "SSKeyChain.h"
+@import AdSupport;
 
 @interface RTDataManagement : NSObject
 
 //pList properties
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong,nonatomic) NSMutableArray *diaryData;
-@property (strong, nonatomic) NSMutableDictionary *bloodSampleData;
-@property (strong, nonatomic) NSMutableDictionary *medicineData;
-@property (strong, nonatomic) NSMutableDictionary *kemoTreatment;
+@property (strong, nonatomic) NSMutableArray *medicineData;
+@property (strong, nonatomic) NSMutableDictionary *kemoTabletData;
 @property (strong, nonatomic) NSString *path;
 
+//NSUserDefault
 @property (nonatomic) NSUserDefaults *prefs;
-//NSUserDefault - painScaleSettings
 @property NSInteger selectedRowPainScale;
 @property BOOL painScaleBieri;
-//NSUserDefault - notificationsettings
-@property NSInteger selectedRowNotification;
-@property BOOL notificationsOn;
+@property BOOL painScaleWongBaker;
+@property BOOL flaccScale;
 
+//pList methods
 +(RTDataManagement *)singleton;
 -(void)saveUserPrefrences;
-//-(id)initWithPlistAndUserPreferences;
 -(void)writeToPList;
 -(void)reloadPlist;
+-(NSMutableDictionary *)readFromPlist;
 
-//service methods for graph data-management
+//Service methods for graph data-management
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
 -(NSArray *)timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
@@ -44,9 +45,13 @@
 -(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
 -(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;
 
-//diary
+//Service methods for diary data-managenment
 -(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate;
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
+
+//Service methods for medicine data-managenment
+-(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
+-(NSMutableDictionary*)newMedicineData:(NSDate*)date;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
@@ -54,5 +59,8 @@
 
 //testing
 -(void) initTestData;
+
+//app-ID
+-(NSString*)UniqueAppId;
 
 @end

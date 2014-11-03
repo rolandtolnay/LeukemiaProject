@@ -26,6 +26,9 @@
     [self setupEdgePanGestureRecognizers];
 }
 
+#pragma mark - Gesture Recognizers
+
+//Add a gesture recognizer to each controller for swipe navigation between tabs
 - (void)setupEdgePanGestureRecognizers
 {
     NSUInteger count = [self.viewControllers count];

@@ -13,7 +13,7 @@
 #import "RTSelectKemoTableViewController.h"
 #import "RTAddBloodSampleViewController.h"
 
-@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate, UITextFieldDelegate>
+@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTSelectKemoDelegate, UITextFieldDelegate>
 
 //Views
 @property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
@@ -48,6 +48,7 @@
 @property (strong, nonatomic) NSString *kemoTypePicked;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *bloodSampleLabels;
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *bloodSampleTextFields;
+@property (strong,nonatomic) NSMutableDictionary *dataAtselectedDate;
 
 - (IBAction)addSample:(id)sender;
 - (IBAction)saveSample:(id)sender;

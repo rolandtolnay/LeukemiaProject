@@ -35,25 +35,18 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
--(NSMutableDictionary *)bloodSampleData{
-    if(!_bloodSampleData){
-        _bloodSampleData = [[NSMutableDictionary alloc]init];
+-(NSMutableDictionary *)kemoTabletData{
+    if(!_kemoTabletData){
+        _kemoTabletData = [[NSMutableDictionary alloc]init];
     }
-    return _bloodSampleData;
+    return _kemoTabletData;
 }
 
--(NSMutableDictionary *)medicineData{
+-(NSMutableArray *)medicineData{
     if (!_medicineData) {
-        _medicineData = [[NSMutableDictionary alloc]init];
+        _medicineData = [[NSMutableArray alloc]init];
     }
     return  _medicineData;
-}
-
--(NSMutableDictionary *)kemoTreatment{
-    if(!_kemoTreatment){
-        _kemoTreatment = [[NSMutableDictionary alloc]init];
-    }
-    return _kemoTreatment;
 }
 
 //Singleton method
@@ -77,8 +70,8 @@ static RTDataManagement *dataMangement = nil;
     if (self = [super init]){
         self.selectedRowPainScale = [self.prefs integerForKey:@"selectedRowPainScale"];
         self.painScaleBieri = [self.prefs boolForKey:@"painScaleBieri"];
-        self.selectedRowNotification = [self.prefs integerForKey:@"selectedRowNotification"];
-        self.notificationsOn = [self.prefs boolForKey:@"notificationsOn"];
+        self.painScaleWongBaker = [self.prefs boolForKey:@"painScaleWongBaker"];
+        self.flaccScale = [self.prefs boolForKey:@"flaccScale"];
         [self reloadPlist];
     }
     return self;
@@ -100,6 +93,7 @@ static RTDataManagement *dataMangement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
+    [pList setObject:[self UniqueAppId] forKey:@"dataID"];
     return pList;
 }
 
@@ -107,9 +101,8 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
-    [pList setObject:self.bloodSampleData forKey:@"bloodSampleData"];
     [pList setObject:self.medicineData forKey:@"medicineData"];
-    [pList setObject:self.kemoTreatment forKey:@"kemoTreatment"];
+    [pList setObject:self.kemoTabletData forKey:@"kemoTabletData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -117,21 +110,22 @@ static RTDataManagement *dataMangement = nil;
     [self.prefs setInteger:self.selectedRowPainScale forKey:@"selectedRowPainScale"];
     if (self.selectedRowPainScale == 0) {
         self.painScaleBieri = NO;
+        self.painScaleWongBaker = YES;
+        self.flaccScale = NO;
     }
-    else{
+    else if(self.selectedRowPainScale == 1){
         self.painScaleBieri = YES;
+        self.painScaleWongBaker = NO;
+        self.flaccScale = NO;
+    }
+    else if (self.selectedRowPainScale == 2){
+        self.painScaleBieri = NO;
+        self.painScaleWongBaker = NO;
+        self.flaccScale = YES;
     }
     [self.prefs setBool:self.painScaleBieri forKey:@"painScaleBieri"];
-    
-    [self.prefs setInteger:self.selectedRowNotification forKey:@"selectedRowNotification"];
-    if (self.selectedRowNotification == 0) {
-        self.notificationsOn = YES;
-    }
-    else{
-        self.notificationsOn = NO;
-    }
-    [self.prefs setBool:self.notificationsOn forKey:@"notificationsOn"];
-    
+    [self.prefs setBool:self.painScaleWongBaker forKey:@"painScaleWongBaker"];
+    [self.prefs setBool:self.flaccScale forKey:@"flaccScale"];
     [self.prefs synchronize];
 }
 
@@ -139,9 +133,8 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
-    self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
-    self.kemoTreatment = [pList objectForKey:@"kemoTreatment"];
+    self.kemoTabletData = [pList objectForKey:@"kemoTabletData"];
 }
 
 #pragma mark - Service methods
@@ -169,34 +162,18 @@ static RTDataManagement *dataMangement = nil;
 -(NSArray *)timeStampsAtDay:(NSString *) day {
     NSMutableArray *timeStamps = [[NSMutableArray alloc] init];
     
-    //    NSMutableArray *mouthPain = [[NSMutableArray alloc] init];
-    //    NSMutableArray *stomachPain = [[NSMutableArray alloc]init];
-    //    NSMutableArray *otherPain = [[NSMutableArray alloc]init];
-    
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
+
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
-            //            NSString *painType = [painRegistration objectForKey:@"paintype"];
             hour = [timeStamp componentsSeparatedByString:@" "][1];
-            
-            //            if ([painType isEqualToString:MouthPain])
-            //                [mouthPain addObject:hour];
-            //            else if ([painType isEqualToString:StomachPain])
-            //                [stomachPain addObject:hour];
-            //            else [otherPain addObject:hour];
             
             [timeStamps addObject:hour];
         }
     }
-    
-    //    NSLog(@"Mouthpain times: %@",mouthPain);
-    //    NSLog(@"Stomachpain times: %@",stomachPain);
-    //    NSLog(@"Otherpain times: %@",otherPain);
-    
-    //    timeStamps = [self commonHoursForPainTypeMouth:mouthPain TypeStomach:stomachPain TypeOther:otherPain];
     
     return [timeStamps copy];
 }
@@ -298,7 +275,7 @@ static RTDataManagement *dataMangement = nil;
     
     for (NSDictionary *diaryRegistration in self.diaryData)
     {
-        NSString *timeStamp = [diaryRegistration objectForKey:@"time"];
+        NSString *timeStamp = [diaryRegistration objectForKey:@"date"];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
         {
@@ -327,10 +304,27 @@ static RTDataManagement *dataMangement = nil;
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *diaryRegDate = [diaryRegistration objectForKey:@"time"];
+        NSString *diaryRegDate = [diaryRegistration objectForKey:@"date"];
         if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
         {
             return diaryRegistration;
+        }
+    }
+    return nil;
+}
+
+//returns an NSMutableDictionary with all medicine data if it exists in the storage
+//Date is without format
+-(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date
+{
+    for (NSMutableDictionary *medicineRegistration in self.medicineData)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *medicineRegDate = [medicineRegistration objectForKey:@"date"];
+        if ([medicineRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        {
+            return medicineRegistration;
         }
     }
     return nil;
@@ -372,6 +366,34 @@ static RTDataManagement *dataMangement = nil;
     return [NSArray arrayWithArray:result];
 }
 
+#pragma mark - Init data methods
+
+-(NSMutableDictionary*)newMedicineData: (NSDate*)date{
+    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    NSLog(@"Stringfromdate: %@",[dateFormatter stringFromDate:date]);
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dataToBeSaved setObject:idString forKey:@"id"];
+    [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
+    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
+    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
+    
+    NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
+    [bloodSampleData setObject:@"" forKey:@"hemoglobin"];
+    [bloodSampleData setObject:@"" forKey:@"thrombocytes"];
+    [bloodSampleData setObject:@"" forKey:@"neutrofile"];
+    [bloodSampleData setObject:@"" forKey:@"crp"];
+    [bloodSampleData setObject:@"" forKey:@"leukocytes"];
+    [bloodSampleData setObject:@"" forKey:@"alat"];
+    [bloodSampleData setObject:@"" forKey:@"other"];
+    [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
+    
+    [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+    [self.medicineData addObject:dataToBeSaved];
+    return dataToBeSaved;
+}
 
 #pragma mark - Reading and Writing images
 
@@ -414,7 +436,7 @@ static RTDataManagement *dataMangement = nil;
         
         NSDate *currentDate = [[[[NSDate date] offsetDay:arc4random_uniform(5)-2] offsetHours:11] offsetMinutes:idx*2];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         [painRegistration setObject:currentTime forKey:@"time"];
         
@@ -440,6 +462,19 @@ static RTDataManagement *dataMangement = nil;
     [self writeToPList];
 }
 
+#pragma mark - App ID
+
+-(NSString*)UniqueAppId
+{
+    NSString *Appname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    NSString *strApplicationUUID = [SSKeychain passwordForService:Appname account:@"manab"];
+    if (strApplicationUUID == nil)
+    {
+        strApplicationUUID  = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        [SSKeychain setPassword:strApplicationUUID forService:Appname account:@"manab"];
+    }
+    return strApplicationUUID;
+}
 
 
 @end

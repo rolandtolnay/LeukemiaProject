@@ -29,5 +29,6 @@
 @property (strong, nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
+- (IBAction)exportData:(id)sender;
 
 @end

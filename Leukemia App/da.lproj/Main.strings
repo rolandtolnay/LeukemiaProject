@@ -1,0 +1,279 @@
+
+/* Class = "IBUIButton"; normalTitle = "Save Dose"; ObjectID = "0m8-JX-UF4"; */
+"0m8-JX-UF4.normalTitle" = "Gem dosis";
+
+/* Class = "IBUILabel"; text = "Ingen høj-dosis kemo behandling i dag"; ObjectID = "1QP-vm-El8"; */
+"1QP-vm-El8.text" = "Ingen høj-dosis kemo behandling i dag";
+
+/* Class = "IBUILabel"; text = "mg/L"; ObjectID = "1xS-dv-tsc"; */
+"1xS-dv-tsc.text" = "mg/L";
+
+/* Class = "IBUIButton"; normalTitle = "Edit highdose kemo"; ObjectID = "3Rp-uR-enp"; */
+"3Rp-uR-enp.normalTitle" = "Rediger høj-dosis kemo";
+
+/* Class = "IBUILabel"; text = "Blodprøver:"; ObjectID = "3Uy-wY-RDo"; */
+"3Uy-wY-RDo.text" = "Blodprøver:";
+
+/* Class = "IBUITabBarItem"; title = "Pain"; ObjectID = "45W-eR-agi"; */
+"45W-eR-agi.title" = "Smerte";
+
+/* Class = "IBUILabel"; text = "Photo"; ObjectID = "4el-dB-mK0"; */
+"4el-dB-mK0.text" = "Foto";
+
+/* Class = "IBUILabel"; text = "ALAT"; ObjectID = "4jf-eZ-hm3"; */
+"4jf-eZ-hm3.text" = "ALAT";
+
+/* Class = "IBUIButton"; normalTitle = "Show Graph"; ObjectID = "6BA-FD-7WA"; */
+"6BA-FD-7WA.normalTitle" = "Vis graf";
+
+/* Class = "IBUILabel"; text = "U/L"; ObjectID = "6ZQ-YO-UiC"; */
+"6ZQ-YO-UiC.text" = "U/L";
+
+/* Class = "IBUIBarButtonItem"; title = "Switch Pain-Scale"; ObjectID = "6fg-6g-cVd"; */
+"6fg-6g-cVd.title" = "Skift smerteskala";
+
+/* Class = "IBUILabel"; text = "x10^9/L"; ObjectID = "7V8-HQ-nAc"; */
+"7V8-HQ-nAc.text" = "x10^9/L";
+
+/* Class = "IBUILabel"; text = "0"; ObjectID = "7xF-70-bZ2"; */
+"7xF-70-bZ2.text" = "0";
+
+/* Class = "IBUILabel"; text = "Morphine:"; ObjectID = "8Gc-cC-52v"; */
+"8Gc-cC-52v.text" = "Morfin:";
+
+/* Class = "IBUIButton"; normalTitle = "Edit Sample"; ObjectID = "8p8-gW-4a3"; */
+"8p8-gW-4a3.normalTitle" = "Rediger blodprøve";
+
+/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "8s7-QN-SYt"; */
+"8s7-QN-SYt.title" = "Indstillinger";
+
+/* Class = "IBUILabel"; text = "Enter your notes for the day here."; ObjectID = "9aA-Lb-2Wq"; */
+"9aA-Lb-2Wq.text" = "Skriv dine noter her.";
+
+/* Class = "IBUILabel"; text = "No drawing available."; ObjectID = "AXd-bW-qvF"; */
+"AXd-bW-qvF.text" = "Ingen tegning gemt.";
+
+/* Class = "IBUILabel"; text = "1"; ObjectID = "BGh-HT-AWL"; */
+"BGh-HT-AWL.text" = "1";
+
+/* Class = "IBUILabel"; text = "Leukocytter"; ObjectID = "BQY-0J-aUV"; */
+"BQY-0J-aUV.text" = "Leukocytter";
+
+/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "BkF-tC-6Pz"; */
+"BkF-tC-6Pz.title" = "Indstillinger";
+
+/* Class = "IBUIBarButtonItem"; title = "Brush size"; ObjectID = "FeC-p7-P5O"; */
+"FeC-p7-P5O.title" = "Pensel størrelse";
+
+/* Class = "IBUILabel"; text = "Pain Level:"; ObjectID = "GgC-dq-q9h"; */
+"GgC-dq-q9h.text" = "Smerte score:";
+
+/* Class = "IBUILabel"; text = "November"; ObjectID = "JLc-4f-DHV"; */
+"JLc-4f-DHV.text" = "November";
+
+/* Class = "IBUILabel"; text = "Pain Type:"; ObjectID = "K0o-WD-O0k"; */
+"K0o-WD-O0k.text" = "Smerte type:";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "K8f-Ax-S50"; */
+"K8f-Ax-S50.text" = "Titel";
+
+/* Class = "IBUILabel"; text = "Kemo behandling:"; ObjectID = "Ldu-Aq-VH3"; */
+"Ldu-Aq-VH3.text" = "Kemo behandling:";
+
+/* Class = "IBUISegmentedControl"; NLH-NE-lD0.segmentTitles[0] = "Pain"; ObjectID = "NLH-NE-lD0"; */
+"NLH-NE-lD0.segmentTitles[0]" = "Smerte";
+
+/* Class = "IBUISegmentedControl"; NLH-NE-lD0.segmentTitles[1] = "Weight"; ObjectID = "NLH-NE-lD0"; */
+"NLH-NE-lD0.segmentTitles[1]" = "Vægt";
+
+/* Class = "IBUINavigationItem"; title = "Pain"; ObjectID = "NQm-VK-eLw"; */
+"NQm-VK-eLw.title" = "Smerte";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "O1K-y2-J6i"; */
+"O1K-y2-J6i.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Date: "; ObjectID = "PpI-q5-LF4"; */
+"PpI-q5-LF4.text" = "Dato: ";
+
+/* Class = "IBUILabel"; text = "Thrombocytter"; ObjectID = "QnB-5L-PPv"; */
+"QnB-5L-PPv.text" = "Thrombocytter";
+
+/* Class = "IBUILabel"; text = "No type available"; ObjectID = "RIj-3q-rba"; */
+"RIj-3q-rba.text" = "Ingen tilgængelig smertetype";
+
+/* Class = "IBUILabel"; text = "mM"; ObjectID = "Rx5-em-yCE"; */
+"Rx5-em-yCE.text" = "mM";
+
+/* Class = "IBUILabel"; text = "Graph feature is only available on devices with retina display."; ObjectID = "SmE-1s-i5I"; */
+"SmE-1s-i5I.text" = "Visning af graf er kun mulig på enhedr med retina display.";
+
+/* Class = "IBUINavigationItem"; title = "Medicine"; ObjectID = "TYl-uO-O4N"; */
+"TYl-uO-O4N.title" = "Medicin";
+
+/* Class = "IBUIButton"; normalTitle = "Save Sample"; ObjectID = "VnS-aj-HqJ"; */
+"VnS-aj-HqJ.normalTitle" = "Gem blodprøve";
+
+/* Class = "IBUILabel"; text = "Sunday"; ObjectID = "Xjn-LB-KTC"; */
+"Xjn-LB-KTC.text" = "Søndag";
+
+/* Class = "IBUILabel"; text = "Pain description"; ObjectID = "ZmI-T7-88s"; */
+"ZmI-T7-88s.text" = "Smerte beskrivelse";
+
+/* Class = "IBUIButton"; normalTitle = "Edit Dose"; ObjectID = "ZrC-1J-DYw"; */
+"ZrC-1J-DYw.normalTitle" = "Rediger Dosis";
+
+/* Class = "IBUILabel"; text = "*Husk pause med tbl. MTX samme uge som Høj-dosis MTX"; ObjectID = "aPG-8G-zmE"; */
+"aPG-8G-zmE.text" = "*Husk pause med tbl. MTX samme uge som Høj-dosis MTX";
+
+/* Class = "IBUILabel"; text = "mg"; ObjectID = "agh-yb-Gyu"; */
+"agh-yb-Gyu.text" = "mg";
+
+/* Class = "IBUILabel"; text = "Morphine:"; ObjectID = "ayO-hw-ob8"; */
+"ayO-hw-ob8.text" = "Morfin:";
+
+/* Class = "IBUILabel"; text = "x10^9/L"; ObjectID = "bAO-lF-sjQ"; */
+"bAO-lF-sjQ.text" = "x10^9/L";
+
+/* Class = "IBUILabel"; text = "mg/dgl"; ObjectID = "bb3-fh-9wa"; */
+"bb3-fh-9wa.text" = "mg/dgl";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "bsz-cA-dHP"; */
+"bsz-cA-dHP.normalTitle" = "Button";
+
+/* Class = "IBUITabBarItem"; title = "Diary"; ObjectID = "bvO-7g-SPk"; */
+"bvO-7g-SPk.title" = "Dagbog";
+
+/* Class = "IBUILabel"; text = "Paracetamol:"; ObjectID = "c18-NM-cYb"; */
+"c18-NM-cYb.text" = "Paracetamol:";
+
+/* Class = "IBUITabBarItem"; title = "Medicine"; ObjectID = "cPa-gy-q4n"; */
+"cPa-gy-q4n.title" = "Medicin";
+
+/* Class = "IBUILabel"; text = "mM"; ObjectID = "cr9-bh-7Yl"; */
+"cr9-bh-7Yl.text" = "mM";
+
+/* Class = "IBUILabel"; text = "Kg"; ObjectID = "d1W-1i-7fY"; */
+"d1W-1i-7fY.text" = "Kg";
+
+/* Class = "IBUIButton"; normalTitle = "Pick From Calendar"; ObjectID = "f39-t1-Rud"; */
+"f39-t1-Rud.normalTitle" = "Vælg fra kalender";
+
+/* Class = "IBUILabel"; text = "Other"; ObjectID = "fPv-D7-QxQ"; */
+"fPv-D7-QxQ.text" = "Andet";
+
+/* Class = "IBUILabel"; text = "CRP"; ObjectID = "fic-Ip-M5a"; */
+"fic-Ip-M5a.text" = "CRP";
+
+/* Class = "IBUILabel"; text = "Protocol treatment day: "; ObjectID = "goU-NQ-Pjf"; */
+"goU-NQ-Pjf.text" = "Protokol behandlings dag: ";
+
+/* Class = "IBUILabel"; text = "Smertescoren er: "; ObjectID = "hfc-2f-v8I"; */
+"hfc-2f-v8I.text" = "Smertescoren er: ";
+
+/* Class = "IBUIButton"; normalTitle = "Red Button"; ObjectID = "hje-pP-Ar1"; */
+"hje-pP-Ar1.normalTitle" = "Rød";
+
+/* Class = "IBUILabel"; text = "Mercaptopurin  (6-MP)"; ObjectID = "iIY-Ka-tMz"; */
+"iIY-Ka-tMz.text" = "Mercaptopurin  (6-MP)";
+
+/* Class = "IBUILabel"; text = "Methotrexat (MTX)"; ObjectID = "iTc-tx-p2J"; */
+"iTc-tx-p2J.text" = "Methotrexat (MTX)";
+
+/* Class = "IBUIBarButtonItem"; title = "Cancel"; ObjectID = "imO-o4-ovf"; */
+"imO-o4-ovf.title" = "Annuller";
+
+/* Class = "IBUILabel"; text = "Paracetamol:"; ObjectID = "kRv-cP-9HI"; */
+"kRv-cP-9HI.text" = "Paracetamol:";
+
+/* Class = "IBUINavigationItem"; title = "Pain Illustration"; ObjectID = "l26-Ky-1Ae"; */
+"l26-Ky-1Ae.title" = "Smerte illustration";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "m5d-xA-nrG"; */
+"m5d-xA-nrG.text" = "Label";
+
+/* Class = "IBUINavigationItem"; title = "Graphs"; ObjectID = "mNk-b0-rqO"; */
+"mNk-b0-rqO.title" = "Grafer";
+
+/* Class = "IBUISegmentedControl"; nBK-LY-4Cn.segmentTitles[0] = "Mouth"; ObjectID = "nBK-LY-4Cn"; */
+"nBK-LY-4Cn.segmentTitles[0]" = "Mund";
+
+/* Class = "IBUISegmentedControl"; nBK-LY-4Cn.segmentTitles[1] = "Stomach"; ObjectID = "nBK-LY-4Cn"; */
+"nBK-LY-4Cn.segmentTitles[1]" = "Mave";
+
+/* Class = "IBUISegmentedControl"; nBK-LY-4Cn.segmentTitles[2] = "Other"; ObjectID = "nBK-LY-4Cn"; */
+"nBK-LY-4Cn.segmentTitles[2]" = "Andet";
+
+/* Class = "IBUISegmentedControl"; nBK-LY-4Cn.segmentTitles[3] = "All"; ObjectID = "nBK-LY-4Cn"; */
+"nBK-LY-4Cn.segmentTitles[3]" = "Alle";
+
+/* Class = "IBUILabel"; text = "Weight:"; ObjectID = "nct-yg-R3G"; */
+"nct-yg-R3G.text" = "Vægt:";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "o7W-iK-caJ"; */
+"o7W-iK-caJ.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Images:"; ObjectID = "oAq-AU-9mA"; */
+"oAq-AU-9mA.text" = "Billeder:";
+
+/* Class = "IBUIButton"; normalTitle = "Add Sample"; ObjectID = "oIn-Ri-zrc"; */
+"oIn-Ri-zrc.normalTitle" = "Tilføj blodprøve";
+
+/* Class = "IBUINavigationItem"; title = "Diary"; ObjectID = "oe0-Ok-DBU"; */
+"oe0-Ok-DBU.title" = "Dagbog";
+
+/* Class = "IBUILabel"; text = "Notes:"; ObjectID = "p47-0S-aKv"; */
+"p47-0S-aKv.text" = "Noter:";
+
+/* Class = "IBUITabBarItem"; title = "Graphs"; ObjectID = "qXL-wB-CA0"; */
+"qXL-wB-CA0.title" = "Grafer";
+
+/* Class = "IBUILabel"; text = "Neutrofile"; ObjectID = "r6V-7B-G1w"; */
+"r6V-7B-G1w.text" = "Neutrofile";
+
+/* Class = "IBUIButton"; normalTitle = "Submit Data"; ObjectID = "rWJ-Io-uxB"; */
+"rWJ-Io-uxB.normalTitle" = "Gem data";
+
+/* Class = "IBUIBarButtonItem"; title = "Reset Drawing"; ObjectID = "rjl-Bt-d14"; */
+"rjl-Bt-d14.title" = "Nulstil tegning";
+
+/* Class = "IBUILabel"; text = "Draw"; ObjectID = "sE8-86-ofx"; */
+"sE8-86-ofx.text" = "Tegne";
+
+/* Class = "IBUIBarButtonItem"; title = "Save"; ObjectID = "tEH-OC-23n"; */
+"tEH-OC-23n.title" = "Gem";
+
+/* Class = "IBUIButton"; normalTitle = "Add high-dose kemo"; ObjectID = "tay-6s-OH3"; */
+"tay-6s-OH3.normalTitle" = "Tilføj høj-dosis kemo";
+
+/* Class = "IBUILabel"; text = "Hæmoglobin"; ObjectID = "uFp-62-g7w"; */
+"uFp-62-g7w.text" = "Hæmoglobin";
+
+/* Class = "IBUILabel"; text = "mg/uge"; ObjectID = "uS6-oc-kdo"; */
+"uS6-oc-kdo.text" = "mg/uge";
+
+/* Class = "IBUISegmentedControl"; umN-XN-VNw.segmentTitles[0] = "Mouth"; ObjectID = "umN-XN-VNw"; */
+"umN-XN-VNw.segmentTitles[0]" = "Mund";
+
+/* Class = "IBUISegmentedControl"; umN-XN-VNw.segmentTitles[1] = "Stomach"; ObjectID = "umN-XN-VNw"; */
+"umN-XN-VNw.segmentTitles[1]" = "Mave";
+
+/* Class = "IBUISegmentedControl"; umN-XN-VNw.segmentTitles[2] = "Other"; ObjectID = "umN-XN-VNw"; */
+"umN-XN-VNw.segmentTitles[2]" = "Andet";
+
+/* Class = "IBUILabel"; text = "mM"; ObjectID = "vfu-Pm-7k7"; */
+"vfu-Pm-7k7.text" = "mM";
+
+/* Class = "IBUISegmentedControl"; wzf-Dq-3Ox.segmentTitles[0] = "Mouth"; ObjectID = "wzf-Dq-3Ox"; */
+"wzf-Dq-3Ox.segmentTitles[0]" = "Mund";
+
+/* Class = "IBUISegmentedControl"; wzf-Dq-3Ox.segmentTitles[1] = "Stomach"; ObjectID = "wzf-Dq-3Ox"; */
+"wzf-Dq-3Ox.segmentTitles[1]" = "Mave";
+
+/* Class = "IBUISegmentedControl"; wzf-Dq-3Ox.segmentTitles[2] = "Other"; ObjectID = "wzf-Dq-3Ox"; */
+"wzf-Dq-3Ox.segmentTitles[2]" = "Andet";
+
+/* Class = "IBUILabel"; text = "No camera photo available."; ObjectID = "xdh-bH-MBt"; */
+"xdh-bH-MBt.text" = "Intet kamera foto tilgængeligt.";
+
+/* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "xpD-mC-xCx"; */
+"xpD-mC-xCx.title" = "Item";

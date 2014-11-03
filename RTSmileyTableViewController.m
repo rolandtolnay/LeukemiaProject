@@ -46,7 +46,6 @@
     UITapGestureRecognizer *recognizer = (UITapGestureRecognizer*) sender;
     UIImageView *smiley = (UIImageView*) recognizer.view;
     [self.delegate didSelectSmiley:smiley.tag];
-    NSLog(@"pain number: %ld",(long)smiley.tag);
 }
 
 @end
