@@ -85,8 +85,7 @@
     [self resetView];
 }
 
--(void)resetView {
-    
+-(void)resetView {    
     //resets tableview cells
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
         RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
@@ -123,16 +122,13 @@
             [shortFormatter setDateFormat:@"dd/MM"];
             dateLabel.text = [shortFormatter stringFromDate:datesWithBS[i]];
         }
-        
     }
-    
 }
 
 -(NSArray *)bloodSampleForDay:(NSDate*) date
 {
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
-//    NSMutableDictionary *bloodSampleRegistration = [self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:date]];
-    NSMutableDictionary *bloodSampleregistration = [[self.dataManagement medicineDataAtDate:date]objectForKey:@"bloodSample"];
+    NSMutableDictionary *bloodSampleregistration = [[self.dataManagement medicineDataAtDate:date] objectForKey:@"bloodSample"];
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"hemoglobin"]];
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"thrombocytes"]];
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"neutrofile"]];
@@ -143,42 +139,6 @@
     
     return [bloodSample copy];
 }
-
-//-(NSArray*)datesWithBloodSamples
-//{
-//    NSMutableArray *dates = [[NSMutableArray alloc]init];
-//    
-//    //Number of past entries to look for in dictionary
-//    NSUInteger entries = 6;
-//    if ([self.dataManagement.bloodSampleData count]<6){
-//        entries = [self.dataManagement.bloodSampleData count];
-//    }
-//        NSLog(@"Entries to look for: %lu",(unsigned long)entries);
-//    NSLog(@"Dictionary with blood samples: %@",self.dataManagement.bloodSampleData);
-//    
-//    //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
-//    //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
-//    //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
-//    NSUInteger found = 0;
-//    NSDate *dateToSearch = [[NSDate date] offsetDay:1];
-//    
-//    
-//    while (found<entries) {
-//        
-//        dateToSearch = [dateToSearch offsetDay:-1];
-//        NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
-//        NSLog(@"keyToSearch: %@",keyToSearch);
-//        if ([self.dataManagement.bloodSampleData objectForKey:keyToSearch]!=nil)
-//        {
-//            found++;
-//            [dates addObject:[self.dateFormatter dateFromString:keyToSearch]];
-//        }
-//        
-//    };
-//    NSLog(@"Dates with bloodsamples: %@",dates);
-//    
-//    return [dates copy];
-//}
 
 -(NSArray*)datesWithBloodSamples
 {

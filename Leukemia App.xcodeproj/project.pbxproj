@@ -283,12 +283,12 @@
 		A695400C19D19C1600AB3E64 /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
+				A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */,
+				A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */,
 				A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */,
 				A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */,
 				A695400919D19C0000AB3E64 /* RTGraphWeekPickerViewController.h */,
 				A695400A19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m */,
-				A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */,
-				A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */,
 			);
 			name = Graphs;
 			sourceTree = "<group>";
@@ -296,10 +296,10 @@
 		A695400D19D19C2700AB3E64 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
-				A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */,
-				A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */,
 				A6924EC1199E2B63009D7220 /* RTDiaryViewController.h */,
 				A6924EC2199E2B63009D7220 /* RTDiaryViewController.m */,
+				A6954A0319C6DFD600C97A94 /* RTDiaryDetailViewController.h */,
+				A6954A0419C6DFD600C97A94 /* RTDiaryDetailViewController.m */,
 			);
 			name = Diary;
 			sourceTree = "<group>";
@@ -307,14 +307,14 @@
 		A695400E19D19C3300AB3E64 /* Pain */ = {
 			isa = PBXGroup;
 			children = (
+				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
+				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
 				A610475619EBC619007B044D /* RTSmileyTableViewController.h */,
 				A610475719EBC619007B044D /* RTSmileyTableViewController.m */,
 				A09996F719A3500300EF39A5 /* RTBrushSizeViewController.h */,
 				A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */,
 				A6924E9E199E28C5009D7220 /* RTPainDrawViewController.h */,
 				A6924E9F199E28C5009D7220 /* RTPainDrawViewController.m */,
-				A694A80419A1DF290000B8C8 /* RTPainScaleViewController.h */,
-				A694A80519A1DF290000B8C8 /* RTPainScaleViewController.m */,
 				A09E24F119E7CF650026FC73 /* RTChangepainScaleTableViewController.h */,
 				A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */,
 				A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */,

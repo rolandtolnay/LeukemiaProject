@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *calendarView;
 @property NSDate* pickedDate;
+@property BOOL markDates;
 
 @property (nonatomic,assign) id delegate;
 

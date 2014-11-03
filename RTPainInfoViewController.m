@@ -24,28 +24,13 @@
         self.noInfoLabel.text = NSLocalizedString(@"No info on this pain scale", nil);
     }
     else if (self.dataMangement.painScaleWongBaker){
-        self.painInformation.image = [UIImage imageNamed:@"painInformationSMILEY"];
+        self.painInformation.image = [UIImage imageNamed:@"WongBaker_info"];
         self.noInfoLabel.text = @"";
     }
     else if (self.dataMangement.flaccScale){
-        self.painInformation.image = [UIImage imageNamed:@"painInformationFLACC"];
+        self.painInformation.image = [UIImage imageNamed:@"FLACC_info"];
         self.noInfoLabel.text = @"";
     }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

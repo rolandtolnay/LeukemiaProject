@@ -32,16 +32,18 @@
 
 #pragma mark - VRGCalendar Delegate
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
+    
     if(self.pickedDate.month == month && self.pickedDate.year == year){
         self.calendar.selectedDate = self.pickedDate;
     }
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM"];
-    
-    NSString *monthString = [@(month) stringValue];
-    
-    NSDate *newDate = [dateFormatter dateFromString:monthString];
-    [self.calendar markDates:[self.data datesWithGraphFromDate:newDate]];
+    if (self.markDates)
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM"];
+        NSString *monthString = [@(month) stringValue];
+        NSDate *newDate = [dateFormatter dateFromString:monthString];
+        [self.calendar markDates:[self.data datesWithGraphFromDate:newDate]];
+    }
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{

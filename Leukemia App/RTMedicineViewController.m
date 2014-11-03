@@ -10,7 +10,7 @@
 
 @interface RTMedicineViewController ()
 
-@property UIPopoverController *popover;
+@property UIPopoverController *kemoPopover;
 
 @end
 
@@ -54,7 +54,19 @@
     [self.weekSelectorView addSubview:self.weekSelector];
     
     [self initMedicineView];
-    NSLog(@"medicine data: %@",self.dataManagement.medicineData);
+}
+
+-(void)initMedicineView{
+    if (self.dataManagement.kemoTabletData.count == 0) {
+        self.mtxText.enabled = YES;
+        self.m6Text.enabled = YES;
+        self.saveDose.hidden = NO;
+    }
+    else{
+        self.editDose.hidden = NO;
+        self.mtxText.text = [self.dataManagement.kemoTabletData objectForKey:@"mtx"];
+        self.m6Text.text = [self.dataManagement.kemoTabletData  objectForKey:@"6mp"];
+    }
 }
 
 #pragma mark - Blood sample data management
@@ -82,13 +94,7 @@
     [self.dataManagement writeToPList];
 }
 
-- (IBAction)editSample:(id)sender {
-    self.saveSampleButton.hidden = NO;
-    self.editSampleButton.hidden = YES;
-    for (UITextField *txtField in self.bloodSampleTextFields) {
-        txtField.enabled = YES;
-    }
-}
+
 
 #pragma mark - Blood sample UI
 
@@ -99,16 +105,12 @@
     self.addBloodSampleView.hidden = NO;
 }
 
-- (IBAction)unwindToBloodSamples:(UIStoryboardSegue *)segue
-{
-    UIViewController *sourceViewController = segue.sourceViewController;
-    if([sourceViewController isKindOfClass:[RTAddBloodSampleViewController class]]){
-        
-        RTAddBloodSampleViewController *controller = segue.sourceViewController;
-        [controller saveSampleWithDate:self.weekSelector.selectedDate];
-        [self checkDate];
+- (IBAction)editSample:(id)sender {
+    self.saveSampleButton.hidden = NO;
+    self.editSampleButton.hidden = YES;
+    for (UITextField *txtField in self.bloodSampleTextFields) {
+        txtField.enabled = YES;
     }
-    
 }
 
 -(void)noBloodSampleUI{
@@ -128,8 +130,6 @@
     if (result == NSOrderedSame || result == NSOrderedAscending)
         self.addSampleButton.hidden = NO;
     else self.addSampleButton.hidden = YES;
-    
-    
 }
 
 -(void)showBloodSampleUI:(NSDate *)date{
@@ -191,29 +191,6 @@
 
 #pragma mark
 
-//-(void)checkDate{
-//    //Check if there is a sample on this day
-//    //if sample - Show it make it editable
-//    if([self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]] != nil){
-//        [self showBloodSampleUI:self.weekSelector.selectedDate];
-//    }
-//    //if no sample - Make it possible to add a sample
-//    else{
-//        [self noBloodSampleUI];
-//    }
-//    //Checks if there is highdosekemo this day
-//    if([self.dataManagement.kemoTreatment objectForKey:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate]] != nil){
-//        [self showKemoUI:self.weekSelector.selectedDate];
-//    }
-//    //if no high-dose kemo - Make it possible to add
-//    else{
-//        [self noKemoUI];
-//    }
-//
-//    //always hides the view for adding samples when you change date
-//    self.addBloodSampleView.hidden = YES;
-//}
-
 -(void)checkDate{
     if([self.dataManagement.kemoTabletData objectForKey:@"mtx"] == nil){
         
@@ -250,49 +227,29 @@
     self.addBloodSampleView.hidden = YES;
 }
 
--(void)initMedicineView{
-    if (self.dataManagement.kemoTabletData.count == 0) {
-        self.mtxText.enabled = YES;
-        self.m6Text.enabled = YES;
-        self.saveDose.hidden = NO;
-    }
-    else{
-        self.editDose.hidden = NO;
-        self.mtxText.text = [self.dataManagement.kemoTabletData objectForKey:@"mtx"];
-        self.m6Text.text = [self.dataManagement.kemoTabletData  objectForKey:@"6mp"];
-    }
-}
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"selectKemo"]){
         RTSelectKemoTableViewController *controller = [segue destinationViewController];
-        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-        self.popover.delegate = self;
+        self.kemoPopover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.kemoPopover.delegate = self;
         controller.delegate = self;
         self.highDoseKemoButton.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
 }
 
--(void)didSelectedRowInPopover:(NSString *)kemoType{
-    NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
-    NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
-    
-    if(dataToBeSaved == nil){
-        dataToBeSaved = [self.dataManagement newMedicineData:self.weekSelector.selectedDate];
-        //        dataToBeSaved = [[NSMutableDictionary alloc]init];
-        //        [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        //        [dataToBeSaved setObject:[self.dateFormatter stringFromDate:self.weekSelector.selectedDate] forKey:@"date"];
-        //        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
-        //        [dataToBeSaved setObject:[self.dataManagement.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
-        //        [dataToBeSaved setObject:[[NSMutableDictionary alloc]init]forKey:@"bloodSample"];
-        //        [self.dataManagement.medicineData addObject:dataToBeSaved];
+- (IBAction)unwindToBloodSamples:(UIStoryboardSegue *)segue
+{
+    UIViewController *sourceViewController = segue.sourceViewController;
+    if([sourceViewController isKindOfClass:[RTAddBloodSampleViewController class]]){
+        
+        RTAddBloodSampleViewController *controller = segue.sourceViewController;
+        [controller saveSampleWithDate:self.weekSelector.selectedDate];
+        [self checkDate];
     }
     
-    [self.popover dismissPopoverAnimated:YES];
-    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
-    [dataToBeSaved setObject:kemoType forKey:@"kemoTreatment"];
-    [self.dataManagement writeToPList];
 }
 
 #pragma  mark - TextField delegate methods
@@ -334,5 +291,21 @@
         [self.m6Text resignFirstResponder];
     }
     [super touchesBegan:touches withEvent:event];
+}
+
+#pragma mark - RTSelectKemo delegate
+
+-(void)didSelectKemo:(NSString *)kemoType{
+    NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
+    NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
+    
+    if(dataToBeSaved == nil){
+        dataToBeSaved = [self.dataManagement newMedicineData:self.weekSelector.selectedDate];
+    }
+    
+    [self.kemoPopover dismissPopoverAnimated:YES];
+    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
+    [dataToBeSaved setObject:kemoType forKey:@"kemoTreatment"];
+    [self.dataManagement writeToPList];
 }
 @end

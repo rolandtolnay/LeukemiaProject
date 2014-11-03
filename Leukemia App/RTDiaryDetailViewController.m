@@ -17,8 +17,6 @@
 
 @implementation RTDiaryDetailViewController
 
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -33,10 +31,11 @@
     [self.labelPainType setText:[NSString stringWithFormat:NSLocalizedString(@"Pain type: %@", nil),painType]];
     
     NSString *morphine = [self.selectedData objectForKey:@"morphinelevel"];
+    NSString *morphineType = [self.selectedData objectForKey:@"morphineType"];
     if ([morphine isEqualToString:@""])
         [self.labelMorphine setText: NSLocalizedString(@"Morphine: -", nil)];
     else
-        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ mg", nil),morphine]];
+        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ %@", nil),morphine,morphineType]];
     
     NSString *paracetamol = [self.selectedData objectForKey:@"paracetamol"];
     if ([paracetamol intValue] == 1)
@@ -66,8 +65,6 @@
         
         [self.imagePhoto setImage:imageToBeShown];
         self.labelNoPhoto.hidden = YES;
-//        self.imagePhoto.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//        self.imagePhoto.contentMode = UIViewContentModeScaleAspectFit;
     }
     
 }

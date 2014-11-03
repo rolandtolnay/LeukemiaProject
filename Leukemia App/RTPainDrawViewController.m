@@ -35,14 +35,10 @@
     [self.redBtn setImage:[UIImage imageNamed:@"redbtn.png"] forState:UIControlStateNormal];
     [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateSelected];
     [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateHighlighted];
-//    [self.redBtn setSelected:YES];
     
     self.redDescription = NSLocalizedString(@"Red - It hurts so much that it's unbearable", nil);
     self.yellowDescription = NSLocalizedString(@"Yellow - It hurts, but it's bearable", nil);
     self.greenDescription = NSLocalizedString(@"Green - It hurts a bit, but I hardly notice the pain", nil);
-//    [self.painDescriptionTxtField setText:self.redDescription];
-//    [self.btnPreview setImage:[UIImage imageNamed:@"redbtn.png" ]];
-
     
     [super viewDidLoad];
 }
@@ -80,7 +76,9 @@
 //    
 //}
 
-//Controls drawing part
+
+
+#pragma mark - Drawing controls
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.mouseWiped = NO;
@@ -127,7 +125,6 @@
         UIGraphicsEndImageContext();
     }
     UIGraphicsBeginImageContext(self.mainImage.frame.size);
-    //     UIGraphicsBeginImageContext(self.drawImage.frame.size);
     [self.mainImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
     [self.drawImage.image drawInRect:CGRectMake(0, 0, self.drawingView.bounds.size.width, self.drawingView.bounds.size.height) blendMode:kCGBlendModeNormal alpha:self.opacity];
     self.drawImage.image = UIGraphicsGetImageFromCurrentImageContext();
@@ -135,6 +132,24 @@
     self.drawImage.image = nil;
     UIGraphicsEndImageContext();
 }
+
+- (IBAction)resetDrawing:(id)sender {
+    UIImage *painBodyImage = [UIImage imageNamed:@"painDrawBody.png"];
+    self.red = 255.0/255.0;
+    self.green = 0.0/255.0;
+    self.blue = 0.0/255.0;
+    self.mainImage.image = painBodyImage;
+    self.drawImage.image = painBodyImage;
+    self.brush = 15.0;
+    self.opacity = 0.0;
+    [self.redBtn setSelected:NO];
+    [self.yelBtn setSelected:NO];
+    [self.greenBtn setSelected:NO];
+    [self.painDescriptionTxtField setText:@""];
+    [self.btnPreview setImage:[UIImage alloc]];
+}
+
+#pragma mark - Color selection method
 
 - (IBAction)colorPressed:(id)sender {
     UIButton *pressedButton = (UIButton*)sender;
@@ -173,21 +188,8 @@
     }
 }
 
-- (IBAction)resetDrawing:(id)sender {
-    UIImage *painBodyImage = [UIImage imageNamed:@"painDrawBody.png"];
-    self.red = 255.0/255.0;
-    self.green = 0.0/255.0;
-    self.blue = 0.0/255.0;
-    self.mainImage.image = painBodyImage;
-    self.drawImage.image = painBodyImage;
-    self.brush = 15.0;
-    self.opacity = 0.0;
-    [self.redBtn setSelected:NO];
-    [self.yelBtn setSelected:NO];
-    [self.greenBtn setSelected:NO];
-    [self.painDescriptionTxtField setText:@""];
-    [self.btnPreview setImage:[UIImage alloc]];
-}
+
+#pragma mark - Navigation
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"settingsPopover"]){

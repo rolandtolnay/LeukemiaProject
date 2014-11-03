@@ -13,7 +13,7 @@
 #import "RTSelectKemoTableViewController.h"
 #import "RTAddBloodSampleViewController.h"
 
-@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTPopoverContentDelegate, UITextFieldDelegate>
+@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTSelectKemoDelegate, UITextFieldDelegate>
 
 //Views
 @property (weak,nonatomic) IBOutlet UIView *weekSelectorView;

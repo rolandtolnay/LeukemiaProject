@@ -44,6 +44,7 @@
 //General properties
 @property (weak, nonatomic) IBOutlet UISwitch *switchParmol;
 @property (weak, nonatomic) IBOutlet UITextField *morphineInput;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *morphineType;
 @property (weak, nonatomic) IBOutlet UIButton *btnDrawPain;
 @property (weak, nonatomic) IBOutlet UIButton *btnPhoto;
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
@@ -55,9 +56,9 @@
 
 //Public methods
 -(IBAction)useCamera:(id)sender;
--(IBAction)submitAndSaveData:(id)sender;
+-(IBAction)submitAndCheckData:(id)sender;
 -(IBAction)painTypeSelected:(id)sender;
--(IBAction)flaccScalePressed:(id)sender;
+-(IBAction)flaccTableButtonSelected:(id)sender;
 -(void)syncImagesWithSlider;
 -(void)setButtonImageHighlight;
 -(void)sliderPainNumberChanged:(UISlider *)sender;

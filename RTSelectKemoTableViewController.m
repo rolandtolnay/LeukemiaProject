@@ -50,7 +50,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegate didSelectedRowInPopover:[self.kemoTypes objectAtIndex:indexPath.row]];
+    [self.delegate didSelectKemo:[self.kemoTypes objectAtIndex:indexPath.row]];
 }
 
 @end

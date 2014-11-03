@@ -39,21 +39,12 @@
     //Set up flaccScaleView properties
     self.btnPressedColor = [UIColor colorWithRed:137.0/255.0 green:76.0/255.0 blue:137.0/255.0 alpha:1.0];
     self.painScoreLabel.text = NSLocalizedString(@"Painscore is: 0", nil);
-
+    
     //Setting up general properties
     self.morphineInput.delegate = self;
     self.painScore = 0;
     
-    if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
-        self.smileyScaleView.hidden = NO;
-        self.flaccScaleView.hidden = YES;
-        [self syncImagesWithSlider];
-    }
-    else{
-        self.smileyScaleView.hidden = YES;
-        self.flaccScaleView.hidden = NO;
-    }
-   
+    [self initPainScale];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,7 +53,8 @@
 }
 
 #pragma mark - Methods related specific to FLACC scale
-- (IBAction)flaccScalePressed:(id)sender {
+
+- (IBAction)flaccTableButtonSelected:(id)sender {
     UIButton *selectedButton = sender;
     self.painScore = 0;
     if(!selectedButton.backgroundColor){
@@ -116,6 +108,7 @@
 }
 
 #pragma mark - Method related to camera
+
 -(IBAction)useCamera:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -132,6 +125,7 @@
 }
 
 #pragma mark - Method related to UITouch
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.morphineInput isFirstResponder] && [touch view] != self.morphineInput) {
@@ -142,6 +136,7 @@
 
 
 #pragma mark - Methods related to UISlider
+
 -(void)sliderPainNumberChanged:(UISlider *)sender {
     NSUInteger index = (NSUInteger)(self.sliderPainNumber.value+0.5);
     [self.sliderPainNumber setValue:index animated:NO];
@@ -160,11 +155,10 @@
     else if([control selectedSegmentIndex]==2){
         self.painType = @"Other";
     }
-    //self.painType = [control titleForSegmentAtIndex:control.selectedSegmentIndex];
-    NSLog(@"%@",self.painType);
 }
 
-#pragma mark - Methods related to segues
+#pragma mark - Navigation
+
 - (IBAction)unwindToPainScale:(UIStoryboardSegue *)segue
 {
     UIViewController *sourceViewController = segue.sourceViewController;
@@ -198,13 +192,13 @@
         controller.delegate = self;
     }
     else if([segue.identifier isEqualToString:@"infoSegue"]){
-        //RTPainInfoViewController *controller = [segue destinationViewController];
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
     }
 }
 
 #pragma mark - Convenience methods
+
 -(void)resetView{
     //reset general properties
     self.morphineInput.text = @"";
@@ -281,6 +275,19 @@
     }
 }
 
+-(void)initPainScale
+{
+    if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
+        self.smileyScaleView.hidden = NO;
+        self.flaccScaleView.hidden = YES;
+        [self syncImagesWithSlider];
+    }
+    else{
+        self.smileyScaleView.hidden = YES;
+        self.flaccScaleView.hidden = NO;
+    }
+}
+
 -(void)initSliderPainNumber
 {
     self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
@@ -293,7 +300,54 @@
     self.sliderPainNumber.value=0;
 }
 
+-(NSString*)morphineTypeToText
+{
+    NSString* mType = @"Unknown type";
+    if (self.morphineType.selectedSegmentIndex == 0)
+        mType = @"mg";
+    if (self.morphineType.selectedSegmentIndex == 1)
+        mType = @"mg/L";
+    
+    return mType;
+}
+
 #pragma mark - PList methods
+
+- (IBAction)submitAndCheckData:(id)sender {
+    if(self.painType){
+        NSDate *currentDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        
+        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
+        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
+        NSString *drawingImagePath = [[NSString alloc]init];
+        NSString *photoPath = [[NSString alloc]init];
+        
+        if (self.drawingToBeSaved)
+        {
+            drawingImagePath = [currentTime stringByAppendingString:@" DrawingImage.png"];
+            NSLog(@"%@",drawingImagePath);
+            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+        }
+        if (self.cameraImageToBeSaved)
+        {
+            photoPath = [currentTime stringByAppendingString:@" CameraImage.jpg"];
+            NSLog(@"%@",photoPath);
+            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+        }
+        [self saveToPlist:drawingImagePath :photoPath :currentTime :idString];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")
+                                                        message:NSLocalizedString(@"You need to select a paintype before you can save!", @"Shown when no paintype is selected")
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil,nil];
+        [alert show];
+    }
+}
+
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime :(NSString*)idString{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     [dataToBeSaved setObject:idString forKey:@"id"];
@@ -301,6 +355,7 @@
     [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
     [dataToBeSaved setObject:photoPath forKey:@"photopath"];
     [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
+    [dataToBeSaved setObject:[self morphineTypeToText] forKey:@"morphineType"];
     [dataToBeSaved setObject:currentTime forKey:@"time"];
     [dataToBeSaved setObject:self.painType forKey:@"paintype"];
     [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
@@ -329,48 +384,6 @@
     [self resetView];
 }
 
-//Method that saves images and data to pList
-- (IBAction)submitAndSaveData:(id)sender {
-    if(self.painType){
-        NSDate *currentDate = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
-
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
-        NSString *drawingImagePath = [[NSString alloc]init];
-        NSString *photoPath = [[NSString alloc]init];
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        NSString *photoTime = [dateFormatter stringFromDate:currentDate];
-        
-        if (self.drawingToBeSaved)
-        {
-            drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
-            NSLog(@"%@",drawingImagePath);
-            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
-        }
-        if (self.cameraImageToBeSaved)
-        {
-            photoPath = [photoTime stringByAppendingString:@" CameraImage.jpg"];
-            NSLog(@"%@",photoPath);
-            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
-        }
-        [self saveToPlist:drawingImagePath :photoPath :currentTime :idString];
-    }
-    else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")
-                                                        message:NSLocalizedString(@"You need to select a paintype before you can save!", @"Shown when no paintype is selected")
-                                                       delegate:self
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles:nil,nil];
-        [alert show];
-    }
-}
 
 //FEATURE REMOVED BY CUSTOMER REQUEST
 //- (IBAction)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -398,6 +411,7 @@
 //}
 
 #pragma mark - UITextField delegate method
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -406,20 +420,14 @@
 }
 
 #pragma mark - RTChangePainScalePopoverDelegate method
+
 -(void)didSelectPainScale{
     [self.popover dismissPopoverAnimated:YES];
-    if(self.dataManagement.painScaleBieri || self.dataManagement.painScaleWongBaker){
-        self.smileyScaleView.hidden = NO;
-        self.flaccScaleView.hidden = YES;
-        [self syncImagesWithSlider];
-    }
-    else if(self.dataManagement.flaccScale){
-        self.smileyScaleView.hidden = YES;
-        self.flaccScaleView.hidden = NO;
-    }
+    [self initPainScale];
 }
 
 #pragma mark - RTSmileyTable Delegate
+
 -(void)didSelectSmiley:(NSInteger)smiley
 {
     [self.smileyTablePopover dismissPopoverAnimated:YES];
@@ -428,6 +436,7 @@
 }
 
 #pragma mark - UIImagePickerControllerDelegate
+
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     NSString *mediaType = info[UIImagePickerControllerMediaType];
     

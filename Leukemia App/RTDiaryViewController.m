@@ -45,7 +45,7 @@
     
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:[NSDate date]]];
     
-     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [super viewDidLoad];
 }
@@ -80,65 +80,29 @@
 #pragma mark - Notes
 
 - (void)textViewDidChange:(UITextView *)textView {
-    if ([textView.text length] > 0) {
-        [self.labelNotesPlaceholder setHidden:YES];
-    } else {
-        [self.labelNotesPlaceholder setHidden:NO];
+    if ([textView isEqual:_textViewNotes])
+    {
+        if ([textView.text length] > 0) {
+            [self.labelNotesPlaceholder setHidden:YES];
+        } else {
+            [self.labelNotesPlaceholder setHidden:NO];
+        }
     }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    NSDate *selectedDate = self.calendar.selectedDate;
-    NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
-    
-    if (dataToBeSaved !=nil)
+    if ([textView isEqual:_textViewNotes])
     {
-        [dataToBeSaved setObject:textView.text forKey:@"notes"];
-        [self.dataManagement writeToPList];
-    }
-    else
-    {
-        dataToBeSaved = [[NSMutableDictionary alloc]init];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        [dataToBeSaved setObject:idString forKey:@"id"];
-        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
-        [dataToBeSaved setObject:textView.text forKey:@"notes"];
-        [self.dataManagement.diaryData addObject:dataToBeSaved];
-        [self.dataManagement writeToPList];
-    }
-    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
-}
-
-#pragma mark - Weight Registration
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if ([textField.text isEqualToString:@"test"])
-    {
-        [[RTDataManagement singleton] initTestData];
-        return;
-    }
-    NSDate *selectedDate = self.calendar.selectedDate;
-    NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
-    if (dataToBeSaved !=nil)
-    {
-        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+        NSDate *selectedDate = self.calendar.selectedDate;
+        NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
+        
+        if (dataToBeSaved !=nil)
         {
-            if([textField isEqual:self.textFieldWeight]){
-                [dataToBeSaved setObject:textField.text forKey:@"weight"];
-            }
-            else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
-            }
+            [dataToBeSaved setObject:textView.text forKey:@"notes"];
             [self.dataManagement writeToPList];
         }
-    }
-    else
-    {
-        if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+        else
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
@@ -147,18 +111,62 @@
             [dateFormat setDateFormat:@"yyyy-MM-dd"];
             [dataToBeSaved setObject:idString forKey:@"id"];
             [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
-            if([textField isEqual:self.textFieldWeight]){
-                [dataToBeSaved setObject:textField.text forKey:@"weight"];
-            }
-            else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
-            }
+            [dataToBeSaved setObject:textView.text forKey:@"notes"];
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
         }
+        [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
     }
-    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
-//    NSLog(@"%@", self.dataManagement.diaryData);
+}
+
+#pragma mark - Weight and Protocol Registration
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField isEqual:_textFieldWeight] || [textField isEqual:_textFieldProtocol])
+    {
+        if ([textField.text isEqualToString:@"test"])
+        {
+            [[RTDataManagement singleton] initTestData];
+            return;
+        }
+        NSDate *selectedDate = self.calendar.selectedDate;
+        NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
+        if (dataToBeSaved !=nil)
+        {
+            if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+            {
+                if([textField isEqual:self.textFieldWeight]){
+                    [dataToBeSaved setObject:textField.text forKey:@"weight"];
+                }
+                else if ([textField isEqual:self.textFieldProtocol]){
+                    [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
+                }
+                [self.dataManagement writeToPList];
+            }
+        }
+        else
+        {
+            if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+            {
+                dataToBeSaved = [[NSMutableDictionary alloc]init];
+                NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+                [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
+                [dateFormat setDateFormat:@"yyyy-MM-dd"];
+                [dataToBeSaved setObject:idString forKey:@"id"];
+                [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
+                if([textField isEqual:self.textFieldWeight]){
+                    [dataToBeSaved setObject:textField.text forKey:@"weight"];
+                }
+                else if ([textField isEqual:self.textFieldProtocol]){
+                    [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
+                }
+                [self.dataManagement.diaryData addObject:dataToBeSaved];
+                [self.dataManagement writeToPList];
+            }
+        }
+        [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -190,7 +198,7 @@
     
     NSDate *newDate = [dateFormatter dateFromString:monthString];
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:newDate]];
-
+    
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
@@ -214,8 +222,6 @@
     [self.textFieldProtocol setText:[diaryReg objectForKey:@"protocolTreatmentDay"]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
-    
-//    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:date]];
 }
 
 -(void)setDateLabels: (NSDate *)date{
@@ -251,7 +257,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
     NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
-//    hour = [NSString stringWithFormat:@"%@:%@",[hour componentsSeparatedByString:@":"][0],[hour componentsSeparatedByString:@":"][1]];
+    hour = [NSString stringWithFormat:@"%@:%@",[hour componentsSeparatedByString:@":"][0],[hour componentsSeparatedByString:@":"][1]];
     NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
     if ([painType isEqualToString:@"Mouth"]){
@@ -294,6 +300,7 @@
     CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
     self.popoverAnchorButton.frame = displayFrom;
     [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated: YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -311,16 +318,16 @@
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self.dataManagement readFromPlist]
                                                        options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
     NSString *jsonText = [[NSString alloc] initWithData:jsonData
-                                             encoding:NSUTF8StringEncoding];
+                                               encoding:NSUTF8StringEncoding];
     NSLog(@"JSON:%@",jsonText);
     
     //Export as XML
-//    NSString *errorDesc;
-//    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
-//                                                                 format:NSPropertyListXMLFormat_v1_0
-//                                                       errorDescription:&errorDesc];
-//    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
-//    NSLog(@"XML:%@",xmlText);
+    //    NSString *errorDesc;
+    //    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
+    //                                                                 format:NSPropertyListXMLFormat_v1_0
+    //                                                       errorDescription:&errorDesc];
+    //    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
+    //    NSLog(@"XML:%@",xmlText);
     
     NSLog(@"Device name: %@",[[UIDevice currentDevice] name]);
 }
