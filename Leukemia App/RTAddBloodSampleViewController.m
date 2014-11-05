@@ -25,7 +25,7 @@
     self.dataManagement = [RTDataManagement singleton];
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
-    [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //[self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     self.tableViewPreviousBloodSamples.dataSource = self;
     
@@ -51,7 +51,7 @@
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
         
         RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
-        NSString *bloodSampleValue = cell.txfBloodSample.text;
+        NSNumber *bloodSampleValue = [NSNumber numberWithInteger:[cell.txfBloodSample.text integerValue]];
         
         switch (path.row) {
             case 0:
@@ -86,7 +86,6 @@
 }
 
 -(void)resetView {
-    
     //resets tableview cells
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
         RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
@@ -119,17 +118,17 @@
             dateLabel.hidden = YES;
         else
         {
-            NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
-            [shortFormatter setDateFormat:@"dd/MM"];
-            dateLabel.text = [shortFormatter stringFromDate:datesWithBS[i]];
+            //NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
+            [self.dateFormatter setDateFormat:@"dd/MM"];
+            dateLabel.text = [self.dateFormatter stringFromDate:datesWithBS[i]];
         }
         
     }
-    
 }
 
 -(NSArray *)bloodSampleForDay:(NSDate*) date
 {
+
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
 //    NSMutableDictionary *bloodSampleRegistration = [self.dataManagement.bloodSampleData objectForKey:[self.dateFormatter stringFromDate:date]];
     NSMutableDictionary *bloodSampleregistration = [[self.dataManagement medicineDataAtDate:date]objectForKey:@"bloodSample"];
@@ -192,8 +191,9 @@
     //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
     //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
     //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
-    NSUInteger found = 0;
+    NSInteger found = 0;
     NSDate *dateToSearch = [[NSDate date] offsetDay:1];
+    [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     while (found<entries) {
         dateToSearch = [dateToSearch offsetDay:-1];
         NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
@@ -204,7 +204,6 @@
         }
         
     };
-    
     return [dates copy];
 }
 
@@ -251,19 +250,27 @@
         NSDate *atDate = datesWithBS[i];
         NSArray *bloodSample = [self bloodSampleForDay:atDate];
         UILabel *dayLabel = cell.dayLabels[i];
-        dayLabel.text = bloodSample[indexPath.row];
+        dayLabel.text = [bloodSample[indexPath.row]stringValue];
     }
     
     return cell;
 }
 
 -(NSMutableDictionary*)daysWithBloodSamples{
-   //self.counter = 0;
+   
     NSMutableDictionary *daysWithBloodsamples = [[NSMutableDictionary alloc]init];
+    NSDate *tempDate;
+    NSString *dateString;
+    
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
         if([tempDict objectForKey:@"bloodSample"] != nil){
-            //self.counter++;
-            [daysWithBloodsamples setObject:tempDict forKey:[tempDict objectForKey:@"date"]];
+            [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+            tempDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
+            [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            dateString = [self.dateFormatter stringFromDate:tempDate];
+            
+            [daysWithBloodsamples setObject:tempDict forKey:dateString];
+            
         }
     }
     return daysWithBloodsamples;

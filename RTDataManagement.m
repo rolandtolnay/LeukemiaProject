@@ -149,10 +149,8 @@ static RTDataManagement *dataMangement = nil;
     NSMutableDictionary *pList = [self readFromPlist];
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
-//    self.bloodSampleData = [pList objectForKey:@"bloodSampleData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
     self.kemoTabletData = [pList objectForKey:@"kemoTabletData"];
-//    self.kemoTreatment = [pList objectForKey:@"kemoTreatment"];
 }
 
 #pragma mark - Service methods
@@ -166,8 +164,8 @@ static RTDataManagement *dataMangement = nil;
         NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
         if ([painTypeReg isEqualToString:painType])
         {
-            NSNumber *painLevel = [NSNumber numberWithInt:[[painRegistration objectForKey:@"painlevel"] intValue]];
-            NSString *timeStamp = [painRegistration objectForKey:@"time"];
+            NSNumber *painLevel = [painRegistration objectForKey:@"painlevel"];
+            NSString *timeStamp = [painRegistration objectForKey:@"date"];
             if ([timeStamp rangeOfString:day].location != NSNotFound)
             {
                 [painLevels addObject:painLevel];
@@ -186,7 +184,7 @@ static RTDataManagement *dataMangement = nil;
     
     for (NSDictionary *painRegistration in self.painData)
     {
-        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *timeStamp = [painRegistration objectForKey:@"date"];
 
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
@@ -218,7 +216,7 @@ static RTDataManagement *dataMangement = nil;
     
     for (NSDictionary *painRegistration in self.painData)
     {
-        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *timeStamp = [painRegistration objectForKey:@"date"];
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
@@ -283,7 +281,7 @@ static RTDataManagement *dataMangement = nil;
     
     for (NSDictionary *painRegistration in self.painData)
     {
-        NSString *timeStamp = [painRegistration objectForKey:@"time"];
+        NSString *timeStamp = [painRegistration objectForKey:@"date"];
         NSString *day = [NSString alloc];
         if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
         {
@@ -317,7 +315,7 @@ static RTDataManagement *dataMangement = nil;
             NSMutableDictionary *diaryData = [self diaryDataAtDate:[dateFormatter dateFromString:timeStamp]];
             if (diaryData!=nil)
             {
-                NSString *weight = [diaryData objectForKey:@"weight"];
+                NSString *weight = [[diaryData objectForKey:@"weight"]stringValue];
                 NSString *notes = [diaryData objectForKey:@"notes"];
                 if (![weight isEqualToString:@""] || ![notes isEqualToString:@""])
                 {
@@ -338,9 +336,10 @@ static RTDataManagement *dataMangement = nil;
     for (NSMutableDictionary *diaryRegistration in self.diaryData)
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        NSDate *tempDate = [dateFormat dateFromString:[diaryRegistration objectForKey:@"date"]];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *diaryRegDate = [diaryRegistration objectForKey:@"date"];
-        if ([diaryRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
         {
             return diaryRegistration;
         }
@@ -355,10 +354,12 @@ static RTDataManagement *dataMangement = nil;
     for (NSMutableDictionary *medicineRegistration in self.medicineData)
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        NSDate *tempDate = [dateFormat dateFromString:[medicineRegistration objectForKey:@"date"]];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString *medicineRegDate = [medicineRegistration objectForKey:@"date"];
-        if ([medicineRegDate isEqualToString:[dateFormat stringFromDate:date]])
+        if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
         {
+            
             return medicineRegistration;
         }
     }
@@ -378,12 +379,10 @@ static RTDataManagement *dataMangement = nil;
     comps.year = year;
     today = [greg dateFromComponents:comps];
     comps = [greg components:NSYearCalendarUnit fromDate:today];
-    NSLog(@"%@",comps);
     comps.day = 1;
     comps.month = 1;
     comps.hour = 12;
     NSDate *start = [greg dateFromComponents:comps];
-    NSLog(@"NSDate start: %@",start);
     comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
     
     
@@ -406,25 +405,21 @@ static RTDataManagement *dataMangement = nil;
 -(NSMutableDictionary*)newMedicineData: (NSDate*)date{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    NSLog(@"Stringfromdate: %@",[dateFormatter stringFromDate:date]);
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
     NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     [dataToBeSaved setObject:idString forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
-    
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
-    [bloodSampleData setObject:@"" forKey:@"hemoglobin"];
-    [bloodSampleData setObject:@"" forKey:@"thrombocytes"];
-    [bloodSampleData setObject:@"" forKey:@"neutrofile"];
-    [bloodSampleData setObject:@"" forKey:@"crp"];
-    [bloodSampleData setObject:@"" forKey:@"leukocytes"];
-    [bloodSampleData setObject:@"" forKey:@"alat"];
-    [bloodSampleData setObject:@"" forKey:@"other"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"hemoglobin"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"thrombocytes"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"neutrofile"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"crp"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"leukocytes"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"alat"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"other"];
     [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
-    
     [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
     [self.medicineData addObject:dataToBeSaved];
     return dataToBeSaved;

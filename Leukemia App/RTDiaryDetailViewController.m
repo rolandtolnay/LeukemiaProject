@@ -24,16 +24,17 @@
     [super viewDidLoad];
     
     self.service = [RTDataManagement singleton];
-    
-    NSString *date = [self.selectedData objectForKey:@"time"];
-    [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),date]];
-    NSString *painLevel = [self.selectedData objectForKey:@"painlevel"];
-    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),painLevel]];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    NSDate *date = [dateFormat dateFromString:[self.selectedData objectForKey:@"date"]];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),[dateFormat stringFromDate:date]]];
+    NSNumber *painLevel = [self.selectedData objectForKey:@"painlevel"];
+    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),[painLevel stringValue]]];
     NSString *painType = [self.selectedData objectForKey:@"paintype"];
     [self.labelPainType setText:[NSString stringWithFormat:NSLocalizedString(@"Pain type: %@", nil),painType]];
-    
-    NSString *morphine = [self.selectedData objectForKey:@"morphinelevel"];
-    if ([morphine isEqualToString:@""])
+    NSNumber *morphine = [self.selectedData objectForKey:@"morphinelevel"];
+    if ([[morphine stringValue] isEqualToString:@""])
         [self.labelMorphine setText: NSLocalizedString(@"Morphine: -", nil)];
     else
         [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ mg", nil),morphine]];
@@ -66,8 +67,6 @@
         
         [self.imagePhoto setImage:imageToBeShown];
         self.labelNoPhoto.hidden = YES;
-//        self.imagePhoto.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//        self.imagePhoto.contentMode = UIViewContentModeScaleAspectFit;
     }
     
 }

@@ -294,14 +294,14 @@
 }
 
 #pragma mark - PList methods
--(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)currentTime :(NSString*)idString{
+-(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)date :(NSString*)idString{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     [dataToBeSaved setObject:idString forKey:@"id"];
-    [dataToBeSaved setObject:[NSString stringWithFormat:@"%d",(int)self.painScore]forKey:@"painlevel"];
+    [dataToBeSaved setObject:[NSNumber numberWithInteger:self.painScore] forKey:@"painlevel"];
     [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
     [dataToBeSaved setObject:photoPath forKey:@"photopath"];
-    [dataToBeSaved setObject:self.morphineInput.text forKey:@"morphinelevel"];
-    [dataToBeSaved setObject:currentTime forKey:@"time"];
+     [dataToBeSaved setObject:[NSNumber numberWithInteger:[self.morphineInput.text integerValue]] forKey:@"morphinelevel"];
+    [dataToBeSaved setObject:date forKey:@"date"];
     [dataToBeSaved setObject:self.painType forKey:@"paintype"];
     [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
     [self.dataManagement.painData addObject:dataToBeSaved];
@@ -334,20 +334,11 @@
     if(self.painType){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
         NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
-
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
-        NSString *currentTime = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
-        
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        
         NSString *photoTime = [dateFormatter stringFromDate:currentDate];
-        
         if (self.drawingToBeSaved)
         {
             drawingImagePath = [photoTime stringByAppendingString:@" DrawingImage.png"];
@@ -360,7 +351,7 @@
             NSLog(@"%@",photoPath);
             [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
-        [self saveToPlist:drawingImagePath :photoPath :currentTime :idString];
+        [self saveToPlist:drawingImagePath :photoPath :[dateFormatter stringFromDate:currentDate] :idString];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")

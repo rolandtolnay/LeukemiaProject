@@ -47,19 +47,20 @@
     
      self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.dateFormat = [[NSDateFormatter alloc]init];
+    
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"dd"];
+    [self.dateFormat setDateFormat:@"dd"];
     NSDate *dateToShow = [NSDate date];
     if(self.currentSelectedDate != nil){
         dateToShow = self.currentSelectedDate;
     }
     self.calendar.currentMonth = dateToShow;
-    [self.calendar selectDate:[[dateFormat stringFromDate:dateToShow] integerValue]];
+    [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
 }
 
 //Finishes editing of textview/textfield when user taps outside of it
@@ -100,12 +101,11 @@
     else
     {
         dataToBeSaved = [[NSMutableDictionary alloc]init];
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
+        [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
         [dataToBeSaved setObject:idString forKey:@"id"];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
+//        [self.dateFormat setDateFormat:@"yyyy-MM-dd"];
+        [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
         [dataToBeSaved setObject:textView.text forKey:@"notes"];
         [self.dataManagement.diaryData addObject:dataToBeSaved];
         [self.dataManagement writeToPList];
@@ -128,10 +128,10 @@
         if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             if([textField isEqual:self.textFieldWeight]){
-                [dataToBeSaved setObject:textField.text forKey:@"weight"];
+                [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]forKey:@"weight"];
             }
             else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
+                [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]] forKey:@"protocolTreatmentDay"];
             }
             [self.dataManagement writeToPList];
         }
@@ -141,24 +141,21 @@
         if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
+            [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+            NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
             [dataToBeSaved setObject:idString forKey:@"id"];
-            [dateFormat setDateFormat:@"yyyy-MM-dd"];
-            [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
+            [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
             if([textField isEqual:self.textFieldWeight]){
-                [dataToBeSaved setObject:textField.text forKey:@"weight"];
+                [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"weight"];
             }
             else if ([textField isEqual:self.textFieldProtocol]){
-                [dataToBeSaved setObject:textField.text forKey:@"protocolTreatmentDay"];
+                [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"protocolTreatmentDay"];
             }
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
         }
     }
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
-//    NSLog(@"%@", self.dataManagement.diaryData);
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -173,35 +170,32 @@
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
     
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"dd"];
+        [self.dateFormat setDateFormat:@"dd"];
         NSDate *dateToShow = [NSDate date];
         if(self.currentSelectedDate != nil){
             dateToShow = self.currentSelectedDate;
         }
         self.calendar.currentMonth = dateToShow;
-        [self.calendar selectDate:[[dateFormat stringFromDate:dateToShow] integerValue]];
+        [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
     }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM"];
+    [self.dateFormat setDateFormat:@"MM"];
     
     NSString *monthString = [@(month) stringValue];
     
-    NSDate *newDate = [dateFormatter dateFromString:monthString];
+    NSDate *newDate = [self.dateFormat dateFromString:monthString];
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:newDate]];
 
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
     [self.diaryData removeAllObjects];
-    NSString *tempTime;
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+     [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
     NSDate *painRegDate;
+    NSString *tempDate;
     for (NSMutableDictionary *dict in self.dataManagement.painData){
-        tempTime = [dict objectForKey:@"time"];
-        painRegDate = [dateFormat dateFromString:tempTime];
+        tempDate = [dict objectForKey:@"date"];
+        painRegDate = [self.dateFormat dateFromString:tempDate];
         if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
             [self.diaryData addObject:dict];
         }
@@ -210,27 +204,24 @@
     [self.dataTableView reloadData];
     
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-    [self.textFieldWeight setText:[diaryReg objectForKey:@"weight"]];
-    [self.textFieldProtocol setText:[diaryReg objectForKey:@"protocolTreatmentDay"]];
+    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
+    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
-    
-//    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:date]];
 }
 
 -(void)setDateLabels: (NSDate *)date{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM"];
-    self.monthLabel.text = [formatter stringFromDate:date];
+    [self.dateFormat setDateFormat:@"MMMM"];
+    self.monthLabel.text = [self.dateFormat stringFromDate:date];
     if([date day]<10){
-        [formatter setDateFormat:@"d"];
+        [self.dateFormat setDateFormat:@"d"];
     }
     else{
-        [formatter setDateFormat:@"dd"];
+        [self.dateFormat setDateFormat:@"dd"];
     }
-    self.dayLabel.text = [formatter stringFromDate:date];
-    [formatter setDateFormat:@"EEEE"];
-    self.weekDayLabel.text = [formatter stringFromDate:date];
+    self.dayLabel.text = [self.dateFormat stringFromDate:date];
+    [self.dateFormat setDateFormat:@"EEEE"];
+    self.weekDayLabel.text = [self.dateFormat stringFromDate:date];
 }
 
 #pragma mark - TableView Delegate
@@ -250,9 +241,12 @@
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
-    NSString *hour = [[painRegistration objectForKey:@"time"] componentsSeparatedByString:@" "][1];
+    [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    NSDate *date = [self.dateFormat dateFromString:[painRegistration objectForKey:@"date"]];
+    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
 //    hour = [NSString stringWithFormat:@"%@:%@",[hour componentsSeparatedByString:@":"][0],[hour componentsSeparatedByString:@":"][1]];
-    NSString *painLevel = [painRegistration objectForKey:@"painlevel"];
+    NSString *painLevel = [[painRegistration objectForKey:@"painlevel"]stringValue];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
     if ([painType isEqualToString:@"Mouth"]){
         painType = NSLocalizedString(@"Mouth", nil);
@@ -264,9 +258,7 @@
         painType = NSLocalizedString(@"Other", nil);
     }
     NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Pain Level: %@, Type: %@", nil),hour,painLevel,painType];
-    
     cell.textLabel.text = cellText;
-    
     return cell;
 }
 
