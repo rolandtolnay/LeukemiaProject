@@ -165,7 +165,7 @@ static RTDataManagement *dataMangement = nil;
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"time"];
-
+        
         NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
@@ -266,6 +266,8 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+//Creates an array with dates that contain weight OR notes data from the diary.
+//Only searches in the month specified in the date parameter
 -(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate{
     NSMutableArray *dates = [[NSMutableArray alloc] init];
     
@@ -369,17 +371,34 @@ static RTDataManagement *dataMangement = nil;
 #pragma mark - Init data methods
 
 -(NSMutableDictionary*)newMedicineData: (NSDate*)date{
+    
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+    
+    //ID and Date information
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     NSLog(@"Stringfromdate: %@",[dateFormatter stringFromDate:date]);
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
     NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     [dataToBeSaved setObject:idString forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
-    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
-    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
     
+    //Kemo-data
+    NSNumber *mtxTablet = [self.kemoTabletData objectForKey:@"mtx"];
+    if (mtxTablet !=nil)
+        [dataToBeSaved setObject:mtxTablet forKey:@"mtx"];
+    else
+        [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
+    NSNumber *mpTablet = [self.kemoTabletData objectForKey:@"6mp"];
+    if (mpTablet!=nil)
+        [dataToBeSaved setObject:mpTablet forKey:@"6mp"];
+    else
+        [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"6mp"];
+    
+    [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+    
+    //BloodSample Data
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
     [bloodSampleData setObject:@"" forKey:@"hemoglobin"];
     [bloodSampleData setObject:@"" forKey:@"thrombocytes"];
@@ -390,7 +409,7 @@ static RTDataManagement *dataMangement = nil;
     [bloodSampleData setObject:@"" forKey:@"other"];
     [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
     
-    [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+   
     [self.medicineData addObject:dataToBeSaved];
     return dataToBeSaved;
 }
@@ -462,7 +481,7 @@ static RTDataManagement *dataMangement = nil;
     [self writeToPList];
 }
 
-#pragma mark - App ID
+#pragma mark - ID generators
 
 -(NSString*)UniqueAppId
 {
@@ -476,5 +495,10 @@ static RTDataManagement *dataMangement = nil;
     return strApplicationUUID;
 }
 
+-(NSString*)dataID
+{
+    NSString *dataID = [[NSString alloc] initWithFormat:@"%@ %@",[self UniqueAppId],[NSDate date]];
+    return dataID;
+}
 
 @end

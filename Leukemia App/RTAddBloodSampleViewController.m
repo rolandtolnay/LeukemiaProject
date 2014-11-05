@@ -12,8 +12,8 @@
 
 @property RTDataManagement *dataManagement;
 @property NSDateFormatter *dateFormatter;
-@property NSInteger counter;
 
+@property UIPopoverController* popover;
 
 @end
 
@@ -29,23 +29,110 @@
     
     self.tableViewPreviousBloodSamples.dataSource = self;
     
+    self.selectedDate = [NSDate date];
+    NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
+    [dayShortFormatter setDateFormat:@"dd/MM"];
+    [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+    
+    NSLog(@"is date: %@ earlier than: %@, RESULT = %hhd",self.selectedDate,[self.selectedDate offsetDay:4],[self isDate:self.selectedDate earlierThanDate:[self.selectedDate offsetDay:4]]);
+    
     [self resetView];
 }
 
--(void)viewWillAppear:(BOOL)animated
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [self datesWithBloodSamples];
+//
+//}
+
+#pragma mark - Convenience methods
+
+-(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare
 {
-    [self datesWithBloodSamples];
-    
+    NSComparisonResult result = [start compare:toCompare];
+    return (result == NSOrderedAscending || result == NSOrderedSame);
 }
 
--(void)saveSampleWithDate:(NSDate*) selectedDate
-{
+-(NSInteger)bloodSampleCountBeforeDate: (NSDate*) date{
+    NSInteger count = 0;
+
+    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
+        
+        NSDate *regDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
+        
+        NSLog(@"Comparing if date: %@ is before %@",regDate,date);
+        
+        if ([self isDate:regDate earlierThanDate:date])
+        {
+            if([tempDict objectForKey:@"bloodSample"] != nil){
+                count++;
+            }
+        }
+    }
+    return count;
+}
+
+-(NSMutableDictionary*)bloodSampleDictionary{
+    NSMutableDictionary *daysWithBloodsamples = [[NSMutableDictionary alloc]init];
+    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
+        NSMutableDictionary *bloodSampleDic = [tempDict objectForKey:@"bloodSample"];
+        if(bloodSampleDic != nil){
+            [daysWithBloodsamples setObject:bloodSampleDic forKey:[tempDict objectForKey:@"date"]];
+        }
+    }
+    return daysWithBloodsamples;
+}
+
+
+-(void)resetView {
+    //resets tableview cells
+    for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
+        RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
+        for (UILabel *dayLabel in cell.dayLabels)
+        {
+            dayLabel.hidden = NO;
+        }
+        for (UIView *separator in cell.daySeparators)
+        {
+            separator.hidden = NO;
+        }
+        cell.txfBloodSample.text = @"";
+    }
+    //resets dateLabels
+    for (UILabel *dateLabel in self.dateLabels)
+    {
+        dateLabel.hidden = NO;
+    }
+    
+    [self.tableViewPreviousBloodSamples reloadData];
+    
+    //initializes dateLabels
+    //TODO: move this method to main one being called when view is displayed
+    NSArray *datesWithBS = [self datesWithBloodSamples];
+    NSUInteger entries = [datesWithBS count];
+    for (int i = 0; i < 6;i++)
+    {
+        UILabel *dateLabel = self.dateLabels[i];
+        if (i > entries-1 || entries==0)
+            dateLabel.hidden = YES;
+        else
+        {
+            NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
+            [shortFormatter setDateFormat:@"dd/MM"];
+            dateLabel.text = [shortFormatter stringFromDate:datesWithBS[i]];
+        }
+    }
+}
+
+#pragma mark - Sample CRUD
+
+- (IBAction)addSample:(id)sender {
     NSMutableDictionary *sampleData = [[NSMutableDictionary alloc]init];
     
-    NSMutableDictionary *dataTobeSaved = [self.dataManagement medicineDataAtDate:selectedDate];
+    NSMutableDictionary *dataTobeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
     
     if(dataTobeSaved == nil){
-        dataTobeSaved = [self.dataManagement newMedicineData:selectedDate];
+        dataTobeSaved = [self.dataManagement newMedicineData:self.selectedDate];
     }
     
     for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
@@ -85,50 +172,12 @@
     [self resetView];
 }
 
--(void)resetView {    
-    //resets tableview cells
-    for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
-        RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
-        for (UILabel *dayLabel in cell.dayLabels)
-        {
-            dayLabel.hidden = NO;
-        }
-        for (UIView *separator in cell.daySeparators)
-        {
-            separator.hidden = NO;
-        }
-        cell.txfBloodSample.text = @"";
-    }
-    //resets dateLabels
-    for (UILabel *dateLabel in self.dateLabels)
-    {
-        dateLabel.hidden = NO;
-    }
-
-    [self.tableViewPreviousBloodSamples reloadData];
-    
-    //initializes dateLabels
-    //TODO: move this method to main one being called when view is displayed
-    NSArray *datesWithBS = [self datesWithBloodSamples];
-    NSUInteger entries = [datesWithBS count];
-    for (int i = 0; i < 6;i++)
-    {
-        UILabel *dateLabel = self.dateLabels[i];
-        if (i > entries-1 || entries==0)
-            dateLabel.hidden = YES;
-        else
-        {
-            NSDateFormatter *shortFormatter = [[NSDateFormatter alloc] init];
-            [shortFormatter setDateFormat:@"dd/MM"];
-            dateLabel.text = [shortFormatter stringFromDate:datesWithBS[i]];
-        }
-    }
-}
-
 -(NSArray *)bloodSampleForDay:(NSDate*) date
 {
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
     NSMutableDictionary *bloodSampleregistration = [[self.dataManagement medicineDataAtDate:date] objectForKey:@"bloodSample"];
+    
+    //    NSLog(@"bloodSampleReg: %@",bloodSampleregistration);
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"hemoglobin"]];
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"thrombocytes"]];
     [bloodSample addObject:[bloodSampleregistration objectForKey:@"neutrofile"]];
@@ -142,22 +191,30 @@
 
 -(NSArray*)datesWithBloodSamples
 {
-    NSMutableArray *dates = [[NSMutableArray alloc]init];
-    NSMutableDictionary *tempDict = [self daysWithBloodSamples];
     //Number of past entries to look for in dictionary
     NSUInteger entries = 6;
-    if (tempDict.count<6){
-        entries = tempDict.count;
+    
+    NSMutableArray *dates = [[NSMutableArray alloc]init];
+    
+    NSInteger bloodSampleCount = [self bloodSampleCountBeforeDate:self.selectedDate];
+    if (bloodSampleCount < 6){
+        entries = bloodSampleCount;
     }
+    
     //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
     //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
     //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
     NSUInteger found = 0;
-    NSDate *dateToSearch = [[NSDate date] offsetDay:1];
-    while (found<entries) {
+    NSDate *dateToSearch = [self.selectedDate offsetDay:1];
+    NSMutableDictionary *bloodSampleDictionary = [self bloodSampleDictionary];
+    
+    while (found < entries) {
         dateToSearch = [dateToSearch offsetDay:-1];
         NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
-                if ([tempDict objectForKey:keyToSearch]!=nil)
+        
+        NSLog(@"keyToSearch: %@",keyToSearch);
+        
+        if ([bloodSampleDictionary objectForKey:keyToSearch]!=nil)
         {
             found++;
             [dates addObject:[self.dateFormatter dateFromString:keyToSearch]];
@@ -166,6 +223,17 @@
     };
     
     return [dates copy];
+}
+
+-(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"datePicker"]){
+        RTGraphCalendarViewController *controller = [segue destinationViewController];
+        controller.delegate = self;
+        controller.pickedDate = self.selectedDate;
+        
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
 }
 
 #pragma mark - Table View DataSource methods
@@ -217,16 +285,17 @@
     return cell;
 }
 
--(NSMutableDictionary*)daysWithBloodSamples{
-   //self.counter = 0;
-    NSMutableDictionary *daysWithBloodsamples = [[NSMutableDictionary alloc]init];
-    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
-        if([tempDict objectForKey:@"bloodSample"] != nil){
-            //self.counter++;
-            [daysWithBloodsamples setObject:tempDict forKey:[tempDict objectForKey:@"date"]];
-        }
-    }
-    return daysWithBloodsamples;
+#pragma mark - Calendar Picker Delegate
+
+-(void)dateSelected:(NSDate *)date
+{
+    self.selectedDate = date;
+    NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
+    [dayShortFormatter setDateFormat:@"dd/MM"];
+    [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+    
+    [self.popover dismissPopoverAnimated:YES];
+    [self resetView];
 }
 
 @end
