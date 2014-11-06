@@ -37,12 +37,6 @@
     [self resetView];
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [self datesWithBloodSamples];
-//
-//}
-
 #pragma mark - Convenience methods
 
 -(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare
@@ -142,8 +136,8 @@
 
 -(void)resetView {
     //resets tableview cells
-    for (NSIndexPath *path in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
-        RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
+    for (NSIndexPath *indexPath in [self.tableViewPreviousBloodSamples indexPathsForVisibleRows]) {
+        RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:indexPath];
         for (UILabel *dayLabel in cell.dayLabels)
         {
             dayLabel.hidden = NO;
@@ -153,6 +147,9 @@
             separator.hidden = NO;
         }
         cell.txfBloodSample.text = @"";
+        NSLog(@"resetView - table row: %d",indexPath.row);
+        if (indexPath.section == 1)
+            cell.txfBloodSample.hidden = YES;
     }
     //resets dateLabels
     for (UILabel *dateLabel in self.dateLabels)
@@ -238,6 +235,7 @@
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
         controller.pickedDate = self.selectedDate;
+        controller.markedDates = [self.dataManagement datesWithBloodSamplesFromDate:self.selectedDate];
         
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
@@ -248,7 +246,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"Medicine data: %@",self.dataManagement.medicineData);
     return 2;
 }
 
@@ -326,6 +323,16 @@
     
     [self.popover dismissPopoverAnimated:YES];
     [self resetView];
+}
+
+-(NSArray *)monthChanged:(NSInteger)month
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM"];
+    NSString *monthString = [@(month) stringValue];
+    NSDate *newDate = [dateFormatter dateFromString:monthString];
+    
+    return [self.dataManagement datesWithBloodSamplesFromDate:newDate];
 }
 
 @end

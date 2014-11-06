@@ -14,6 +14,7 @@
 @protocol RTCalendarPickerDelegate <NSObject>
 
 - (void) dateSelected:(NSDate*) date;
+- (NSArray *) monthChanged:(NSInteger) month;
 
 @end
 
@@ -21,7 +22,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *calendarView;
 @property NSDate* pickedDate;
-@property BOOL markDates;
+
+@property NSArray* markedDates;
 
 @property (nonatomic,assign) id delegate;
 

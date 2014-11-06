@@ -35,11 +35,11 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
--(NSMutableDictionary *)kemoTabletData{
-    if(!_kemoTabletData){
-        _kemoTabletData = [[NSMutableDictionary alloc]init];
+-(NSMutableDictionary *)kemoTreatmentData{
+    if(!_kemoTreatmentData){
+        _kemoTreatmentData = [[NSMutableDictionary alloc]init];
     }
-    return _kemoTabletData;
+    return _kemoTreatmentData;
 }
 
 -(NSMutableArray *)medicineData{
@@ -102,7 +102,7 @@ static RTDataManagement *dataMangement = nil;
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
     [pList setObject:self.medicineData forKey:@"medicineData"];
-    [pList setObject:self.kemoTabletData forKey:@"kemoTabletData"];
+    [pList setObject:self.kemoTreatmentData forKey:@"kemoTreatmentData"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -134,7 +134,7 @@ static RTDataManagement *dataMangement = nil;
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
-    self.kemoTabletData = [pList objectForKey:@"kemoTabletData"];
+    self.kemoTreatmentData = [pList objectForKey:@"kemoTreatmentData"];
 }
 
 #pragma mark - Service methods
@@ -298,6 +298,31 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+-(NSArray*) datesWithBloodSamplesFromDate: (NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"-MM-"];
+    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    for (NSDictionary *medicineRegistration in self.medicineData)
+    {
+        NSDictionary *bloodSamples = [medicineRegistration objectForKey:@"bloodSample"];
+        if (bloodSamples != nil)
+        {
+            NSString *timeStamp = [medicineRegistration objectForKey:@"date"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+            {
+                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[[dateFormatter dateFromString:timeStamp]day]];
+                [dates addObject:dateToBeAdded];
+            }
+        }
+    }
+    
+    return [dates copy];
+}
+
 //returns an NSMutableDictionary with all diary data if it exists in the storage
 //Date is without format
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date
@@ -332,6 +357,7 @@ static RTDataManagement *dataMangement = nil;
     return nil;
 }
 
+//Returns an array of NSDate objects for each day in a week for a given year
 -(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year{
     // determine weekday of first day of year:
     NSCalendar *greg = [[NSCalendar alloc]
@@ -385,19 +411,21 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
-    NSLog(@"kemoTabletData: %@",self.kemoTabletData);
-    NSNumber *mtxTablet = [self.kemoTabletData objectForKey:@"mtx"];
+    NSLog(@"kemoTreatmentData: %@",self.kemoTreatmentData);
+    NSNumber *mtxTablet = [self.kemoTreatmentData objectForKey:@"mtx"];
     if (mtxTablet !=nil)
         [dataToBeSaved setObject:mtxTablet forKey:@"mtx"];
     else
         [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
-    NSNumber *mpTablet = [self.kemoTabletData objectForKey:@"6mp"];
+    NSNumber *mpTablet = [self.kemoTreatmentData objectForKey:@"6mp"];
     if (mpTablet!=nil)
         [dataToBeSaved setObject:mpTablet forKey:@"6mp"];
     else
         [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"6mp"];
     
-    [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+    NSString *kemoTreatment = [self.kemoTreatmentData objectForKey:@"kemoTreatment"];
+    if (kemoTreatment == nil) kemoTreatment = @"";
+    [dataToBeSaved setObject:kemoTreatment forKey:@"kemoTreatment"];
     
     //BloodSample Data
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];

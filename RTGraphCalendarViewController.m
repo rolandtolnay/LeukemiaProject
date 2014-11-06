@@ -24,7 +24,8 @@
     self.calendar.delegate=self;
     [self.calendarView addSubview:self.calendar];
     
-    [self.calendar markDates:[self.data datesWithGraphFromDate:self.pickedDate]];
+    if (self.markedDates !=nil)
+        [self.calendar markDates:self.markedDates];
     
     [super viewDidLoad];
 }
@@ -36,13 +37,10 @@
     if(self.pickedDate.month == month && self.pickedDate.year == year){
         self.calendar.selectedDate = self.pickedDate;
     }
-    if (self.markDates)
+    if (self.markedDates !=nil)
     {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MM"];
-        NSString *monthString = [@(month) stringValue];
-        NSDate *newDate = [dateFormatter dateFromString:monthString];
-        [self.calendar markDates:[self.data datesWithGraphFromDate:newDate]];
+        self.markedDates = [self.delegate monthChanged:month];
+        [self.calendar markDates:self.markedDates];
     }
 }
 

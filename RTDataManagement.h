@@ -19,7 +19,7 @@
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSMutableArray *medicineData;
-@property (strong, nonatomic) NSMutableDictionary *kemoTabletData;
+@property (strong, nonatomic) NSMutableDictionary *kemoTreatmentData;
 @property (strong, nonatomic) NSString *path;
 
 //NSUserDefault
@@ -52,6 +52,9 @@
 //Service methods for medicine data-managenment
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
 -(NSMutableDictionary*) newMedicineData:(NSDate*)date;
+
+//Service methods for bloodsample data-management
+-(NSArray*) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;

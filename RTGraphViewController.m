@@ -252,6 +252,7 @@
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
         controller.pickedDate = self.currentDate;
+        controller.markedDates = [self.dataManagement datesWithGraphFromDate:self.currentDate];
         
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
@@ -355,6 +356,16 @@
     [self.datePicker setTitle:pickedDate forState:UIControlStateNormal];
     [self.popover dismissPopoverAnimated:YES];
     [self refreshGraph];
+}
+
+-(NSArray*)monthChanged:(NSInteger)month
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM"];
+    NSString *monthString = [@(month) stringValue];
+    NSDate *newDate = [dateFormatter dateFromString:monthString];
+    
+    return [self.dataManagement datesWithGraphFromDate:newDate];
 }
 
 #pragma mark - WeekPicker delegate
