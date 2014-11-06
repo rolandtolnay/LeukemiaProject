@@ -385,6 +385,7 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
+    NSLog(@"kemoTabletData: %@",self.kemoTabletData);
     NSNumber *mtxTablet = [self.kemoTabletData objectForKey:@"mtx"];
     if (mtxTablet !=nil)
         [dataToBeSaved setObject:mtxTablet forKey:@"mtx"];

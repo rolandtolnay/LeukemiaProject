@@ -51,7 +51,7 @@
 
 //Service methods for medicine data-managenment
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
--(NSMutableDictionary*)newMedicineData:(NSDate*)date;
+-(NSMutableDictionary*) newMedicineData:(NSDate*)date;
 
 //image reading and writing
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
