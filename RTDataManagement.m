@@ -336,7 +336,7 @@ static RTDataManagement *dataMangement = nil;
     for (NSMutableDictionary *diaryRegistration in self.diaryData)
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *tempDate = [dateFormat dateFromString:[diaryRegistration objectForKey:@"date"]];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
@@ -354,7 +354,7 @@ static RTDataManagement *dataMangement = nil;
     for (NSMutableDictionary *medicineRegistration in self.medicineData)
     {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *tempDate = [dateFormat dateFromString:[medicineRegistration objectForKey:@"date"]];
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
@@ -405,12 +405,12 @@ static RTDataManagement *dataMangement = nil;
 -(NSMutableDictionary*)newMedicineData: (NSDate*)date{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
     [dataToBeSaved setObject:idString forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mtx"] forKey:@"mtx"];
-    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"6mp"] forKey:@"6mp"];
+    [dataToBeSaved setObject:[self.kemoTabletData objectForKey:@"mercaptopurin"] forKey:@"mercaptopurin"];
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"hemoglobin"];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"thrombocytes"];

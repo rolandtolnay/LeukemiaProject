@@ -101,7 +101,7 @@
     else
     {
         dataToBeSaved = [[NSMutableDictionary alloc]init];
-        [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
         [dataToBeSaved setObject:idString forKey:@"id"];
 //        [self.dateFormat setDateFormat:@"yyyy-MM-dd"];
@@ -141,7 +141,7 @@
         if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
-            [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+            [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
             NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
             [dataToBeSaved setObject:idString forKey:@"id"];
             [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
@@ -190,7 +190,7 @@
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
     [self.diaryData removeAllObjects];
-     [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSDate *painRegDate;
     NSString *tempDate;
     for (NSMutableDictionary *dict in self.dataManagement.painData){
@@ -241,7 +241,7 @@
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
-    [self.dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSDate *date = [self.dateFormat dateFromString:[painRegistration objectForKey:@"date"]];
     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
@@ -299,8 +299,9 @@
 
 - (IBAction)exportData:(id)sender {
     NSError* error;
+    NSDictionary *painData = [[NSDictionary alloc]initWithObjectsAndKeys:self.dataManagement.painData,@"painData",self.dataManagement.medicineData,@"medicineData",self.dataManagement.diaryData,@"diaryData",nil];
     //convert object to data
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self.dataManagement readFromPlist]
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:painData
                                                        options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
     NSString *jsonText = [[NSString alloc] initWithData:jsonData
                                              encoding:NSUTF8StringEncoding];

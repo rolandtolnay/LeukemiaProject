@@ -158,7 +158,7 @@
 
 - (IBAction)saveDose:(id)sender {
     [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[self.mtxText.text integerValue]] forKey:@"mtx"];
-    [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[self.m6Text.text integerValue]] forKey:@"6mp"];
+    [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[self.m6Text.text integerValue]] forKey:@"mercaptopurin"];
     self.mtxText.enabled = NO;
     self.m6Text.enabled = NO;
     self.saveDose.hidden = YES;
@@ -193,7 +193,7 @@
     if([self.dataManagement.kemoTabletData objectForKey:@"mtx"] == nil){
         
         [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[@"0" integerValue]]forKey:@"mtx"];
-        [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[@"0" integerValue]] forKey:@"6mp"];
+        [self.dataManagement.kemoTabletData setObject:[NSNumber numberWithInteger:[@"0" integerValue]] forKey:@"mercaptopurin"];
     }
     NSMutableDictionary *dataToCheck = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
     
@@ -234,7 +234,7 @@
     else{
         self.editDose.hidden = NO;
         self.mtxText.text = [[self.dataManagement.kemoTabletData objectForKey:@"mtx"]stringValue];
-        self.m6Text.text = [[self.dataManagement.kemoTabletData  objectForKey:@"6mp"]stringValue];
+        self.m6Text.text = [[self.dataManagement.kemoTabletData  objectForKey:@"mercaptopurin"]stringValue];
     }
 }
 

@@ -334,7 +334,7 @@
     if(self.painType){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
