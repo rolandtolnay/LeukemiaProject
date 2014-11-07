@@ -35,13 +35,6 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
-//-(NSMutableDictionary *)kemoTreatmentData{
-//    if(!_kemoTreatmentData){
-//        _kemoTreatmentData = [[NSMutableDictionary alloc]init];
-//    }
-//    return _kemoTreatmentData;
-//}
-
 -(NSMutableArray *)kemoTreatmentArray{
     if(!_kemoTreatmentArray){
         _kemoTreatmentArray = [[NSMutableArray alloc]init];
@@ -417,6 +410,9 @@ static RTDataManagement *dataMangement = nil;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
+    //a check to see if there was any treatment on a previous date than the current one
+    BOOL isKemo = NO;
+    
     if (self.kemoTreatmentArray.count>0)
     {
         NSDate *closestDate = [dateFormatter dateFromString:[self.kemoTreatmentArray[0] objectForKey:@"date"]];
@@ -430,8 +426,12 @@ static RTDataManagement *dataMangement = nil;
             {
                 closestDate = kemoTreatmentDate;
                 kemoTreatment = kemoTreatmentRegistration;
+                isKemo = YES;
             }
         }
+        
+        if (!isKemo) return nil;
+        
     } else {
         
         return nil;

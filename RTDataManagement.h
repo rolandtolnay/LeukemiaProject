@@ -20,7 +20,6 @@
 @property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSMutableArray *medicineData;
 @property (strong, nonatomic) NSMutableArray *kemoTreatmentArray;
-@property (strong, nonatomic) NSMutableDictionary *kemoTreatmentData;
 @property (strong, nonatomic) NSString *path;
 
 //NSUserDefault

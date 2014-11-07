@@ -143,7 +143,6 @@
             separator.hidden = NO;
         }
         cell.txfBloodSample.text = @"";
-        NSLog(@"resetView - table row: %d",indexPath.row);
         if (indexPath.section == 1)
             cell.txfBloodSample.hidden = YES;
     }
@@ -293,7 +292,6 @@
     {
         NSDate *atDate = datesWithBS[i];
         NSArray *bloodSample = [self bloodSampleForDay:atDate];
-        NSLog(@"Bloodsamples: %@",bloodSample);
         NSArray *kemo = [self kemoForDay:atDate];
         UILabel *dayLabel = cell.dayLabels[i];
         if (indexPath.section == 0)
