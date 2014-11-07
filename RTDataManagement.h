@@ -19,6 +19,7 @@
 @property (strong,nonatomic) NSMutableArray *painData;
 @property (strong,nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSMutableArray *medicineData;
+@property (strong, nonatomic) NSMutableArray *kemoTreatmentArray;
 @property (strong, nonatomic) NSMutableDictionary *kemoTreatmentData;
 @property (strong, nonatomic) NSString *path;
 
@@ -36,6 +37,9 @@
 -(void)reloadPlist;
 -(NSMutableDictionary *)readFromPlist;
 
+//Service
+-(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare;
+
 //Service methods for graph data-management
 -(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
 -(NSArray*) timeStampsAtDay:(NSString*) day;
@@ -51,6 +55,7 @@
 
 //Service methods for medicine data-managenment
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
+-(NSMutableDictionary*) kemoTreatmentForDay: (NSDate*) date;
 -(NSMutableDictionary*) newMedicineData:(NSDate*)date;
 
 //Service methods for bloodsample data-management

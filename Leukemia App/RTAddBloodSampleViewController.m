@@ -39,11 +39,7 @@
 
 #pragma mark - Convenience methods
 
--(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare
-{
-    NSComparisonResult result = [start compare:toCompare];
-    return (result == NSOrderedAscending || result == NSOrderedSame);
-}
+
 
 -(NSInteger)bloodSampleCountBeforeDate: (NSDate*) date{
     NSInteger count = 0;
@@ -51,7 +47,7 @@
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
         
         NSDate *regDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
-        if ([self isDate:regDate earlierThanDate:date])
+        if ([self.dataManagement isDate:regDate earlierThanDate:date])
         {
             if([tempDict objectForKey:@"bloodSample"] != nil){
                 count++;
@@ -320,6 +316,10 @@
     NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
     [dayShortFormatter setDateFormat:@"dd/MM"];
     [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+    
+    if ([self.dataManagement isDate:date earlierThanDate:[NSDate date]])
+        self.btnAddSample.hidden = NO;
+    else self.btnAddSample.hidden = YES;
     
     [self.popover dismissPopoverAnimated:YES];
     [self resetView];

@@ -35,16 +35,19 @@
 }
 
 -(void)initMedicineView{
-    if (self.dataManagement.kemoTreatmentData.count == 0) {
+    if (self.dataManagement.kemoTreatmentArray.count == 0) {
         self.mtxText.enabled = YES;
         self.m6Text.enabled = YES;
         self.addHighDoseKemo.hidden = NO;
         self.saveDose.hidden = NO;
     }
     else{
+        //Index of the latest entry - this is current kemo treatment
+        int index = (int)self.dataManagement.kemoTreatmentArray.count - 1;
+        
         self.editDose.hidden = NO;
-        self.mtxText.text = [self.dataManagement.kemoTreatmentData objectForKey:@"mtx"];
-        self.m6Text.text = [self.dataManagement.kemoTreatmentData  objectForKey:@"6mp"];
+        self.mtxText.text = [[self.dataManagement.kemoTreatmentArray[index] objectForKey:@"mtx"] stringValue];
+        self.m6Text.text = [[self.dataManagement.kemoTreatmentArray[index]  objectForKey:@"6mp"] stringValue];
         self.addHighDoseKemo.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
@@ -53,8 +56,20 @@
 #pragma mark - Doses
 
 - (IBAction)saveDose:(id)sender {
-    [self.dataManagement.kemoTreatmentData setObject:self.mtxText.text forKey:@"mtx"];
-    [self.dataManagement.kemoTreatmentData setObject:self.m6Text.text forKey:@"6mp"];
+    NSMutableDictionary *kemoTreatment = [self.dataManagement kemoTreatmentForDay:[NSDate date]];
+    
+    if (kemoTreatment == nil) {
+        kemoTreatment = [[NSMutableDictionary alloc] init];
+        [kemoTreatment setObject:@"" forKey:@"kemoTreatment"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [kemoTreatment setObject:[dateFormatter stringFromDate:[NSDate date]] forKey:@"date"];
+        [self.dataManagement.kemoTreatmentArray addObject:kemoTreatment];
+    }
+
+    [kemoTreatment setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
+    [kemoTreatment setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"6mp"];
+    
     self.mtxText.enabled = NO;
     self.m6Text.enabled = NO;
     self.saveDose.hidden = YES;
@@ -79,7 +94,9 @@
 
 -(void)showKemoUI: (NSDate *)date{
     NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
-    self.highDoseKemoLabel.text = [labelText stringByAppendingString:[self.dataManagement.kemoTreatmentData objectForKey:@"kemoTreatment"]];
+    int index = (int)self.dataManagement.kemoTreatmentArray.count - 1;
+    NSString *kemoType = [self.dataManagement.kemoTreatmentArray[index] objectForKey:@"kemoTreatment"];
+    self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
     self.addHighDoseKemo.hidden = YES;
     self.editHighDoseKemo.hidden = NO;
 }
@@ -152,7 +169,20 @@
     
     [self.kemoPopover dismissPopoverAnimated:YES];
     self.highDoseKemoLabel.text = [labelText stringByAppendingString:kemoType];
-    [self.dataManagement.kemoTreatmentData setObject:kemoType forKey:@"kemoTreatment"];
+    
+    NSMutableDictionary *kemoTreatment = [self.dataManagement kemoTreatmentForDay:[NSDate date]];
+    if (kemoTreatment == nil) {
+        kemoTreatment = [[NSMutableDictionary alloc] init];
+        [kemoTreatment setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
+        [kemoTreatment setObject:[NSNumber numberWithInt:0] forKey:@"6mp"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [kemoTreatment setObject:[dateFormatter stringFromDate:[NSDate date]] forKey:@"date"];
+        [self.dataManagement.kemoTreatmentArray addObject:kemoTreatment];
+    }
+    
+    [kemoTreatment setObject:kemoType forKey:@"kemoTreatment"];
+    
     [self.dataManagement writeToPList];
 }
 @end

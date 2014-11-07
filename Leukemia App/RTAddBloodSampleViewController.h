@@ -14,6 +14,7 @@
 
 @interface RTAddBloodSampleViewController : UIViewController <UITableViewDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *btnAddSample;
 @property (weak, nonatomic) IBOutlet UIButton *btnDateSelector;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPreviousBloodSamples;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *dateLabels;

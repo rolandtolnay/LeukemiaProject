@@ -35,11 +35,18 @@ static RTDataManagement *dataMangement = nil;
     return _diaryData;
 }
 
--(NSMutableDictionary *)kemoTreatmentData{
-    if(!_kemoTreatmentData){
-        _kemoTreatmentData = [[NSMutableDictionary alloc]init];
+//-(NSMutableDictionary *)kemoTreatmentData{
+//    if(!_kemoTreatmentData){
+//        _kemoTreatmentData = [[NSMutableDictionary alloc]init];
+//    }
+//    return _kemoTreatmentData;
+//}
+
+-(NSMutableArray *)kemoTreatmentArray{
+    if(!_kemoTreatmentArray){
+        _kemoTreatmentArray = [[NSMutableArray alloc]init];
     }
-    return _kemoTreatmentData;
+    return _kemoTreatmentArray;
 }
 
 -(NSMutableArray *)medicineData{
@@ -102,7 +109,8 @@ static RTDataManagement *dataMangement = nil;
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
     [pList setObject:self.medicineData forKey:@"medicineData"];
-    [pList setObject:self.kemoTreatmentData forKey:@"kemoTreatmentData"];
+    //    [pList setObject:self.kemoTreatmentData forKey:@"kemoTreatmentData"];
+    [pList setObject:self.kemoTreatmentArray forKey:@"kemoTreatmentArray"];
     [pList writeToFile:self.path atomically:YES];
 }
 
@@ -134,10 +142,17 @@ static RTDataManagement *dataMangement = nil;
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
-    self.kemoTreatmentData = [pList objectForKey:@"kemoTreatmentData"];
+    //    self.kemoTreatmentData = [pList objectForKey:@"kemoTreatmentData"];
+    self.kemoTreatmentArray = [pList objectForKey:@"kemoTreatmentArray"];
 }
 
 #pragma mark - Service methods
+
+-(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare
+{
+    NSComparisonResult result = [start compare:toCompare];
+    return (result == NSOrderedAscending || result == NSOrderedSame);
+}
 
 #pragma mark - Graph Data Management
 
@@ -394,6 +409,37 @@ static RTDataManagement *dataMangement = nil;
     return [NSArray arrayWithArray:result];
 }
 
+//Returns a kemoTreatment for a given day
+-(NSMutableDictionary*) kemoTreatmentForDay: (NSDate*) date
+{
+    NSMutableDictionary *kemoTreatment = [[NSMutableDictionary alloc]init];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    if (self.kemoTreatmentArray.count>0)
+    {
+        NSDate *closestDate = [dateFormatter dateFromString:[self.kemoTreatmentArray[0] objectForKey:@"date"]];
+        
+        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
+        {
+            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+            NSDate *kemoTreatmentDate = [dateFormatter dateFromString:kemoTreatmentDateString];
+            
+            if ([self isDate:closestDate earlierThanDate:kemoTreatmentDate] && [self isDate:kemoTreatmentDate earlierThanDate:date])
+            {
+                closestDate = kemoTreatmentDate;
+                kemoTreatment = kemoTreatmentRegistration;
+            }
+        }
+    } else {
+        
+        return nil;
+    }
+    
+    return kemoTreatment;
+}
+
 #pragma mark - Init data methods
 
 -(NSMutableDictionary*)newMedicineData: (NSDate*)date{
@@ -411,21 +457,17 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
-    NSLog(@"kemoTreatmentData: %@",self.kemoTreatmentData);
-    NSNumber *mtxTablet = [self.kemoTreatmentData objectForKey:@"mtx"];
-    if (mtxTablet !=nil)
-        [dataToBeSaved setObject:mtxTablet forKey:@"mtx"];
-    else
+    NSMutableDictionary *kemoTreatmentDictionary = [self kemoTreatmentForDay:date];
+    if (kemoTreatmentDictionary != nil)
+    {
+        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"mtx"] forKey:@"mtx"];
+        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"6mp"] forKey:@"6mp"];
+        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"kemoTreatment"] forKey:@"kemoTreatment"];
+    } else {
         [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
-    NSNumber *mpTablet = [self.kemoTreatmentData objectForKey:@"6mp"];
-    if (mpTablet!=nil)
-        [dataToBeSaved setObject:mpTablet forKey:@"6mp"];
-    else
         [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"6mp"];
-    
-    NSString *kemoTreatment = [self.kemoTreatmentData objectForKey:@"kemoTreatment"];
-    if (kemoTreatment == nil) kemoTreatment = @"";
-    [dataToBeSaved setObject:kemoTreatment forKey:@"kemoTreatment"];
+        [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+    }
     
     //BloodSample Data
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
@@ -438,7 +480,6 @@ static RTDataManagement *dataMangement = nil;
     [bloodSampleData setObject:@"" forKey:@"other"];
     [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
     
-   
     [self.medicineData addObject:dataToBeSaved];
     return dataToBeSaved;
 }

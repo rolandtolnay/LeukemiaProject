@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1797,6 +1798,7 @@
                     </view>
                     <toolbarItems/>
                     <connections>
+                        <outlet property="btnAddSample" destination="uwz-dz-lEF" id="Rcz-bE-7XX"/>
                         <outlet property="btnDateSelector" destination="XMw-FU-Szh" id="4ek-K4-mY5"/>
                         <outlet property="tableViewPreviousBloodSamples" destination="w0k-ev-Vnr" id="gcL-Gl-9KG"/>
                         <outletCollection property="dateLabels" destination="yLy-oE-5X7" id="TC2-aC-cPc"/>
