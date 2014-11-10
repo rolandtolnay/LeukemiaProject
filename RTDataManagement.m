@@ -402,8 +402,8 @@ static RTDataManagement *dataMangement = nil;
     return [NSArray arrayWithArray:result];
 }
 
-//Returns a kemoTreatment for a given day
--(NSMutableDictionary*) kemoTreatmentForDay: (NSDate*) date
+//Returns the kemoTreatment that is in progress for a given day
+-(NSMutableDictionary*) relevantkemoTreatmentForDay: (NSDate*) date
 {
     NSMutableDictionary *kemoTreatment = [[NSMutableDictionary alloc]init];
     
@@ -440,6 +440,36 @@ static RTDataManagement *dataMangement = nil;
     return kemoTreatment;
 }
 
+//Returns the kemoTreatment for a given day from the kemoTreatmentArray
+-(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date
+{
+    NSMutableDictionary *kemoTreatment;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    if (self.kemoTreatmentArray.count>0)
+    {
+        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
+        {
+            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+            NSString *dateToSearchString = [dateFormatter stringFromDate:date];
+            
+            if ([kemoTreatmentDateString isEqual:dateToSearchString])
+            {
+                kemoTreatment = kemoTreatmentRegistration;
+                break;
+            }
+        }
+    } else {
+        
+        return nil;
+    }
+
+    
+    return kemoTreatment;
+}
+
 #pragma mark - Init data methods
 
 -(NSMutableDictionary*)newMedicineData: (NSDate*)date{
@@ -457,7 +487,7 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
-    NSMutableDictionary *kemoTreatmentDictionary = [self kemoTreatmentForDay:date];
+    NSMutableDictionary *kemoTreatmentDictionary = [self relevantkemoTreatmentForDay:date];
     if (kemoTreatmentDictionary != nil)
     {
         [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"mtx"] forKey:@"mtx"];

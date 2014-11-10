@@ -44,10 +44,13 @@
     else{
         //Index of the latest entry - this is current kemo treatment
         int index = (int)self.dataManagement.kemoTreatmentArray.count - 1;
+        NSMutableDictionary *currentKemoTreatment = self.dataManagement.kemoTreatmentArray[index];
         
         self.editDose.hidden = NO;
-        self.mtxText.text = [[self.dataManagement.kemoTreatmentArray[index] objectForKey:@"mtx"] stringValue];
-        self.m6Text.text = [[self.dataManagement.kemoTreatmentArray[index]  objectForKey:@"6mp"] stringValue];
+        self.mtxText.text = [[currentKemoTreatment objectForKey:@"mtx"] stringValue];
+        self.m6Text.text = [[currentKemoTreatment  objectForKey:@"6mp"] stringValue];
+        NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
+        self.highDoseKemoLabel.text = [labelText stringByAppendingString:[currentKemoTreatment objectForKey:@"kemoTreatment"]];
         self.addHighDoseKemo.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
@@ -69,6 +72,16 @@
 
     [kemoTreatment setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
     [kemoTreatment setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"6mp"];
+    
+    NSMutableDictionary *medicineRegistration = [self.dataManagement medicineDataAtDate:[NSDate date]];
+    if (medicineRegistration !=nil)
+    {
+        [medicineRegistration setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
+        [medicineRegistration setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"6mp"];
+    }
+    
+    RTAddBloodSampleViewController *bloodSampleController = self.childViewControllers[0];
+    [bloodSampleController.tableViewPreviousBloodSamples reloadData];
     
     self.mtxText.enabled = NO;
     self.m6Text.enabled = NO;
@@ -100,44 +113,6 @@
     self.addHighDoseKemo.hidden = YES;
     self.editHighDoseKemo.hidden = NO;
 }
-
-#pragma mark
-
-//-(void)checkDate{
-//    if([self.dataManagement.kemoTabletData objectForKey:@"mtx"] == nil){
-//        
-//        [self.dataManagement.kemoTabletData setObject:@"0" forKey:@"mtx"];
-//        [self.dataManagement.kemoTabletData setObject:@"0" forKey:@"6mp"];
-//    }
-//    NSMutableDictionary *dataToCheck = [self.dataManagement medicineDataAtDate:self.weekSelector.selectedDate];
-//    
-//    //Check if there is a sample on this day
-//    //if sample - Show it make it editable
-//    if(dataToCheck != nil){
-//        if([[dataToCheck objectForKey:@"bloodSample"]count]>0){
-//            [self showBloodSampleUI:self.weekSelector.selectedDate];
-//        }
-//    }
-//    //if no sample - Make it possible to add a sample
-//    else{
-//        [self noBloodSampleUI];
-//    }
-//    //Checks if there is highdosekemo this day
-//    if(dataToCheck != nil){
-//        
-//        if([[dataToCheck objectForKey:@"kemoTreatment"]length]>1){
-//            
-//            [self showKemoUI:self.weekSelector.selectedDate];
-//        }
-//    }
-//    //if no high-dose kemo - Make it possible to add
-//    else{
-//        [self noKemoUI];
-//    }
-//    
-//    //always hides the view for adding samples when you change date
-//    self.addBloodSampleView.hidden = YES;
-//}
 
 #pragma mark - Navigation
 
@@ -179,6 +154,12 @@
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         [kemoTreatment setObject:[dateFormatter stringFromDate:[NSDate date]] forKey:@"date"];
         [self.dataManagement.kemoTreatmentArray addObject:kemoTreatment];
+    }
+    
+    NSMutableDictionary *medicineRegistration = [self.dataManagement medicineDataAtDate:[NSDate date]];
+    if (medicineRegistration !=nil)
+    {
+        [medicineRegistration setObject:kemoType forKey:@"kemoTreatment"];
     }
     
     [kemoTreatment setObject:kemoType forKey:@"kemoTreatment"];

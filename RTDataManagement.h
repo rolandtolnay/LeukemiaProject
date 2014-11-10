@@ -54,7 +54,8 @@
 
 //Service methods for medicine data-managenment
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
--(NSMutableDictionary*) kemoTreatmentForDay: (NSDate*) date;
+-(NSMutableDictionary*) relevantkemoTreatmentForDay: (NSDate*) date;
+-(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date;
 -(NSMutableDictionary*) newMedicineData:(NSDate*)date;
 
 //Service methods for bloodsample data-management

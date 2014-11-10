@@ -102,7 +102,7 @@
     return [dates copy];
 }
 
-
+//Returns an array with blood sample values for a given date
 -(NSArray *)bloodSampleForDay:(NSDate*) date
 {
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
