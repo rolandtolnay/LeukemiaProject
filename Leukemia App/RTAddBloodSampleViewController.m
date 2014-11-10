@@ -25,7 +25,7 @@
     self.dataManagement = [RTDataManagement singleton];
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
-    [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //[self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
     self.tableViewPreviousBloodSamples.dataSource = self;
     
@@ -45,7 +45,7 @@
     NSInteger count = 0;
     
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
-        
+        [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *regDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
         if ([self.dataManagement isDate:regDate earlierThanDate:date])
         {
@@ -59,10 +59,16 @@
 
 -(NSMutableDictionary*)bloodSampleDictionary{
     NSMutableDictionary *daysWithBloodsamples = [[NSMutableDictionary alloc]init];
+    NSDate *tempDate;
+    NSString *dateString;
+    
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
-        NSMutableDictionary *bloodSampleDic = [tempDict objectForKey:@"bloodSample"];
-        if(bloodSampleDic != nil){
-            [daysWithBloodsamples setObject:bloodSampleDic forKey:[tempDict objectForKey:@"date"]];
+        if( [tempDict objectForKey:@"bloodSample"] != nil){
+            [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+            tempDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
+            [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            dateString = [self.dateFormatter stringFromDate:tempDate];
+            [daysWithBloodsamples setObject:tempDict forKey:dateString];
         }
     }
     return daysWithBloodsamples;
@@ -85,8 +91,8 @@
     //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
     NSUInteger found = 0;
     NSDate *dateToSearch = [self.selectedDate offsetDay:1];
+    [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSMutableDictionary *bloodSampleDictionary = [self bloodSampleDictionary];
-    
     while (found < entries) {
         dateToSearch = [dateToSearch offsetDay:-1];
         NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
@@ -107,7 +113,6 @@
 {
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
     NSMutableDictionary *medicineRegistration = [[self.dataManagement medicineDataAtDate:date] objectForKey:@"bloodSample"];
-    
     [bloodSample addObject:[medicineRegistration objectForKey:@"hemoglobin"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"thrombocytes"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"neutrofile"]];
@@ -125,7 +130,7 @@
     NSMutableDictionary *medicineRegistration = [self.dataManagement medicineDataAtDate:date];
     
     [kemo addObject:[medicineRegistration objectForKey:@"mtx"]];
-    [kemo addObject:[medicineRegistration objectForKey:@"6mp"]];
+    [kemo addObject:[medicineRegistration objectForKey:@"mercaptopurin"]];
     
     return [kemo copy];
 }
@@ -187,8 +192,7 @@
         if (path.section == 0)
         {
             RTBloodSampleTableViewCell *cell = (RTBloodSampleTableViewCell*)[self.tableViewPreviousBloodSamples cellForRowAtIndexPath:path];
-            NSString *bloodSampleValue = cell.txfBloodSample.text;
-            
+            NSNumber *bloodSampleValue = [NSNumber numberWithInteger:[cell.txfBloodSample.text integerValue]];
             switch (path.row) {
                 case 0:
                     [sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
@@ -295,7 +299,7 @@
         NSArray *kemo = [self kemoForDay:atDate];
         UILabel *dayLabel = cell.dayLabels[i];
         if (indexPath.section == 0)
-            [dayLabel setText:bloodSample[indexPath.row]];
+            [dayLabel setText:[bloodSample[indexPath.row]stringValue]];
         if (indexPath.section == 1)
         {
             [dayLabel setText:[NSString stringWithFormat:@"%@",kemo[indexPath.row]]];
