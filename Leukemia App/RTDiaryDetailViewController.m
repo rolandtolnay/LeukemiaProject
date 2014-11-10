@@ -22,20 +22,21 @@
     [super viewDidLoad];
     
     self.service = [RTDataManagement singleton];
-    
-    NSString *date = [self.selectedData objectForKey:@"time"];
-    [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),date]];
-    NSString *painLevel = [self.selectedData objectForKey:@"painlevel"];
-    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),painLevel]];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    NSDate *date = [dateFormat dateFromString:[self.selectedData objectForKey:@"date"]];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),[dateFormat stringFromDate:date]]];
+    NSNumber *painLevel = [self.selectedData objectForKey:@"painlevel"];
+    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),[painLevel stringValue]]];
     NSString *painType = [self.selectedData objectForKey:@"paintype"];
     [self.labelPainType setText:[NSString stringWithFormat:NSLocalizedString(@"Pain type: %@", nil),painType]];
-    
-    NSString *morphine = [self.selectedData objectForKey:@"morphinelevel"];
-    NSString *morphineType = [self.selectedData objectForKey:@"morphineType"];
-    if ([morphine isEqualToString:@""])
+    NSNumber *morphine = [self.selectedData objectForKey:@"morphinelevel"];
+    NSString *morphineUnit = [self.selectedData objectForKey:@"morphineunit"];
+    if ([[morphine stringValue] isEqualToString:@""])
         [self.labelMorphine setText: NSLocalizedString(@"Morphine: -", nil)];
     else
-        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ %@", nil),morphine,morphineType]];
+        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ %@", nil),[morphine stringValue],morphineUnit]];
     
     NSString *paracetamol = [self.selectedData objectForKey:@"paracetamol"];
     if ([paracetamol intValue] == 1)

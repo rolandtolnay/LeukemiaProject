@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
+@property (strong,nonatomic) NSDateFormatter *dateFormat;
 @property (strong, nonatomic) NSMutableArray *diaryData;
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;

@@ -71,7 +71,7 @@
     }
 
     [kemoTreatment setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
-    [kemoTreatment setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"6mp"];
+    [kemoTreatment setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"mercaptopurin"];
     
     NSMutableDictionary *medicineRegistration = [self.dataManagement medicineDataAtDate:[NSDate date]];
     if (medicineRegistration !=nil)
@@ -105,7 +105,7 @@
     self.editHighDoseKemo.hidden = YES;
 }
 
--(void)showKemoUI: (NSDate *)date{
+-(void)showKemoUI{
     NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
     int index = (int)self.dataManagement.kemoTreatmentArray.count - 1;
     NSString *kemoType = [self.dataManagement.kemoTreatmentArray[index] objectForKey:@"kemoTreatment"];
@@ -137,7 +137,6 @@
 }
 
 #pragma mark - RTSelectKemo delegate
-
 //TODO: change date-getter to label
 -(void)didSelectKemo:(NSString *)kemoType{
     NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
@@ -149,7 +148,7 @@
     if (kemoTreatment == nil) {
         kemoTreatment = [[NSMutableDictionary alloc] init];
         [kemoTreatment setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
-        [kemoTreatment setObject:[NSNumber numberWithInt:0] forKey:@"6mp"];
+        [kemoTreatment setObject:[NSNumber numberWithInt:0] forKey:@"mercaptopurin"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
         [kemoTreatment setObject:[dateFormatter stringFromDate:[NSDate date]] forKey:@"date"];
