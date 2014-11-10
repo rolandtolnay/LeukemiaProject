@@ -10,7 +10,6 @@
 
 #import "RTDataManagement.h"
 #import "GraphKit.h"
-#import "RTConstants.h"
 #import "RTGraphCalendarViewController.h"
 #import "RTGraphWeekPickerViewController.h"
 #import "NSDate+convenience.h"

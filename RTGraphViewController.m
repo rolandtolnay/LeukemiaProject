@@ -8,6 +8,10 @@
 
 #import "RTGraphViewController.h"
 
+static NSString *MouthPain = @"Mouth";
+static NSString *StomachPain = @"Stomach";
+static NSString *OtherPain = @"Other";
+
 @interface RTGraphViewController ()
 
 @property RTDataManagement* dataManagement;
@@ -225,7 +229,7 @@
         self.painType.hidden = YES;
         self.lblPainType.hidden = YES;
         self.graph.startFromZero = NO;
-        [self weekSelected:[[RTDataManagement singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
+        [self weekSelected:[[RTService singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
     }
 }
 

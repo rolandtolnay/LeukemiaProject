@@ -144,6 +144,20 @@
     [self syncImagesWithSlider];
 }
 
+-(void)initSliderPainNumber
+{
+    self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
+    NSInteger numberOfSteps = ((float)[self.numberScale count]-1);
+    self.sliderPainNumber.maximumValue =numberOfSteps;
+    self.sliderPainNumber.minimumValue = 0;
+    
+    self.sliderPainNumber.continuous = YES;
+    [self.sliderPainNumber addTarget:self action:@selector(sliderPainNumberChanged:) forControlEvents:UIControlEventValueChanged];
+    self.sliderPainNumber.value=0;
+}
+
+#pragma mark - Segmented Controls
+
 - (IBAction)painTypeSelected:(id)sender {
     UISegmentedControl *control = sender;
     if([control selectedSegmentIndex]==0){
@@ -155,6 +169,17 @@
     else if([control selectedSegmentIndex]==2){
         self.painType = @"Other";
     }
+}
+
+-(NSString*)morphineTypeToText
+{
+    NSString* mType = @"Unknown type";
+    if (self.morphineType.selectedSegmentIndex == 0)
+        mType = @"mg";
+    if (self.morphineType.selectedSegmentIndex == 1)
+        mType = @"mg/L";
+    
+    return mType;
 }
 
 #pragma mark - Navigation
@@ -288,29 +313,6 @@
     }
 }
 
--(void)initSliderPainNumber
-{
-    self.numberScale = @[@(0),@(1),@(2),@(3),@(4),@(5),@(6),@(7),@(8),@(9),@(10)];
-    NSInteger numberOfSteps = ((float)[self.numberScale count]-1);
-    self.sliderPainNumber.maximumValue =numberOfSteps;
-    self.sliderPainNumber.minimumValue = 0;
-    
-    self.sliderPainNumber.continuous = YES;
-    [self.sliderPainNumber addTarget:self action:@selector(sliderPainNumberChanged:) forControlEvents:UIControlEventValueChanged];
-    self.sliderPainNumber.value=0;
-}
-
--(NSString*)morphineTypeToText
-{
-    NSString* mType = @"Unknown type";
-    if (self.morphineType.selectedSegmentIndex == 0)
-        mType = @"mg";
-    if (self.morphineType.selectedSegmentIndex == 1)
-        mType = @"mg/L";
-    
-    return mType;
-}
-
 #pragma mark - PList methods
 
 - (IBAction)submitAndCheckData:(id)sender {
@@ -328,13 +330,13 @@
         {
             drawingImagePath = [timeStamp stringByAppendingString:@" DrawingImage.png"];
             NSLog(@"%@",drawingImagePath);
-            [self.dataManagement UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
+            [[RTService singleton] UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
         }
         if (self.cameraImageToBeSaved)
         {
             photoPath = [timeStamp stringByAppendingString:@" CameraImage.jpg"];
             NSLog(@"%@",photoPath);
-            [self.dataManagement UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
+            [[RTService singleton] UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
         [self saveToPlist:drawingImagePath :photoPath :timeStamp :idString];
     }
@@ -362,11 +364,6 @@
     [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
     [self.dataManagement.painData addObject:dataToBeSaved];
     [self.dataManagement writeToPList];
-    
-    for (NSString *str in self.dataManagement.painData) {
-        NSLog(@"%@",str);
-    }
-    NSLog(@"Entries: %lu",(unsigned long)self.dataManagement.painData.count);
     
     NSString *message = NSLocalizedString(@"Your data is saved..", @"Shown when data is saved") ;
     

@@ -48,7 +48,7 @@
         
         self.editDose.hidden = NO;
         self.mtxText.text = [[currentKemoTreatment objectForKey:@"mtx"] stringValue];
-        self.m6Text.text = [[currentKemoTreatment  objectForKey:@"6mp"] stringValue];
+        self.m6Text.text = [[currentKemoTreatment  objectForKey:@"mercaptopurin"] stringValue];
         NSString *labelText = NSLocalizedString(@"High-dose kemo treatment today: ", nil);
         self.highDoseKemoLabel.text = [labelText stringByAppendingString:[currentKemoTreatment objectForKey:@"kemoTreatment"]];
         self.addHighDoseKemo.hidden = YES;
@@ -77,7 +77,7 @@
     if (medicineRegistration !=nil)
     {
         [medicineRegistration setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
-        [medicineRegistration setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"6mp"];
+        [medicineRegistration setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"mercaptopurin"];
     }
     
     RTAddBloodSampleViewController *bloodSampleController = self.childViewControllers[0];

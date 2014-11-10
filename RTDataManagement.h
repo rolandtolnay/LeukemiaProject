@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RTConstants.h"
 #include <stdlib.h>
 #import "NSDate+convenience.h"
 #import "SSKeyChain.h"
 @import AdSupport;
+#import "RTService.h"
 
 @interface RTDataManagement : NSObject
 
@@ -36,39 +36,28 @@
 -(void)reloadPlist;
 -(NSMutableDictionary *)readFromPlist;
 
-//Service
--(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare;
-
 //Service methods for graph data-management
--(NSArray*) painLevelsAtDay:(NSString*) day forPainType:(NSString *) painType;
--(NSArray*) timeStampsAtDay:(NSString*) day;
--(NSArray *)timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
+-(NSArray *) painLevelsAtDay:(NSString *) day forPainType:(NSString *) painType;
+-(NSArray *) timeStampsAtDay:(NSString *) day;
+-(NSArray *) timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
--(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType;
--(NSArray*) datesWithGraphFromDate: (NSDate*) currentDate;
--(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year;
+-(BOOL) isEnoughDataAtDay:(NSString *) day forPainType:(NSString *) painType;
+-(NSArray *) datesWithGraphFromDate: (NSDate*) currentDate;
 
 //Service methods for diary data-managenment
--(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate;
--(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date;
+-(NSArray *) datesWithDiaryDataFromDate: (NSDate*) currentDate;
+-(NSMutableDictionary *) diaryDataAtDate:(NSDate*) date;
 
 //Service methods for medicine data-managenment
--(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date;
--(NSMutableDictionary*) relevantkemoTreatmentForDay: (NSDate*) date;
+-(NSMutableDictionary *) medicineDataAtDate:(NSDate*) date;
+-(NSMutableDictionary *) relevantKemoTreatmentForDay: (NSDate*) date;
 -(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date;
--(NSMutableDictionary*) newMedicineData:(NSDate*)date;
+-(NSMutableDictionary *) newMedicineData:(NSDate*)date;
 
 //Service methods for bloodsample data-management
--(NSArray*) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
-
-//image reading and writing
--(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
--(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName;
+-(NSArray *) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 
 //testing
 -(void) initTestData;
-
-//app-ID
--(NSString*)UniqueAppId;
 
 @end
