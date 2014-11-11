@@ -153,6 +153,7 @@
                 NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
                 [dataToBeSaved setObject:idString forKey:@"id"];
                 [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
+                [dataToBeSaved setObject:self.textViewNotes.text forKey:@"notes"];
                 if([textField isEqual:self.textFieldWeight]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"weight"];
                 }
