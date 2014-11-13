@@ -319,7 +319,7 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         
-        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
+        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
         NSString *timeStamp = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
