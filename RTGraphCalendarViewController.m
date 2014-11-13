@@ -40,6 +40,7 @@
     if (self.markedDates !=nil)
     {
         self.markedDates = [self.delegate monthChanged:month];
+        NSLog(@"marked dates: %@",self.markedDates);
         [self.calendar markDates:self.markedDates];
     }
 }

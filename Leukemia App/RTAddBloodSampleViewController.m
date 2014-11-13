@@ -336,6 +336,7 @@
     [dateFormatter setDateFormat:@"MM"];
     NSString *monthString = [@(month) stringValue];
     NSDate *newDate = [dateFormatter dateFromString:monthString];
+    NSLog(@"Month: %@",monthString);
     
     return [self.dataManagement datesWithBloodSamplesFromDate:newDate];
 }

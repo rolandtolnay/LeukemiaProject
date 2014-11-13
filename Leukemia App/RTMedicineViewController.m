@@ -54,6 +54,9 @@
         self.addHighDoseKemo.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
+    
+    RTAddBloodSampleViewController *bloodSampleController = self.childViewControllers[0];
+    [bloodSampleController.tableViewPreviousBloodSamples reloadData];
 }
 
 #pragma mark - Doses
