@@ -93,7 +93,7 @@ static RTDataManagement *dataManagement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
-    [pList setObject:[[RTService singleton] UniqueAppId] forKey:@"dataID"];
+    [pList setObject:[[RTService singleton] UniqueAppId] forKey:@"patientID"];
     return pList;
 }
 
@@ -415,7 +415,7 @@ static RTDataManagement *dataManagement = nil;
     //ID and Date information
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    NSString *idString = [[[self readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
+    NSString *idString = [[[self readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
     [dataToBeSaved setObject:idString forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     

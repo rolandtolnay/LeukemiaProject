@@ -108,7 +108,7 @@
             dataToBeSaved = [[NSMutableDictionary alloc]init];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
            [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-            NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
+            NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
             [dataToBeSaved setObject:idString forKey:@"id"];
             [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
             [dataToBeSaved setObject:textView.text forKey:@"notes"];
@@ -150,9 +150,10 @@
             {
                 dataToBeSaved = [[NSMutableDictionary alloc]init];
                 [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"dataID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
+                NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
                 [dataToBeSaved setObject:idString forKey:@"id"];
                 [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
+                [dataToBeSaved setObject:self.textViewNotes.text forKey:@"notes"];
                 if([textField isEqual:self.textFieldWeight]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"weight"];
                 }
@@ -312,20 +313,40 @@
 
 - (IBAction)exportData:(id)sender {
     NSError* error;
-    NSDictionary *painData = [[NSDictionary alloc]initWithObjectsAndKeys:self.dataManagement.painData,@"painData",self.dataManagement.medicineData,@"medicineData",self.dataManagement.diaryData,@"diaryData",nil];
+    NSDictionary *jsonData = [[NSDictionary alloc]initWithObjectsAndKeys:[[self.dataManagement readFromPlist]objectForKey:@"patientID"],@"patientID", self.dataManagement.painData,@"painData",self.dataManagement.medicineData,@"medicineData",self.dataManagement.diaryData,@"diaryData",nil];
     //convert object to data
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:painData
+    NSData* postData = [NSJSONSerialization dataWithJSONObject:jsonData
                                                        options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
-    NSString *jsonText = [[NSString alloc] initWithData:jsonData
-                                               encoding:NSUTF8StringEncoding];
-    NSLog(@"JSON:%@",jsonText);
+    NSString *urlString = @"http://10.10.133.166:50601/Service1.svc/saveData"; 
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
     
-    //Export as XML
-    //    NSString *errorDesc;
-    //    NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:[self.dataManagement readFromPlist]
-    //                                                                 format:NSPropertyListXMLFormat_v1_0
-    //                                                       errorDescription:&errorDesc];
-    //    NSString *xmlText = [[NSString alloc]initWithData:xmlData encoding:NSUTF8StringEncoding];
-    //    NSLog(
+    NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
+    NSString *dataText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (!data)
+    {
+        // An error occurred while calling the JSON web service.
+        NSLog(@"Could not call the web service: %@", urlString);
+    }
+    NSLog(@"%@",dataText);
+    NSString *resultString = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding: NSUTF8StringEncoding];
+    if(resultString==nil){
+        NSLog(@"An exception occured: %@",error.localizedDescription);
+    }
+    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[resultString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    if(dict==nil){
+        NSLog(@"Unable to parse return json into string");
+    }
+    else{
+        NSLog(@"WasSuccessful: %d",[[dict valueForKey:@"WasSuccessful"] integerValue]);
+    }
+
+    //NSLog(@"JSON:%@",jsonText);
 }
 @end

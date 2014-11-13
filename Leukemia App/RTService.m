@@ -130,10 +130,10 @@ static RTService *service = nil;
     return strApplicationUUID;
 }
 
--(NSString*)dataID
+-(NSString*)patientID
 {
-    NSString *dataID = [[NSString alloc] initWithFormat:@"%@ %@",[self UniqueAppId],[NSDate date]];
-    return dataID;
+    NSString *patientID = [[NSString alloc] initWithFormat:@"%@ %@",[self UniqueAppId],[NSDate date]];
+    return patientID;
 }
 
 @end
