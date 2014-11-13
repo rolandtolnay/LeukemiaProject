@@ -11,6 +11,7 @@
 @interface RTAddBloodSampleViewController ()
 
 @property RTDataManagement *dataManagement;
+@property RTService *service;
 @property NSDateFormatter *dateFormatter;
 
 @property UIPopoverController* popover;
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     
     self.dataManagement = [RTDataManagement singleton];
+    self.service = [RTService singleton];
     
     self.dateFormatter = [[NSDateFormatter alloc]init];
     //[self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -47,7 +49,7 @@
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
         [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *regDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
-        if ([self.dataManagement isDate:regDate earlierThanDate:date])
+        if ([self.service isDate:regDate earlierThanDate:date])
         {
             if([tempDict objectForKey:@"bloodSample"] != nil){
                 count++;
@@ -74,6 +76,7 @@
     return daysWithBloodsamples;
 }
 
+//Returns an array of dates that have blood samples
 -(NSArray*)datesWithBloodSamples
 {
     //Number of past entries to look for in dictionary
@@ -108,7 +111,7 @@
     return [dates copy];
 }
 
-
+//Returns an array with blood sample values for a given date
 -(NSArray *)bloodSampleForDay:(NSDate*) date
 {
     NSMutableArray *bloodSample = [[NSMutableArray alloc] init];
@@ -319,7 +322,7 @@
     [dayShortFormatter setDateFormat:@"dd/MM"];
     [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
     
-    if ([self.dataManagement isDate:date earlierThanDate:[NSDate date]])
+    if ([self.service isDate:date earlierThanDate:[NSDate date]])
         self.btnAddSample.hidden = NO;
     else self.btnAddSample.hidden = YES;
     

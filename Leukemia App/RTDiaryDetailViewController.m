@@ -11,8 +11,6 @@
 
 @interface RTDiaryDetailViewController ()
 
-@property RTDataManagement *service;
-
 @end
 
 @implementation RTDiaryDetailViewController
@@ -21,7 +19,6 @@
 {
     [super viewDidLoad];
     
-    self.service = [RTDataManagement singleton];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSDate *date = [dateFormat dateFromString:[self.selectedData objectForKey:@"date"]];
@@ -49,7 +46,7 @@
     if (![drawingImagePath isEqualToString:@""])
     {
         UIImage *drawing;
-        [self.service UIImageReadFromFile:&drawing :drawingImagePath];
+        [[RTService singleton] UIImageReadFromFile:&drawing :drawingImagePath];
         
         [self.imageDrawing setImage:drawing];
         self.labelNoDrawing.hidden = YES;
@@ -59,7 +56,7 @@
     if (![cameraPhotoPath isEqualToString:@""])
     {
         UIImage *photo;
-        [self.service UIImageReadFromFile:&photo :cameraPhotoPath];
+        [[RTService singleton] UIImageReadFromFile:&photo :cameraPhotoPath];
         UIImage *imageToBeShown = [UIImage imageWithCGImage:[photo CGImage]
                                                       scale:1.0
                                                 orientation: UIImageOrientationRight];

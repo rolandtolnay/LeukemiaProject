@@ -11,6 +11,7 @@
 #import "NSDate+convenience.h"
 #import "RTBloodSampleTableViewCell.h"
 #import "RTGraphCalendarViewController.h"
+#import "RTService.h"
 
 @interface RTAddBloodSampleViewController : UIViewController <UITableViewDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
 

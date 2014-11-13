@@ -61,7 +61,7 @@
 {
     int year = [self.years[[self.weekPicker selectedRowInComponent:0]] intValue];
     long weekNumber = [self.weekPicker selectedRowInComponent:1]+1;
-    [self.delegate weekSelected:[[RTDataManagement singleton] allDatesInWeek:weekNumber forYear:year]];
+    [self.delegate weekSelected:[[RTService singleton] allDatesInWeek:weekNumber forYear:year]];
 }
 
 

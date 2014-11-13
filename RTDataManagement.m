@@ -10,7 +10,7 @@
 
 @implementation RTDataManagement
 
-static RTDataManagement *dataMangement = nil;
+static RTDataManagement *dataManagement = nil;
 
 #pragma mark - Initializers
 
@@ -53,13 +53,13 @@ static RTDataManagement *dataMangement = nil;
 
 + (RTDataManagement *)singleton {
     @synchronized(self) {
-        if (dataMangement == nil)
+        if (dataManagement == nil)
         {
-            dataMangement = [[self alloc] initWithPlistAndUserPreferences];
+            dataManagement = [[self alloc] initWithPlistAndUserPreferences];
         }
     }
     
-    return dataMangement;
+    return dataManagement;
 }
 
 #pragma mark - PList methods
@@ -139,14 +139,6 @@ static RTDataManagement *dataMangement = nil;
     self.kemoTreatmentArray = [pList objectForKey:@"kemoTreatmentArray"];
 }
 
-#pragma mark - Service methods
-
--(BOOL)isDate:(NSDate*) start earlierThanDate:(NSDate*) toCompare
-{
-    NSComparisonResult result = [start compare:toCompare];
-    return (result == NSOrderedAscending || result == NSOrderedSame);
-}
-
 #pragma mark - Graph Data Management
 
 - (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
@@ -207,35 +199,10 @@ static RTDataManagement *dataMangement = nil;
     return [timeStamps copy];
 }
 
-//Deprecated, kept for possible later use
--(NSArray*) commonHoursForPainTypeMouth:(NSArray*) mouthPain TypeStomach:(NSArray*) stomachPain TypeOther:(NSArray*) otherPain
-{
-    NSMutableArray *commonHours = [[NSMutableArray alloc]init];
-    
-    int index = 0;
-    while ([mouthPain count] > index || [stomachPain count] > index || [otherPain count] > index) {
-        
-        NSString *addedTitle;
-        NSString *mouthPainHours, *stomachPainHours, *otherPainHours;
-        if ([mouthPain count] > index)
-            mouthPainHours = [NSString stringWithFormat:@"%@ (M)",[mouthPain[index] componentsSeparatedByString:@":"][0]];
-        if ([stomachPain count] > index)
-            stomachPainHours = [NSString stringWithFormat:@"%@ (S)",[stomachPain[index] componentsSeparatedByString:@":"][0]];
-        if ([otherPain count] > index)
-            otherPainHours = [NSString stringWithFormat:@"%@ (O)",[otherPain[index] componentsSeparatedByString:@":"][0]];
-        
-        addedTitle = [NSString stringWithFormat:@"%@/%@/%@",mouthPainHours,stomachPainHours,otherPainHours];
-        [commonHours addObject:addedTitle];
-        index++;
-    };
-    
-    return [commonHours copy];
-}
-
 -(BOOL) isEnoughDataAtDay:(NSString *) day {
-    if ([[self painLevelsAtDay:day forPainType:MouthPain] count] > 1)  return YES;
-    if ([[self painLevelsAtDay:day forPainType:StomachPain] count] >1) return YES;
-    if ([[self painLevelsAtDay:day forPainType:OtherPain] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:@"Mouth"] count] > 1)  return YES;
+    if ([[self painLevelsAtDay:day forPainType:@"Stomach"] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:@"Other"] count] >1) return YES;
     
     return NO;
 }
@@ -274,6 +241,8 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+#pragma mark - Diary Data Management
+
 //Creates an array with dates that contain weight OR notes data from the diary.
 //Only searches in the month specified in the date parameter
 -(NSArray*) datesWithDiaryDataFromDate: (NSDate*) currentDate{
@@ -306,6 +275,26 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
+//returns an NSMutableDictionary with all diary data if it exists in the storage
+//Date is without format
+-(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date
+{
+    for (NSMutableDictionary *diaryRegistration in self.diaryData)
+    {
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+        NSDate *tempDate = [dateFormat dateFromString:[diaryRegistration objectForKey:@"date"]];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
+        {
+            return diaryRegistration;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - Medicine Data Management
+
 -(NSArray*) datesWithBloodSamplesFromDate: (NSDate*) currentDate{
     NSMutableArray *dates = [[NSMutableArray alloc] init];
     
@@ -331,24 +320,6 @@ static RTDataManagement *dataMangement = nil;
     return [dates copy];
 }
 
-//returns an NSMutableDictionary with all diary data if it exists in the storage
-//Date is without format
--(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date
-{
-    for (NSMutableDictionary *diaryRegistration in self.diaryData)
-    {
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-        NSDate *tempDate = [dateFormat dateFromString:[diaryRegistration objectForKey:@"date"]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-         if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]])
-        {
-            return diaryRegistration;
-        }
-    }
-    return nil;
-}
-
 //returns an NSMutableDictionary with all medicine data if it exists in the storage
 //Date is without format
 -(NSMutableDictionary*) medicineDataAtDate:(NSDate*) date
@@ -366,49 +337,15 @@ static RTDataManagement *dataMangement = nil;
     return nil;
 }
 
-//Returns an array of NSDate objects for each day in a week for a given year
--(NSArray*)allDatesInWeek:(long)weekNumber forYear:(int)year{
-    // determine weekday of first day of year:
-    NSCalendar *greg = [[NSCalendar alloc]
-                        initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    comps.day = 1;
-    NSDate *today = [NSDate date];
-    NSDate *tomorrow = [greg dateByAddingComponents:comps toDate:today options:0];
-    const NSTimeInterval kDay = [tomorrow timeIntervalSinceDate:today];
-    
-    comps.year = year;
-    today = [greg dateFromComponents:comps];
-    comps = [greg components:NSYearCalendarUnit fromDate:today];
-    NSLog(@"%@",comps);
-    comps.day = 1;
-    comps.month = 1;
-    comps.hour = 12;
-    NSDate *start = [greg dateFromComponents:comps];
-    NSLog(@"NSDate start: %@",start);
-    comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
-    
-    
-    if (weekNumber==1) {
-        start = [start dateByAddingTimeInterval:-kDay*(comps.weekday-1)];
-    } else {
-        start = [start dateByAddingTimeInterval:
-                 kDay*(8-comps.weekday+7*(weekNumber-2))];
-    }
-    NSMutableArray *result = [NSMutableArray array];
-    //Loop makes it start from monday instead of sunday by adding one extra day (i=1)
-    for (int i = 1; i<8; i++) {
-        [result addObject:[start dateByAddingTimeInterval:kDay*i]];
-    }
-    return [NSArray arrayWithArray:result];
-}
 
-//Returns a kemoTreatment for a given day
--(NSMutableDictionary*) kemoTreatmentForDay: (NSDate*) date
+//Returns the kemoTreatment that is in progress for a given day
+-(NSMutableDictionary*) relevantKemoTreatmentForDay: (NSDate*) date
 {
     NSMutableDictionary *kemoTreatment = [[NSMutableDictionary alloc]init];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    RTService *service = [RTService singleton];
     
     //a check to see if there was any treatment on a previous date than the current one
     BOOL isKemo = NO;
@@ -422,7 +359,7 @@ static RTDataManagement *dataMangement = nil;
             NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
             NSDate *kemoTreatmentDate = [dateFormatter dateFromString:kemoTreatmentDateString];
             
-            if ([self isDate:closestDate earlierThanDate:kemoTreatmentDate] && [self isDate:kemoTreatmentDate earlierThanDate:date])
+            if ([service isDate:closestDate earlierThanDate:kemoTreatmentDate] && [service isDate:kemoTreatmentDate earlierThanDate:date])
             {
                 closestDate = kemoTreatmentDate;
                 kemoTreatment = kemoTreatmentRegistration;
@@ -440,7 +377,34 @@ static RTDataManagement *dataMangement = nil;
     return kemoTreatment;
 }
 
-#pragma mark - Init data methods
+//Returns the kemoTreatment for a given day from the kemoTreatmentArray
+-(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date
+{
+    NSMutableDictionary *kemoTreatment;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+    if (self.kemoTreatmentArray.count>0)
+    {
+        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
+        {
+            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+            NSString *dateToSearchString = [dateFormatter stringFromDate:date];
+            
+            if ([kemoTreatmentDateString isEqual:dateToSearchString])
+            {
+                kemoTreatment = kemoTreatmentRegistration;
+                break;
+            }
+        }
+    } else {
+        
+        return nil;
+    }
+    
+    return kemoTreatment;
+}
 
 -(NSMutableDictionary*)newMedicineData:(NSDate*)date{
     
@@ -454,7 +418,7 @@ static RTDataManagement *dataMangement = nil;
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
-    NSMutableDictionary *kemoTreatmentDictionary = [self kemoTreatmentForDay:date];
+    NSMutableDictionary *kemoTreatmentDictionary = [self relevantKemoTreatmentForDay:date];
     if (kemoTreatmentDictionary != nil)
     {
         [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"mtx"] forKey:@"mtx"];
@@ -481,26 +445,7 @@ static RTDataManagement *dataMangement = nil;
     return dataToBeSaved;
 }
 
-#pragma mark - Reading and Writing images
 
--(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName
-{
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectoryPath = dirPaths[0];
-    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
-    
-    NSData *imageData = UIImagePNGRepresentation(image);
-    [imageData writeToFile:filePath atomically:YES];
-}
-
--(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName
-{
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectoryPath = dirPaths[0];
-    NSString *filePath = [documentDirectoryPath stringByAppendingPathComponent:fileName];
-    
-    *image = [UIImage imageWithContentsOfFile:filePath];
-}
 
 #pragma mark - Test Data
 //Needs rework
@@ -548,7 +493,6 @@ static RTDataManagement *dataMangement = nil;
     [self writeToPList];
 }
 
-#pragma mark - ID generators
 
 -(NSString*)UniqueAppId
 {
