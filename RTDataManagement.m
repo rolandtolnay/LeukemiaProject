@@ -93,7 +93,7 @@ static RTDataManagement *dataManagement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
-    [pList setObject:[self UniqueAppId] forKey:@"patientID"];
+    [pList setObject:[[RTService singleton] UniqueAppId] forKey:@"patientID"];
     return pList;
 }
 
@@ -494,22 +494,5 @@ static RTDataManagement *dataManagement = nil;
 }
 
 
--(NSString*)UniqueAppId
-{
-    NSString *Appname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-    NSString *strApplicationUUID = [SSKeychain passwordForService:Appname account:@"manab"];
-    if (strApplicationUUID == nil)
-    {
-        strApplicationUUID  = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-        [SSKeychain setPassword:strApplicationUUID forService:Appname account:@"manab"];
-    }
-    return strApplicationUUID;
-}
-
-//-(NSString*)patientID
-//{
-//    NSString *patientID = [[NSString alloc] initWithFormat:@"%@ %@",[self UniqueAppId],[NSDate date]];
-//    return patientID;
-//}
 
 @end
