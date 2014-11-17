@@ -75,6 +75,7 @@ static NSString *OtherPain = @"Other";
 {
     if ([self isRetinaDisplay])
         [self refreshGraph];
+    [super viewDidAppear:animated];
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -393,7 +394,7 @@ static NSString *OtherPain = @"Other";
         {
             NSNumber *weight = [NSNumber numberWithFloat:[[diaryReg objectForKey:@"weight"] floatValue]];
             NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
-            if (![[diaryReg objectForKey:@"weight"] isEqualToString:@""] && [weight intValue]>0)
+            if ([weight intValue]>0)
             {
                 [self.weightValues addObject:weight];
                 

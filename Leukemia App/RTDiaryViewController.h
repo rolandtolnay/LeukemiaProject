@@ -12,6 +12,9 @@
 #import "RTDataManagement.h"
 #import "RTDiaryDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Reachability.h"
+#import "RTService.h"
+
 
 @interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
 

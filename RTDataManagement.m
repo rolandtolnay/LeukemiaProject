@@ -72,6 +72,8 @@ static RTDataManagement *dataManagement = nil;
         self.painScaleBieri = [self.prefs boolForKey:@"painScaleBieri"];
         self.painScaleWongBaker = [self.prefs boolForKey:@"painScaleWongBaker"];
         self.flaccScale = [self.prefs boolForKey:@"flaccScale"];
+        self.patientID = [self.prefs valueForKey:@"patientID"];
+        self.patientName = [self.prefs valueForKey:@"patientName"];
         [self reloadPlist];
     }
     return self;
@@ -93,7 +95,8 @@ static RTDataManagement *dataManagement = nil;
     else{
         pList = [[NSMutableDictionary alloc]init];
     }
-    [pList setObject:[[RTService singleton] UniqueAppId] forKey:@"patientID"];
+    if (self.patientID !=nil)
+        [pList setObject:self.patientID forKey:@"patientID"];
     return pList;
 }
 
@@ -127,6 +130,8 @@ static RTDataManagement *dataManagement = nil;
     [self.prefs setBool:self.painScaleBieri forKey:@"painScaleBieri"];
     [self.prefs setBool:self.painScaleWongBaker forKey:@"painScaleWongBaker"];
     [self.prefs setBool:self.flaccScale forKey:@"flaccScale"];
+    [self.prefs setValue:self.patientID forKey:@"patientID"];
+    [self.prefs setValue:self.patientName forKey:@"patientName"];
     [self.prefs synchronize];
 }
 
@@ -166,10 +171,9 @@ static RTDataManagement *dataManagement = nil;
     {
         NSString *timeStamp = [painRegistration objectForKey:@"date"];
         
-        NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
-            hour = [timeStamp componentsSeparatedByString:@" "][1];
+            NSString *hour = [timeStamp componentsSeparatedByString:@" "][1];
             
             [timeStamps addObject:hour];
         }
@@ -184,13 +188,12 @@ static RTDataManagement *dataManagement = nil;
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"date"];
-        NSString *hour = [NSString alloc];
         if ([timeStamp rangeOfString:day].location != NSNotFound)
         {
             NSString *painTypeReg = [painRegistration objectForKey:@"paintype"];
             if ([painTypeReg isEqualToString:painType])
             {
-                hour = [timeStamp componentsSeparatedByString:@" "][1];
+                NSString *hour = [timeStamp componentsSeparatedByString:@" "][1];
                 [timeStamps addObject:hour];
             }
         }
@@ -224,10 +227,9 @@ static RTDataManagement *dataManagement = nil;
     for (NSDictionary *painRegistration in self.painData)
     {
         NSString *timeStamp = [painRegistration objectForKey:@"date"];
-        NSString *day = [NSString alloc];
         if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
         {
-            day = [timeStamp componentsSeparatedByString:@"-"][2];
+            NSString *day = [timeStamp componentsSeparatedByString:@"-"][2];
             day = [day substringToIndex:2];
             if ([self isEnoughDataAtDay:day])
             {
@@ -309,11 +311,11 @@ static RTDataManagement *dataManagement = nil;
         {
             NSString *timeStamp = [medicineRegistration objectForKey:@"date"];
             NSLog(@"current date: %@, timestamp: %@, medicineRegistration: %@",currentDate,timeStamp,medicineRegistration);
-            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
             if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
             {
-            
-                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[[dateFormatter dateFromString:timeStamp]day]];
+                NSDate *timeStampDate = [dateFormatter dateFromString:timeStamp];
+                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[timeStampDate day]];
                 [dates addObject:dateToBeAdded];
             }
         }
@@ -386,7 +388,7 @@ static RTDataManagement *dataManagement = nil;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
+    
     if (self.kemoTreatmentArray.count>0)
     {
         for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
@@ -415,8 +417,7 @@ static RTDataManagement *dataManagement = nil;
     //ID and Date information
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    NSString *idString = [[[self readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormatter stringFromDate:date]];
-    [dataToBeSaved setObject:idString forKey:@"id"];
+    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
     
     //Kemo-data
@@ -485,6 +486,7 @@ static RTDataManagement *dataManagement = nil;
                 painType = @"Other";
                 break;
             default:
+                painType = @"";
                 break;
         }
         [painRegistration setObject:painType forKey:@"paintype"];

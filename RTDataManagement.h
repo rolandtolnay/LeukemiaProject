@@ -28,6 +28,8 @@
 @property BOOL painScaleBieri;
 @property BOOL painScaleWongBaker;
 @property BOOL flaccScale;
+@property NSString *patientID;
+@property NSString *patientName;
 
 //pList methods
 +(RTDataManagement *)singleton;

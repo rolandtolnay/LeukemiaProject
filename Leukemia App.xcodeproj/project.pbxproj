@@ -20,6 +20,7 @@
 		A0B180F119F7CF8D00013FCA /* RTPainInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B180F019F7CF8D00013FCA /* RTPainInfoViewController.m */; };
 		A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A610475719EBC619007B044D /* RTSmileyTableViewController.m */; };
 		A633F3F51A10E51900DE90C9 /* RTService.m in Sources */ = {isa = PBXBuildFile; fileRef = A633F3F41A10E51900DE90C9 /* RTService.m */; };
+		A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A67BFA021A14B54400369BE3 /* RTLoginViewController.m */; };
 		A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
 		A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8B199E28C5009D7220 /* CoreGraphics.framework */; };
 		A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		A6976E0819ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6976E0719ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m */; };
 		A6976E0B19ED378300CC29BF /* RTAddBloodSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6976E0A19ED378300CC29BF /* RTAddBloodSampleViewController.m */; };
 		A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */; };
+		A6B6265D1A160FCD00C36572 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */; };
+		A6B626661A16280300C36572 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B626651A16280300C36572 /* Reachability.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +90,8 @@
 		A610475719EBC619007B044D /* RTSmileyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSmileyTableViewController.m; sourceTree = "<group>"; };
 		A633F3F31A10E51900DE90C9 /* RTService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTService.h; sourceTree = "<group>"; };
 		A633F3F41A10E51900DE90C9 /* RTService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTService.m; sourceTree = "<group>"; };
+		A67BFA011A14B54400369BE3 /* RTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginViewController.h; sourceTree = "<group>"; };
+		A67BFA021A14B54400369BE3 /* RTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginViewController.m; sourceTree = "<group>"; };
 		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +133,9 @@
 		A6976E0A19ED378300CC29BF /* RTAddBloodSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAddBloodSampleViewController.m; path = "Leukemia App/RTAddBloodSampleViewController.m"; sourceTree = "<group>"; };
 		A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphCalendarViewController.h; sourceTree = "<group>"; };
 		A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTGraphCalendarViewController.m; sourceTree = "<group>"; };
+		A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A6B626641A16280300C36572 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		A6B626651A16280300C36572 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphViewController.h; sourceTree = "<group>"; };
 		A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTGraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B6265D1A160FCD00C36572 /* SystemConfiguration.framework in Frameworks */,
 				A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */,
 				A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */,
 				A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */,
@@ -175,6 +184,8 @@
 		A0957E2919A75B1F0058EF12 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6B626641A16280300C36572 /* Reachability.h */,
+				A6B626651A16280300C36572 /* Reachability.m */,
 				A0957E2519A75AF30058EF12 /* RTDataManagement.h */,
 				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
 				A633F3F31A10E51900DE90C9 /* RTService.h */,
@@ -224,6 +235,7 @@
 		A6924E88199E28C5009D7220 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */,
 				A0636C0A19AF22E200188588 /* QuartzCore.framework */,
 				A6924E89199E28C5009D7220 /* Foundation.framework */,
 				A6924E8B199E28C5009D7220 /* CoreGraphics.framework */,
@@ -237,6 +249,8 @@
 		A6924E8F199E28C5009D7220 /* Leukemia App */ = {
 			isa = PBXGroup;
 			children = (
+				A67BFA011A14B54400369BE3 /* RTLoginViewController.h */,
+				A67BFA021A14B54400369BE3 /* RTLoginViewController.m */,
 				A695674319E6AD0F00C69FA9 /* Animators */,
 				A0957E2919A75B1F0058EF12 /* Model */,
 				A0957E2819A75B010058EF12 /* Controllers */,
@@ -518,10 +532,12 @@
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
 				A04F2C0919AF201D00B8DCEE /* RTSettingsViewController.m in Sources */,
+				A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 				A633F3F51A10E51900DE90C9 /* RTService.m in Sources */,
 				A089036A19AF41EB002BCD8D /* RTSettingItem.m in Sources */,
+				A6B626661A16280300C36572 /* Reachability.m in Sources */,
 				A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

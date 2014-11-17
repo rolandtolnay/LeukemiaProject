@@ -65,12 +65,14 @@
     NSString *dateString;
     
     for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
-        if( [tempDict objectForKey:@"bloodSample"] != nil){
+        NSMutableDictionary *bloodSampleDic = [tempDict objectForKey:@"bloodSample"];
+        if( bloodSampleDic != nil){
             [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
             tempDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
             [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
             dateString = [self.dateFormatter stringFromDate:tempDate];
-            [daysWithBloodsamples setObject:tempDict forKey:dateString];
+            
+            [daysWithBloodsamples setObject:bloodSampleDic forKey:dateString];
         }
     }
     return daysWithBloodsamples;

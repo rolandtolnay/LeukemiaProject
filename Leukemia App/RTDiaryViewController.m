@@ -46,6 +46,7 @@
     [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:[NSDate date]]];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+
     
     self.dateFormat = [[NSDateFormatter alloc]init];
     
@@ -61,6 +62,7 @@
     }
     self.calendar.currentMonth = dateToShow;
     [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
+    [super viewWillAppear:animated];
 }
 
 //Finishes editing of textview/textfield when user taps outside of it
@@ -81,7 +83,7 @@
 #pragma mark - Notes
 
 - (void)textViewDidChange:(UITextView *)textView {
-    if ([textView isEqual:_textViewNotes])
+    if ([textView isEqual:self.textViewNotes])
     {
         if ([textView.text length] > 0) {
             [self.labelNotesPlaceholder setHidden:YES];
@@ -93,7 +95,7 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    if ([textView isEqual:_textViewNotes])
+    if ([textView isEqual:self.textViewNotes])
     {
         NSDate *selectedDate = self.calendar.selectedDate;
         NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
@@ -106,11 +108,9 @@
         else
         {
             dataToBeSaved = [[NSMutableDictionary alloc]init];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-           [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-            NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormat stringFromDate:selectedDate]];
-            [dataToBeSaved setObject:idString forKey:@"id"];
-            [dataToBeSaved setObject:[dateFormat stringFromDate:selectedDate] forKey:@"date"];
+            [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+            [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
+            [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
             [dataToBeSaved setObject:textView.text forKey:@"notes"];
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
@@ -122,7 +122,7 @@
 #pragma mark - Weight and Protocol Registration
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([textField isEqual:_textFieldWeight] || [textField isEqual:_textFieldProtocol])
+    if ([textField isEqual:self.textFieldWeight] || [textField isEqual:self.textFieldProtocol])
     {
         if ([textField.text isEqualToString:@"test"])
         {
@@ -136,7 +136,7 @@
             if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
             {
                 if([textField isEqual:self.textFieldWeight]){
-                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]forKey:@"weight"];
+                    [dataToBeSaved setObject:[NSNumber numberWithFloat:[textField.text floatValue]]forKey:@"weight"];
                 }
                 else if ([textField isEqual:self.textFieldProtocol]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]] forKey:@"protocolTreatmentDay"];
@@ -150,15 +150,14 @@
             {
                 dataToBeSaved = [[NSMutableDictionary alloc]init];
                 [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[self.dateFormat stringFromDate:selectedDate]];
-                [dataToBeSaved setObject:idString forKey:@"id"];
+                [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
                 [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
                 [dataToBeSaved setObject:self.textViewNotes.text forKey:@"notes"];
                 if([textField isEqual:self.textFieldWeight]){
-                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"weight"];
+                    [dataToBeSaved setObject:[NSNumber numberWithFloat:[textField.text floatValue]]  forKey:@"weight"];
                 }
                 else if ([textField isEqual:self.textFieldProtocol]){
-                                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"protocolTreatmentDay"];
+                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"protocolTreatmentDay"];
                 }
                 [self.dataManagement.diaryData addObject:dataToBeSaved];
                 [self.dataManagement writeToPList];
@@ -311,42 +310,11 @@
     }
 }
 
-- (IBAction)exportData:(id)sender {
-    NSError* error;
-    NSDictionary *jsonData = [[NSDictionary alloc]initWithObjectsAndKeys:[[self.dataManagement readFromPlist]objectForKey:@"patientID"],@"patientID", self.dataManagement.painData,@"painData",self.dataManagement.medicineData,@"medicineData",self.dataManagement.diaryData,@"diaryData",nil];
-    //convert object to data
-    NSData* postData = [NSJSONSerialization dataWithJSONObject:jsonData
-                                                       options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
-    NSString *urlString = @"http://10.10.133.166:50601/Service1.svc/saveData"; 
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:postData];
-    
-    NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
-    NSString *dataText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    if (!data)
-    {
-        // An error occurred while calling the JSON web service.
-        NSLog(@"Could not call the web service: %@", urlString);
-    }
-    NSLog(@"%@",dataText);
-    NSString *resultString = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding: NSUTF8StringEncoding];
-    if(resultString==nil){
-        NSLog(@"An exception occured: %@",error.localizedDescription);
-    }
-    
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[resultString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-    if(dict==nil){
-        NSLog(@"Unable to parse return json into string");
-    }
-    else{
-        NSLog(@"WasSuccessful: %d",[[dict valueForKey:@"WasSuccessful"] integerValue]);
-    }
+#pragma mark - Data export
 
-    //NSLog(@"JSON:%@",jsonText);
+- (IBAction)exportData:(id)sender {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    RTService *service = [RTService singleton];
+    [service performSelectorInBackground: @selector(exportData) withObject:nil];
 }
 @end

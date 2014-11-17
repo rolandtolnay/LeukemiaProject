@@ -44,12 +44,25 @@
     self.morphineInput.delegate = self;
     self.painScore = 0;
     
+    [self checkLogin];
     [self initPainScale];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setButtonImageHighlight];
+    [super viewWillAppear:animated];
+}
+
+-(void)checkLogin
+{
+    if (self.dataManagement.patientID == nil)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"loginPage"];
+        [self.navigationController presentViewController:vc animated:YES completion:nil];
+    } else NSLog(@"Patient name: %@, ID: %@",self.dataManagement.patientName,self.dataManagement.patientID);
 }
 
 #pragma mark - Methods related specific to FLACC scale
@@ -313,15 +326,12 @@
     }
 }
 
-#pragma mark - PList methods
-
 - (IBAction)submitAndCheckData:(id)sender {
     if(self.painType){
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         
-        NSString *idString = [[[self.dataManagement readFromPlist]objectForKey:@"patientID"]stringByAppendingString:[dateFormatter stringFromDate:currentDate]];
         NSString *timeStamp = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
@@ -338,7 +348,7 @@
             NSLog(@"%@",photoPath);
             [[RTService singleton] UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
-        [self saveToPlist:drawingImagePath :photoPath :timeStamp :idString];
+        [self saveToPlist:drawingImagePath :photoPath :timeStamp :[[RTService singleton] dataID]];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")
@@ -353,7 +363,7 @@
 #pragma mark - PList methods
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)date :(NSString*)idString{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-    [dataToBeSaved setObject:idString forKey:@"id"];
+    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     [dataToBeSaved setObject:[NSNumber numberWithInteger:self.painScore] forKey:@"painlevel"];
     [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
     [dataToBeSaved setObject:photoPath forKey:@"photopath"];

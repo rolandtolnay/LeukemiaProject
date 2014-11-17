@@ -10,6 +10,8 @@
 #import "NSDate+convenience.h"
 #import "SSKeyChain.h"
 @import AdSupport;
+#import "Reachability.h"
+#import "RTDataManagement.h"
 
 @interface RTService : NSObject
 
@@ -23,7 +25,10 @@
 -(void) UIImageWriteToFile:(UIImage *)image :(NSString *)fileName;
 -(void) UIImageReadFromFile:(UIImage **)image :(NSString *)fileName;
 
+- (void)exportData;
+
 //app-ID
 -(NSString*)UniqueAppId;
+-(NSString*)dataID;
 
 @end
