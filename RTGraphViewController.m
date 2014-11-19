@@ -124,6 +124,33 @@ static NSString *OtherPain = @"Other";
     [self.lblError setCenter:self.view.center];
 }
 
+-(void) getWeightFromDateArray: (NSArray*) datesInWeek
+{
+    [self.weightTimestamps removeAllObjects];
+    [self.weightValues removeAllObjects];
+    
+    for (NSDate *dayInWeek in datesInWeek)
+    {
+        NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:dayInWeek];
+        
+        if (diaryReg!=nil)
+        {
+            NSNumber *weight = [NSNumber numberWithFloat:[[diaryReg objectForKey:@"weight"] floatValue]];
+            NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
+            if ([weight intValue]>0)
+            {
+                [self.weightValues addObject:weight];
+                
+                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek day],[dayInWeek month]];
+                NSLog(@"weightTimestamp: %@",monthDayTimestamp);
+                
+                [self.weightTimestamps addObject:monthDayTimestamp];
+            }
+        }
+    }
+
+}
+
 #pragma mark - Graph Data Display methods
 
 -(void)refreshGraph {
@@ -194,7 +221,7 @@ static NSString *OtherPain = @"Other";
     }
     if ([self isWeightGraph])
     {
-        NSLog(@"Weight timestamps: %@",self.weightTimestamps);
+        [self getWeightFromDateArray:[[RTService singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
         if ([self.weightTimestamps count] > 1)
         {
             [self showError:NO withText:nil];
@@ -383,28 +410,7 @@ static NSString *OtherPain = @"Other";
     NSString *pickedWeek = [NSString stringWithFormat:NSLocalizedString(@"%d - Week %d", nil),[self.currentDate year],[self.currentDate week]];
     [self.datePicker setTitle:pickedWeek forState:UIControlStateNormal];
     
-    [self.weightTimestamps removeAllObjects];
-    [self.weightValues removeAllObjects];
-    
-    for (NSDate *dayInWeek in datesInWeek)
-    {
-        NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:dayInWeek];
-        
-        if (diaryReg!=nil)
-        {
-            NSNumber *weight = [NSNumber numberWithFloat:[[diaryReg objectForKey:@"weight"] floatValue]];
-            NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
-            if ([weight intValue]>0)
-            {
-                [self.weightValues addObject:weight];
-                
-                NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek day],[dayInWeek month]];
-                NSLog(@"weightTimestamp: %@",monthDayTimestamp);
-                
-                [self.weightTimestamps addObject:monthDayTimestamp];
-            }
-        }
-    }
+    [self getWeightFromDateArray:datesInWeek];
     
     self.graph.valueLabelCount = 11;
     [self refreshGraph];
