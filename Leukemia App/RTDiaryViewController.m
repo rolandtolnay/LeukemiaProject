@@ -213,7 +213,12 @@
     [self.dataTableView reloadData];
     
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
+//    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
+    if([[[diaryReg objectForKey:@"weight"]stringValue]length]>0){
+        [self.textFieldWeight setText:[NSString stringWithFormat:@"%.1f",[[diaryReg objectForKey:@"weight"]floatValue]]];
+    }else{
+        [self.textFieldWeight setText:@""];
+    }
     [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
