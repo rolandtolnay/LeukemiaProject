@@ -38,10 +38,13 @@
 -(void)reloadPlist;
 -(NSMutableDictionary *)readFromPlist;
 
-//Service methods for graph data-management
+//Service methods for pain data-management
+-(NSArray*) datesWithPainFromDate: (NSDate*) currentDate;
 -(NSArray *) painLevelsAtDay:(NSString *) day forPainType:(NSString *) painType;
 -(NSArray *) timeStampsAtDay:(NSString *) day;
 -(NSArray *) timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
+
+//Service methods for graph data-management
 -(BOOL) isEnoughDataAtDay:(NSString *) day;
 -(BOOL) isEnoughDataAtDay:(NSString *) day forPainType:(NSString *) painType;
 -(NSArray *) datesWithGraphFromDate: (NSDate*) currentDate;

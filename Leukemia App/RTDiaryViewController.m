@@ -42,12 +42,9 @@
     [self.textViewNotes setBackgroundColor:[UIColor colorWithRed:1.0 green:1.0 blue:0.0 alpha:0.10]];
     self.textViewNotes.layer.cornerRadius = 10;
     [self.textViewNotes setClipsToBounds:YES];
-    
-    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:[NSDate date]]];
-    
+  
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    
     self.dateFormat = [[NSDateFormatter alloc]init];
     
     [super viewDidLoad];
@@ -62,6 +59,7 @@
     }
     self.calendar.currentMonth = dateToShow;
     [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
+    [self.calendar markDates:[self.dataManagement datesWithPainFromDate:[NSDate date]]];
     [super viewWillAppear:animated];
 }
 
@@ -115,7 +113,6 @@
             [self.dataManagement.diaryData addObject:dataToBeSaved];
             [self.dataManagement writeToPList];
         }
-        [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
     }
 }
 
@@ -169,7 +166,6 @@
                 [self.dataManagement writeToPList];
             }
         }
-        [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:selectedDate]];
     }
 }
 
@@ -199,7 +195,7 @@
     NSString *monthString = [@(month) stringValue];
     
     NSDate *newDate = [self.dateFormat dateFromString:monthString];
-    [self.calendar markDates:[self.dataManagement datesWithDiaryDataFromDate:newDate]];
+    [self.calendar markDates:[self.dataManagement datesWithPainFromDate:newDate]];
     
 }
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{

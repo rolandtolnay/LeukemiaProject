@@ -1254,7 +1254,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NLH-NE-lD0">
-                                <rect key="frame" x="16" y="72" width="123" height="29"/>
+                                <rect key="frame" x="124" y="72" width="123" height="29"/>
                                 <segments>
                                     <segment title="Pain"/>
                                     <segment title="Weight"/>
@@ -1264,7 +1264,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f39-t1-Rud">
-                                <rect key="frame" x="147" y="64" width="136" height="44"/>
+                                <rect key="frame" x="255" y="64" width="136" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="136" id="aIH-vd-ZFv"/>
                                 </constraints>
@@ -1288,11 +1288,24 @@
                                     <action selector="painTypeChanged:" destination="RYn-Rf-O8k" eventType="valueChanged" id="Pv1-ei-3cK"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVj-3E-lwS">
+                                <rect key="frame" x="16" y="75" width="100" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Graph type:">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Fdd-U7-kCe" secondAttribute="centerX" priority="800" id="7KH-Gn-Hd3"/>
-                            <constraint firstItem="f39-t1-Rud" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="147" id="9RX-9M-LM5"/>
+                            <constraint firstItem="f39-t1-Rud" firstAttribute="leading" secondItem="2Al-PD-1H7" secondAttribute="leading" constant="255" id="9RX-9M-LM5"/>
                             <constraint firstItem="jUd-ew-nhD" firstAttribute="top" secondItem="nBK-LY-4Cn" secondAttribute="bottom" constant="27" id="Cu8-JW-URu"/>
                             <constraint firstAttribute="centerY" secondItem="Fdd-U7-kCe" secondAttribute="centerY" id="JC4-h1-DNS"/>
                             <constraint firstItem="Fdd-U7-kCe" firstAttribute="top" secondItem="f39-t1-Rud" secondAttribute="bottom" constant="22" id="L0y-LL-a3G"/>
@@ -1945,6 +1958,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="m6O-FT-ZlV"/>
-        <segue reference="bAf-ez-ddE"/>
+        <segue reference="uvS-6O-cSt"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -144,7 +144,7 @@ static RTDataManagement *dataManagement = nil;
     self.kemoTreatmentArray = [pList objectForKey:@"kemoTreatmentArray"];
 }
 
-#pragma mark - Graph Data Management
+#pragma mark - Pain Data Management
 
 - (NSArray*) painLevelsAtDay:(NSString *) day forPainType:(NSString*) painType{
     NSMutableArray *painLevels = [[NSMutableArray alloc] init];
@@ -202,18 +202,36 @@ static RTDataManagement *dataManagement = nil;
     return [timeStamps copy];
 }
 
--(BOOL) isEnoughDataAtDay:(NSString *) day {
-    if ([[self painLevelsAtDay:day forPainType:@"Mouth"] count] > 1)  return YES;
-    if ([[self painLevelsAtDay:day forPainType:@"Stomach"] count] >1) return YES;
-    if ([[self painLevelsAtDay:day forPainType:@"Other"] count] >1) return YES;
+
+
+//Used for marking dates in the calendar
+-(NSArray*) datesWithPainFromDate: (NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
     
-    return NO;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"-MM-"];
+    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    for (NSDictionary *painRegistration in self.painData)
+    {
+        NSString *timeStamp = [painRegistration objectForKey:@"date"];
+        if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+        {
+            NSString *day = [timeStamp componentsSeparatedByString:@"-"][2];
+            day = [day substringToIndex:2];
+            NSNumber *dateToBeAdded = [NSNumber numberWithInt:[day intValue]];
+            
+            //check for duplicates
+            if ([dates count] < 1 || ![dates[[dates count]-1] isEqualToValue:dateToBeAdded])
+                [dates addObject:dateToBeAdded];
+            
+        }
+    }
+    
+    return [dates copy];
 }
 
--(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType {
-    if ([[self painLevelsAtDay:day forPainType:painType] count] >1) return YES;
-    return NO;
-}
+#pragma mark - Graph data management
 
 //Returns an array with dates as NSNumber objects for the current month which contain enough data to display a graph
 //Used to mark dates on the calendar in the graph tab
@@ -241,6 +259,19 @@ static RTDataManagement *dataManagement = nil;
     }
     
     return [dates copy];
+}
+
+-(BOOL) isEnoughDataAtDay:(NSString *) day {
+    if ([[self painLevelsAtDay:day forPainType:@"Mouth"] count] > 1)  return YES;
+    if ([[self painLevelsAtDay:day forPainType:@"Stomach"] count] >1) return YES;
+    if ([[self painLevelsAtDay:day forPainType:@"Other"] count] >1) return YES;
+    
+    return NO;
+}
+
+-(BOOL) isEnoughDataAtDay:(NSString *)day forPainType:(NSString*) painType {
+    if ([[self painLevelsAtDay:day forPainType:painType] count] >1) return YES;
+    return NO;
 }
 
 #pragma mark - Diary Data Management
