@@ -120,6 +120,7 @@
 }
 
 #pragma mark - Weight and Protocol Registration
+
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     if ([textField isEqual:self.textFieldWeight] || [textField isEqual:self.textFieldProtocol])
@@ -129,14 +130,19 @@
             [[RTDataManagement singleton] initTestData];
             return;
         }
+        
         NSDate *selectedDate = self.calendar.selectedDate;
         NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
+        
         if (dataToBeSaved !=nil)
         {
-            if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+            if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
             {
                 if([textField isEqual:self.textFieldWeight]){
                     [dataToBeSaved setObject:[NSNumber numberWithFloat:[textField.text floatValue]]forKey:@"weight"];
+                    
+                    //make it possible to delete entries
+                    if ([textField.text isEqualToString:@""]) [dataToBeSaved removeObjectForKey:@"weight"];
                 }
                 else if ([textField isEqual:self.textFieldProtocol]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]] forKey:@"protocolTreatmentDay"];
@@ -146,7 +152,7 @@
         }
         else
         {
-            if ([textField.text intValue]>0 || ![textField.text isEqualToString:@""])
+            if ([textField.text intValue]>0 && ![textField.text isEqualToString:@""])
             {
                 dataToBeSaved = [[NSMutableDictionary alloc]init];
                 [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
