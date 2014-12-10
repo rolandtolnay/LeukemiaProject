@@ -103,69 +103,60 @@ static RTService *service = nil;
 
 #pragma mark - Sending data to webservice
 
-- (void)exportData {
+-  (void)exportData {
     RTDataManagement *dataManagement = [RTDataManagement singleton];
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
     
-//    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-//    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
-//    if (networkStatus == NotReachable) {
-//        NSLog(@"There IS NO internet connection");
-//        [self showToastWithMessage:NSLocalizedString(@"An internet connection is needed to export data.", nil)];
-//        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//    } else {
-    
+    if (networkStatus == NotReachable) {
+        [self showToastWithMessage:NSLocalizedString(@"An internet connection is needed to export data.", nil)];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }
+    else{
         NSError* error;
         NSDictionary *jsonData = [[NSDictionary alloc] initWithObjectsAndKeys: [[dataManagement readFromPlist] objectForKey:@"patientID"],@"patientID",
-                                                                                dataManagement.painData, @"painData",
-                                                                                dataManagement.medicineData, @"medicineData",
-                                                                                dataManagement.diaryData, @"diaryData",
-                                                                                nil];
-        //convert object to data
-        NSData* postData = [NSJSONSerialization dataWithJSONObject:jsonData
-                                                           options:NSJSONWritingPrettyPrinted error:&error]; //kNilOptions instead of NJSONWritingPrettyPrinted if we want to send the data over the internet
-        NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"JSON: %@", jsonString);
-//        NSString *urlString = @"http://10.10.133.166:50601/Service1.svc/saveData";
-//        NSURL *url = [NSURL URLWithString:urlString];
-//        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-//        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//        [request setHTTPMethod:@"POST"];
-//        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-//        [request setHTTPBody:postData];
-//        
-//        NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
-//        NSString *dataText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        if (!data)
-//        {
-//            // An error occurred while calling the JSON web service.
-//            NSLog(@"Could not call the web service: %@", urlString);
-//            [self showToastWithMessage:NSLocalizedString(@"An error (1) occured while trying to connect to the web service.", nil)];
-//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//            return;
-//        }
-//        NSLog(@"%@",dataText);
-//        NSString *resultString = [[NSString alloc] initWithBytes: [data bytes] length:[data length] encoding: NSUTF8StringEncoding];
-//        if(resultString==nil){
-//            NSLog(@"An exception occured: %@",error.localizedDescription);
-//            [self showToastWithMessage:NSLocalizedString(@"An error (2) occured while trying to connect to the web service.",nil)];
-//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        }
-//        
-//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[resultString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-//        if(dict==nil){
-//            NSLog(@"Unable to parse return json into string");
-//            [self showToastWithMessage:NSLocalizedString(@"An error (3) occured while trying to connect to the web service.",nil)];
-//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        }
-//        else{
-//            NSLog(@"WasSuccessful: %d",[[dict valueForKey:@"WasSuccessful"] integerValue]);
-//            [self showToastWithMessage:NSLocalizedString(@"The data was sent to the web server succesfully!",nil)];
-//            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        }
-//    }
+                                  dataManagement.painData, @"painData",
+                                  dataManagement.medicineData, @"medicineData",
+                                  dataManagement.diaryData, @"diaryData",
+                                  nil];
+        //convert NSDictionary to data
+        NSData* postData = [NSJSONSerialization dataWithJSONObject:jsonData options:kNilOptions error:&error];
+        //Set up http request
+        NSString *urlString = @"http://10.10.133.166:50601/Service1.svc/saveData";
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setHTTPBody:postData];
+        //Make a connection and POST, receive data returned from web service
+        NSData *returnData = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
+        if (!returnData)
+        {
+            // An error occurred while calling the JSON web service.
+            [self showToastWithMessage:NSLocalizedString(@"An error (1) occured while trying to connect to the web service.", nil)];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            return;
+        }
+        NSString *resultString = [[NSString alloc] initWithBytes: [returnData bytes] length:[returnData length] encoding: NSUTF8StringEncoding];
+        if(resultString==nil){
+            [self showToastWithMessage:NSLocalizedString(@"An error (2) occured while trying to connect to the web service.",nil)];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+        
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[resultString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if(dict==nil){
+            [self showToastWithMessage:NSLocalizedString(@"An error (3) occured while trying to connect to the web service.",nil)];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+        else{
+            [self showToastWithMessage:NSLocalizedString(@"The data was sent to the web server succesfully!",nil)];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+    }
 }
+
 
 -(void)showToastWithMessage:(NSString*) message
 {

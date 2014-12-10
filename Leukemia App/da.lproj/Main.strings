@@ -78,7 +78,7 @@
 "K8f-Ax-S50.text" = "Titel";
 
 /* Class = "IBUILabel"; text = "Kemo behandling:"; ObjectID = "Ldu-Aq-VH3"; */
-"Ldu-Aq-VH3.text" = "Kemo behandling:";
+"Ldu-Aq-VH3.text" = "Nuværende Kemo behandling:";
 
 /* Class = "IBUISegmentedControl"; NLH-NE-lD0.segmentTitles[0] = "Pain"; ObjectID = "NLH-NE-lD0"; */
 "NLH-NE-lD0.segmentTitles[0]" = "Smerte";

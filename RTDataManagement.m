@@ -105,7 +105,6 @@ static RTDataManagement *dataManagement = nil;
     [pList setObject:self.painData forKey:@"painData"];
     [pList setObject:self.diaryData forKey:@"diaryData"];
     [pList setObject:self.medicineData forKey:@"medicineData"];
-    //    [pList setObject:self.kemoTreatmentData forKey:@"kemoTreatmentData"];
     [pList setObject:self.kemoTreatmentArray forKey:@"kemoTreatmentArray"];
     [pList writeToFile:self.path atomically:YES];
 }
@@ -140,7 +139,6 @@ static RTDataManagement *dataManagement = nil;
     self.painData = [pList objectForKey:@"painData"];
     self.diaryData = [pList objectForKey:@"diaryData"];
     self.medicineData = [pList objectForKey:@"medicineData"];
-    //    self.kemoTreatmentData = [pList objectForKey:@"kemoTreatmentData"];
     self.kemoTreatmentArray = [pList objectForKey:@"kemoTreatmentArray"];
 }
 
