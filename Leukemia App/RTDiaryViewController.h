@@ -30,7 +30,7 @@
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong,nonatomic) NSDateFormatter *dateFormat;
-@property (strong, nonatomic) NSMutableArray *diaryData;
+@property (strong, nonatomic) NSMutableArray *painRegistrations;
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
 - (IBAction)exportData:(id)sender;
