@@ -132,8 +132,6 @@ static RTService *service = nil;
         [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:postData];
         
-        
-        
         NSData *data = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
         NSString *dataText = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         if (!data)
@@ -159,7 +157,7 @@ static RTService *service = nil;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         else{
-            NSLog(@"WasSuccessful: %d",[[dict valueForKey:@"WasSuccessful"] integerValue]);
+            NSLog(@"WasSuccessful: %ld",(long)[[dict valueForKey:@"WasSuccessful"] integerValue]);
             [self showToastWithMessage:NSLocalizedString(@"The data was sent to the web server succesfully!",nil)];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }

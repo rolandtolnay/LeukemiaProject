@@ -34,7 +34,8 @@
             
         }];
         
-        UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil                                                             message:NSLocalizedString(@"Activation succesful!", @"Message on succesfull login")
+        UIAlertView *toast = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:NSLocalizedString(@"Activation succesful!", @"Message on succesfull login")
                                                        delegate:nil
                                               cancelButtonTitle:nil
                                               otherButtonTitles:nil, nil];

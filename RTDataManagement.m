@@ -309,7 +309,7 @@ static RTDataManagement *dataManagement = nil;
 }
 
 //returns an NSMutableDictionary with all diary data if it exists in the storage
-//Date is without format
+//date is without format
 -(NSMutableDictionary*) diaryDataAtDate:(NSDate*) date
 {
     for (NSMutableDictionary *diaryRegistration in self.diaryData)

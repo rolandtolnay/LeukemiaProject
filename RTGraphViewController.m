@@ -58,10 +58,6 @@ static NSString *OtherPain = @"Other";
         self.graph.lineWidth = 3.0;
         self.graph.valueLabelCount = 11;
         self.graph.startFromZero = YES;
-        
-        //        [self.lblMouthColor setTextColor:_colorMouthPain];
-        //        [self.lblStomachColor setTextColor:_colorStomachPain];
-        //        [self.lblOtherColor setTextColor:_colorOtherPain];
     }
     else
     {
@@ -376,8 +372,11 @@ static NSString *OtherPain = @"Other";
     return @"";
 }
 
+
+
 #pragma mark - CalendarPicker delegate
 
+//RTGraphViewController.m
 - (void)dateSelected:(NSDate *)date
 {
     self.currentDate = date;

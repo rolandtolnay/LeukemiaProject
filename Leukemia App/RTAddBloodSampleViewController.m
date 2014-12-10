@@ -41,8 +41,6 @@
 
 #pragma mark - Convenience methods
 
-
-
 -(NSInteger)bloodSampleCountBeforeDate: (NSDate*) date{
     NSInteger count = 0;
     
@@ -78,6 +76,7 @@
     return daysWithBloodsamples;
 }
 
+//RTAddBloodSampleViewController.m
 //Returns an array of dates that have blood samples
 -(NSArray*)datesWithBloodSamples
 {

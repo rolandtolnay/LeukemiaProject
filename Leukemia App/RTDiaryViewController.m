@@ -18,11 +18,11 @@
 
 @implementation RTDiaryViewController
 
--(NSMutableArray *)diaryData{
-    if(!_diaryData){
-        _diaryData = [[NSMutableArray alloc]init];
+-(NSMutableArray *)painRegistrations{
+    if(!_painRegistrations){
+        _painRegistrations = [[NSMutableArray alloc]init];
     }
-    return _diaryData;
+    return _painRegistrations;
 }
 
 - (void)viewDidLoad
@@ -178,6 +178,7 @@
 
 #pragma mark - CalendarView Delegate
 
+//RTDiaryViewController.m
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
     
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
@@ -196,11 +197,11 @@
     
     NSDate *newDate = [self.dateFormat dateFromString:monthString];
     [self.calendar markDates:[self.dataManagement datesWithPainFromDate:newDate]];
-    
 }
+
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
-    [self.diaryData removeAllObjects];
+    [self.painRegistrations removeAllObjects];
     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSDate *painRegDate;
     NSString *tempDate;
@@ -208,7 +209,7 @@
         tempDate = [dict objectForKey:@"date"];
         painRegDate = [self.dateFormat dateFromString:tempDate];
         if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
-            [self.diaryData addObject:dict];
+            [self.painRegistrations addObject:dict];
         }
     }
     self.currentSelectedDate = date;
@@ -245,19 +246,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.diaryData.count;
+    return self.painRegistrations.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSMutableDictionary *painRegistration = [self.diaryData objectAtIndex:indexPath.row];
+    NSMutableDictionary *painRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
     NSDate *date = [self.dateFormat dateFromString:[painRegistration objectForKey:@"date"]];
     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
-    //hour = [NSString stringWithFormat:@"%@:%@",[hour componentsSeparatedByString:@":"][0],[hour componentsSeparatedByString:@":"][1]];
     NSString *painLevel = [[painRegistration objectForKey:@"painlevel"]stringValue];
     NSString *painType = [painRegistration objectForKey:@"paintype"];
     if ([painType isEqualToString:@"Mouth"]){
@@ -284,9 +284,9 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSMutableDictionary *selectedReg = [self.diaryData objectAtIndex:indexPath.row];
+        NSMutableDictionary *selectedReg = [self.painRegistrations objectAtIndex:indexPath.row];
         [self.dataManagement.painData removeObject:selectedReg];
-        [self.diaryData removeObjectAtIndex:indexPath.row];
+        [self.painRegistrations removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -295,7 +295,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.selectedRegistration = [self.diaryData objectAtIndex:indexPath.row];
+    self.selectedRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
     self.popoverAnchorButton.frame = displayFrom;
