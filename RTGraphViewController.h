@@ -20,10 +20,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
 
-//@property (weak, nonatomic) IBOutlet UILabel *lblMouthColor;
-//@property (weak, nonatomic) IBOutlet UILabel *lblStomachColor;
-//@property (weak, nonatomic) IBOutlet UILabel *lblOtherColor;
-
 @property (weak, nonatomic) IBOutlet UIButton *datePicker;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *graphType;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *painType;

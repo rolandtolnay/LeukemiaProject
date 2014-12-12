@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		000E19F831AA4ED9907DC336 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D4AAFAC83C479980D0C816 /* libPods.a */; };
-		A04F2C0919AF201D00B8DCEE /* RTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */; };
 		A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0636C0A19AF22E200188588 /* QuartzCore.framework */; };
 		A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */; };
-		A089036A19AF41EB002BCD8D /* RTSettingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A089036919AF41EB002BCD8D /* RTSettingItem.m */; };
 		A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = A0957E2619A75AF30058EF12 /* RTDataManagement.m */; };
 		A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A095897819DAAA3E006BE617 /* RTSelectKemoTableViewController.m */; };
 		A09996F919A3500300EF39A5 /* RTBrushSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09996F819A3500300EF39A5 /* RTBrushSizeViewController.m */; };
@@ -64,13 +62,9 @@
 /* Begin PBXFileReference section */
 		23D4AAFAC83C479980D0C816 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AD9414280540CE9F911869 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		A04F2C0719AF201D00B8DCEE /* RTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSettingsViewController.h; sourceTree = "<group>"; };
-		A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSettingsViewController.m; sourceTree = "<group>"; };
 		A0636C0A19AF22E200188588 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDetailTableViewCell.h; sourceTree = "<group>"; };
 		A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDetailTableViewCell.m; sourceTree = "<group>"; };
-		A089036819AF41EB002BCD8D /* RTSettingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSettingItem.h; sourceTree = "<group>"; };
-		A089036919AF41EB002BCD8D /* RTSettingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSettingItem.m; sourceTree = "<group>"; };
 		A0957E2519A75AF30058EF12 /* RTDataManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTDataManagement.h; path = ../RTDataManagement.h; sourceTree = "<group>"; };
 		A0957E2619A75AF30058EF12 /* RTDataManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTDataManagement.m; path = ../RTDataManagement.m; sourceTree = "<group>"; };
 		A095897719DAAA3E006BE617 /* RTSelectKemoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSelectKemoTableViewController.h; sourceTree = "<group>"; };
@@ -90,8 +84,8 @@
 		A610475719EBC619007B044D /* RTSmileyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSmileyTableViewController.m; sourceTree = "<group>"; };
 		A633F3F31A10E51900DE90C9 /* RTService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTService.h; sourceTree = "<group>"; };
 		A633F3F41A10E51900DE90C9 /* RTService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTService.m; sourceTree = "<group>"; };
-		A67BFA011A14B54400369BE3 /* RTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLoginViewController.h; sourceTree = "<group>"; };
-		A67BFA021A14B54400369BE3 /* RTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLoginViewController.m; sourceTree = "<group>"; };
+		A67BFA011A14B54400369BE3 /* RTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTLoginViewController.h; path = "Leukemia App/RTLoginViewController.h"; sourceTree = "<group>"; };
+		A67BFA021A14B54400369BE3 /* RTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTLoginViewController.m; path = "Leukemia App/RTLoginViewController.m"; sourceTree = "<group>"; };
 		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -170,9 +164,9 @@
 		A0957E2819A75B010058EF12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A09DD9AC1A399EE7007C681B /* Login */,
 				A09CF90219EFD893002F09E4 /* Tabbar */,
 				A695401019D19C5C00AB3E64 /* Medicine */,
-				A695400F19D19C4800AB3E64 /* Settings */,
 				A695400E19D19C3300AB3E64 /* Pain */,
 				A695400D19D19C2700AB3E64 /* Diary */,
 				A695400C19D19C1600AB3E64 /* Graphs */,
@@ -190,8 +184,6 @@
 				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
 				A633F3F31A10E51900DE90C9 /* RTService.h */,
 				A633F3F41A10E51900DE90C9 /* RTService.m */,
-				A089036819AF41EB002BCD8D /* RTSettingItem.h */,
-				A089036919AF41EB002BCD8D /* RTSettingItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -210,6 +202,15 @@
 				A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */,
 			);
 			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		A09DD9AC1A399EE7007C681B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A67BFA011A14B54400369BE3 /* RTLoginViewController.h */,
+				A67BFA021A14B54400369BE3 /* RTLoginViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		A6924E7D199E28C5009D7220 = {
@@ -249,8 +250,6 @@
 		A6924E8F199E28C5009D7220 /* Leukemia App */ = {
 			isa = PBXGroup;
 			children = (
-				A67BFA011A14B54400369BE3 /* RTLoginViewController.h */,
-				A67BFA021A14B54400369BE3 /* RTLoginViewController.m */,
 				A695674319E6AD0F00C69FA9 /* Animators */,
 				A0957E2919A75B1F0058EF12 /* Model */,
 				A0957E2819A75B010058EF12 /* Controllers */,
@@ -337,15 +336,6 @@
 				A0B180F019F7CF8D00013FCA /* RTPainInfoViewController.m */,
 			);
 			name = Pain;
-			sourceTree = "<group>";
-		};
-		A695400F19D19C4800AB3E64 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				A04F2C0719AF201D00B8DCEE /* RTSettingsViewController.h */,
-				A04F2C0819AF201D00B8DCEE /* RTSettingsViewController.m */,
-			);
-			name = Settings;
 			sourceTree = "<group>";
 		};
 		A695401019D19C5C00AB3E64 /* Medicine */ = {
@@ -531,12 +521,10 @@
 				A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */,
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
-				A04F2C0919AF201D00B8DCEE /* RTSettingsViewController.m in Sources */,
 				A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 				A633F3F51A10E51900DE90C9 /* RTService.m in Sources */,
-				A089036A19AF41EB002BCD8D /* RTSettingItem.m in Sources */,
 				A6B626661A16280300C36572 /* Reachability.m in Sources */,
 				A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */,
 			);

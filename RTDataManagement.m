@@ -339,7 +339,6 @@ static RTDataManagement *dataManagement = nil;
         if (bloodSamples != nil)
         {
             NSString *timeStamp = [medicineRegistration objectForKey:@"date"];
-            NSLog(@"current date: %@, timestamp: %@, medicineRegistration: %@",currentDate,timeStamp,medicineRegistration);
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
             if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
             {

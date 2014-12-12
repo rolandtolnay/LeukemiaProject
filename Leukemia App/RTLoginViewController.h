@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *txfPatientId;
 @property (weak, nonatomic) IBOutlet UITextField *txfPassword;
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
+@property (weak, nonatomic) IBOutlet UILabel *patientNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 
 - (IBAction)confirm:(id)sender;
 

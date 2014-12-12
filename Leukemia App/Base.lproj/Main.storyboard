@@ -1105,7 +1105,7 @@
                                             </segue>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kemo treatment:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldu-Aq-VH3">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current kemo treatment:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ldu-Aq-VH3">
                                         <rect key="frame" x="34" y="32" width="200" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1592,7 +1592,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="auhLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qK2-hy-YE9">
                                 <rect key="frame" x="136" y="83" width="496" height="85"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwl-pl-Y52">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Error text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwl-pl-Y52">
                                 <rect key="frame" x="347" y="550" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1611,6 +1611,8 @@
                     </view>
                     <connections>
                         <outlet property="lblError" destination="jwl-pl-Y52" id="dt9-nD-bMV"/>
+                        <outlet property="passwordLabel" destination="ffK-t7-9bR" id="RUP-cx-ahe"/>
+                        <outlet property="patientNameLabel" destination="2jV-lz-fzB" id="WTq-63-NpZ"/>
                         <outlet property="txfPassword" destination="00i-Pu-alF" id="4IB-lB-f63"/>
                         <outlet property="txfPatientId" destination="ztU-yh-jAV" id="DgD-Tj-XWC"/>
                         <outlet property="txfPatientName" destination="kW3-CV-gKv" id="Jfh-hu-CqE"/>

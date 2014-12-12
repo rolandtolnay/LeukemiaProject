@@ -38,8 +38,6 @@
 "Yellow - It hurts, but it's bearable" = "Gul - Det gør ondt, men det er til at holde ud";
 "Green - It hurts a bit, but I hardly notice the pain" = "Grøn - Det gør lidt ondt, men jeg lægger næsten ikke mærke til det";
 //Select PainScale
-
-
 "Wong baker pain scale" = "Wong baker skala";
 "Bieri Faces pain scale" = "Bieri Faces skala";
 "FLACC pain scale" = "FLACC skala";
@@ -57,3 +55,8 @@
 "Mouth" = "Mund";
 "Stomach" = "Mave";
 "Other" = "Andet";
+//Login
+"Activation succesful!" = "Du er nu logget ind!";
+"Invalid activation password." = "Forkert password.";
+"Patient Name:" = "Patient navn:";
+"Activation password:" = "Aktiverings password:";

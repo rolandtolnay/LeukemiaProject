@@ -19,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.patientNameLabel.text = NSLocalizedString(@"Patient Name:", @"Input patient name");
+    self.passwordLabel.text = NSLocalizedString(@"Activation password:", @"Input activation password");
     self.lblError.hidden = YES;
 }
 
@@ -48,7 +49,7 @@
         });
 
     } else {
-        [self.lblError setText:@"Invalid activation password."];
+        [self.lblError setText:NSLocalizedString(@"Invalid activation password.",@"Message on unsuccesful login")];
         [self.txfPassword setText:@""];
         self.lblError.hidden = NO;
     }

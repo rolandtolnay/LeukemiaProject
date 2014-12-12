@@ -55,3 +55,8 @@
 "Mouth" = "Mouth";
 "Stomach" = "Stomach";
 "Other" = "Other";
+//Login
+"Activation succesful!" = "Activation succesful!";
+"Invalid activation password." = "Invalid activation password.";
+"Patient Name:" = "Patient Name:";
+"Activation password:" = "Activation password:";

@@ -78,12 +78,12 @@ static RTService *service = nil;
     comps.year = year;
     today = [greg dateFromComponents:comps];
     comps = [greg components:NSYearCalendarUnit fromDate:today];
-    NSLog(@"%@",comps);
+
     comps.day = 1;
     comps.month = 1;
     comps.hour = 12;
     NSDate *start = [greg dateFromComponents:comps];
-    NSLog(@"NSDate start: %@",start);
+
     comps = [greg components:NSWeekdayCalendarUnit fromDate:start];
     
     
@@ -119,8 +119,10 @@ static RTService *service = nil;
                                   dataManagement.medicineData, @"medicineData",
                                   dataManagement.diaryData, @"diaryData",
                                   nil];
+        
         //convert NSDictionary to data
         NSData* postData = [NSJSONSerialization dataWithJSONObject:jsonData options:kNilOptions error:&error];
+        
         //Set up http request
         NSString *urlString = @"http://10.10.133.166:50601/Service1.svc/saveData";
         NSURL *url = [NSURL URLWithString:urlString];
@@ -130,8 +132,10 @@ static RTService *service = nil;
         [request setHTTPMethod:@"POST"];
         [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:postData];
+        
         //Make a connection and POST, receive data returned from web service
         NSData *returnData = [ NSURLConnection sendSynchronousRequest:request returningResponse: nil error:&error ];
+        
         if (!returnData)
         {
             // An error occurred while calling the JSON web service.
@@ -139,13 +143,16 @@ static RTService *service = nil;
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             return;
         }
+       
         NSString *resultString = [[NSString alloc] initWithBytes: [returnData bytes] length:[returnData length] encoding: NSUTF8StringEncoding];
+        
         if(resultString==nil){
             [self showToastWithMessage:NSLocalizedString(@"An error (2) occured while trying to connect to the web service.",nil)];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[resultString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        
         if(dict==nil){
             [self showToastWithMessage:NSLocalizedString(@"An error (3) occured while trying to connect to the web service.",nil)];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -189,7 +196,7 @@ static RTService *service = nil;
     *image = [UIImage imageWithContentsOfFile:filePath];
 }
 
-#pragma mark - ID generators
+#pragma mark - Unique ID generators
 
 -(NSString*)UniqueAppId
 {

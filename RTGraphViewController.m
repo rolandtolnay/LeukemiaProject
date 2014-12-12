@@ -132,13 +132,11 @@ static NSString *OtherPain = @"Other";
         if (diaryReg!=nil)
         {
             NSNumber *weight = [NSNumber numberWithFloat:[[diaryReg objectForKey:@"weight"] floatValue]];
-            NSLog(@"Date: %@, diary registration: %@, weight: %@",dayInWeek,diaryReg,weight);
             if ([weight intValue]>0)
             {
                 [self.weightValues addObject:weight];
                 
                 NSString *monthDayTimestamp = [NSString stringWithFormat:@"%d/%d",[dayInWeek day],[dayInWeek month]];
-                NSLog(@"weightTimestamp: %@",monthDayTimestamp);
                 
                 [self.weightTimestamps addObject:monthDayTimestamp];
             }

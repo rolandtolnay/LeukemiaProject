@@ -82,5 +82,4 @@ static const NSTimeInterval AnimationDuration = 0.25;
          [transitionContext completeTransition:didComplete];
      }];
 }
-
 @end

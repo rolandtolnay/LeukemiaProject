@@ -25,10 +25,9 @@
     
     self.years = @[@"2014",@"2015",@"2016",@"2017",@"2018"];
     int pickedWeek = [self.pickedDate week];
+    
     NSNumber *pickedYear = [NSNumber numberWithInt:[self.pickedDate year]];
-    NSLog(@"yearFromDate: %@",pickedYear);
     NSInteger pickedYearIndex = [self.years indexOfObject:[pickedYear stringValue]];
-    NSLog(@"pickedYearIndex: %ld",(long)pickedYearIndex);
     
     [self.weekPicker selectRow:pickedWeek-1 inComponent:1 animated:YES];
     [self.weekPicker selectRow:pickedYearIndex inComponent:0 animated:YES];

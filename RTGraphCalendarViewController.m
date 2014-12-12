@@ -40,12 +40,10 @@
     if (self.markedDates !=nil)
     {
         self.markedDates = [self.delegate monthChanged:month];
-        NSLog(@"marked dates: %@",self.markedDates);
         [self.calendar markDates:self.markedDates];
     }
 }
 
-//RTGraphCalendarViewController.m
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self.delegate dateSelected:date];
 }

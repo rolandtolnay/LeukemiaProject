@@ -62,7 +62,9 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         UIViewController * vc = [storyboard instantiateViewControllerWithIdentifier:@"loginPage"];
         [self.navigationController presentViewController:vc animated:YES completion:nil];
-    } else NSLog(@"Patient name: %@, ID: %@",self.dataManagement.patientName,self.dataManagement.patientID);
+    } else {
+        NSLog(@"Patient name: %@, ID: %@",self.dataManagement.patientName,self.dataManagement.patientID);
+    }
 }
 
 #pragma mark - Methods related specific to FLACC scale
@@ -339,13 +341,13 @@
         if (self.drawingToBeSaved)
         {
             drawingImagePath = [timeStamp stringByAppendingString:@" DrawingImage.png"];
-            NSLog(@"%@",drawingImagePath);
+
             [[RTService singleton] UIImageWriteToFile:self.drawingToBeSaved :drawingImagePath];
         }
         if (self.cameraImageToBeSaved)
         {
             photoPath = [timeStamp stringByAppendingString:@" CameraImage.jpg"];
-            NSLog(@"%@",photoPath);
+
             [[RTService singleton] UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
         [self saveToPlist:drawingImagePath :photoPath :timeStamp :[[RTService singleton] dataID]];
@@ -360,7 +362,7 @@
     }
 }
 
-#pragma mark - PList methods
+#pragma mark - Saving to PList methods
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)date :(NSString*)idString{
     NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
     [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];

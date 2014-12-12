@@ -62,7 +62,7 @@
 //Service methods for bloodsample data-management
 -(NSArray *) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 
-//testing
+//testing method
 -(void) initTestData;
 
 @end
