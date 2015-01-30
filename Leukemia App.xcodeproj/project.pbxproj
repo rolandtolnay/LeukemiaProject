@@ -17,6 +17,7 @@
 		A09D77E419EE951200A925D5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A09D77E619EE951200A925D5 /* Localizable.strings */; };
 		A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */; };
 		A0B180F119F7CF8D00013FCA /* RTPainInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0B180F019F7CF8D00013FCA /* RTPainInfoViewController.m */; };
+		A0F430421A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0F430411A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.m */; };
 		A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A610475719EBC619007B044D /* RTSmileyTableViewController.m */; };
 		A633F3F51A10E51900DE90C9 /* RTService.m in Sources */ = {isa = PBXBuildFile; fileRef = A633F3F41A10E51900DE90C9 /* RTService.m */; };
 		A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A67BFA021A14B54400369BE3 /* RTLoginViewController.m */; };
@@ -83,6 +84,8 @@
 		A09E24F219E7CF650026FC73 /* RTChangepainScaleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTChangepainScaleTableViewController.m; sourceTree = "<group>"; };
 		A0B180EF19F7CF8D00013FCA /* RTPainInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPainInfoViewController.h; sourceTree = "<group>"; };
 		A0B180F019F7CF8D00013FCA /* RTPainInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPainInfoViewController.m; sourceTree = "<group>"; };
+		A0F430401A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisInfoTableTableViewController.h; sourceTree = "<group>"; };
+		A0F430411A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMucositisInfoTableTableViewController.m; sourceTree = "<group>"; };
 		A610475619EBC619007B044D /* RTSmileyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTSmileyTableViewController.h; sourceTree = "<group>"; };
 		A610475719EBC619007B044D /* RTSmileyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTSmileyTableViewController.m; sourceTree = "<group>"; };
 		A633F3F31A10E51900DE90C9 /* RTService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTService.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 			children = (
 				A04F86071A7A6751000F1AC9 /* RTMucositisViewController.h */,
 				A04F86081A7A6751000F1AC9 /* RTMucositisViewController.m */,
+				A0F430401A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.h */,
+				A0F430411A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.m */,
 			);
 			name = Mucositis;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */,
 				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
 				A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */,
+				A0F430421A7BA16D006ED54B /* RTMucositisInfoTableTableViewController.m in Sources */,
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,
 				A6954A0519C6DFD600C97A94 /* RTDiaryDetailViewController.m in Sources */,
 				A0B180F119F7CF8D00013FCA /* RTPainInfoViewController.m in Sources */,
