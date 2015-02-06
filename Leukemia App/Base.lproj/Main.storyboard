@@ -392,7 +392,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cai-1G-7gB" userLabel="flaccScaleView">
                                 <rect key="frame" x="47" y="72" width="675" height="512"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FLACCscale" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FLACC - NY" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
                                         <rect key="frame" x="10" y="13" width="654" height="379"/>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="umN-XN-VNw">
@@ -402,22 +402,18 @@
                                             <segment title="Stomach"/>
                                             <segment title="Other"/>
                                         </segments>
-                                        <color key="tintColor" red="0.53725490200000003" green="0.29803921570000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="painTypeSelected:" destination="iOi-VK-jme" eventType="valueChanged" id="2bk-Bl-Fgd"/>
                                         </connections>
                                     </segmentedControl>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0J-Hi-gVu" userLabel="btnComfort2">
-                                        <rect key="frame" x="460" y="307" width="198" height="80"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <rect key="frame" x="437" y="303" width="216" height="80"/>
                                         <connections>
                                             <action selector="flaccTableButtonSelected:" destination="iOi-VK-jme" eventType="touchUpInside" id="Al4-Qa-jUH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtf-gQ-M7W" userLabel="btnComfort1">
-                                        <rect key="frame" x="293" y="307" width="166" height="80"/>
+                                        <rect key="frame" x="307" y="303" width="129" height="80"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -426,7 +422,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHs-FN-LkZ" userLabel="btnComfort0">
-                                        <rect key="frame" x="120" y="307" width="172" height="80"/>
+                                        <rect key="frame" x="149" y="303" width="157" height="80"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -435,7 +431,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAf-kN-edX" userLabel="btnCrying2">
-                                        <rect key="frame" x="460" y="242" width="198" height="64"/>
+                                        <rect key="frame" x="437" y="228" width="216" height="74"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -444,7 +440,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T5p-df-frg" userLabel="btnCrying1">
-                                        <rect key="frame" x="293" y="242" width="166" height="64"/>
+                                        <rect key="frame" x="307" y="228" width="129" height="74"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -453,7 +449,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jny-lv-01r" userLabel="btnCrying0">
-                                        <rect key="frame" x="120" y="242" width="172" height="64"/>
+                                        <rect key="frame" x="149" y="228" width="157" height="74"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -462,7 +458,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jic-he-6ei" userLabel="btnActivity2">
-                                        <rect key="frame" x="460" y="177" width="198" height="64"/>
+                                        <rect key="frame" x="437" y="153" width="216" height="74"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -471,7 +467,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQa-e6-tXp" userLabel="btnActivity1">
-                                        <rect key="frame" x="293" y="177" width="166" height="64"/>
+                                        <rect key="frame" x="307" y="153" width="129" height="74"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -479,17 +475,8 @@
                                             <action selector="flaccTableButtonSelected:" destination="iOi-VK-jme" eventType="touchUpInside" id="fdh-tX-7QY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2i-Dg-0FK" userLabel="btnActivity0">
-                                        <rect key="frame" x="120" y="177" width="172" height="64"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="flaccTableButtonSelected:" destination="iOi-VK-jme" eventType="touchUpInside" id="Ggo-8k-FHH"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1g-Td-JM4" userLabel="btnLegs2">
-                                        <rect key="frame" x="460" y="112" width="198" height="64"/>
+                                        <rect key="frame" x="437" y="97" width="216" height="55"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -498,7 +485,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znq-ni-sJ9" userLabel="btnLegs1">
-                                        <rect key="frame" x="293" y="112" width="166" height="64"/>
+                                        <rect key="frame" x="307" y="97" width="129" height="55"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -507,7 +494,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IAn-JB-CDe" userLabel="btnLegs0">
-                                        <rect key="frame" x="120" y="112" width="172" height="64"/>
+                                        <rect key="frame" x="149" y="97" width="157" height="55"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -516,7 +503,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qx-cI-rst" userLabel="btnFace2">
-                                        <rect key="frame" x="460" y="46" width="198" height="64"/>
+                                        <rect key="frame" x="437" y="47" width="216" height="49"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -525,7 +512,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQ4-tW-U8r" userLabel="btnFace1">
-                                        <rect key="frame" x="293" y="46" width="166" height="64"/>
+                                        <rect key="frame" x="307" y="47" width="129" height="49"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -534,7 +521,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-YC-0b5" userLabel="btnFace0">
-                                        <rect key="frame" x="120" y="46" width="172" height="64"/>
+                                        <rect key="frame" x="149" y="47" width="157" height="49"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -548,6 +535,15 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2i-Dg-0FK" userLabel="btnActivity0">
+                                        <rect key="frame" x="149" y="153" width="157" height="74"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flaccTableButtonSelected:" destination="iOi-VK-jme" eventType="touchUpInside" id="Ggo-8k-FHH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -1488,94 +1484,262 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq">
-                                <rect key="frame" x="361" y="447" width="51" height="52"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TEstVerdana-3" translatesAutoresizingMaskIntoConstraints="NO" id="Fz8-5j-e4W">
+                                <rect key="frame" x="57" y="112" width="654" height="252"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq" userLabel="DrawMouthBtn">
+                                <rect key="frame" x="359" y="387" width="51" height="52"/>
+                                <accessibility key="accessibilityConfiguration" label=""/>
                                 <state key="normal" title="Button" image="MouthIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw Mouth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF0-qg-ebT">
-                                <rect key="frame" x="339" y="507" width="94" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of vomitting the last 12 hours:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uL-i5-q1O">
-                                <rect key="frame" x="71" y="560" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of stools past day: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-7J-MZ7">
-                                <rect key="frame" x="71" y="620" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluids drunk, or given on probe:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-jh-Zff">
-                                <rect key="frame" x="71" y="680" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluid given in drop:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Tq-WFa">
-                                <rect key="frame" x="71" y="740" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much urin has come:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-Yz-Dek">
-                                <rect key="frame" x="71" y="800" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zA-q9-4wF">
-                                <rect key="frame" x="71" y="860" width="320" height="21"/>
+                                <rect key="frame" x="337" y="447" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JyF-g7-brH">
-                                <rect key="frame" x="307" y="911" width="154" height="30"/>
+                                <rect key="frame" x="307" y="884" width="154" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title=" Submit Data">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveAndSubmit:" destination="hcp-dV-dpe" eventType="touchUpInside" id="qD5-O7-Jcf"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oj5-zo-mNO">
+                                <rect key="frame" x="183" y="143" width="66" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="Fbv-ea-J0z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5v-9J-sV9">
+                                <rect key="frame" x="183" y="212" width="66" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="fb4-wf-qnF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKV-Ul-G9d">
+                                <rect key="frame" x="183" y="285" width="66" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="pKh-gm-hhf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-vB-XN8">
+                                <rect key="frame" x="250" y="143" width="85" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="tOY-nc-dTa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nba-hT-aLc">
+                                <rect key="frame" x="337" y="143" width="96" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="Wel-QV-rlu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vdm-rK-K3f">
+                                <rect key="frame" x="435" y="143" width="118" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="MAJ-bj-yPC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnQ-7o-bIb">
+                                <rect key="frame" x="554" y="143" width="149" height="67"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="D4p-TA-8Y7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRg-cv-YNE">
+                                <rect key="frame" x="250" y="212" width="85" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="xIf-nu-xXf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pF-Of-qx7">
+                                <rect key="frame" x="337" y="212" width="96" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="uCG-kS-7Qe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfY-RB-1QO">
+                                <rect key="frame" x="435" y="212" width="118" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="lcg-jQ-lev"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPF-SI-SN2">
+                                <rect key="frame" x="554" y="212" width="149" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="kLu-Xy-5eO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaU-Zw-gzV">
+                                <rect key="frame" x="250" y="285" width="85" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="jw5-9I-Q5E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPa-2C-4Yx">
+                                <rect key="frame" x="337" y="285" width="96" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="tEk-yX-PN3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eND-RW-oyB">
+                                <rect key="frame" x="435" y="285" width="118" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="Na8-dB-73Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zzG-Lc-YMC">
+                                <rect key="frame" x="554" y="285" width="149" height="71"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="eLU-KD-JnU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of vomitting the last 12 hours:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uL-i5-q1O">
+                                <rect key="frame" x="103" y="515" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number of stools past day: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cf-7J-MZ7">
+                                <rect key="frame" x="103" y="575" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluids drunk, or given on probe:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-jh-Zff">
+                                <rect key="frame" x="103" y="635" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluid given in drop:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Tq-WFa">
+                                <rect key="frame" x="103" y="695" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much urin has come:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-Yz-Dek">
+                                <rect key="frame" x="103" y="755" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zA-q9-4wF">
+                                <rect key="frame" x="103" y="815" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YsG-YT-GEu">
-                                <rect key="frame" x="424" y="556" width="150" height="30"/>
+                                <rect key="frame" x="456" y="511" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VgC-pj-hqq">
-                                <rect key="frame" x="424" y="616" width="150" height="30"/>
+                                <rect key="frame" x="456" y="571" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fZN-ut-Z1J">
-                                <rect key="frame" x="424" y="736" width="150" height="30"/>
+                                <rect key="frame" x="456" y="691" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-Nx-wGM">
-                                <rect key="frame" x="424" y="676" width="150" height="30"/>
+                                <rect key="frame" x="456" y="631" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PPn-oD-rmq">
-                                <rect key="frame" x="424" y="796" width="150" height="30"/>
+                                <rect key="frame" x="456" y="751" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pku-JK-ToI">
-                                <rect key="frame" x="424" y="856" width="150" height="30"/>
+                                <rect key="frame" x="456" y="811" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TEstVerdana" translatesAutoresizingMaskIntoConstraints="NO" id="Fz8-5j-e4W">
-                                <rect key="frame" x="68" y="111" width="633" height="287"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEe-fg-EQb">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDQ-Bt-F3n">
+                                <rect key="frame" x="641" y="634" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTR-QH-L7s">
+                                <rect key="frame" x="641" y="694" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="mL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFT-xR-TID">
+                                <rect key="frame" x="641" y="754" width="25" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ed-3k-bZW">
+                                <rect key="frame" x="641" y="814" width="19" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1590,6 +1754,44 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="allButtons" destination="oj5-zo-mNO" id="p1S-cQ-EAU"/>
+                        <outletCollection property="allButtons" destination="Vb7-vB-XN8" id="ZZu-A8-jPk"/>
+                        <outletCollection property="allButtons" destination="nba-hT-aLc" id="dhb-2x-cnH"/>
+                        <outletCollection property="allButtons" destination="vdm-rK-K3f" id="Xpa-1y-Lg6"/>
+                        <outletCollection property="allButtons" destination="lnQ-7o-bIb" id="HQO-yM-sjJ"/>
+                        <outletCollection property="allButtons" destination="I5v-9J-sV9" id="tuE-yM-LZ2"/>
+                        <outletCollection property="allButtons" destination="hRg-cv-YNE" id="73v-Ft-8mf"/>
+                        <outletCollection property="allButtons" destination="1pF-Of-qx7" id="yXN-CT-bTH"/>
+                        <outletCollection property="allButtons" destination="dfY-RB-1QO" id="Ub3-k7-PIn"/>
+                        <outletCollection property="allButtons" destination="nPF-SI-SN2" id="nMd-ho-uo2"/>
+                        <outletCollection property="allButtons" destination="hKV-Ul-G9d" id="5Vc-tm-bBc"/>
+                        <outletCollection property="allButtons" destination="GaU-Zw-gzV" id="48u-wR-aTU"/>
+                        <outletCollection property="allButtons" destination="hPa-2C-4Yx" id="AQN-SF-G7b"/>
+                        <outletCollection property="allButtons" destination="eND-RW-oyB" id="ufZ-V7-oFG"/>
+                        <outletCollection property="allButtons" destination="zzG-Lc-YMC" id="e3K-WR-NXQ"/>
+                        <outletCollection property="painButtons" destination="oj5-zo-mNO" id="vL3-lf-oSJ"/>
+                        <outletCollection property="painButtons" destination="Vb7-vB-XN8" id="RzC-CV-Ko9"/>
+                        <outletCollection property="painButtons" destination="nba-hT-aLc" id="urn-5d-jNf"/>
+                        <outletCollection property="painButtons" destination="vdm-rK-K3f" id="rUB-zY-n7s"/>
+                        <outletCollection property="painButtons" destination="lnQ-7o-bIb" id="fNe-Da-K9R"/>
+                        <outletCollection property="foodButtons" destination="hKV-Ul-G9d" id="3GJ-kB-RF7"/>
+                        <outletCollection property="rednessButtons" destination="I5v-9J-sV9" id="EoK-d7-ymO"/>
+                        <outletCollection property="rednessButtons" destination="hRg-cv-YNE" id="Ttw-7p-3qA"/>
+                        <outletCollection property="rednessButtons" destination="1pF-Of-qx7" id="obr-4U-Ozb"/>
+                        <outletCollection property="rednessButtons" destination="dfY-RB-1QO" id="hZ6-IB-3mK"/>
+                        <outletCollection property="rednessButtons" destination="nPF-SI-SN2" id="fyu-qP-bg4"/>
+                        <outletCollection property="foodButtons" destination="GaU-Zw-gzV" id="cz0-cY-Gbg"/>
+                        <outletCollection property="foodButtons" destination="hPa-2C-4Yx" id="53u-zD-yXn"/>
+                        <outletCollection property="foodButtons" destination="eND-RW-oyB" id="acq-BX-Lck"/>
+                        <outletCollection property="foodButtons" destination="zzG-Lc-YMC" id="Qvk-pA-mUq"/>
+                        <outletCollection property="allTxtFields" destination="YsG-YT-GEu" id="fnG-lT-9u3"/>
+                        <outletCollection property="allTxtFields" destination="VgC-pj-hqq" id="PUM-u3-rbg"/>
+                        <outletCollection property="allTxtFields" destination="tZT-Nx-wGM" id="hhZ-jB-OrB"/>
+                        <outletCollection property="allTxtFields" destination="fZN-ut-Z1J" id="FlG-gz-1Jk"/>
+                        <outletCollection property="allTxtFields" destination="PPn-oD-rmq" id="WPC-Hi-F3N"/>
+                        <outletCollection property="allTxtFields" destination="pku-JK-ToI" id="whS-ve-cbv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jBA-5o-iYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2075,11 +2277,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="FLACC - NY" width="1049" height="612"/>
         <image name="FLACC_info" width="668" height="902"/>
-        <image name="FLACCscale" width="654" height="379"/>
         <image name="MouthIcon" width="108" height="120"/>
         <image name="Mucositis" width="32" height="32"/>
-        <image name="TEstVerdana" width="591" height="264"/>
+        <image name="TEstVerdana-3" width="1305" height="503"/>
         <image name="TabBarDiaryUpdated" width="32" height="32"/>
         <image name="TabBarGraph" width="32" height="32"/>
         <image name="TabBarMedicineUpdated" width="32" height="32"/>

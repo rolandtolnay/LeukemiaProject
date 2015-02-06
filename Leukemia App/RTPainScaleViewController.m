@@ -37,7 +37,7 @@
                              ];
     
     //Set up flaccScaleView properties
-    self.btnPressedColor = [UIColor colorWithRed:137.0/255.0 green:76.0/255.0 blue:137.0/255.0 alpha:1.0];
+    self.btnPressedColor = [UIColor colorWithRed:105.0/255.0 green:147.0/255.0 blue:197.0/255.0 alpha:0.9];
     self.painScoreLabel.text = NSLocalizedString(@"Painscore is: 0", nil);
     
     //Setting up general properties
@@ -74,7 +74,7 @@
     self.painScore = 0;
     if(!selectedButton.backgroundColor){
         selectedButton.backgroundColor = self.btnPressedColor;
-        selectedButton.alpha = 0.4;
+        selectedButton.alpha = 0.3;
     }
     else{
         selectedButton.backgroundColor = nil;
