@@ -19,6 +19,7 @@
 		A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A610475719EBC619007B044D /* RTSmileyTableViewController.m */; };
 		A633F3F51A10E51900DE90C9 /* RTService.m in Sources */ = {isa = PBXBuildFile; fileRef = A633F3F41A10E51900DE90C9 /* RTService.m */; };
 		A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A67BFA021A14B54400369BE3 /* RTLoginViewController.m */; };
+		A684DFA41A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A684DFA31A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m */; };
 		A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E89199E28C5009D7220 /* Foundation.framework */; };
 		A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8B199E28C5009D7220 /* CoreGraphics.framework */; };
 		A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6924E8D199E28C5009D7220 /* UIKit.framework */; };
@@ -41,7 +42,6 @@
 		A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674119E6AA4C00C69FA9 /* RTTabAnimator.m */; };
 		A695674619E6AD6700C69FA9 /* RTTabInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674519E6AD6700C69FA9 /* RTTabInteractiveTransition.m */; };
 		A695674919E6B1B300C69FA9 /* RTRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */; };
-		A6976E0819ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6976E0719ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m */; };
 		A6976E0B19ED378300CC29BF /* RTAddBloodSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6976E0A19ED378300CC29BF /* RTAddBloodSampleViewController.m */; };
 		A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A3D4B519BF2481003DEF56 /* RTGraphCalendarViewController.m */; };
 		A6B6265D1A160FCD00C36572 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */; };
@@ -61,7 +61,7 @@
 
 /* Begin PBXFileReference section */
 		23D4AAFAC83C479980D0C816 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		99AD9414280540CE9F911869 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		4B479C98D8E98F8F08C81C8E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A0636C0A19AF22E200188588 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A06912BC19AF58F8002EDEE1 /* RTDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDetailTableViewCell.h; sourceTree = "<group>"; };
 		A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDetailTableViewCell.m; sourceTree = "<group>"; };
@@ -86,6 +86,8 @@
 		A633F3F41A10E51900DE90C9 /* RTService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTService.m; sourceTree = "<group>"; };
 		A67BFA011A14B54400369BE3 /* RTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTLoginViewController.h; path = "Leukemia App/RTLoginViewController.h"; sourceTree = "<group>"; };
 		A67BFA021A14B54400369BE3 /* RTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTLoginViewController.m; path = "Leukemia App/RTLoginViewController.m"; sourceTree = "<group>"; };
+		A684DFA21A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTBloodSampleCollectionViewCell.h; path = "Leukemia App/RTBloodSampleCollectionViewCell.h"; sourceTree = "<group>"; };
+		A684DFA31A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTBloodSampleCollectionViewCell.m; path = "Leukemia App/RTBloodSampleCollectionViewCell.m"; sourceTree = "<group>"; };
 		A6924E86199E28C5009D7220 /* Leukemia App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Leukemia App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6924E89199E28C5009D7220 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6924E8B199E28C5009D7220 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,8 +123,6 @@
 		A695674519E6AD6700C69FA9 /* RTTabInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTTabInteractiveTransition.m; sourceTree = "<group>"; };
 		A695674719E6B1B300C69FA9 /* RTRootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTRootTabBarController.h; path = "Leukemia App/RTRootTabBarController.h"; sourceTree = "<group>"; };
 		A695674819E6B1B300C69FA9 /* RTRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTRootTabBarController.m; path = "Leukemia App/RTRootTabBarController.m"; sourceTree = "<group>"; };
-		A6976E0619ED2B9B00CC29BF /* RTBloodSampleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBloodSampleTableViewCell.h; sourceTree = "<group>"; };
-		A6976E0719ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBloodSampleTableViewCell.m; sourceTree = "<group>"; };
 		A6976E0919ED378300CC29BF /* RTAddBloodSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RTAddBloodSampleViewController.h; path = "Leukemia App/RTAddBloodSampleViewController.h"; sourceTree = "<group>"; };
 		A6976E0A19ED378300CC29BF /* RTAddBloodSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RTAddBloodSampleViewController.m; path = "Leukemia App/RTAddBloodSampleViewController.m"; sourceTree = "<group>"; };
 		A6A3D4B419BF2481003DEF56 /* RTGraphCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphCalendarViewController.h; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 		A6B626651A16280300C36572 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		A6E9BEE319AB61B300544A8E /* RTGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTGraphViewController.h; sourceTree = "<group>"; };
 		A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTGraphViewController.m; sourceTree = "<group>"; };
+		C2EA1C480115F9C3F5E982C0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1988503AA5045C7129ED8621 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2EA1C480115F9C3F5E982C0 /* Pods.debug.xcconfig */,
+				4B479C98D8E98F8F08C81C8E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A0957E2819A75B010058EF12 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +230,7 @@
 				A6924EB1199E28C5009D7220 /* Leukemia AppTests */,
 				A6924E88199E28C5009D7220 /* Frameworks */,
 				A6924E87199E28C5009D7220 /* Products */,
-				99AD9414280540CE9F911869 /* Pods.xcconfig */,
+				1988503AA5045C7129ED8621 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -345,10 +355,10 @@
 				A6924EA2199E28C5009D7220 /* RTMedicineViewController.m */,
 				A095897719DAAA3E006BE617 /* RTSelectKemoTableViewController.h */,
 				A095897819DAAA3E006BE617 /* RTSelectKemoTableViewController.m */,
-				A6976E0619ED2B9B00CC29BF /* RTBloodSampleTableViewCell.h */,
-				A6976E0719ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m */,
 				A6976E0919ED378300CC29BF /* RTAddBloodSampleViewController.h */,
 				A6976E0A19ED378300CC29BF /* RTAddBloodSampleViewController.m */,
+				A684DFA21A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.h */,
+				A684DFA31A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m */,
 			);
 			name = Medicine;
 			sourceTree = "<group>";
@@ -477,7 +487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ECC9D1A32D164018949A869E /* Check Pods Manifest.lock */ = {
@@ -503,7 +513,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A09996F919A3500300EF39A5 /* RTBrushSizeViewController.m in Sources */,
-				A6976E0819ED2B9B00CC29BF /* RTBloodSampleTableViewCell.m in Sources */,
 				A695674919E6B1B300C69FA9 /* RTRootTabBarController.m in Sources */,
 				A695674619E6AD6700C69FA9 /* RTTabInteractiveTransition.m in Sources */,
 				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
@@ -517,6 +526,7 @@
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
 				A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */,
 				A6976E0B19ED378300CC29BF /* RTAddBloodSampleViewController.m in Sources */,
+				A684DFA41A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m in Sources */,
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
 				A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */,
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
@@ -662,7 +672,7 @@
 		};
 		A6924EBC199E28C5009D7220 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99AD9414280540CE9F911869 /* Pods.xcconfig */;
+			baseConfigurationReference = C2EA1C480115F9C3F5E982C0 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -680,7 +690,7 @@
 		};
 		A6924EBD199E28C5009D7220 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99AD9414280540CE9F911869 /* Pods.xcconfig */;
+			baseConfigurationReference = 4B479C98D8E98F8F08C81C8E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

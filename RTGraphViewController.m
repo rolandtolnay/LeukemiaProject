@@ -16,7 +16,11 @@ static NSString *OtherPain = @"Other";
 
 @property RTDataManagement* dataManagement;
 
-@property (strong, nonatomic) NSArray* painValues;
+@property SHLineGraphView *upperGraph;
+@property SHLineGraphView *lowerGraph;
+
+@property (strong, nonatomic) NSMutableArray* upperGraphValues;
+@property (strong, nonatomic) NSMutableArray* upperGraphTimestamps;
 @property (strong, nonatomic) NSMutableArray* weightTimestamps;
 @property (strong, nonatomic) NSMutableArray* weightValues;
 
@@ -32,52 +36,137 @@ static NSString *OtherPain = @"Other";
 
 @implementation RTGraphViewController
 
+-(NSMutableArray *)upperGraphValues{
+    if(!_upperGraphValues){
+        _upperGraphValues = [[NSMutableArray alloc]init];
+    }
+    return _upperGraphValues;
+}
+
+-(NSMutableArray *)upperGraphTimestamps{
+    if(!_upperGraphTimestamps){
+        _upperGraphTimestamps = [[NSMutableArray alloc]init];
+    }
+    return _upperGraphTimestamps;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.lblPainType.text = NSLocalizedString(@"Pain types:", nil);
-    self.colorMouthPain = [UIColor gk_pomegranateColor];
-    self.colorStomachPain = [UIColor gk_greenSeaColor];
-    self.colorOtherPain = [UIColor gk_belizeHoleColor];
+    //    self.colorMouthPain = [UIColor gk_pomegranateColor];
+    //    self.colorStomachPain = [UIColor gk_greenSeaColor];
+    //    self.colorOtherPain = [UIColor gk_belizeHoleColor];
     
-    self.weightTimestamps = [[NSMutableArray alloc] init];
-    self.weightValues = [[NSMutableArray alloc]init];
+//    self.weightTimestamps = [[NSMutableArray alloc] init];
+//    self.weightValues = [[NSMutableArray alloc]init];
+//    self.upperGraphValues = [[NSMutableArray alloc] init];
+//    self.upperGraphTimestamps = [[NSMutableArray alloc]init];
+
+    self.dataManagement = [RTDataManagement singleton];
     
-    if ([self isRetinaDisplay])
-    {
-        self.dataManagement = [RTDataManagement singleton];
-        
-        NSDate *currentDate = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *today = [dateFormatter stringFromDate:currentDate];
-        [self.datePicker setTitle:today forState:UIControlStateNormal];
-        self.currentDate = currentDate;
-        
-        self.graph.dataSource = self;
-        self.graph.lineWidth = 3.0;
-        self.graph.valueLabelCount = 11;
-        self.graph.startFromZero = YES;
-    }
-    else
-    {
-        self.graph.hidden = YES;
-        self.datePicker.hidden = YES;
-        [self showError:YES withText:@"Graph feature only supported on devices with retina display."];
-    }
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *today = [dateFormatter stringFromDate:currentDate];
+    [self.datePicker setTitle:today forState:UIControlStateNormal];
+    self.currentDate = currentDate;
+    
+    self.datePicker.hidden = YES;
+   
+    //    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    if ([self isRetinaDisplay])
-        [self refreshGraph];
+    [self initGraph];
     [super viewDidAppear:animated];
 }
 
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+//{
+//    if ([self isRetinaDisplay])
+//        [self refreshGraph];
+//}
+
+-(void)initGraph
 {
-    if ([self isRetinaDisplay])
-        [self refreshGraph];
+    self.upperGraph = [[SHLineGraphView alloc] initWithFrame:CGRectMake(16, 109, 520, 380)];
+    
+    self.upperGraph.yAxisRange = @(98);
+    self.upperGraph.xAxisValues = @[
+                               @{ @1 : @"JAN" },
+                               @{ @2 : @"FEB" },
+                               @{ @3 : @"MAR" },
+                               @{ @4 : @"APR" },
+                               @{ @5 : @"MAY" },
+                               @{ @6 : @"JUN" },
+                               @{ @7 : @"JUL" },
+                               @{ @8 : @"AUG" },
+                               @{ @9 : @"SEP" },
+                               @{ @10 : @"OCT" },
+                               @{ @11 : @"NOV" },
+                               @{ @12 : @"DEC" }
+                               ];
+    
+    SHPlot *_plot1 = [[SHPlot alloc] init];
+    //values for date
+    _plot1.plottingValues = @[
+                              @{ @1 : @65.8 },
+                              @{ @2 : @20 },
+                              @{ @3 : @23 },
+                              @{ @4 : @22 },
+                              @{ @5 : @12.3 },
+                              @{ @6 : @45.8 },
+                              @{ @7 : @56 },
+                              @{ @8 : @90 },
+                              @{ @9 : @65 },
+                              @{ @10 : @10 },
+                              @{ @11 : @67 },
+                              @{ @12 : @23 }
+                              ];
+    [self.upperGraph addPlot:_plot1];
+    [self.upperGraph setupTheView];
+    
+    [self.view addSubview:self.upperGraph];
+    
+    self.lowerGraph = [[SHLineGraphView alloc] initWithFrame:CGRectMake(16, 546, 520, 380)];
+    
+    self.lowerGraph.yAxisRange = @(98);
+    self.lowerGraph.xAxisValues = @[
+                               @{ @1 : @"JAN" },
+                               @{ @2 : @"FEB" },
+                               @{ @3 : @"MAR" },
+                               @{ @4 : @"APR" },
+                               @{ @5 : @"MAY" },
+                               @{ @6 : @"JUN" },
+                               @{ @7 : @"JUL" },
+                               @{ @8 : @"AUG" },
+                               @{ @9 : @"SEP" },
+                               @{ @10 : @"OCT" },
+                               @{ @11 : @"NOV" },
+                               @{ @12 : @"DEC" }
+                               ];
+    
+    SHPlot *_plot2 = [[SHPlot alloc] init];
+    _plot2.plottingValues = @[
+                              @{ @1 : @65.8 },
+                              @{ @2 : @20 },
+                              @{ @3 : @23 },
+                              @{ @4 : @22 },
+                              @{ @5 : @12.3 },
+                              @{ @6 : @45.8 },
+                              @{ @7 : @56 },
+                              @{ @8 : @97 },
+                              @{ @9 : @65 },
+                              @{ @10 : @10 },
+                              @{ @11 : @67 },
+                              @{ @12 : @23 }
+                              ];
+    [self.lowerGraph addPlot:_plot2];
+    [self.lowerGraph setupTheView];
+    
+    [self.view addSubview:self.lowerGraph];
 }
 
 #pragma mark - BOOL's
@@ -115,7 +204,7 @@ static NSString *OtherPain = @"Other";
 
 -(void)showError:(BOOL) isHidden withText:(NSString *)errorText {
     self.lblError.hidden = !isHidden;
-    self.graph.hidden = isHidden;
+//    self.graph.hidden = isHidden;
     self.lblError.text = errorText;
     [self.lblError setCenter:self.view.center];
 }
@@ -142,13 +231,17 @@ static NSString *OtherPain = @"Other";
             }
         }
     }
-
+    
 }
 
 #pragma mark - Graph Data Display methods
 
 -(void)refreshGraph {
-    [self.graph reset];
+    [self.upperGraph removeFromSuperview];
+    self.upperGraph = [[SHLineGraphView alloc] initWithFrame:CGRectMake(16, 109, 520, 380)];
+    [self.upperGraphValues removeAllObjects];
+    [self.upperGraphTimestamps removeAllObjects];
+    
     [self.view endEditing:YES];
     if ([self isPainGraph])
     {
@@ -159,13 +252,7 @@ static NSString *OtherPain = @"Other";
             if ([self.dataManagement isEnoughDataAtDay:selectedDay])
             {
                 [self showError:NO withText:nil];
-                self.painValues = @[
-                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
-                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
-                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
-                                    @[@1, @5, @10]
-                                    ];
-                [self.graph draw];
+
             }
             else
             {
@@ -175,12 +262,23 @@ static NSString *OtherPain = @"Other";
         {
             if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:MouthPain])
             {
-                [self showError:NO withText:nil];
-                self.painValues = @[
-                                    [self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain],
-                                    @[@1, @5, @10]
-                                    ];
-                [self.graph draw];
+                long count = [[self.dataManagement timeStampsAtDay:selectedDay forPainType:MouthPain] count];
+                for (int i = 1; i<=count; i++) {
+                    [self.upperGraphValues addObject: @{ [NSNumber numberWithInt:i] : [[self.dataManagement painLevelsAtDay:selectedDay forPainType:MouthPain] objectAtIndex:i-1]} ];
+                    [self.upperGraphTimestamps addObject: @{ [NSNumber numberWithInt:i] : [[self.dataManagement timeStampsAtDay:selectedDay forPainType:MouthPain] objectAtIndex:i-1]} ];
+                }
+                self.upperGraph.yAxisRange = @(10);
+                self.upperGraph.xAxisValues = self.upperGraphTimestamps;
+                SHPlot *plot = [[SHPlot alloc]init];
+                plot.plottingValues = self.upperGraphValues;
+                [self.upperGraph addPlot:plot];
+                [self.upperGraph setupTheView];
+                
+                [self.view addSubview:self.upperGraph];
+                
+                NSLog(@"values: %@",self.upperGraphValues);
+                NSLog(@"timestamps: %@",self.upperGraphTimestamps);
+
             } else {
                 [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
@@ -190,11 +288,11 @@ static NSString *OtherPain = @"Other";
             if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:StomachPain])
             {
                 [self showError:NO withText:nil];
-                self.painValues = @[
+                self.upperGraphValues = @[
                                     [self.dataManagement painLevelsAtDay:selectedDay forPainType:StomachPain],
                                     @[@1, @5, @10]
                                     ];
-                [self.graph draw];
+//                [self.graph draw];
             } else {
                 [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
@@ -203,11 +301,11 @@ static NSString *OtherPain = @"Other";
             if ([self.dataManagement isEnoughDataAtDay:selectedDay forPainType:OtherPain])
             {
                 [self showError:NO withText:nil];
-                self.painValues = @[
+                self.upperGraphValues = @[
                                     [self.dataManagement painLevelsAtDay:selectedDay forPainType:OtherPain],
                                     @[@1, @5, @10]
                                     ];
-                [self.graph draw];
+//                [self.graph draw];
             } else {
                 [self showError:YES withText:NSLocalizedString(@"Not enough data to show graph.", nil)];
             }
@@ -219,7 +317,7 @@ static NSString *OtherPain = @"Other";
         if ([self.weightTimestamps count] > 1)
         {
             [self showError:NO withText:nil];
-            [self.graph draw];
+//            [self.graph draw];
         }
         else
         {
@@ -238,8 +336,8 @@ static NSString *OtherPain = @"Other";
         NSString *today = [dateFormatter stringFromDate:self.currentDate];
         [self.datePicker setTitle:today forState:UIControlStateNormal];
         
-        self.graph.startFromZero = YES;
-        self.graph.valueLabelCount = 11;
+//        self.graph.startFromZero = YES;
+//        self.graph.valueLabelCount = 11;
         
         self.painType.hidden = NO;
         self.lblPainType.hidden = NO;
@@ -250,8 +348,9 @@ static NSString *OtherPain = @"Other";
     {
         self.painType.hidden = YES;
         self.lblPainType.hidden = YES;
-        self.graph.startFromZero = NO;
+//        self.graph.startFromZero = NO;
         [self weekSelected:[[RTService singleton] allDatesInWeek:[self.currentDate week] forYear:[self.currentDate year]]];
+        //        [self refreshGraph];
     }
 }
 
@@ -291,90 +390,88 @@ static NSString *OtherPain = @"Other";
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
     }
-    
 }
 
 #pragma mark - GKLineGraph DataSource
 
-- (NSArray *)valuesForLineAtIndex:(NSInteger)index {
-    if ([self isPainGraph])
-        return [self.painValues objectAtIndex:index];
-    if ([self isWeightGraph])
-        return self.weightValues;
-    return nil;
-}
-
-- (NSInteger)numberOfLines {
-    if ([self isPainGraph])
-        return [self.painValues count];
-    if ([self isWeightGraph])
-        return 1;
-    return 0;
-}
-
-- (UIColor *)colorForLineAtIndex:(NSInteger)index {
-    if ([self isPainGraph])
-    {
-        if ([self isPainAllGraph])
-        {
-            id colors = @[ _colorMouthPain,
-                           _colorStomachPain,
-                           _colorOtherPain,
-                           [UIColor clearColor]];
-            return [colors objectAtIndex:index];
-        } else if ([self isPainMouthGraph])
-        {
-            id colors = @[ _colorMouthPain,
-                           [UIColor clearColor]];
-            return [colors objectAtIndex:index];
-        } else if ([self isPainStomachGraph])
-        {
-            id colors = @[ _colorStomachPain,
-                           [UIColor clearColor]];
-            return [colors objectAtIndex:index];
-        } else if ([self isPainOtherGraph])
-        {
-            id colors = @[ _colorOtherPain,
-                           [UIColor clearColor]];
-            return [colors objectAtIndex:index];
-        }
-    }
-    if ([self isWeightGraph])
-    {
-        return [UIColor gk_concreteColor];
-    }
-    return [UIColor clearColor];
-}
-
-- (CFTimeInterval)animationDurationForLineAtIndex:(NSInteger)index {
-    return 1.0;
-}
-
-- (NSString *)titleForLineAtIndex:(NSInteger)index {
-    if ([self isPainGraph])
-    {
-        NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
-        if ([self isPainAllGraph])
-            return @"";
-        if ([self isPainMouthGraph])
-            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:MouthPain] objectAtIndex:index];
-        if ([self isPainStomachGraph])
-            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:StomachPain] objectAtIndex:index];
-        if ([self isPainOtherGraph])
-            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:OtherPain] objectAtIndex:index];
-    }
-    if ([self isWeightGraph])
-    {
-        return [self.weightTimestamps objectAtIndex:index];
-    }
-    return @"";
-}
+//- (NSArray *)valuesForLineAtIndex:(NSInteger)index {
+//    if ([self isPainGraph])
+//        return [self.painValues objectAtIndex:index];
+//    if ([self isWeightGraph])
+//        return self.weightValues;
+//    return nil;
+//}
+//
+//- (NSInteger)numberOfLines {
+//    if ([self isPainGraph])
+//        return [self.painValues count];
+//    if ([self isWeightGraph])
+//        return 1;
+//    return 0;
+//}
+//
+//- (UIColor *)colorForLineAtIndex:(NSInteger)index {
+//    if ([self isPainGraph])
+//    {
+//        if ([self isPainAllGraph])
+//        {
+//            id colors = @[ _colorMouthPain,
+//                           _colorStomachPain,
+//                           _colorOtherPain,
+//                           [UIColor clearColor]];
+//            return [colors objectAtIndex:index];
+//        } else if ([self isPainMouthGraph])
+//        {
+//            id colors = @[ _colorMouthPain,
+//                           [UIColor clearColor]];
+//            return [colors objectAtIndex:index];
+//        } else if ([self isPainStomachGraph])
+//        {
+//            id colors = @[ _colorStomachPain,
+//                           [UIColor clearColor]];
+//            return [colors objectAtIndex:index];
+//        } else if ([self isPainOtherGraph])
+//        {
+//            id colors = @[ _colorOtherPain,
+//                           [UIColor clearColor]];
+//            return [colors objectAtIndex:index];
+//        }
+//    }
+//    if ([self isWeightGraph])
+//    {
+//        return [UIColor gk_concreteColor];
+//    }
+//    return [UIColor clearColor];
+//}
+//
+//- (CFTimeInterval)animationDurationForLineAtIndex:(NSInteger)index {
+//    return 1.0;
+//}
+//
+//- (NSString *)titleForLineAtIndex:(NSInteger)index {
+//    if ([self isPainGraph])
+//    {
+//        NSString* selectedDay = [self.datePicker titleForState:UIControlStateNormal];
+//        if ([self isPainAllGraph])
+//            return @"";
+//        if ([self isPainMouthGraph])
+//            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:MouthPain] objectAtIndex:index];
+//        if ([self isPainStomachGraph])
+//            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:StomachPain] objectAtIndex:index];
+//        if ([self isPainOtherGraph])
+//            return [[self.dataManagement timeStampsAtDay:selectedDay forPainType:OtherPain] objectAtIndex:index];
+//    }
+//    if ([self isWeightGraph])
+//    {
+//        return [self.weightTimestamps objectAtIndex:index];
+//    }
+//    return @"";
+//}
 
 
 
 #pragma mark - CalendarPicker delegate
 
-//RTGraphViewController.m
 - (void)dateSelected:(NSDate *)date
 {
     self.currentDate = date;
@@ -409,7 +506,7 @@ static NSString *OtherPain = @"Other";
     
     [self getWeightFromDateArray:datesInWeek];
     
-    self.graph.valueLabelCount = 11;
+//    self.graph.valueLabelCount = 11;
     [self refreshGraph];
     
 }
