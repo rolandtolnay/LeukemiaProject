@@ -527,7 +527,9 @@ static RTDataManagement *dataManagement = nil;
 
 
 #pragma mark - Saving data methods
-
+-(void)saveMucositisDataWithPainScore:(NSNumber *)painScore redNessScore:(NSNumber *)rednessScore foodScore:(NSNumber *)foodScore drawingPath:(NSString *)dPath vomitting:(NSNumber *)vomit nrOfStools:(NSNumber *)stools fluidsDrunkML:(NSNumber *)fluidsDrunk fluidsInDropML:(NSNumber *)fluidsInDrop urinML:(NSNumber *)urin weightKG:(NSNumber *)weight{
+    
+}
 
 
 

@@ -1,27 +1,30 @@
 //
-//  RTMucositisInfoTableTableViewController.m
+//  RTMucositisInfoTableViewController.m
 //  Leukemia App
 //
-//  Created by DMU-24 on 30/01/15.
+//  Created by DMU-24 on 09/02/15.
 //  Copyright (c) 2015 DMU-24. All rights reserved.
 //
 
-#import "RTMucositisInfoTableTableViewController.h"
+#import "RTMucositisInfoTableViewController.h"
 
-@interface RTMucositisInfoTableTableViewController ()
+@interface RTMucositisInfoTableViewController ()
 
 @end
 
-@implementation RTMucositisInfoTableTableViewController
+@implementation RTMucositisInfoTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.infoContent = @[
+                             (NSLocalizedString(@"Mild Oral Mucositis - Level 1", nil)),
+                             (NSLocalizedString(@"Moderate Oral Mucositis - Level 2", nil)),
+                             (NSLocalizedString(@"Severe Oral Mucositis - Level 3", nil)),
+                             (NSLocalizedString(@"Severe Oral Mucositis - Level 4", nil))
+                             ];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.tableFooterView = [[UIView alloc] init] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,26 +35,21 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return 4;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    RTMouthInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
+    cell.infoLabel.text = [self.infoContent objectAtIndex:indexPath.row];
+    cell.mucositisImageView.image = [UIImage imageNamed:[self.infoContent objectAtIndex:indexPath.row]];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

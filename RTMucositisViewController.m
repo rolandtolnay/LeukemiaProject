@@ -10,6 +10,8 @@
 
 @interface RTMucositisViewController ()
 
+@property UIPopoverController *popover;
+
 @end
 
 @implementation RTMucositisViewController
@@ -20,15 +22,16 @@
     self.btnPressedColor = [UIColor colorWithRed:105.0/255.0 green:147.0/255.0 blue:197.0/255.0 alpha:1.0];
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"mucositisInfoSegue"]){
+        self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
+        self.popover.delegate = self;
+    }
 }
-*/
+
 
 #pragma mark - Methods related specific to saving data
 

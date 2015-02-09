@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTDataManagement.h"
 
-@interface RTMucositisViewController : UIViewController
+@interface RTMucositisViewController : UIViewController <UIPopoverControllerDelegate>
 
 //Mucositis table
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *allButtons;

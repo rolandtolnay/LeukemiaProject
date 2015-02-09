@@ -339,7 +339,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="FPu-uN-qkJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4723" y="-350"/>
+            <point key="canvasLocation" x="4732" y="326"/>
         </scene>
         <!--Pain-->
         <scene sceneID="Fxn-AL-Wpw">
@@ -392,7 +392,7 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cai-1G-7gB" userLabel="flaccScaleView">
                                 <rect key="frame" x="47" y="72" width="675" height="512"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FLACC - NY" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="FLACC - NY-2" translatesAutoresizingMaskIntoConstraints="NO" id="lnI-tC-bxM">
                                         <rect key="frame" x="10" y="13" width="654" height="379"/>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="umN-XN-VNw">
@@ -1493,6 +1493,9 @@
                                 <state key="normal" title="Button" image="MouthIcon">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="0gu-t3-wS6" kind="push" identifier="drawMouthSegue" id="pW8-7m-5CO"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw Mouth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF0-qg-ebT">
                                 <rect key="frame" x="337" y="447" width="94" height="21"/>
@@ -1663,12 +1666,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluid given in drop:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Tq-WFa">
-                                <rect key="frame" x="103" y="695" width="320" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How much urin has come:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-Yz-Dek">
                                 <rect key="frame" x="103" y="755" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1740,6 +1737,12 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fluid given in drop:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBw-Tq-WFa">
+                                <rect key="frame" x="103" y="695" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1751,6 +1754,11 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="eeT-0O-jH5" kind="popover" identifier="mucositisInfoSegue" popoverAnchorView="CTa-Vh-C5V" id="Mec-i1-aA1">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -1815,6 +1823,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9u-Ts-B8D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3052" y="-350"/>
+        </scene>
+        <!--Mucositis Illustration-->
+        <scene sceneID="aBu-8V-3Sp">
+            <objects>
+                <viewController id="0gu-t3-wS6" customClass="RTMouthDrawViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BDc-eZ-ViI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lki-qY-IoJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6zi-7g-CNz">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-h1-dNr" userLabel="MouthDrawView">
+                                <rect key="frame" x="101" y="150" width="567" height="641"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mundUdenTekst" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-u9-bSj">
+                                        <rect key="frame" x="0.0" y="0.0" width="567" height="641"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mucositis Illustration" id="OZH-DI-RuO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="88C-wN-kbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1005" y="-1651"/>
+        </scene>
+        <!--Mucositis Info Table View Controller-->
+        <scene sceneID="Efi-lQ-ni3">
+            <objects>
+                <tableViewController id="eeT-0O-jH5" customClass="RTMucositisInfoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="241" sectionHeaderHeight="22" sectionFooterHeight="22" id="seg-Df-I0b">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="infoCell" rowHeight="241" id="F3L-lI-T3Q" customClass="RTMouthInfoTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F3L-lI-T3Q" id="iUc-cU-DLc">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emB-TR-YS9">
+                                            <rect key="frame" x="512" y="39" width="172" height="161"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb4-91-zcD">
+                                            <rect key="frame" x="23" y="110" width="441" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoLabel" destination="yb4-91-zcD" id="9St-L6-Yz5"/>
+                                    <outlet property="mucositisImageView" destination="emB-TR-YS9" id="KAs-ce-F3a"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="eeT-0O-jH5" id="ujv-NI-Ukh"/>
+                            <outlet property="delegate" destination="eeT-0O-jH5" id="dLf-Pq-DJn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Ri1-Mn-ABv"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUc-o4-b5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1998" y="-1620"/>
         </scene>
         <!--Graphs-->
         <scene sceneID="Ogg-AC-KHJ">
@@ -2277,7 +2358,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FLACC - NY" width="1049" height="612"/>
+        <image name="FLACC - NY-2" width="1049" height="612"/>
         <image name="FLACC_info" width="668" height="902"/>
         <image name="MouthIcon" width="108" height="120"/>
         <image name="Mucositis" width="32" height="32"/>
@@ -2292,6 +2373,7 @@
         <image name="camera-icon" width="256" height="256"/>
         <image name="humanBodyIcon" width="42" height="91"/>
         <image name="loginBackGround" width="620" height="349"/>
+        <image name="mundUdenTekst" width="405" height="537"/>
         <image name="painDrawBody" width="610" height="838"/>
         <image name="redbtn" width="300" height="300"/>
         <image name="smileyA" width="338" height="338"/>
