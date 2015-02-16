@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		000E19F831AA4ED9907DC336 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D4AAFAC83C479980D0C816 /* libPods.a */; };
+		A001D1371A91EEEE005317E3 /* RTMucositisData.m in Sources */ = {isa = PBXBuildFile; fileRef = A001D1361A91EEEE005317E3 /* RTMucositisData.m */; };
 		A04F86091A7A6751000F1AC9 /* RTMucositisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F86081A7A6751000F1AC9 /* RTMucositisViewController.m */; };
 		A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0636C0A19AF22E200188588 /* QuartzCore.framework */; };
 		A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06912BD19AF58F8002EDEE1 /* RTDetailTableViewCell.m */; };
@@ -66,6 +67,8 @@
 /* Begin PBXFileReference section */
 		23D4AAFAC83C479980D0C816 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99AD9414280540CE9F911869 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A001D1351A91EEEE005317E3 /* RTMucositisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisData.h; sourceTree = "<group>"; };
+		A001D1361A91EEEE005317E3 /* RTMucositisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMucositisData.m; sourceTree = "<group>"; };
 		A04F86071A7A6751000F1AC9 /* RTMucositisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisViewController.h; sourceTree = "<group>"; };
 		A04F86081A7A6751000F1AC9 /* RTMucositisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMucositisViewController.m; sourceTree = "<group>"; };
 		A0636C0A19AF22E200188588 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -212,6 +215,8 @@
 				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
 				A633F3F31A10E51900DE90C9 /* RTService.h */,
 				A633F3F41A10E51900DE90C9 /* RTService.m */,
+				A001D1351A91EEEE005317E3 /* RTMucositisData.h */,
+				A001D1361A91EEEE005317E3 /* RTMucositisData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				A695674619E6AD6700C69FA9 /* RTTabInteractiveTransition.m in Sources */,
 				A6924EA3199E28C5009D7220 /* RTMedicineViewController.m in Sources */,
 				A06912BE19AF58F8002EDEE1 /* RTDetailTableViewCell.m in Sources */,
+				A001D1371A91EEEE005317E3 /* RTMucositisData.m in Sources */,
 				A0957E2719A75AF30058EF12 /* RTDataManagement.m in Sources */,
 				A610475819EBC619007B044D /* RTSmileyTableViewController.m in Sources */,
 				A694A80619A1DF290000B8C8 /* RTPainScaleViewController.m in Sources */,

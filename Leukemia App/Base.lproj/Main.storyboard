@@ -1487,16 +1487,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TEstVerdana-3" translatesAutoresizingMaskIntoConstraints="NO" id="Fz8-5j-e4W">
                                 <rect key="frame" x="57" y="112" width="654" height="252"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq" userLabel="DrawMouthBtn">
-                                <rect key="frame" x="359" y="387" width="51" height="52"/>
-                                <accessibility key="accessibilityConfiguration" label=""/>
-                                <state key="normal" title="Button" image="MouthIcon">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="0gu-t3-wS6" kind="push" identifier="drawMouthSegue" id="pW8-7m-5CO"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Draw Mouth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZF0-qg-ebT">
                                 <rect key="frame" x="337" y="447" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1576,7 +1566,7 @@
                                     <action selector="mucositisTableButtonSelected:" destination="hcp-dV-dpe" eventType="touchUpInside" id="D4p-TA-8Y7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRg-cv-YNE">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRg-cv-YNE">
                                 <rect key="frame" x="250" y="212" width="85" height="71"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1743,6 +1733,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq" userLabel="DrawMouthBtn">
+                                <rect key="frame" x="352" y="387" width="64" height="52"/>
+                                <accessibility key="accessibilityConfiguration" label=""/>
+                                <state key="normal" image="mouthIcon">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="0gu-t3-wS6" kind="push" identifier="drawMouthSegue" id="pW8-7m-5CO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1763,6 +1763,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="fluidsDrunkTxt" destination="tZT-Nx-wGM" id="DcS-Hb-JRv"/>
+                        <outlet property="fluidsInDropTxt" destination="fZN-ut-Z1J" id="PX5-al-7fx"/>
+                        <outlet property="stoolsTxt" destination="VgC-pj-hqq" id="hcO-e7-naW"/>
+                        <outlet property="urinTxt" destination="PPn-oD-rmq" id="9Kt-li-vC2"/>
+                        <outlet property="vomittingTxt" destination="YsG-YT-GEu" id="GXT-U7-VyS"/>
+                        <outlet property="weightTxt" destination="pku-JK-ToI" id="ZuQ-FM-naz"/>
                         <outletCollection property="allButtons" destination="oj5-zo-mNO" id="p1S-cQ-EAU"/>
                         <outletCollection property="allButtons" destination="Vb7-vB-XN8" id="ZZu-A8-jPk"/>
                         <outletCollection property="allButtons" destination="nba-hT-aLc" id="dhb-2x-cnH"/>
@@ -1827,7 +1833,7 @@
         <!--Mucositis Illustration-->
         <scene sceneID="aBu-8V-3Sp">
             <objects>
-                <viewController id="0gu-t3-wS6" customClass="RTMouthDrawViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="0gu-t3-wS6" customClass="RTMouthDrawViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BDc-eZ-ViI"/>
                         <viewControllerLayoutGuide type="bottom" id="Lki-qY-IoJ"/>
@@ -1836,11 +1842,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYb-qO-Jm1" userLabel="redBtn">
+                                <rect key="frame" x="28" y="247" width="90" height="90"/>
+                                <state key="normal" image="redbtn">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorPressed:" destination="0gu-t3-wS6" eventType="touchUpInside" id="9F2-W5-Sg9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amc-bZ-ljz" userLabel="yellowBtn">
+                                <rect key="frame" x="28" y="345" width="90" height="90"/>
+                                <state key="normal" image="btnyellow">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorPressed:" destination="0gu-t3-wS6" eventType="touchUpInside" id="jaD-cR-GwB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tht-2I-Fet" userLabel="greenBtn">
+                                <rect key="frame" x="28" y="443" width="90" height="90"/>
+                                <state key="normal" image="btngreen">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorPressed:" destination="0gu-t3-wS6" eventType="touchUpInside" id="gJ5-1k-ePC"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WgO-s4-Jp5">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <items>
+                                    <barButtonItem title="Reset Drawing" id="EFY-Vz-3gs">
+                                        <connections>
+                                            <action selector="resetDrawing:" destination="0gu-t3-wS6" id="MLM-eg-Bmh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iq1-Sp-5XD"/>
+                                    <barButtonItem title="Brush size" id="N6s-NU-UvC"/>
+                                </items>
+                            </toolbar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-h1-dNr" userLabel="MouthDrawView">
-                                <rect key="frame" x="101" y="150" width="567" height="641"/>
+                                <rect key="frame" x="154" y="150" width="461" height="641"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mundUdenTekst" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-u9-bSj">
-                                        <rect key="frame" x="0.0" y="0.0" width="567" height="641"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mundUdenTekst" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-u9-bSj" userLabel="Main Image">
+                                        <rect key="frame" x="0.0" y="0.0" width="461" height="641"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mundUdenTekst" translatesAutoresizingMaskIntoConstraints="NO" id="haB-Yz-4XQ" userLabel="Draw Image">
+                                        <rect key="frame" x="0.0" y="0.0" width="461" height="641"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1848,9 +1896,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Mucositis Illustration" id="OZH-DI-RuO"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Mucositis Illustration" id="OZH-DI-RuO">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="maI-x7-rtQ">
+                            <connections>
+                                <segue destination="aNM-Wi-RfY" kind="unwind" unwindAction="unwindToMucositisController:" id="nX6-fo-gl4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="cXK-yQ-VSr">
+                            <connections>
+                                <segue destination="aNM-Wi-RfY" kind="unwind" unwindAction="unwindToMucositisController:" id="Dkz-Xd-VLR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="btnSaveImage" destination="cXK-yQ-VSr" id="5yu-Oe-Rqk"/>
+                        <outlet property="drawImage" destination="haB-Yz-4XQ" id="8s5-du-hl0"/>
+                        <outlet property="greenBtn" destination="Tht-2I-Fet" id="4az-pX-P5x"/>
+                        <outlet property="mainImage" destination="Kcl-u9-bSj" id="LTs-Ty-X4t"/>
+                        <outlet property="mouthDrawView" destination="y5q-h1-dNr" id="ktl-SS-aiz"/>
+                        <outlet property="redBtn" destination="FYb-qO-Jm1" id="92L-Wk-Fjf"/>
+                        <outlet property="yelBtn" destination="amc-bZ-ljz" id="8te-si-csK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88C-wN-kbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="aNM-Wi-RfY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1005" y="-1651"/>
         </scene>
@@ -2360,7 +2431,6 @@
     <resources>
         <image name="FLACC - NY-2" width="1049" height="612"/>
         <image name="FLACC_info" width="668" height="902"/>
-        <image name="MouthIcon" width="108" height="120"/>
         <image name="Mucositis" width="32" height="32"/>
         <image name="TEstVerdana-3" width="1305" height="503"/>
         <image name="TabBarDiaryUpdated" width="32" height="32"/>
@@ -2373,7 +2443,8 @@
         <image name="camera-icon" width="256" height="256"/>
         <image name="humanBodyIcon" width="42" height="91"/>
         <image name="loginBackGround" width="620" height="349"/>
-        <image name="mundUdenTekst" width="405" height="537"/>
+        <image name="mouthIcon" width="42" height="58"/>
+        <image name="mundUdenTekst" width="461" height="640"/>
         <image name="painDrawBody" width="610" height="838"/>
         <image name="redbtn" width="300" height="300"/>
         <image name="smileyA" width="338" height="338"/>

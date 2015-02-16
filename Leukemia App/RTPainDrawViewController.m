@@ -25,16 +25,16 @@
     self.opacity = 0.0;
     
     [self.greenBtn setImage:[UIImage imageNamed:@"btngreen.png"] forState:UIControlStateNormal];
-    [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateSelected];
-    [self.greenBtn setImage:[UIImage imageNamed:@"greenBtnHighligted.png"] forState:UIControlStateHighlighted];
+    [self.greenBtn setImage:[UIImage imageNamed:@"btnGreenHighligted.png"] forState:UIControlStateSelected];
+    [self.greenBtn setImage:[UIImage imageNamed:@"btnGreenHighligted.png"] forState:UIControlStateHighlighted];
     
     [self.yelBtn setImage:[UIImage imageNamed:@"btnyellow.png"] forState:UIControlStateNormal];
-    [self.yelBtn setImage:[UIImage imageNamed:@"yellowBtnHighligted.png"] forState:UIControlStateSelected];
-    [self.yelBtn setImage:[UIImage imageNamed:@"yellowBtnHighligted.png"] forState:UIControlStateHighlighted];
+    [self.yelBtn setImage:[UIImage imageNamed:@"btnYellowHighlighted.png"] forState:UIControlStateSelected];
+    [self.yelBtn setImage:[UIImage imageNamed:@"btnYellowHighlighted.png"] forState:UIControlStateHighlighted];
     
     [self.redBtn setImage:[UIImage imageNamed:@"redbtn.png"] forState:UIControlStateNormal];
-    [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateSelected];
-    [self.redBtn setImage:[UIImage imageNamed:@"redBtnHighLighted.png"] forState:UIControlStateHighlighted];
+    [self.redBtn setImage:[UIImage imageNamed:@"btnRedHighlighted.png"] forState:UIControlStateSelected];
+    [self.redBtn setImage:[UIImage imageNamed:@"btnRedHighlighted.png"] forState:UIControlStateHighlighted];
     
     self.redDescription = NSLocalizedString(@"Red - It hurts so much that it's unbearable", nil);
     self.yellowDescription = NSLocalizedString(@"Yellow - It hurts, but it's bearable", nil);

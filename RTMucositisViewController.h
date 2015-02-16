@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RTDataManagement.h"
+#import "RTMouthDrawViewController.h"
 
 @interface RTMucositisViewController : UIViewController <UIPopoverControllerDelegate>
 
@@ -20,9 +21,21 @@
 
 //Textfields
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *allTxtFields;
+@property (weak, nonatomic) IBOutlet UITextField *vomittingTxt;
+@property (weak, nonatomic) IBOutlet UITextField *stoolsTxt;
+@property (weak, nonatomic) IBOutlet UITextField *fluidsDrunkTxt;
+@property (weak, nonatomic) IBOutlet UITextField *fluidsInDropTxt;
+@property (weak, nonatomic) IBOutlet UITextField *urinTxt;
+@property (weak, nonatomic) IBOutlet UITextField *weightTxt;
 
 //General properties
 @property (strong, nonatomic) RTDataManagement *dataManagement;
+@property (strong, nonatomic) NSNumber *painScore;
+@property (strong, nonatomic) NSNumber *rednessScore;
+@property (strong, nonatomic) NSNumber *foodConsumptionScore;
+@property (strong,nonatomic) NSString *drawingPath;
+@property (strong,nonatomic) UIImage *drawingToBeSaved;
+
 
 - (IBAction)saveAndSubmit:(id)sender;
 - (IBAction)mucositisTableButtonSelected:(id)sender;

@@ -12,6 +12,7 @@
 #import "SSKeyChain.h"
 @import AdSupport;
 #import "RTService.h"
+#import "RTMucositisData.h"
 
 @interface RTDataManagement : NSObject
 
@@ -63,16 +64,8 @@
 -(NSArray *) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 
 //Service methods for mucositis data-management
--(void) saveMucositisDataWithPainScore:(NSNumber *) painScore
-                          redNessScore:(NSNumber *) rednessScore
-                             foodScore:(NSNumber *) foodScore
-                           drawingPath:(NSString *) dPath
-                             vomitting:(NSNumber *) vomit
-                            nrOfStools:(NSNumber *) stools
-                         fluidsDrunkML:(NSNumber *) fluidsDrunk
-                        fluidsInDropML:(NSNumber *) fluidsInDrop
-                                urinML:(NSNumber *) urin
-                                weightKG:(NSNumber *) weight;
+-(void)saveMucositisData:(RTMucositisData *) data;
+-(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date;
 
 //testing method
 -(void) initTestData;
