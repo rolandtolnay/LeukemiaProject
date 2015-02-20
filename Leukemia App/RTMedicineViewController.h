@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *medicineView;
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionBloodSamples;
+
 @property (weak, nonatomic) IBOutlet UILabel *highDoseKemoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addHighDoseKemo;
 @property (weak, nonatomic) IBOutlet UIButton *editHighDoseKemo;

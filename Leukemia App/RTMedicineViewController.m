@@ -13,6 +13,9 @@
 @property UIPopoverController *kemoPopover;
 @property RTService *service;
 
+@property NSArray *sortedBloodSampleDates;
+@property NSMutableDictionary *selectedBloodSample;
+
 @end
 
 @implementation RTMedicineViewController
@@ -53,25 +56,11 @@
         self.addHighDoseKemo.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
+    self.selectedBloodSample = nil;
+    [self sortBloodSampleDates];
 }
 
 #pragma mark - Convenience methods
-
-//-(NSInteger)bloodSampleCountBeforeDate: (NSDate*) date{
-//    NSInteger count = 0;
-//    
-//    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
-//        [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-//        NSDate *regDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
-//        if ([self.service isDate:regDate earlierThanDate:date])
-//        {
-//            if([tempDict objectForKey:@"bloodSample"] != nil){
-//                count++;
-//            }
-//        }
-//    }
-//    return count;
-//}
 
 /**
  * Returns a dictionary with all bloodsample dictionaries, where the key is the blood-sample date.
@@ -82,46 +71,26 @@
     NSDate *tempDate;
     NSString *dateString;
     
-    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData){
+    for(NSMutableDictionary *tempDict in self.dataManagement.medicineData)
+    {
         NSMutableDictionary *bloodSampleDic = [tempDict objectForKey:@"bloodSample"];
-        if( bloodSampleDic != nil){
-            [self.dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-            tempDate = [self.dateFormatter dateFromString:[tempDict objectForKey:@"date"]];
-            [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            dateString = [self.dateFormatter stringFromDate:tempDate];
+        if(bloodSampleDic != nil)
+        {
+            
+            NSString *tempString = [tempDict objectForKey:@"date"];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+            tempDate = [dateFormatter dateFromString:tempString];
+            
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            dateString = [dateFormatter stringFromDate:tempDate];
             
             [daysWithBloodsamples setObject:bloodSampleDic forKey:dateString];
         }
     }
     return daysWithBloodsamples;
 }
-
-////Returns an array of dates that have blood samples
-//-(NSArray*)datesWithBloodSamples
-//{
-//    NSMutableArray *dates = [[NSMutableArray alloc]init];
-//    
-//    //the while loop starts by decrementing the current date by 1 day each iteration and checks for a key value in the
-//    //blood sample dictionary for that date. If it finds one, increases the number of found items, and adds the date to the array.
-//    //the loop runs until it finds the number of entries it that match the previous requirement (default 6).
-//    NSUInteger found = 0;
-//    NSDate *dateToSearch = [self.selectedDate offsetDay:1];
-//    [self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-//    NSMutableDictionary *bloodSampleDictionary = [self bloodSampleDictionary];
-//    while (found < entries) {
-//        dateToSearch = [dateToSearch offsetDay:-1];
-//        NSString *keyToSearch = [self.dateFormatter stringFromDate:dateToSearch];
-//        
-//        if ([bloodSampleDictionary objectForKey:keyToSearch]!=nil)
-//        {
-//            found++;
-//            [dates addObject:[self.dateFormatter dateFromString:keyToSearch]];
-//        }
-//        
-//    };
-//    
-//    return [dates copy];
-//}
 
 //Returns an array with blood sample values for a given date
 -(NSArray *)bloodSampleForDay:(NSDate*) date
@@ -130,11 +99,10 @@
     NSMutableDictionary *medicineRegistration = [[self.dataManagement medicineDataAtDate:date] objectForKey:@"bloodSample"];
     [bloodSample addObject:[medicineRegistration objectForKey:@"hemoglobin"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"thrombocytes"]];
+    [bloodSample addObject:[medicineRegistration objectForKey:@"leukocytes"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"neutrofile"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"crp"]];
-    [bloodSample addObject:[medicineRegistration objectForKey:@"leukocytes"]];
     [bloodSample addObject:[medicineRegistration objectForKey:@"alat"]];
-    [bloodSample addObject:[medicineRegistration objectForKey:@"other"]];
     
     return [bloodSample copy];
 }
@@ -150,6 +118,21 @@
     return [kemo copy];
 }
 
+-(void) sortBloodSampleDates
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSMutableArray *datesWithBloodSamples = [[self bloodSampleDictionary].allKeys mutableCopy];
+    for (int i =0; i < datesWithBloodSamples.count; i++)
+    {
+        NSDate *bloodSampleDate = [dateFormatter dateFromString:datesWithBloodSamples[i]];
+        datesWithBloodSamples[i] = bloodSampleDate;
+    }
+    [datesWithBloodSamples sortUsingSelector:@selector(compare:)];
+    
+    self.sortedBloodSampleDates = [datesWithBloodSamples copy];
+}
 
 #pragma mark - Doses
 
@@ -174,7 +157,7 @@
         [medicineRegistration setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
         [medicineRegistration setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"mercaptopurin"];
     }
-        
+    
     self.mtxText.enabled = NO;
     self.m6Text.enabled = NO;
     self.saveDose.hidden = YES;
@@ -217,6 +200,11 @@
         self.addHighDoseKemo.hidden = YES;
         self.editHighDoseKemo.hidden = NO;
     }
+    if([segue.identifier isEqualToString:@"showBloodSampleSegue"]) {
+        
+        RTAddBloodSampleViewController *controller = [segue destinationViewController];
+        controller.selectedBloodSample = self.selectedBloodSample;
+    }
 }
 
 - (IBAction)unwindToMedicine:(UIStoryboardSegue *)segue
@@ -225,6 +213,10 @@
     if ([sourceViewController isKindOfClass:[RTAddBloodSampleViewController class]])
     {
         [sourceViewController dismissViewControllerAnimated:YES completion:nil];
+        
+        self.selectedBloodSample = nil;
+        [self sortBloodSampleDates];
+        [self.collectionBloodSamples reloadData];
     }
 }
 
@@ -275,16 +267,39 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    return [self bloodSampleDictionary].count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RTBloodSampleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bloodSampleCell" forIndexPath:indexPath];
     
+    NSDate *cellDate = self.sortedBloodSampleDates[indexPath.row];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM"];
+    cell.lblDate.text = [dateFormatter stringFromDate:cellDate];
+    
+    NSArray *bloodSample = [self bloodSampleForDay:cellDate];
+    for (UILabel *lbl in cell.bloodSampleLabels)
+    {
+        [lbl setText:[NSString stringWithFormat:@"%@",bloodSample[lbl.tag]]];
+    }
+    
+     NSArray *kemo = [self kemoForDay:cellDate];
+    [cell.lblMTX setText:[NSString stringWithFormat:@"%@",kemo[0]]];
+    [cell.lbl6MP setText:[NSString stringWithFormat:@"%@",kemo[1]]];
+    
     
     return cell;
-    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDate *cellDate = self.sortedBloodSampleDates[indexPath.row];
+    self.selectedBloodSample = [[self.dataManagement medicineDataAtDate:cellDate] objectForKey:@"bloodSample"];
+    [self.selectedBloodSample setObject:cellDate forKey:@"date"];
+    [self performSegueWithIdentifier:@"showBloodSampleSegue" sender:self];
 }
 
 @end

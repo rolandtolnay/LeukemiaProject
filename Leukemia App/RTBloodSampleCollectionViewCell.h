@@ -13,5 +13,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *bloodSampleLabels;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblMTX;
+@property (weak, nonatomic) IBOutlet UILabel *lbl6MP;
 
 @end

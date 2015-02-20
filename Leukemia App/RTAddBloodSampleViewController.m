@@ -12,8 +12,6 @@
 
 @property RTDataManagement *dataManagement;
 
-@property NSDateFormatter *dateFormatter;
-
 @property UIPopoverController* popover;
 
 @end
@@ -25,21 +23,32 @@
     
     self.dataManagement = [RTDataManagement singleton];
     
-    
-    self.dateFormatter = [[NSDateFormatter alloc]init];
-    //[self.dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
-    self.selectedDate = [NSDate date];
-    NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
-    [dayShortFormatter setDateFormat:@"dd/MM"];
-    [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
-    
-    [self resetView];
+    if (self.selectedBloodSample != nil) //Editing blood sample
+    {
+        NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Edit blood sample"];
+        [self.btnAddSample setAttributedTitle:title forState:UIControlStateNormal];
+        
+        self.selectedDate = [self.selectedBloodSample objectForKey:@"date"];
+        NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
+        [dayShortFormatter setDateFormat:@"dd/MM"];
+        [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+        
+        [self prepareForUpdate];
+        
+    } else                              //Adding blood sample
+    {
+        self.selectedDate = [NSDate date];
+        NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
+        [dayShortFormatter setDateFormat:@"dd/MM"];
+        [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+        
+        [self resetView];
+    }
 }
 
 
 -(void)resetView {
-    for (UITextField *txf in self.bloodSamples)
+    for (UITextField *txf in self.txfBloodSamples)
     {
         [txf setText:(@"")];
         txf.delegate = self;
@@ -47,10 +56,47 @@
     }
 }
 
+-(void)prepareForUpdate
+{
+    for (UITextField *txf in self.txfBloodSamples)
+    {
+        NSString *bloodSampleValue;
+        switch (txf.tag) {
+            case 0:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"hemoglobin"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            case 1:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"thrombocytes"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            case 2:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"leukocytes"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            case 3:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"neutrofile"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            case 4:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"crp"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            case 5:
+                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"alat"] stringValue];
+                [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    for (UITextField *txf in self.bloodSamples)
+    for (UITextField *txf in self.txfBloodSamples)
     {
         if (textField.tag < 5)
             if (txf.tag == textField.tag + 1)
@@ -62,7 +108,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [[event allTouches] anyObject];
-    for (UITextField *txf in self.bloodSamples)
+    for (UITextField *txf in self.txfBloodSamples)
         if ([txf isFirstResponder] && [touch view] != txf)
             [txf resignFirstResponder];
     [super touchesBegan:touches withEvent:event];
@@ -71,44 +117,119 @@
 #pragma mark - Sample CRUD
 
 - (IBAction)addSample:(id)sender {
+    
     NSMutableDictionary *sampleData = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
+    BOOL success = YES;
     
-    NSMutableDictionary *dataTobeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
-    
-    if(dataTobeSaved == nil){
-        dataTobeSaved = [self.dataManagement newMedicineData:self.selectedDate];
+    if(dataToBeSaved == nil){
+        dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
     }
     
-   for (UITextField *txf in self.bloodSamples)
-   {
-        NSNumber *bloodSampleValue = [NSNumber numberWithInteger:[txf.text integerValue]];
-        switch (txf.tag) {
-            case 0:
-                [sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
-                break;
-            case 1:
-                [sampleData setObject:bloodSampleValue forKey:@"thrombocytes"];
-                break;
-            case 2:
-                [sampleData setObject:bloodSampleValue forKey:@"leukocytes"];
-                break;
-            case 3:
-                [sampleData setObject:bloodSampleValue forKey:@"neutrofile"];
-                break;
-            case 4:
-                [sampleData setObject:bloodSampleValue forKey:@"crp"];
-                break;
-            case 5:
-                [sampleData setObject:bloodSampleValue forKey:@"alat"];
-                break;
-            default:
-                break;
+    for (UITextField *txf in self.txfBloodSamples)
+    {
+        NSString *trimmedValue = [txf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        if ([self isProperValue:trimmedValue forInput:(int)txf.tag])
+        {
+            NSNumber *bloodSampleValue;
+            switch (txf.tag) {
+                case 0:
+                    bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                    [sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
+                    break;
+                case 1:
+                    if ([trimmedValue isEqualToString:@""])
+                        [sampleData setObject:@"" forKey:@"thrombocytes"];
+                    else {
+                        bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                        [sampleData setObject:bloodSampleValue forKey:@"thrombocytes"];
+                    }
+                    break;
+                case 2:
+                    if ([trimmedValue isEqualToString:@""])
+                        [sampleData setObject:@"" forKey:@"leukocytes"];
+                    else {
+                        bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                        [sampleData setObject:bloodSampleValue forKey:@"leukocytes"];
+                    }
+                    break;
+                case 3:
+                    if ([trimmedValue isEqualToString:@""])
+                        [sampleData setObject:@"" forKey:@"neutrofile"];
+                    else {
+                        bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                        [sampleData setObject:bloodSampleValue forKey:@"neutrofile"];
+                    }
+                    break;
+                case 4:
+                    bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                    [sampleData setObject:bloodSampleValue forKey:@"crp"];
+                    break;
+                case 5:
+                    bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                    [sampleData setObject:bloodSampleValue forKey:@"alat"];
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            success = NO;
+            NSString *message = [NSString stringWithFormat: NSLocalizedString(@"Unexpected input at textfield %d", @"Message on bloodsample error"),txf.tag];
+            
+            UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:message
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil, nil];
+            [toast show];
+            break;
         }
     }
     
-    [dataTobeSaved setObject:sampleData forKey:@"bloodSample"];
-    [self.dataManagement writeToPList];
+    if (success)
+    {
+        if (self.selectedBloodSample != nil)
+        {
+            NSDate *bloodSampleDate = [self.selectedBloodSample objectForKey:@"date"];
+            if (![bloodSampleDate isEqualToDate:self.selectedDate])
+            {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+                [dataToBeSaved setObject:[dateFormatter stringFromDate:self.selectedDate] forKey:@"date"];
+            }
+        }
+        [dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
+        [self.dataManagement writeToPList];
+    }
     [self resetView];
+}
+
+
+-(BOOL) isProperValue:(NSString*) value forInput:(int) tag
+{
+    switch (tag) {
+        case 0:
+            if ([value floatValue] > 2.0 && [value floatValue]<10.0) return YES;
+        case 1:
+            if ([value isEqualToString:@""]) return YES;
+            if ([value integerValue] > 0 && [value integerValue] < 999) return YES;
+        case 2:
+            if ([value isEqualToString:@""]) return YES;
+            if ([value floatValue] > 0.0 && [value floatValue]<100.0) return YES;
+        case 3:
+            if ([value isEqualToString:@""]) return YES;
+            if ([value floatValue] > 0.0 && [value floatValue]<20.0) return YES;
+        case 4:
+            if ([value integerValue] > 1 && [value integerValue] < 999) return YES;
+        case 5:
+            if ([value integerValue] > 99 && [value integerValue] < 9999) return YES;
+        default:
+            return NO;
+    }
+    return NO;
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{
@@ -137,7 +258,6 @@
     else self.btnAddSample.hidden = YES;
     
     [self.popover dismissPopoverAnimated:YES];
-    [self resetView];
 }
 
 -(NSArray *)monthChanged:(NSInteger)month
