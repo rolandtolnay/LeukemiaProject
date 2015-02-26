@@ -32,6 +32,7 @@
         NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
         [dayShortFormatter setDateFormat:@"dd/MM"];
         [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
+        [self.btnDateSelector setEnabled:NO];
         
         [self prepareForUpdate];
         
@@ -122,7 +123,7 @@
     NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
     BOOL success = YES;
     
-    if(dataToBeSaved == nil){
+    if(dataToBeSaved == nil && self.selectedBloodSample == nil){
         dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
     }
     
@@ -177,6 +178,7 @@
         else
         {
             success = NO;
+            
             NSString *message = [NSString stringWithFormat: NSLocalizedString(@"Unexpected input at textfield %d", @"Message on bloodsample error"),txf.tag];
             
             UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -191,16 +193,6 @@
     
     if (success)
     {
-        if (self.selectedBloodSample != nil)
-        {
-            NSDate *bloodSampleDate = [self.selectedBloodSample objectForKey:@"date"];
-            if (![bloodSampleDate isEqualToDate:self.selectedDate])
-            {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                [dataToBeSaved setObject:[dateFormatter stringFromDate:self.selectedDate] forKey:@"date"];
-            }
-        }
         [dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
         [self.dataManagement writeToPList];
     }
@@ -212,20 +204,20 @@
 {
     switch (tag) {
         case 0:
-            if ([value floatValue] > 2.0 && [value floatValue]<10.0) return YES;
+            if ([value floatValue] >= 2.0 && [value floatValue]<=10.0) return YES;
         case 1:
             if ([value isEqualToString:@""]) return YES;
-            if ([value integerValue] > 0 && [value integerValue] < 999) return YES;
+            if ([value integerValue] >= 0 && [value integerValue] <= 999) return YES;
         case 2:
             if ([value isEqualToString:@""]) return YES;
-            if ([value floatValue] > 0.0 && [value floatValue]<100.0) return YES;
+            if ([value floatValue] >= 0.0 && [value floatValue]<=100.0) return YES;
         case 3:
             if ([value isEqualToString:@""]) return YES;
-            if ([value floatValue] > 0.0 && [value floatValue]<20.0) return YES;
+            if ([value floatValue] >= 0.0 && [value floatValue]<=20.0) return YES;
         case 4:
-            if ([value integerValue] > 1 && [value integerValue] < 999) return YES;
+            if ([value integerValue] >= 1 && [value integerValue] <= 999) return YES;
         case 5:
-            if ([value integerValue] > 99 && [value integerValue] < 9999) return YES;
+            if ([value integerValue] >= 99 && [value integerValue] <= 9999) return YES;
         default:
             return NO;
     }
