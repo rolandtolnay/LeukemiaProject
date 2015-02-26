@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LSWeekView.h"
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTSelectKemoTableViewController.h"
