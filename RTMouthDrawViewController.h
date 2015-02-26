@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTBrushSizeViewController.h"
 
 @interface RTMouthDrawViewController : UIViewController <UIActionSheetDelegate,UIPopoverControllerDelegate>
 

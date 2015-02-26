@@ -1733,11 +1733,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq" userLabel="DrawMouthBtn">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yAG-1Y-0Mq" userLabel="DrawMouthBtn">
                                 <rect key="frame" x="352" y="387" width="64" height="52"/>
                                 <accessibility key="accessibilityConfiguration" label=""/>
-                                <state key="normal" image="mouthIcon">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="MouthIcon2">
+                                    <attributedString key="attributedTitle"/>
                                 </state>
                                 <connections>
                                     <segue destination="0gu-t3-wS6" kind="push" identifier="drawMouthSegue" id="pW8-7m-5CO"/>
@@ -1878,11 +1878,17 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="iq1-Sp-5XD"/>
-                                    <barButtonItem title="Brush size" id="N6s-NU-UvC"/>
+                                    <barButtonItem title="Brush size" id="N6s-NU-UvC">
+                                        <connections>
+                                            <segue destination="iAD-Dd-EnW" kind="popover" identifier="mucositisDrawSettingsPopover" popoverAnchorBarButtonItem="N6s-NU-UvC" id="90c-ua-9fc">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-h1-dNr" userLabel="MouthDrawView">
-                                <rect key="frame" x="154" y="150" width="461" height="641"/>
+                                <rect key="frame" x="204" y="147" width="461" height="641"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mundUdenTekst" translatesAutoresizingMaskIntoConstraints="NO" id="Kcl-u9-bSj" userLabel="Main Image">
                                         <rect key="frame" x="0.0" y="0.0" width="461" height="641"/>
@@ -1930,7 +1936,7 @@
             <objects>
                 <tableViewController id="eeT-0O-jH5" customClass="RTMucositisInfoTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="241" sectionHeaderHeight="22" sectionFooterHeight="22" id="seg-Df-I0b">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -1939,15 +1945,15 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F3L-lI-T3Q" id="iUc-cU-DLc">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emB-TR-YS9">
-                                            <rect key="frame" x="512" y="39" width="172" height="161"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yb4-91-zcD">
-                                            <rect key="frame" x="23" y="110" width="441" height="21"/>
+                                            <rect key="frame" x="12" y="14" width="277" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="emB-TR-YS9">
+                                            <rect key="frame" x="64" y="56" width="172" height="161"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1963,10 +1969,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Ri1-Mn-ABv"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="1024"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUc-o4-b5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1998" y="-1620"/>
+            <point key="canvasLocation" x="1998" y="-1621"/>
         </scene>
         <!--Graphs-->
         <scene sceneID="Ogg-AC-KHJ">
@@ -2431,6 +2439,7 @@
     <resources>
         <image name="FLACC - NY-2" width="1049" height="612"/>
         <image name="FLACC_info" width="668" height="902"/>
+        <image name="MouthIcon2" width="42" height="58"/>
         <image name="Mucositis" width="32" height="32"/>
         <image name="TEstVerdana-3" width="1305" height="503"/>
         <image name="TabBarDiaryUpdated" width="32" height="32"/>
@@ -2443,7 +2452,6 @@
         <image name="camera-icon" width="256" height="256"/>
         <image name="humanBodyIcon" width="42" height="91"/>
         <image name="loginBackGround" width="620" height="349"/>
-        <image name="mouthIcon" width="42" height="58"/>
         <image name="mundUdenTekst" width="461" height="640"/>
         <image name="painDrawBody" width="610" height="838"/>
         <image name="redbtn" width="300" height="300"/>
@@ -2455,6 +2463,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="90c-ua-9fc"/>
         <segue reference="m6O-FT-ZlV"/>
         <segue reference="bAf-ez-ddE"/>
     </inferredMetricsTieBreakers>

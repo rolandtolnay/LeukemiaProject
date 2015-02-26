@@ -51,6 +51,17 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    NSString *sectionTitle;
+    switch (section)
+    {
+        case 0:
+            sectionTitle = NSLocalizedString(@"Grades of mucositis", nil);
+            break;
+    }
+    return sectionTitle;
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

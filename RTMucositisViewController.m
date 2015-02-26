@@ -39,7 +39,6 @@
 {
     UIViewController *sourceViewController = segue.sourceViewController;
     if([sourceViewController isKindOfClass:[RTMouthDrawViewController class]]){
-        
         RTMouthDrawViewController *controller = segue.sourceViewController;
         if (controller.mainImage.image)
         {
@@ -103,9 +102,6 @@
             }
         }
     }
-    NSLog(@"PainScore: %@", self.painScore);
-    NSLog(@"RednessScore: %@", self.rednessScore);
-    NSLog(@"FoodScore: %@", self.foodConsumptionScore);
 }
 
 #pragma mark - Help methods
