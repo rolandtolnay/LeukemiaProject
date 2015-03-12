@@ -39,4 +39,6 @@
 
 - (IBAction)saveAndSubmit:(id)sender;
 - (IBAction)mucositisTableButtonSelected:(id)sender;
+
+//Ny kode
 @end
