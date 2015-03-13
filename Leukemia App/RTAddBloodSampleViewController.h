@@ -9,18 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "RTDataManagement.h"
 #import "NSDate+convenience.h"
-#import "RTBloodSampleTableViewCell.h"
 #import "RTGraphCalendarViewController.h"
 #import "RTService.h"
 
-@interface RTAddBloodSampleViewController : UIViewController <UITableViewDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate>
+@interface RTAddBloodSampleViewController : UIViewController <UIPopoverControllerDelegate,RTCalendarPickerDelegate,UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *btnAddSample;
 @property (weak, nonatomic) IBOutlet UIButton *btnDateSelector;
-@property (weak, nonatomic) IBOutlet UITableView *tableViewPreviousBloodSamples;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *dateLabels;
+
+@property (nonatomic, strong) IBOutletCollection(UITextField) NSArray *txfBloodSamples;
 
 @property NSDate *selectedDate;
+@property NSDictionary *selectedBloodSample;
 
 -(void)resetView;
 - (IBAction)addSample:(id)sender;

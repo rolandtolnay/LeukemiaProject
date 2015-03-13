@@ -10,14 +10,16 @@
 #import "NSDate+convenience.h"
 #import "RTDataManagement.h"
 #import "RTSelectKemoTableViewController.h"
+#import "RTBloodSampleCollectionViewCell.h"
 #import "RTAddBloodSampleViewController.h"
 
-@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTSelectKemoDelegate, UITextFieldDelegate>
+@interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTSelectKemoDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 //Views
 
-//@property (weak,nonatomic) IBOutlet UIView *weekSelectorView;
 @property (weak, nonatomic) IBOutlet UIView *medicineView;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionBloodSamples;
 
 @property (weak, nonatomic) IBOutlet UILabel *highDoseKemoLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addHighDoseKemo;
@@ -27,8 +29,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *m6Text;
 @property (weak, nonatomic) IBOutlet UIButton *saveDose;
 @property (weak, nonatomic) IBOutlet UIButton *editDose;
-
-//@property (strong,nonatomic) LSWeekView *weekSelector;
 
 @property (strong,nonatomic) RTDataManagement *dataManagement;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;

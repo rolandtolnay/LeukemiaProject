@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "RTDataManagement.h"
-#import "GraphKit.h"
 #import "RTGraphCalendarViewController.h"
 #import "RTGraphWeekPickerViewController.h"
 #import "NSDate+convenience.h"
+#import "SHLineGraphView.h"
+#import "SHPlot.h"
 
-@interface RTGraphViewController : UIViewController <GKLineGraphDataSource,UIPopoverControllerDelegate,RTCalendarPickerDelegate,RTWeekPickerDelegate>
-
-@property (weak, nonatomic) IBOutlet GKLineGraph *graph;
+@interface RTGraphViewController : UIViewController <UIPopoverControllerDelegate,RTCalendarPickerDelegate,RTWeekPickerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblError;
 

@@ -361,8 +361,8 @@ static RTDataManagement *dataManagement = nil;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *tempDate = [dateFormat dateFromString:[medicineRegistration objectForKey:@"date"]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]]){
+
+        if ([date isEqualToDate:tempDate]){
             return medicineRegistration;
         }
     }
@@ -445,8 +445,8 @@ static RTDataManagement *dataManagement = nil;
     //ID and Date information
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     [dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
+    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     
     //Kemo-data
     NSMutableDictionary *kemoTreatmentDictionary = [self relevantKemoTreatmentForDay:date];
@@ -465,11 +465,10 @@ static RTDataManagement *dataManagement = nil;
     NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"hemoglobin"];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"thrombocytes"];
+    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"leukocytes"];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"neutrofile"];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"crp"];
-    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"leukocytes"];
     [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"alat"];
-    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"other"];
     [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
     
     [self.medicineData addObject:dataToBeSaved];
