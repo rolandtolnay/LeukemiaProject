@@ -361,8 +361,8 @@ static RTDataManagement *dataManagement = nil;
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
         NSDate *tempDate = [dateFormat dateFromString:[medicineRegistration objectForKey:@"date"]];
-
-        if ([date isEqualToDate:tempDate]){
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        if ([[dateFormat stringFromDate:tempDate] isEqualToString:[dateFormat stringFromDate:date]]){
             return medicineRegistration;
         }
     }
