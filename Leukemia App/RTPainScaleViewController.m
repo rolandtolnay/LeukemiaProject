@@ -333,7 +333,7 @@
         NSDate *currentDate = [NSDate date];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-        
+
         NSString *timeStamp = [dateFormatter stringFromDate:currentDate];
         NSString *drawingImagePath = [[NSString alloc]init];
         NSString *photoPath = [[NSString alloc]init];
@@ -350,7 +350,7 @@
 
             [[RTService singleton] UIImageWriteToFile:self.cameraImageToBeSaved :photoPath];
         }
-        [self saveToPlist:drawingImagePath :photoPath :timeStamp :[[RTService singleton] dataID]];
+        [self saveToPlist:drawingImagePath :photoPath :currentDate :[[RTService singleton] dataID]];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No paintype selected", @"Title for no paintype selected alert")
@@ -363,19 +363,43 @@
 }
 
 #pragma mark - Saving to PList methods
--(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSString *)date :(NSString*)idString{
-    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
-    [dataToBeSaved setObject:[NSNumber numberWithInteger:self.painScore] forKey:@"painlevel"];
-    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
-    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
-    [dataToBeSaved setObject:[NSNumber numberWithInteger:[self.morphineInput.text integerValue]] forKey:@"morphinelevel"];
-    [dataToBeSaved setObject:[self morphineTypeToText] forKey:@"morphineunit"];
-    [dataToBeSaved setObject:date forKey:@"date"];
-    [dataToBeSaved setObject:self.painType forKey:@"paintype"];
-    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
-    [self.dataManagement.painData addObject:dataToBeSaved];
-    [self.dataManagement writeToPList];
+-(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSDate *)date :(NSString*)idString{
+//    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
+//    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
+//    [dataToBeSaved setObject:[NSNumber numberWithInteger:self.painScore] forKey:@"painlevel"];
+//    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
+//    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
+//    [dataToBeSaved setObject:[NSNumber numberWithInteger:[self.morphineInput.text integerValue]] forKey:@"morphinelevel"];
+//    [dataToBeSaved setObject:[self morphineTypeToText] forKey:@"morphineunit"];
+//    [dataToBeSaved setObject:date forKey:@"date"];
+//    [dataToBeSaved setObject:self.painType forKey:@"paintype"];
+//    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
+//    [self.dataManagement.painData addObject:dataToBeSaved];
+//    [self.dataManagement writeToPList];
+    
+    //Pain Data Object to be added
+    RTPainData *dataToBeSaved = [[RTPainData alloc]init];
+    dataToBeSaved.dataId = [[RTService singleton] dataID];
+    dataToBeSaved.painLevel = self.painScore;
+    dataToBeSaved.drawingPath = drawingImagePath;
+    dataToBeSaved.photoPath = photoPath;
+    dataToBeSaved.morphineLevel = [self.morphineInput.text integerValue];
+    dataToBeSaved.morphineType = [self morphineTypeToText];
+    dataToBeSaved.date = date;
+    dataToBeSaved.day = date.day;
+    dataToBeSaved.month = date.month;
+    dataToBeSaved.year = date.year;
+    dataToBeSaved.painType = self.painType;
+    dataToBeSaved.paracetamol = self.switchParmol.on;
+    
+    //get default realm
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    //Add object to database
+    [realm beginWriteTransaction];
+    [realm addObject:dataToBeSaved];
+    [realm commitWriteTransaction];
+
     
     NSString *message = NSLocalizedString(@"Your data is saved..", @"Shown when data is saved") ;
     

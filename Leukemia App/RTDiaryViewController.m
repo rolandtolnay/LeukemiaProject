@@ -12,21 +12,23 @@
 
 @property VRGCalendarView *calendar;
 @property UIPopoverController *detailPopoverController;
-@property NSMutableDictionary *selectedRegistration;
-
+//@property NSMutableDictionary *selectedRegistration;
+//Realm
+@property (nonatomic, strong) RLMResults *painRegistrations;
 @end
 
 @implementation RTDiaryViewController
 
--(NSMutableArray *)painRegistrations{
-    if(!_painRegistrations){
-        _painRegistrations = [[NSMutableArray alloc]init];
-    }
-    return _painRegistrations;
-}
+//-(NSMutableArray *)painRegistrations{
+//    if(!_painRegistrations){
+//        _painRegistrations = [[NSMutableArray alloc]init];
+//    }
+//    return _painRegistrations;
+//}
 
 - (void)viewDidLoad
 {
+    self.realmService = [RTRealmService singleton];
     self.dataManagement = [RTDataManagement singleton];
     self.calendar  = [[VRGCalendarView alloc]initWithDate:[NSDate date]];
     self.calendar.delegate=self;
@@ -59,7 +61,7 @@
     }
     self.calendar.currentMonth = dateToShow;
     [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
-    [self.calendar markDates:[self.dataManagement datesWithPainFromDate:[NSDate date]]];
+    //[self.calendar markDates:[self.dataManagement datesWithPainFromDate:[NSDate date]]];
     [super viewWillAppear:animated];
 }
 
@@ -177,8 +179,6 @@
 }
 
 #pragma mark - CalendarView Delegate
-
-//RTDiaryViewController.m
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
     
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
@@ -199,24 +199,42 @@
     [self.calendar markDates:[self.dataManagement datesWithPainFromDate:newDate]];
 }
 
+//-(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
+//    [self setDateLabels: date];
+//    [self.painRegistrations removeAllObjects];
+//    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+//    NSDate *painRegDate;
+//    NSString *tempDate;
+//    for (NSMutableDictionary *dict in self.dataManagement.painData){
+//        tempDate = [dict objectForKey:@"date"];
+//        painRegDate = [self.dateFormat dateFromString:tempDate];
+//        if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
+//            [self.painRegistrations addObject:dict];
+//        }
+//    }
+//    self.currentSelectedDate = date;
+//    [self.dataTableView reloadData];
+//    
+//    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
+////    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
+//    if([[[diaryReg objectForKey:@"weight"]stringValue]length]>0){
+//        [self.textFieldWeight setText:[NSString stringWithFormat:@"%.1f",[[diaryReg objectForKey:@"weight"]floatValue]]];
+//    }else{
+//        [self.textFieldWeight setText:@""];
+//    }
+//    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
+//    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
+//    [self textViewDidChange:self.textViewNotes];
+//}
+
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
-    [self.painRegistrations removeAllObjects];
-    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    NSDate *painRegDate;
-    NSString *tempDate;
-    for (NSMutableDictionary *dict in self.dataManagement.painData){
-        tempDate = [dict objectForKey:@"date"];
-        painRegDate = [self.dateFormat dateFromString:tempDate];
-        if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
-            [self.painRegistrations addObject:dict];
-        }
-    }
+    //PainData
+    self.painRegistrations = [self.realmService painDataOnDate:date];
     self.currentSelectedDate = date;
     [self.dataTableView reloadData];
-    
+    //DiaryData
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-//    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
     if([[[diaryReg objectForKey:@"weight"]stringValue]length]>0){
         [self.textFieldWeight setText:[NSString stringWithFormat:@"%.1f",[[diaryReg objectForKey:@"weight"]floatValue]]];
     }else{
@@ -297,7 +315,7 @@
 }
 
 #pragma mark - Show details popover
-
+//Select row in TableView
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     self.selectedRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
@@ -307,7 +325,7 @@
     [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated: YES];
 }
-
+//Segue from TableView
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"detailPopoverSegue"])
@@ -318,10 +336,11 @@
 }
 
 #pragma mark - Data export
-
 - (IBAction)exportData:(id)sender {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     RTService *service = [RTService singleton];
     [service performSelectorInBackground: @selector(exportData) withObject:nil];
 }
+
+
 @end

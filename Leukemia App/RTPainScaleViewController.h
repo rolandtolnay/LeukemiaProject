@@ -13,6 +13,7 @@
 #import "RTChangepainScaleTableViewController.h"
 #import "RTSmileyTableViewController.h"
 #import "RTPainInfoViewController.h"
+#import "RTPainData.h"
 
 @interface RTPainScaleViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UITextFieldDelegate, RTSmileyTableDelegate,RTChangePainScalePopoverDelegate, UIPopoverControllerDelegate>
 

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		776EF2241ABC25830062DE97 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EF2231ABC25830062DE97 /* Realm.framework */; };
+		776EF2261ABC25B90062DE97 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EF2251ABC25B90062DE97 /* libc++.dylib */; };
+		776EF22A1ABC2B8B0062DE97 /* RTPainData.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EF2291ABC2B8B0062DE97 /* RTPainData.m */; };
+		776EF22D1ABC83AE0062DE97 /* RTRealmService.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EF22C1ABC83AE0062DE97 /* RTRealmService.m */; };
 		A001D1371A91EEEE005317E3 /* RTMucositisData.m in Sources */ = {isa = PBXBuildFile; fileRef = A001D1361A91EEEE005317E3 /* RTMucositisData.m */; };
 		A04F86091A7A6751000F1AC9 /* RTMucositisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F86081A7A6751000F1AC9 /* RTMucositisViewController.m */; };
 		A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0636C0A19AF22E200188588 /* QuartzCore.framework */; };
@@ -51,6 +55,7 @@
 		A6B6265D1A160FCD00C36572 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */; };
 		A6B626661A16280300C36572 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B626651A16280300C36572 /* Reachability.m */; };
 		A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E9BEE419AB61B300544A8E /* RTGraphViewController.m */; };
+		C67D4687FD52C74B8FBAA35E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D4AAFAC83C479980D0C816 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +71,12 @@
 /* Begin PBXFileReference section */
 		23D4AAFAC83C479980D0C816 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60914AF8076F54D65FA05ED0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		776EF2231ABC25830062DE97 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		776EF2251ABC25B90062DE97 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		776EF2281ABC2B8B0062DE97 /* RTPainData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPainData.h; sourceTree = "<group>"; };
+		776EF2291ABC2B8B0062DE97 /* RTPainData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPainData.m; sourceTree = "<group>"; };
+		776EF22B1ABC83AE0062DE97 /* RTRealmService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRealmService.h; sourceTree = "<group>"; };
+		776EF22C1ABC83AE0062DE97 /* RTRealmService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRealmService.m; sourceTree = "<group>"; };
 		A001D1351A91EEEE005317E3 /* RTMucositisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisData.h; sourceTree = "<group>"; };
 		A001D1361A91EEEE005317E3 /* RTMucositisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMucositisData.m; sourceTree = "<group>"; };
 		A04F86071A7A6751000F1AC9 /* RTMucositisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisViewController.h; sourceTree = "<group>"; };
@@ -154,11 +165,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				776EF2261ABC25B90062DE97 /* libc++.dylib in Frameworks */,
 				A6B6265D1A160FCD00C36572 /* SystemConfiguration.framework in Frameworks */,
 				A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */,
 				A6924E8C199E28C5009D7220 /* CoreGraphics.framework in Frameworks */,
 				A6924E8E199E28C5009D7220 /* UIKit.framework in Frameworks */,
+				776EF2241ABC25830062DE97 /* Realm.framework in Frameworks */,
 				A6924E8A199E28C5009D7220 /* Foundation.framework in Frameworks */,
+				C67D4687FD52C74B8FBAA35E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +189,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		776EF2271ABC2ADD0062DE97 /* RealmDataObjects */ = {
+			isa = PBXGroup;
+			children = (
+				A001D1351A91EEEE005317E3 /* RTMucositisData.h */,
+				A001D1361A91EEEE005317E3 /* RTMucositisData.m */,
+				776EF2281ABC2B8B0062DE97 /* RTPainData.h */,
+				776EF2291ABC2B8B0062DE97 /* RTPainData.m */,
+				776EF22B1ABC83AE0062DE97 /* RTRealmService.h */,
+				776EF22C1ABC83AE0062DE97 /* RTRealmService.m */,
+			);
+			name = RealmDataObjects;
+			sourceTree = "<group>";
+		};
 		A04F86061A7A672E000F1AC9 /* Mucositis */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,14 +235,13 @@
 		A0957E2919A75B1F0058EF12 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				776EF2271ABC2ADD0062DE97 /* RealmDataObjects */,
 				A6B626641A16280300C36572 /* Reachability.h */,
 				A6B626651A16280300C36572 /* Reachability.m */,
 				A0957E2519A75AF30058EF12 /* RTDataManagement.h */,
 				A0957E2619A75AF30058EF12 /* RTDataManagement.m */,
 				A633F3F31A10E51900DE90C9 /* RTService.h */,
 				A633F3F41A10E51900DE90C9 /* RTService.m */,
-				A001D1351A91EEEE005317E3 /* RTMucositisData.h */,
-				A001D1361A91EEEE005317E3 /* RTMucositisData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -248,6 +274,7 @@
 		A6924E7D199E28C5009D7220 = {
 			isa = PBXGroup;
 			children = (
+				776EF2231ABC25830062DE97 /* Realm.framework */,
 				A6924E8F199E28C5009D7220 /* Leukemia App */,
 				A6924EB1199E28C5009D7220 /* Leukemia AppTests */,
 				A6924E88199E28C5009D7220 /* Frameworks */,
@@ -268,6 +295,7 @@
 		A6924E88199E28C5009D7220 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				776EF2251ABC25B90062DE97 /* libc++.dylib */,
 				A6B6265C1A160FCD00C36572 /* SystemConfiguration.framework */,
 				A0636C0A19AF22E200188588 /* QuartzCore.framework */,
 				A6924E89199E28C5009D7220 /* Foundation.framework */,
@@ -562,10 +590,12 @@
 				A6E9BEE519AB61B300544A8E /* RTGraphViewController.m in Sources */,
 				A09E24F319E7CF650026FC73 /* RTChangepainScaleTableViewController.m in Sources */,
 				A095897919DAAA3E006BE617 /* RTSelectKemoTableViewController.m in Sources */,
+				776EF22D1ABC83AE0062DE97 /* RTRealmService.m in Sources */,
 				A6924E9A199E28C5009D7220 /* RTAppDelegate.m in Sources */,
 				A67BFA031A14B54400369BE3 /* RTLoginViewController.m in Sources */,
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
+				776EF22A1ABC2B8B0062DE97 /* RTPainData.m in Sources */,
 				A633F3F51A10E51900DE90C9 /* RTService.m in Sources */,
 				A04F86091A7A6751000F1AC9 /* RTMucositisViewController.m in Sources */,
 				A0FD8C6A1A88D614003769BF /* RTMouthInfoTableViewCell.m in Sources */,
@@ -714,6 +744,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
 				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";
@@ -732,6 +766,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Leukemia App/Leukemia App-Prefix.pch";
 				INFOPLIST_FILE = "Leukemia App/Leukemia App-Info.plist";

@@ -14,6 +14,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
 #import "RTService.h"
+#import "RTPainData.h"
+#import "RTRealmService.h"
 
 
 @interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
@@ -29,8 +31,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;
 
 @property (strong, nonatomic) RTDataManagement *dataManagement;
+@property (strong, nonatomic) RTRealmService *realmService;
 @property (strong,nonatomic) NSDateFormatter *dateFormat;
-@property (strong, nonatomic) NSMutableArray *painRegistrations;
+//@property (strong, nonatomic) NSMutableArray *painRegistrations;
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
 - (IBAction)exportData:(id)sender;

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface RTMucositisData : NSObject
+@interface RTMucositisData : RLMObject
 
+@property (strong, nonatomic) NSString *dataId;
 @property (strong,nonatomic) NSNumber *painScore;
 @property (strong,nonatomic) NSNumber *redNessScore;
 @property (strong,nonatomic) NSNumber *foodScore;
