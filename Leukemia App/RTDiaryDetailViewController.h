@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RTPainData.h"
 
 @interface RTDiaryDetailViewController : UIViewController
 
-@property NSMutableDictionary *selectedData;
+@property (nonatomic, strong) RTPainData *selectedData;
 @property (weak, nonatomic) IBOutlet UILabel *labelDate;
 @property (weak, nonatomic) IBOutlet UILabel *labelPainLevel;
 @property (weak, nonatomic) IBOutlet UILabel *labelPainType;

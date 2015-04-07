@@ -30,9 +30,9 @@
 
 //General properties
 @property (strong, nonatomic) RTDataManagement *dataManagement;
-@property (strong, nonatomic) NSNumber *painScore;
-@property (strong, nonatomic) NSNumber *rednessScore;
-@property (strong, nonatomic) NSNumber *foodConsumptionScore;
+@property (nonatomic) NSInteger painScore;
+@property (nonatomic) NSInteger rednessScore;
+@property (nonatomic) NSInteger foodConsumptionScore;
 @property (strong,nonatomic) NSString *drawingPath;
 @property (strong,nonatomic) UIImage *drawingToBeSaved;
 

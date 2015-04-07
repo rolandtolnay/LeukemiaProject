@@ -12,15 +12,15 @@
 @interface RTMucositisData : RLMObject
 
 @property (strong, nonatomic) NSString *dataId;
-@property (strong,nonatomic) NSNumber *painScore;
-@property (strong,nonatomic) NSNumber *redNessScore;
-@property (strong,nonatomic) NSNumber *foodScore;
+@property (nonatomic) NSInteger painScore;
+@property (nonatomic) NSInteger redNessScore;
+@property (nonatomic) NSInteger foodScore;
 @property (strong,nonatomic) NSString *drawingPath;
-@property (strong,nonatomic) NSNumber *nrOfVomitting;
-@property (strong,nonatomic) NSNumber *nrOfStools;
-@property (strong,nonatomic) NSNumber *fluidsDrunkML;
-@property (strong,nonatomic) NSNumber *fluidsInDropML;
-@property (strong,nonatomic) NSNumber *urinML;
-@property (strong,nonatomic) NSNumber *weightKG;
+@property (nonatomic) NSInteger nrOfVomitting;
+@property (nonatomic) NSInteger nrOfStools;
+@property (nonatomic) NSInteger fluidsDrunkML;
+@property (nonatomic) NSInteger fluidsInDropML;
+@property (nonatomic) NSInteger urinML;
+@property (nonatomic) NSInteger weightKG;
 
 @end

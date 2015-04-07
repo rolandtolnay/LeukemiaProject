@@ -380,17 +380,20 @@
     //Pain Data Object to be added
     RTPainData *dataToBeSaved = [[RTPainData alloc]init];
     dataToBeSaved.dataId = [[RTService singleton] dataID];
+    NSLog(@"Nummer 1");
     dataToBeSaved.painLevel = self.painScore;
     dataToBeSaved.drawingPath = drawingImagePath;
     dataToBeSaved.photoPath = photoPath;
     dataToBeSaved.morphineLevel = [self.morphineInput.text integerValue];
     dataToBeSaved.morphineType = [self morphineTypeToText];
+    NSLog(@"Nummer 2");
     dataToBeSaved.date = date;
     dataToBeSaved.day = date.day;
     dataToBeSaved.month = date.month;
     dataToBeSaved.year = date.year;
     dataToBeSaved.painType = self.painType;
     dataToBeSaved.paracetamol = self.switchParmol.on;
+    NSLog(@"Nummer 3");
     
     //get default realm
     RLMRealm *realm = [RLMRealm defaultRealm];

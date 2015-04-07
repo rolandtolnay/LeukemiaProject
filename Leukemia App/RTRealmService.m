@@ -24,22 +24,22 @@ static RTRealmService *realmService = nil;
     return realmService;
 }
 
--(RLMResults *)resultsOnDate:(NSDate *) date fromRealmObject: (RLMObject *) object{
-    return nil;
+-(RLMResults *)painDataOnDate:(NSDate *) date{
+    return [RTPainData objectsWhere:@"date > %@ && date < %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
 }
 
 #pragma mark - Dates helper method
--(NSDate *)getDateWithTime{
+-(NSDate *)setTimeOnDate:(NSDate *) date :(NSInteger) hour :(NSInteger) minute :(NSInteger) second{
     //gather current calendar
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
     //gather date components from date
-    NSDateComponents *dateComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[NSDate date]];
+    NSDateComponents *dateComponents = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     
     //set date components
-    [dateComponents setHour:0];
-    [dateComponents setMinute:0];
-    [dateComponents setSecond:0];
+    [dateComponents setHour:hour];
+    [dateComponents setMinute:minute];
+    [dateComponents setSecond:second];
     
     //return date relative from date
     return [calendar dateFromComponents:dateComponents];

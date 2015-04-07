@@ -15,6 +15,7 @@
 //@property NSMutableDictionary *selectedRegistration;
 //Realm
 @property (nonatomic, strong) RLMResults *painRegistrations;
+@property (nonatomic, strong) RTPainData *selectedRegistration;
 @end
 
 @implementation RTDiaryViewController
@@ -276,13 +277,12 @@
 {
     static NSString *CellIdentifier = @"dataCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSMutableDictionary *painRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
-    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    NSDate *date = [self.dateFormat dateFromString:[painRegistration objectForKey:@"date"]];
+    RTPainData *painRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
+    NSDate *date = painRegistration.date;
     [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
-    NSString *painLevel = [[painRegistration objectForKey:@"painlevel"]stringValue];
-    NSString *painType = [painRegistration objectForKey:@"paintype"];
+    NSString *painLevel = [@(painRegistration.painLevel) stringValue];
+    NSString *painType = painRegistration.painType;
     if ([painType isEqualToString:@"Mouth"]){
         painType = NSLocalizedString(@"Mouth", nil);
     }
@@ -307,9 +307,12 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSMutableDictionary *selectedReg = [self.painRegistrations objectAtIndex:indexPath.row];
-        [self.dataManagement.painData removeObject:selectedReg];
-        [self.painRegistrations removeObjectAtIndex:indexPath.row];
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        RTPainData *selectedReg = [self.painRegistrations objectAtIndex:indexPath.row];
+        [realm beginWriteTransaction];
+        [realm deleteObject:selectedReg];
+        [realm commitWriteTransaction];
+        //[self.painRegistrations removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

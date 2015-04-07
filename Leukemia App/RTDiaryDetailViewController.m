@@ -20,29 +20,29 @@
     [super viewDidLoad];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-    NSDate *date = [dateFormat dateFromString:[self.selectedData objectForKey:@"date"]];
+    //[dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    NSDate *date = self.selectedData.date;
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [self.labelDate setText:[NSString stringWithFormat:NSLocalizedString(@"Date: %@", nil),[dateFormat stringFromDate:date]]];
-    NSNumber *painLevel = [self.selectedData objectForKey:@"painlevel"];
-    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),[painLevel stringValue]]];
-    NSString *painType = [self.selectedData objectForKey:@"paintype"];
+    NSInteger painLevel = self.selectedData.painLevel;
+    [self.labelPainLevel setText:[NSString stringWithFormat:NSLocalizedString(@"Pain level: %@", nil),[@(painLevel) stringValue]]];
+    NSString *painType = self.selectedData.painType;
     [self.labelPainType setText:[NSString stringWithFormat:NSLocalizedString(@"Pain type: %@", nil),painType]];
-    NSNumber *morphine = [self.selectedData objectForKey:@"morphinelevel"];
-    NSString *morphineUnit = [self.selectedData objectForKey:@"morphineunit"];
-    if ([[morphine stringValue] isEqualToString:@""])
+    NSInteger morphine = self.selectedData.morphineLevel;
+    NSString *morphineUnit = self.selectedData.morphineType;
+    if ([[@(morphine) stringValue] isEqualToString:@""])
         [self.labelMorphine setText: NSLocalizedString(@"Morphine: -", nil)];
     else
-        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ %@", nil),[morphine stringValue],morphineUnit]];
+        [self.labelMorphine setText:[NSString stringWithFormat:NSLocalizedString(@"Morphine: %@ %@", nil),[@(morphine) stringValue],morphineUnit]];
     
-    NSString *paracetamol = [self.selectedData objectForKey:@"paracetamol"];
-    if ([paracetamol intValue] == 1)
+    BOOL paracetamol = self.selectedData.paracetamol;
+    if (paracetamol)
     {
         [self.labelParacetamol setText: NSLocalizedString( @"Paracetamol: Yes", nil)];
     } else
         [self.labelParacetamol setText:NSLocalizedString(@"Paracetamol: No", nil)];
     
-    NSString *drawingImagePath = [self.selectedData objectForKey:@"drawingpath"];
+    NSString *drawingImagePath = self.selectedData.drawingPath;
     if (![drawingImagePath isEqualToString:@""])
     {
         UIImage *drawing;
@@ -52,7 +52,7 @@
         self.labelNoDrawing.hidden = YES;
     }
     
-    NSString *cameraPhotoPath = [self.selectedData objectForKey:@"photopath"];
+    NSString *cameraPhotoPath = self.selectedData.photoPath;
     if (![cameraPhotoPath isEqualToString:@""])
     {
         UIImage *photo;

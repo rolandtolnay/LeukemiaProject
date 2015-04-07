@@ -20,9 +20,9 @@
     [super viewDidLoad];
     self.dataManagement = [RTDataManagement singleton];
     self.btnPressedColor = [UIColor colorWithRed:105.0/255.0 green:147.0/255.0 blue:197.0/255.0 alpha:1.0];
-    self.painScore = [NSNumber numberWithInteger:0];
-    self.rednessScore = [NSNumber numberWithInteger:0];
-    self.foodConsumptionScore = [NSNumber numberWithInteger:0];
+    self.painScore = 0;
+    self.rednessScore = 0;
+    self.foodConsumptionScore = 0;
 }
 
 
@@ -58,12 +58,12 @@
     data.redNessScore = self.rednessScore;
     data.foodScore = self.foodConsumptionScore;
     data.drawingPath = @"";
-    data.nrOfVomitting = [NSNumber numberWithInteger:[self.vomittingTxt.text integerValue]];
-    data.nrOfStools = [NSNumber numberWithInteger:[self.stoolsTxt.text integerValue]];
-    data.fluidsDrunkML = [NSNumber numberWithInteger:[self.fluidsDrunkTxt.text integerValue]];
-    data.fluidsInDropML = [NSNumber numberWithInteger:[self.fluidsInDropTxt.text integerValue]];
-    data.urinML = [NSNumber numberWithInteger:[self.urinTxt.text integerValue]];
-    data.weightKG = [NSNumber numberWithInteger:[self.weightTxt.text integerValue]];
+    data.nrOfVomitting = [self.vomittingTxt.text integerValue];
+    data.nrOfStools = [self.stoolsTxt.text integerValue];
+    data.fluidsDrunkML = [self.fluidsDrunkTxt.text integerValue];
+    data.fluidsInDropML = [self.fluidsInDropTxt.text integerValue];
+    data.urinML = [self.urinTxt.text integerValue];
+    data.weightKG = [self.weightTxt.text integerValue];
     [self.dataManagement saveMucositisData:data];
     [self resetView];
 }
@@ -79,7 +79,7 @@
         selectedButton.backgroundColor = nil;
     }
     if([self.painButtons containsObject:selectedButton]){
-        self.painScore = [NSNumber numberWithInteger:selectedButton.tag];
+        self.painScore = selectedButton.tag;
         for(UIButton *btnInSelectedRow in self.painButtons){
             if(selectedButton != btnInSelectedRow){
                 btnInSelectedRow.backgroundColor = nil;
@@ -87,7 +87,7 @@
         }
     }
     else if([self.rednessButtons containsObject:selectedButton]){
-        self.rednessScore = [NSNumber numberWithInteger:selectedButton.tag];
+        self.rednessScore = selectedButton.tag;
         for(UIButton *btnInSelectedRow in self.rednessButtons){
             if(selectedButton != btnInSelectedRow){
                 btnInSelectedRow.backgroundColor = nil;
@@ -95,7 +95,7 @@
         }
     }
     else if([self.foodButtons containsObject:selectedButton]){
-        self.foodConsumptionScore = [NSNumber numberWithInteger:selectedButton.tag];
+        self.foodConsumptionScore = selectedButton.tag;
         for(UIButton *btnInSelectedRow in self.foodButtons){
             if(selectedButton != btnInSelectedRow){
                 btnInSelectedRow.backgroundColor = nil;
