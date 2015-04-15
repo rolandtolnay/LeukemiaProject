@@ -27,7 +27,7 @@ static RTRealmService *realmService = nil;
 //Gets diarydata on the given date
 -(RTDiaryData *)diaryDataOnDate:(NSDate *) date{
     RTDiaryData *dataToReturn;
-    RLMResults *results = [RTDiaryData objectsWhere:@"date > %@ && date < %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+    RLMResults *results = [RTDiaryData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
     if(results.count == 1){
         dataToReturn = [results objectAtIndex:0];
     }
@@ -36,7 +36,7 @@ static RTRealmService *realmService = nil;
 
 //Gets paindata on the given date
 -(RLMResults *)painDataOnDate:(NSDate *) date{
-    return [RTPainData objectsWhere:@"date > %@ && date < %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+    return [RTPainData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
 }
 
 #pragma mark - Dates helper method

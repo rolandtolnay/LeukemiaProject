@@ -13,6 +13,7 @@
 @property VRGCalendarView *calendar;
 @property UIPopoverController *detailPopoverController;
 @property (nonatomic, strong) RLMResults *painRegistrations;
+@property (nonatomic, strong) RTDiaryData *diaryRegistration;
 @property (nonatomic, strong) RTPainData *selectedRegistration;
 @end
 
@@ -103,6 +104,7 @@
             dataToBeSaved.dataId = [[RTService singleton] dataID];
             dataToBeSaved.date = selectedDate;
             dataToBeSaved.notes = textView.text;
+            //dataToBeSaved.protocolTreatmentDay = [self.textFieldProtocol.text integerValue];
             
             [realm beginWriteTransaction];
             [realm addObject:dataToBeSaved];
@@ -111,10 +113,12 @@
     }
 }
 
-#pragma mark - Weight and Protocol Registration
+#pragma mark - Protocoltreatmentday Registration
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    RTDiaryData *dataToBeSaved;
+    RLMRealm *realm = [RLMRealm defaultRealm];
     if ([textField isEqual:self.textFieldProtocol])
     {
         if ([textField.text isEqualToString:@"test"])
@@ -124,32 +128,32 @@
         }
         
         NSDate *selectedDate = self.calendar.selectedDate;
-        NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
         
-        if (dataToBeSaved !=nil)
+        if ([self.realmService diaryDataOnDate:selectedDate] !=nil)
         {
             if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
             {
                 if ([textField isEqual:self.textFieldProtocol]){
-                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]] forKey:@"protocolTreatmentDay"];
+                    dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+                    [realm beginWriteTransaction];
+                    dataToBeSaved.protocolTreatmentDay = [textField.text integerValue];
+                    [realm commitWriteTransaction];
                 }
-                [self.dataManagement writeToPList];
             }
         }
         else
         {
             if ([textField.text intValue]>0 && ![textField.text isEqualToString:@""])
             {
-                dataToBeSaved = [[NSMutableDictionary alloc]init];
-                [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-                [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
-                [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
-                [dataToBeSaved setObject:self.textViewNotes.text forKey:@"notes"];
-                if ([textField isEqual:self.textFieldProtocol]){
-                    [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"protocolTreatmentDay"];
-                }
-                [self.dataManagement.diaryData addObject:dataToBeSaved];
-                [self.dataManagement writeToPList];
+                dataToBeSaved = [[RTDiaryData alloc]init];
+                dataToBeSaved.dataId = [[RTService singleton] dataID];
+                dataToBeSaved.date = selectedDate;
+                dataToBeSaved.notes = self.textViewNotes.text;
+                dataToBeSaved.protocolTreatmentDay = [textField.text integerValue];
+                
+                [realm beginWriteTransaction];
+                [realm addObject:dataToBeSaved];
+                [realm commitWriteTransaction];
             }
         }
     }
@@ -190,9 +194,13 @@
     self.currentSelectedDate = date;
     [self.dataTableView reloadData];
     //DiaryData
-    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
-    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
+    self.diaryRegistration = [self.realmService diaryDataOnDate:date];
+    [self.textFieldProtocol setText:[@(self.diaryRegistration.protocolTreatmentDay) stringValue]];
+    [self.textViewNotes setText:self.diaryRegistration.notes];
+    
+//    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
+//    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
+//    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
 }
 
