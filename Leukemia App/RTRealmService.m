@@ -24,6 +24,17 @@ static RTRealmService *realmService = nil;
     return realmService;
 }
 
+//Gets diarydata on the given date
+-(RTDiaryData *)diaryDataOnDate:(NSDate *) date{
+    RTDiaryData *dataToReturn;
+    RLMResults *results = [RTDiaryData objectsWhere:@"date > %@ && date < %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+    if(results.count == 1){
+        dataToReturn = [results objectAtIndex:0];
+    }
+    return  dataToReturn;
+}
+
+//Gets paindata on the given date
 -(RLMResults *)painDataOnDate:(NSDate *) date{
     return [RTPainData objectsWhere:@"date > %@ && date < %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
 }

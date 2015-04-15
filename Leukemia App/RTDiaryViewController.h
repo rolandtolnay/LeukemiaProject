@@ -25,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *weekDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UITableView *dataTableView;
-@property (weak, nonatomic) IBOutlet UITextField *textFieldWeight;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldProtocol;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;
@@ -33,7 +32,6 @@
 @property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong, nonatomic) RTRealmService *realmService;
 @property (strong,nonatomic) NSDateFormatter *dateFormat;
-//@property (strong, nonatomic) NSMutableArray *painRegistrations;
 @property (strong, nonatomic) NSDate *currentSelectedDate;
 @property (weak, nonatomic) IBOutlet UIButton *popoverAnchorButton;
 - (IBAction)exportData:(id)sender;

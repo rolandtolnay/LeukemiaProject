@@ -769,32 +769,6 @@
                                     <constraint firstAttribute="height" constant="235" id="c7j-va-ghQ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drv-sh-kmR" userLabel="weightGroup">
-                                <rect key="frame" x="469" y="433" width="239" height="70"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1W-1i-7fY">
-                                        <rect key="frame" x="197" y="24" width="22" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nct-yg-R3G">
-                                        <rect key="frame" x="20" y="24" width="64" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="gCk-Xm-VWj">
-                                        <rect key="frame" x="92" y="20" width="97" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="gif-2K-cuR"/>
-                                    <constraint firstAttribute="width" constant="239" id="kkW-5y-f6B"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMx-Yh-eIX">
                                 <rect key="frame" x="402" y="72" width="350" height="330"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -844,10 +818,8 @@
                         <constraints>
                             <constraint firstItem="07f-aM-fsS" firstAttribute="top" secondItem="aC2-eb-o2d" secondAttribute="bottom" constant="340" id="8Ru-9G-be8"/>
                             <constraint firstItem="uj8-9O-70u" firstAttribute="top" secondItem="GlT-Lq-b6Q" secondAttribute="bottom" constant="8" symbolic="YES" id="9FJ-0C-oBy"/>
-                            <constraint firstItem="drv-sh-kmR" firstAttribute="top" secondItem="cMx-Yh-eIX" secondAttribute="bottom" constant="31" id="HLu-hQ-NvV"/>
                             <constraint firstItem="cMx-Yh-eIX" firstAttribute="leading" secondItem="Ij2-AL-eYJ" secondAttribute="leadingMargin" constant="382" id="TVL-YX-8ej"/>
                             <constraint firstItem="IeJ-oM-Pdi" firstAttribute="leading" secondItem="Ij2-AL-eYJ" secondAttribute="leadingMargin" constant="59" id="UAO-qa-4md"/>
-                            <constraint firstItem="drv-sh-kmR" firstAttribute="centerX" secondItem="cMx-Yh-eIX" secondAttribute="centerX" constant="11.5" id="XCS-g8-zP4"/>
                             <constraint firstItem="GlT-Lq-b6Q" firstAttribute="trailing" secondItem="cMx-Yh-eIX" secondAttribute="trailing" id="XJi-56-Pz5"/>
                             <constraint firstItem="cMx-Yh-eIX" firstAttribute="top" secondItem="aC2-eb-o2d" secondAttribute="bottom" constant="8" symbolic="YES" id="Yzj-P8-3Kx"/>
                             <constraint firstItem="IeJ-oM-Pdi" firstAttribute="top" secondItem="aC2-eb-o2d" secondAttribute="bottom" constant="46" id="fvt-TX-yRu"/>
@@ -871,7 +843,6 @@
                         <outlet property="monthLabel" destination="JLc-4f-DHV" id="QmB-jz-CeK"/>
                         <outlet property="popoverAnchorButton" destination="bsz-cA-dHP" id="Odc-FO-pLV"/>
                         <outlet property="textFieldProtocol" destination="AKf-o4-4Bj" id="4R2-su-0xd"/>
-                        <outlet property="textFieldWeight" destination="gCk-Xm-VWj" id="fYl-Cc-Wvh"/>
                         <outlet property="textViewNotes" destination="8HO-nR-5dL" id="wr8-Dy-vf3"/>
                         <outlet property="weekDayLabel" destination="Xjn-LB-KTC" id="qsD-Uo-7QX"/>
                     </connections>

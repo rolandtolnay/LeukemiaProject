@@ -12,20 +12,11 @@
 
 @property VRGCalendarView *calendar;
 @property UIPopoverController *detailPopoverController;
-//@property NSMutableDictionary *selectedRegistration;
-//Realm
 @property (nonatomic, strong) RLMResults *painRegistrations;
 @property (nonatomic, strong) RTPainData *selectedRegistration;
 @end
 
 @implementation RTDiaryViewController
-
-//-(NSMutableArray *)painRegistrations{
-//    if(!_painRegistrations){
-//        _painRegistrations = [[NSMutableArray alloc]init];
-//    }
-//    return _painRegistrations;
-//}
 
 - (void)viewDidLoad
 {
@@ -38,7 +29,6 @@
     self.dataTableView.delegate = self;
     self.dataTableView.dataSource = self;
     
-    self.textFieldWeight.delegate = self;
     self.textFieldProtocol.delegate = self;
     self.textViewNotes.delegate = self;
     
@@ -72,9 +62,6 @@
     if ([_textViewNotes isFirstResponder] && [touch view] != _textViewNotes) {
         [_textViewNotes resignFirstResponder];
     }
-    if ([_textFieldWeight isFirstResponder] && [touch view] != _textFieldWeight) {
-        [_textFieldWeight resignFirstResponder];
-    }
     if ([_textFieldProtocol isFirstResponder] && [touch view] != _textFieldProtocol) {
         [_textFieldProtocol resignFirstResponder];
     }
@@ -96,25 +83,30 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
+    RTDiaryData *dataToBeSaved;
+    RLMRealm *realm = [RLMRealm defaultRealm];
     if ([textView isEqual:self.textViewNotes])
     {
         NSDate *selectedDate = self.calendar.selectedDate;
-        NSMutableDictionary *dataToBeSaved = [self.dataManagement diaryDataAtDate:selectedDate];
         
-        if (dataToBeSaved !=nil)
+        if ([self.realmService diaryDataOnDate:selectedDate] !=nil)
         {
-            [dataToBeSaved setObject:textView.text forKey:@"notes"];
-            [self.dataManagement writeToPList];
+            
+            dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+            [realm beginWriteTransaction];
+            dataToBeSaved.notes = textView.text;
+            [realm commitWriteTransaction];
         }
         else
         {
-            dataToBeSaved = [[NSMutableDictionary alloc]init];
-            [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-            [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
-            [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
-            [dataToBeSaved setObject:textView.text forKey:@"notes"];
-            [self.dataManagement.diaryData addObject:dataToBeSaved];
-            [self.dataManagement writeToPList];
+            dataToBeSaved = [[RTDiaryData alloc]init];
+            dataToBeSaved.dataId = [[RTService singleton] dataID];
+            dataToBeSaved.date = selectedDate;
+            dataToBeSaved.notes = textView.text;
+            
+            [realm beginWriteTransaction];
+            [realm addObject:dataToBeSaved];
+            [realm commitWriteTransaction];
         }
     }
 }
@@ -123,7 +115,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if ([textField isEqual:self.textFieldWeight] || [textField isEqual:self.textFieldProtocol])
+    if ([textField isEqual:self.textFieldProtocol])
     {
         if ([textField.text isEqualToString:@"test"])
         {
@@ -138,13 +130,7 @@
         {
             if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
             {
-                if([textField isEqual:self.textFieldWeight]){
-                    [dataToBeSaved setObject:[NSNumber numberWithFloat:[textField.text floatValue]]forKey:@"weight"];
-                    
-                    //make it possible to delete entries
-                    if ([textField.text isEqualToString:@""]) [dataToBeSaved removeObjectForKey:@"weight"];
-                }
-                else if ([textField isEqual:self.textFieldProtocol]){
+                if ([textField isEqual:self.textFieldProtocol]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]] forKey:@"protocolTreatmentDay"];
                 }
                 [self.dataManagement writeToPList];
@@ -159,10 +145,7 @@
                 [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
                 [dataToBeSaved setObject:[self.dateFormat stringFromDate:selectedDate] forKey:@"date"];
                 [dataToBeSaved setObject:self.textViewNotes.text forKey:@"notes"];
-                if([textField isEqual:self.textFieldWeight]){
-                    [dataToBeSaved setObject:[NSNumber numberWithFloat:[textField.text floatValue]]  forKey:@"weight"];
-                }
-                else if ([textField isEqual:self.textFieldProtocol]){
+                if ([textField isEqual:self.textFieldProtocol]){
                     [dataToBeSaved setObject:[NSNumber numberWithInteger:[textField.text integerValue]]  forKey:@"protocolTreatmentDay"];
                 }
                 [self.dataManagement.diaryData addObject:dataToBeSaved];
@@ -200,34 +183,6 @@
     [self.calendar markDates:[self.dataManagement datesWithPainFromDate:newDate]];
 }
 
-//-(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
-//    [self setDateLabels: date];
-//    [self.painRegistrations removeAllObjects];
-//    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-//    NSDate *painRegDate;
-//    NSString *tempDate;
-//    for (NSMutableDictionary *dict in self.dataManagement.painData){
-//        tempDate = [dict objectForKey:@"date"];
-//        painRegDate = [self.dateFormat dateFromString:tempDate];
-//        if([painRegDate day] == [date day] && [painRegDate month] == [date month]){
-//            [self.painRegistrations addObject:dict];
-//        }
-//    }
-//    self.currentSelectedDate = date;
-//    [self.dataTableView reloadData];
-//    
-//    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-////    [self.textFieldWeight setText:[[diaryReg objectForKey:@"weight"]stringValue]];
-//    if([[[diaryReg objectForKey:@"weight"]stringValue]length]>0){
-//        [self.textFieldWeight setText:[NSString stringWithFormat:@"%.1f",[[diaryReg objectForKey:@"weight"]floatValue]]];
-//    }else{
-//        [self.textFieldWeight setText:@""];
-//    }
-//    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
-//    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
-//    [self textViewDidChange:self.textViewNotes];
-//}
-
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
     //PainData
@@ -236,11 +191,6 @@
     [self.dataTableView reloadData];
     //DiaryData
     NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-    if([[[diaryReg objectForKey:@"weight"]stringValue]length]>0){
-        [self.textFieldWeight setText:[NSString stringWithFormat:@"%.1f",[[diaryReg objectForKey:@"weight"]floatValue]]];
-    }else{
-        [self.textFieldWeight setText:@""];
-    }
     [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
     [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];

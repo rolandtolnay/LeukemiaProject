@@ -362,38 +362,22 @@
     }
 }
 
-#pragma mark - Saving to PList methods
+#pragma mark - Saving to database method
 -(void)saveToPlist:(NSString *)drawingImagePath :(NSString *)photoPath :(NSDate *)date :(NSString*)idString{
-//    NSMutableDictionary *dataToBeSaved = [[NSMutableDictionary alloc]init];
-//    [dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
-//    [dataToBeSaved setObject:[NSNumber numberWithInteger:self.painScore] forKey:@"painlevel"];
-//    [dataToBeSaved setObject:drawingImagePath forKey:@"drawingpath"];
-//    [dataToBeSaved setObject:photoPath forKey:@"photopath"];
-//    [dataToBeSaved setObject:[NSNumber numberWithInteger:[self.morphineInput.text integerValue]] forKey:@"morphinelevel"];
-//    [dataToBeSaved setObject:[self morphineTypeToText] forKey:@"morphineunit"];
-//    [dataToBeSaved setObject:date forKey:@"date"];
-//    [dataToBeSaved setObject:self.painType forKey:@"paintype"];
-//    [dataToBeSaved setObject:[NSNumber numberWithBool:self.switchParmol.on] forKey:@"paracetamol"];
-//    [self.dataManagement.painData addObject:dataToBeSaved];
-//    [self.dataManagement writeToPList];
-    
     //Pain Data Object to be added
     RTPainData *dataToBeSaved = [[RTPainData alloc]init];
     dataToBeSaved.dataId = [[RTService singleton] dataID];
-    NSLog(@"Nummer 1");
     dataToBeSaved.painLevel = self.painScore;
     dataToBeSaved.drawingPath = drawingImagePath;
     dataToBeSaved.photoPath = photoPath;
     dataToBeSaved.morphineLevel = [self.morphineInput.text integerValue];
     dataToBeSaved.morphineType = [self morphineTypeToText];
-    NSLog(@"Nummer 2");
     dataToBeSaved.date = date;
     dataToBeSaved.day = date.day;
     dataToBeSaved.month = date.month;
     dataToBeSaved.year = date.year;
     dataToBeSaved.painType = self.painType;
     dataToBeSaved.paracetamol = self.switchParmol.on;
-    NSLog(@"Nummer 3");
     
     //get default realm
     RLMRealm *realm = [RLMRealm defaultRealm];

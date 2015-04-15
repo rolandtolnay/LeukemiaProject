@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "RTPainData.h"
+#import "RTDiaryData.h"
 
 
 @interface RTRealmService : NSObject
 +(RTRealmService *) singleton;
 -(RLMResults *)painDataOnDate:(NSDate *) date;
+-(RTDiaryData *)diaryDataOnDate:(NSDate *) date;
 @end

@@ -21,6 +21,6 @@
 @property (nonatomic) NSInteger fluidsDrunkML;
 @property (nonatomic) NSInteger fluidsInDropML;
 @property (nonatomic) NSInteger urinML;
-@property (nonatomic) NSInteger weightKG;
+@property (nonatomic) float weightKG;
 
 @end

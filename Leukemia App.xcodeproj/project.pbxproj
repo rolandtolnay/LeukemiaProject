@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7758D71D1ADBF4860061B78C /* RTDiaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7758D71C1ADBF4860061B78C /* RTDiaryData.m */; };
 		776EF2241ABC25830062DE97 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EF2231ABC25830062DE97 /* Realm.framework */; };
 		776EF2261ABC25B90062DE97 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EF2251ABC25B90062DE97 /* libc++.dylib */; };
 		776EF22A1ABC2B8B0062DE97 /* RTPainData.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EF2291ABC2B8B0062DE97 /* RTPainData.m */; };
@@ -71,6 +72,8 @@
 /* Begin PBXFileReference section */
 		23D4AAFAC83C479980D0C816 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		60914AF8076F54D65FA05ED0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7758D71B1ADBF4860061B78C /* RTDiaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTDiaryData.h; sourceTree = "<group>"; };
+		7758D71C1ADBF4860061B78C /* RTDiaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTDiaryData.m; sourceTree = "<group>"; };
 		776EF2231ABC25830062DE97 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		776EF2251ABC25B90062DE97 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		776EF2281ABC2B8B0062DE97 /* RTPainData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTPainData.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				776EF2291ABC2B8B0062DE97 /* RTPainData.m */,
 				776EF22B1ABC83AE0062DE97 /* RTRealmService.h */,
 				776EF22C1ABC83AE0062DE97 /* RTRealmService.m */,
+				7758D71B1ADBF4860061B78C /* RTDiaryData.h */,
+				7758D71C1ADBF4860061B78C /* RTDiaryData.m */,
 			);
 			name = RealmDataObjects;
 			sourceTree = "<group>";
@@ -584,6 +589,7 @@
 				A0B180F119F7CF8D00013FCA /* RTPainInfoViewController.m in Sources */,
 				A695400B19D19C0000AB3E64 /* RTGraphWeekPickerViewController.m in Sources */,
 				A6924EC3199E2B63009D7220 /* RTDiaryViewController.m in Sources */,
+				7758D71D1ADBF4860061B78C /* RTDiaryData.m in Sources */,
 				A6A3D4B619BF2481003DEF56 /* RTGraphCalendarViewController.m in Sources */,
 				A6976E0B19ED378300CC29BF /* RTAddBloodSampleViewController.m in Sources */,
 				A684DFA41A84E49F00BD9156 /* RTBloodSampleCollectionViewCell.m in Sources */,
