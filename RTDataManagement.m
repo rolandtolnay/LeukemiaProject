@@ -201,34 +201,6 @@ static RTDataManagement *dataManagement = nil;
 }
 
 
-
-//Used for marking dates in the calendar
--(NSArray*) datesWithPainFromDate: (NSDate*) currentDate{
-    NSMutableArray *dates = [[NSMutableArray alloc] init];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"-MM-"];
-    NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
-    
-    for (NSDictionary *painRegistration in self.painData)
-    {
-        NSString *timeStamp = [painRegistration objectForKey:@"date"];
-        if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
-        {
-            NSString *day = [timeStamp componentsSeparatedByString:@"-"][2];
-            day = [day substringToIndex:2];
-            NSNumber *dateToBeAdded = [NSNumber numberWithInt:[day intValue]];
-            
-            //check for duplicates
-            if ([dates count] < 1 || ![dates[[dates count]-1] isEqualToValue:dateToBeAdded])
-                [dates addObject:dateToBeAdded];
-            
-        }
-    }
-    
-    return [dates copy];
-}
-
 #pragma mark - Graph data management
 
 //Returns an array with dates as NSNumber objects for the current month which contain enough data to display a graph

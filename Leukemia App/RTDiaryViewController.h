@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "VRGCalendarView.h"
 #import "NSDate+convenience.h"
-#import "RTDataManagement.h"
 #import "RTDiaryDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
@@ -29,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;
 
-@property (strong, nonatomic) RTDataManagement *dataManagement;
 @property (strong, nonatomic) RTRealmService *realmService;
 @property (strong,nonatomic) NSDateFormatter *dateFormat;
 @property (strong, nonatomic) NSDate *currentSelectedDate;

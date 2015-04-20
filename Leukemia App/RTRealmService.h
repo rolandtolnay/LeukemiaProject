@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "RTPainData.h"
 #import "RTDiaryData.h"
+#import "NSDate+convenience.h"
 
 
 @interface RTRealmService : NSObject
 +(RTRealmService *) singleton;
 -(RLMResults *)painDataOnDate:(NSDate *) date;
 -(RTDiaryData *)diaryDataOnDate:(NSDate *) date;
+-(NSArray *) datesToBeMarkedInMonthFromDate: (NSDate*) currentDate;
 @end

@@ -22,7 +22,6 @@
 - (void)viewDidLoad
 {
     self.realmService = [RTRealmService singleton];
-    self.dataManagement = [RTDataManagement singleton];
     self.calendar  = [[VRGCalendarView alloc]initWithDate:[NSDate date]];
     self.calendar.delegate=self;
     [self.calendarView addSubview:self.calendar];
@@ -53,7 +52,7 @@
     }
     self.calendar.currentMonth = dateToShow;
     [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
-    //[self.calendar markDates:[self.dataManagement datesWithPainFromDate:[NSDate date]]];
+    [self.calendar markDates:[self.realmService datesToBeMarkedInMonthFromDate:[NSDate date]]];
     [super viewWillAppear:animated];
 }
 
@@ -69,7 +68,7 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-#pragma mark - Notes
+#pragma mark - Notes registration
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView isEqual:self.textViewNotes])
@@ -84,31 +83,22 @@
 
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
-    RTDiaryData *dataToBeSaved;
-    RLMRealm *realm = [RLMRealm defaultRealm];
+    
     if ([textView isEqual:self.textViewNotes])
     {
         NSDate *selectedDate = self.calendar.selectedDate;
         
         if ([self.realmService diaryDataOnDate:selectedDate] !=nil)
         {
-            
-            dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+            RTDiaryData *dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+            RLMRealm *realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
             dataToBeSaved.notes = textView.text;
             [realm commitWriteTransaction];
         }
         else
         {
-            dataToBeSaved = [[RTDiaryData alloc]init];
-            dataToBeSaved.dataId = [[RTService singleton] dataID];
-            dataToBeSaved.date = selectedDate;
-            dataToBeSaved.notes = textView.text;
-            //dataToBeSaved.protocolTreatmentDay = [self.textFieldProtocol.text integerValue];
-            
-            [realm beginWriteTransaction];
-            [realm addObject:dataToBeSaved];
-            [realm commitWriteTransaction];
+            [self saveDiaryDataOnDate:selectedDate];
         }
     }
 }
@@ -117,8 +107,6 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    RTDiaryData *dataToBeSaved;
-    RLMRealm *realm = [RLMRealm defaultRealm];
     if ([textField isEqual:self.textFieldProtocol])
     {
         if ([textField.text isEqualToString:@"test"])
@@ -134,7 +122,8 @@
             if ([textField.text intValue]>0 || [textField.text isEqualToString:@""])
             {
                 if ([textField isEqual:self.textFieldProtocol]){
-                    dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+                    RTDiaryData *dataToBeSaved = [self.realmService diaryDataOnDate:selectedDate];
+                    RLMRealm *realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
                     dataToBeSaved.protocolTreatmentDay = [textField.text integerValue];
                     [realm commitWriteTransaction];
@@ -145,15 +134,7 @@
         {
             if ([textField.text intValue]>0 && ![textField.text isEqualToString:@""])
             {
-                dataToBeSaved = [[RTDiaryData alloc]init];
-                dataToBeSaved.dataId = [[RTService singleton] dataID];
-                dataToBeSaved.date = selectedDate;
-                dataToBeSaved.notes = self.textViewNotes.text;
-                dataToBeSaved.protocolTreatmentDay = [textField.text integerValue];
-                
-                [realm beginWriteTransaction];
-                [realm addObject:dataToBeSaved];
-                [realm commitWriteTransaction];
+                [self saveDiaryDataOnDate:selectedDate];
             }
         }
     }
@@ -166,9 +147,23 @@
     return YES;
 }
 
+#pragma mark - Saving diary data helper method
+-(void)saveDiaryDataOnDate:(NSDate *) selectedDate{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    RTDiaryData *dataToBeSaved = [[RTDiaryData alloc]init];
+    dataToBeSaved.dataId = [[RTService singleton] dataID];
+    dataToBeSaved.date = selectedDate;
+    dataToBeSaved.notes = self.textViewNotes.text;
+    dataToBeSaved.protocolTreatmentDay = [self.textFieldProtocol.text integerValue];
+    
+    [realm beginWriteTransaction];
+    [realm addObject:dataToBeSaved];
+    [realm commitWriteTransaction];
+}
+
 #pragma mark - CalendarView Delegate
 -(void)calendarView:(VRGCalendarView *)calendarView switchedToMonth:(NSInteger)month year:(NSInteger)year numOfDays:(NSInteger)days targetHeight:(CGFloat)targetHeight animated:(BOOL)animated{
-    
+    //Marks the day today in the calendar
     if(self.currentSelectedDate.month == month && self.currentSelectedDate.year == year){
         [self.dateFormat setDateFormat:@"dd"];
         NSDate *dateToShow = [NSDate date];
@@ -179,28 +174,22 @@
         [self.calendar selectDate:[[self.dateFormat stringFromDate:dateToShow] integerValue]];
     }
     
-    [self.dateFormat setDateFormat:@"MM"];
-    
-    NSString *monthString = [@(month) stringValue];
-    
-    NSDate *newDate = [self.dateFormat dateFromString:monthString];
-    [self.calendar markDates:[self.dataManagement datesWithPainFromDate:newDate]];
+    [self.calendar markDates:[self.realmService datesToBeMarkedInMonthFromDate:self.calendar.currentMonth]];
 }
 
 -(void)calendarView:(VRGCalendarView *)calendarView dateSelected:(NSDate *)date{
     [self setDateLabels: date];
+    
     //PainData
     self.painRegistrations = [self.realmService painDataOnDate:date];
     self.currentSelectedDate = date;
     [self.dataTableView reloadData];
+    
     //DiaryData
     self.diaryRegistration = [self.realmService diaryDataOnDate:date];
     [self.textFieldProtocol setText:[@(self.diaryRegistration.protocolTreatmentDay) stringValue]];
     [self.textViewNotes setText:self.diaryRegistration.notes];
     
-//    NSMutableDictionary *diaryReg = [self.dataManagement diaryDataAtDate:date];
-//    [self.textFieldProtocol setText:[[diaryReg objectForKey:@"protocolTreatmentDay"]stringValue]];
-//    [self.textViewNotes setText:[diaryReg objectForKey:@"notes"]];
     [self textViewDidChange:self.textViewNotes];
 }
 

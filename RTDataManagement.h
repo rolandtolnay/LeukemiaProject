@@ -40,7 +40,6 @@
 -(NSMutableDictionary *)readFromPlist;
 
 //Service methods for pain data-management
--(NSArray*) datesWithPainFromDate: (NSDate*) currentDate;
 -(NSArray *) painLevelsAtDay:(NSString *) day forPainType:(NSString *) painType;
 -(NSArray *) timeStampsAtDay:(NSString *) day;
 -(NSArray *) timeStampsAtDay:(NSString *) day forPainType:(NSString *) painType;
