@@ -109,12 +109,6 @@
 {
     if ([textField isEqual:self.textFieldProtocol])
     {
-        if ([textField.text isEqualToString:@"test"])
-        {
-            [[RTDataManagement singleton] initTestData];
-            return;
-        }
-        
         NSDate *selectedDate = self.calendar.selectedDate;
         
         if ([self.realmService diaryDataOnDate:selectedDate] !=nil)

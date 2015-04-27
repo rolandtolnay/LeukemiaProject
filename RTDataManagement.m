@@ -381,34 +381,34 @@ static RTDataManagement *dataManagement = nil;
     return kemoTreatment;
 }
 
-//Returns the kemoTreatment for a given day from the kemoTreatmentArray
--(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date
-{
-    NSMutableDictionary *kemoTreatment;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    
-    if (self.kemoTreatmentArray.count>0)
-    {
-        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
-        {
-            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
-            NSString *dateToSearchString = [dateFormatter stringFromDate:date];
-            
-            if ([kemoTreatmentDateString isEqual:dateToSearchString])
-            {
-                kemoTreatment = kemoTreatmentRegistration;
-                break;
-            }
-        }
-    } else {
-        
-        return nil;
-    }
-    
-    return kemoTreatment;
-}
+////Returns the kemoTreatment for a given day from the kemoTreatmentArray
+//-(NSMutableDictionary *) kemoTreatmentForDay: (NSDate*)date
+//{
+//    NSMutableDictionary *kemoTreatment;
+//    
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    
+//    if (self.kemoTreatmentArray.count>0)
+//    {
+//        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
+//        {
+//            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+//            NSString *dateToSearchString = [dateFormatter stringFromDate:date];
+//            
+//            if ([kemoTreatmentDateString isEqual:dateToSearchString])
+//            {
+//                kemoTreatment = kemoTreatmentRegistration;
+//                break;
+//            }
+//        }
+//    } else {
+//        
+//        return nil;
+//    }
+//    
+//    return kemoTreatment;
+//}
 
 -(NSMutableDictionary*)newMedicineData:(NSDate*)date{
     

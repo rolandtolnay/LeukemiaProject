@@ -11,6 +11,7 @@
 #import "NSDate+convenience.h"
 #import "RTGraphCalendarViewController.h"
 #import "RTService.h"
+#import "RTBloodSample.h"
 
 @interface RTAddBloodSampleViewController : UIViewController <UIPopoverControllerDelegate,RTCalendarPickerDelegate,UITextFieldDelegate>
 
@@ -20,7 +21,8 @@
 @property (nonatomic, strong) IBOutletCollection(UITextField) NSArray *txfBloodSamples;
 
 @property NSDate *selectedDate;
-@property NSDictionary *selectedBloodSample;
+//@property NSDictionary *selectedBloodSample;
+@property RTBloodSample *selectedBloodSample;
 
 -(void)resetView;
 - (IBAction)addSample:(id)sender;

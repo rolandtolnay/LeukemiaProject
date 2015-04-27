@@ -12,11 +12,14 @@
 #import "RTSelectKemoTableViewController.h"
 #import "RTBloodSampleCollectionViewCell.h"
 #import "RTAddBloodSampleViewController.h"
+#import "RTBloodSample.h"
+#import "RTMedicineData.h"
+#import "RTRealmService.h"
+#import "RTKemoTreatment.h"
 
 @interface RTMedicineViewController : UIViewController <UIPopoverControllerDelegate, RTSelectKemoDelegate, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 //Views
-
 @property (weak, nonatomic) IBOutlet UIView *medicineView;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionBloodSamples;
@@ -30,7 +33,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveDose;
 @property (weak, nonatomic) IBOutlet UIButton *editDose;
 
-@property (strong,nonatomic) RTDataManagement *dataManagement;
+//@property (strong,nonatomic) RTDataManagement *dataManagement;
+@property (strong, nonatomic) RTRealmService *realmService;
 @property (strong,nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) NSString *kemoTypePicked;
 @property (strong,nonatomic) NSMutableDictionary *dataAtselectedDate;

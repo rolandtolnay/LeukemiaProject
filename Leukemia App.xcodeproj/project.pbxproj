@@ -12,6 +12,9 @@
 		776EF2261ABC25B90062DE97 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 776EF2251ABC25B90062DE97 /* libc++.dylib */; };
 		776EF22A1ABC2B8B0062DE97 /* RTPainData.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EF2291ABC2B8B0062DE97 /* RTPainData.m */; };
 		776EF22D1ABC83AE0062DE97 /* RTRealmService.m in Sources */ = {isa = PBXBuildFile; fileRef = 776EF22C1ABC83AE0062DE97 /* RTRealmService.m */; };
+		77BFEB721AE51553006B503D /* RTMedicineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFEB711AE51553006B503D /* RTMedicineData.m */; };
+		77BFEB751AE515B7006B503D /* RTBloodSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFEB741AE515B7006B503D /* RTBloodSample.m */; };
+		77BFEB781AE52B5F006B503D /* RTKemoTreatment.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BFEB771AE52B5F006B503D /* RTKemoTreatment.m */; };
 		A001D1371A91EEEE005317E3 /* RTMucositisData.m in Sources */ = {isa = PBXBuildFile; fileRef = A001D1361A91EEEE005317E3 /* RTMucositisData.m */; };
 		A04F86091A7A6751000F1AC9 /* RTMucositisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A04F86081A7A6751000F1AC9 /* RTMucositisViewController.m */; };
 		A0636C0B19AF22E200188588 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0636C0A19AF22E200188588 /* QuartzCore.framework */; };
@@ -80,6 +83,12 @@
 		776EF2291ABC2B8B0062DE97 /* RTPainData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTPainData.m; sourceTree = "<group>"; };
 		776EF22B1ABC83AE0062DE97 /* RTRealmService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTRealmService.h; sourceTree = "<group>"; };
 		776EF22C1ABC83AE0062DE97 /* RTRealmService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTRealmService.m; sourceTree = "<group>"; };
+		77BFEB701AE51553006B503D /* RTMedicineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMedicineData.h; sourceTree = "<group>"; };
+		77BFEB711AE51553006B503D /* RTMedicineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMedicineData.m; sourceTree = "<group>"; };
+		77BFEB731AE515B7006B503D /* RTBloodSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTBloodSample.h; sourceTree = "<group>"; };
+		77BFEB741AE515B7006B503D /* RTBloodSample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTBloodSample.m; sourceTree = "<group>"; };
+		77BFEB761AE52B5F006B503D /* RTKemoTreatment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTKemoTreatment.h; sourceTree = "<group>"; };
+		77BFEB771AE52B5F006B503D /* RTKemoTreatment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTKemoTreatment.m; sourceTree = "<group>"; };
 		A001D1351A91EEEE005317E3 /* RTMucositisData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisData.h; sourceTree = "<group>"; };
 		A001D1361A91EEEE005317E3 /* RTMucositisData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTMucositisData.m; sourceTree = "<group>"; };
 		A04F86071A7A6751000F1AC9 /* RTMucositisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTMucositisViewController.h; sourceTree = "<group>"; };
@@ -203,6 +212,12 @@
 				776EF22C1ABC83AE0062DE97 /* RTRealmService.m */,
 				7758D71B1ADBF4860061B78C /* RTDiaryData.h */,
 				7758D71C1ADBF4860061B78C /* RTDiaryData.m */,
+				77BFEB701AE51553006B503D /* RTMedicineData.h */,
+				77BFEB711AE51553006B503D /* RTMedicineData.m */,
+				77BFEB731AE515B7006B503D /* RTBloodSample.h */,
+				77BFEB741AE515B7006B503D /* RTBloodSample.m */,
+				77BFEB761AE52B5F006B503D /* RTKemoTreatment.h */,
+				77BFEB771AE52B5F006B503D /* RTKemoTreatment.m */,
 			);
 			name = RealmDataObjects;
 			sourceTree = "<group>";
@@ -602,11 +617,14 @@
 				A6924EA0199E28C5009D7220 /* RTPainDrawViewController.m in Sources */,
 				A6924E96199E28C5009D7220 /* main.m in Sources */,
 				776EF22A1ABC2B8B0062DE97 /* RTPainData.m in Sources */,
+				77BFEB781AE52B5F006B503D /* RTKemoTreatment.m in Sources */,
 				A633F3F51A10E51900DE90C9 /* RTService.m in Sources */,
 				A04F86091A7A6751000F1AC9 /* RTMucositisViewController.m in Sources */,
 				A0FD8C6A1A88D614003769BF /* RTMouthInfoTableViewCell.m in Sources */,
 				A6B626661A16280300C36572 /* Reachability.m in Sources */,
+				77BFEB751AE515B7006B503D /* RTBloodSample.m in Sources */,
 				A0FD8C671A88D34F003769BF /* RTMouthDrawViewController.m in Sources */,
+				77BFEB721AE51553006B503D /* RTMedicineData.m in Sources */,
 				A695674219E6AA4C00C69FA9 /* RTTabAnimator.m in Sources */,
 				A0FD8C701A88D88A003769BF /* RTMucositisInfoTableViewController.m in Sources */,
 			);

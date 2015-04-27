@@ -24,6 +24,69 @@ static RTRealmService *realmService = nil;
     return realmService;
 }
 
+#pragma mark - Retrieve medicinedata methods
+//Get medicinedata at the given date
+-(RTMedicineData *) medicineDataAtDate:(NSDate*) date
+{
+    RTMedicineData *dataToReturn;
+    RLMResults *results = [RTMedicineData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+    if (results.count==1) {
+        dataToReturn = [results objectAtIndex:0];
+    }
+    return  dataToReturn;
+}
+
+#pragma mark - Retrieve bloodsample methods
+-(RTBloodSample *)bloodSampleForDate:(NSDate *) date
+{
+    return [self medicineDataAtDate:date].bloodSample;
+}
+
+/**
+ * Returns a dictionary with all bloodsample dictionaries, where the key is the blood-sample date.
+ */
+-(RLMResults*)daysWithBloodSamplesSorted{
+    return [[RTBloodSample allObjects]sortedResultsUsingProperty:@"date" ascending:YES];
+}
+
+#pragma mark - Retrieve pain data methods
+//Gets paindata on the given date
+-(RLMResults *)painDataOnDate:(NSDate *) date{
+    return [RTPainData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+}
+
+#pragma mark - Retrieve kemo data methods
+//-(NSArray *)kemoForDate:(NSDate*) date
+//{
+//    NSMutableArray *kemo = [[NSMutableArray alloc]init];
+//    RTMedicineData *medicineRegistration = [self medicineDataAtDate:date];
+//
+//    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mtx]];
+//    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mercaptopurin]];
+//
+//    return [kemo copy];
+//}
+
+//Returns the kemoTreatment for a given day
+-(RTKemoTreatment *) kemoTreatmentForDay: (NSDate*)date
+{
+    RTKemoTreatment *kemoTreatment;
+    
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    if ([RTKemoTreatment allObjects].count>0)
+    {
+        kemoTreatment = [[RTKemoTreatment objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]]objectAtIndex:0];
+        
+    } else
+    {
+        return nil;
+    }
+    
+    return kemoTreatment;
+}
+
 #pragma mark - Retrieve diary data methods
 //Gets diarydata on the given date
 -(RTDiaryData *)diaryDataOnDate:(NSDate *) date{
@@ -34,12 +97,6 @@ static RTRealmService *realmService = nil;
     }
     
     return  dataToReturn;
-}
-
-#pragma mark - Retrieve pain data methods
-//Gets paindata on the given date
--(RLMResults *)painDataOnDate:(NSDate *) date{
-    return [RTPainData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
 }
 
 //Used for marking dates in the calendar
