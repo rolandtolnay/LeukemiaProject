@@ -14,7 +14,7 @@
 @property RTService *service;
 
 //@property NSArray *sortedBloodSampleDates; Gl. property
-@property RLMResults *sortedBloodSampleDates;
+@property RLMResults *sortedBloodSamples;
 //@property NSMutableDictionary *selectedBloodSample; Gl. property
 @property RTBloodSample *selectedBloodSample;
 @end
@@ -29,7 +29,7 @@
     self.mtxText.delegate = self;
     self.m6Text.delegate = self;
     
-    self.dataManagement = [RTDataManagement singleton];
+    //self.dataManagement = [RTDataManagement singleton];
     self.realmService = [RTRealmService singleton]; 
     
     self.medicineView.layer.borderWidth = 1.0;
@@ -59,7 +59,7 @@
     }
     self.selectedBloodSample = nil;
     //[self sortBloodSampleDates];
-    self.sortedBloodSampleDates = [self.realmService daysWithBloodSamplesSorted];
+    self.sortedBloodSamples = [self.realmService daysWithBloodSamplesSorted];
 }
 
 #pragma mark - Convenience methods
@@ -109,16 +109,16 @@
 //    return [bloodSample copy];
 //}
 
--(NSArray *)kemoForDay:(NSDate*) date
-{
-    NSMutableArray *kemo = [[NSMutableArray alloc]init];
-    RTMedicineData *medicineRegistration = [self.realmService medicineDataAtDate:date];
-    
-    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mtx]];
-    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mercaptopurin]];
-    
-    return [kemo copy];
-}
+//-(NSArray *)kemoForDay:(NSDate*) date
+//{
+//    NSMutableArray *kemo = [[NSMutableArray alloc]init];
+//    RTMedicineData *medicineRegistration = [self.realmService medicineDataAtDate:date];
+//    
+//    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mtx]];
+//    [kemo addObject:[NSNumber numberWithInteger:medicineRegistration.mercaptopurin]];
+//    
+//    return [kemo copy];
+//}
 
 //-(void) sortBloodSampleDates
 //{
@@ -239,7 +239,7 @@
         
         self.selectedBloodSample = nil;
         //[self sortBloodSampleDates];
-        self.sortedBloodSampleDates = [self.realmService daysWithBloodSamplesSorted];
+        self.sortedBloodSamples = [self.realmService daysWithBloodSamplesSorted];
         [self.collectionBloodSamples reloadData];
     }
 }
@@ -305,38 +305,54 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self bloodSampleDictionary].count;
+    //return [self bloodSampleDictionary].count;
+    return self.sortedBloodSamples.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     RTBloodSampleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"bloodSampleCell" forIndexPath:indexPath];
     
-    NSDate *cellDate = self.sortedBloodSampleDates[indexPath.row];
+    //NSDate *cellDate = self.sortedBloodSamples[indexPath.row];
+    NSDate *cellDate = [[self.sortedBloodSamples objectAtIndex:indexPath.row]date];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM"];
     cell.lblDate.text = [dateFormatter stringFromDate:cellDate];
     
-    NSArray *bloodSample = [self bloodSampleForDay:cellDate];
-    for (UILabel *lbl in cell.bloodSampleLabels)
-    {
-        [lbl setText:[NSString stringWithFormat:@"%@",bloodSample[lbl.tag]]];
-    }
+    //NSArray *bloodSample = [self bloodSampleForDay:cellDate];
+    RTBloodSample *bloodSample = [self.sortedBloodSamples objectAtIndex:indexPath.row];
+    cell.lblAlat.text = [@(bloodSample.alat) stringValue];
+    cell.lblCrp.text = [@(bloodSample.crp) stringValue];
+    cell.lblHemoglobin.text = [@(bloodSample.hemoglobin) stringValue];
+    cell.lblLeukocyt.text = [@(bloodSample.leukocytes) stringValue];
+    cell.lblNeutrofile.text = [@(bloodSample.neutroFile) stringValue];
+    cell.lblThromboCyt.text = [@(bloodSample.thrombocytes) stringValue];
+//    for (UILabel *lbl in cell.bloodSampleLabels)
+//    {
+//        [lbl setText:[NSString stringWithFormat:@"%@",bloodSample[lbl.tag]]];
+//    }
     
-     NSArray *kemo = [self kemoForDay:cellDate];
-    [cell.lblMTX setText:[NSString stringWithFormat:@"%@",kemo[0]]];
-    [cell.lbl6MP setText:[NSString stringWithFormat:@"%@",kemo[1]]];
-    
+     //NSArray *kemo = [self kemoForDay:cellDate];
+    RTMedicineData *medicineRegistration = [self.realmService medicineDataAtDate:cellDate];
+    cell.lblMTX.text = [@(medicineRegistration.mtx)stringValue];
+    cell.lbl6MP.text = [@(medicineRegistration.mercaptopurin)stringValue];
+
+//    [cell.lblMTX setText:[NSString stringWithFormat:@"%@",kemo[0]]];
+//    [cell.lbl6MP setText:[NSString stringWithFormat:@"%@",kemo[1]]];
     
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *cellDate = self.sortedBloodSampleDates[indexPath.row];
-    self.selectedBloodSample = [[self.dataManagement medicineDataAtDate:cellDate] objectForKey:@"bloodSample"];
-    [self.selectedBloodSample setObject:cellDate forKey:@"date"];
+    //NSDate *cellDate = self.sortedBloodSamples[indexPath.row];
+    NSDate *cellDate = [[self.sortedBloodSamples objectAtIndex:indexPath.row]date];
+    
+    //self.selectedBloodSample = [[self.dataManagement medicineDataAtDate:cellDate] objectForKey:@"bloodSample"];
+    self.selectedBloodSample = [[self.realmService medicineDataAtDate:cellDate]bloodSample];
+    //[self.selectedBloodSample setObject:cellDate forKey:@"date"];
+    self.selectedBloodSample.date = cellDate;
     [self performSegueWithIdentifier:@"showBloodSampleSegue" sender:self];
 }
 
