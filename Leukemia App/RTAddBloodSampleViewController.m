@@ -10,7 +10,8 @@
 
 @interface RTAddBloodSampleViewController ()
 
-@property RTDataManagement *dataManagement;
+//@property RTDataManagement *dataManagement;
+@property RTRealmService *realmService;
 
 @property UIPopoverController* popover;
 
@@ -21,14 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dataManagement = [RTDataManagement singleton];
+    //self.dataManagement = [RTDataManagement singleton];
     
     if (self.selectedBloodSample != nil) //Editing blood sample
     {
         NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"Edit blood sample"];
         [self.btnAddSample setAttributedTitle:title forState:UIControlStateNormal];
         
-        self.selectedDate = [self.selectedBloodSample objectForKey:@"date"];
+        //self.selectedDate = [self.selectedBloodSample objectForKey:@"date"];
+        self.selectedDate = self.selectedBloodSample.date;
         NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
         [dayShortFormatter setDateFormat:@"dd/MM"];
         [self.btnDateSelector setTitle:[dayShortFormatter stringFromDate:self.selectedDate] forState:UIControlStateNormal];
@@ -36,7 +38,7 @@
         
         [self prepareForUpdate];
         
-    } else                              //Adding blood sample
+    } else //Adding blood sample
     {
         self.selectedDate = [NSDate date];
         NSDateFormatter *dayShortFormatter = [[NSDateFormatter alloc] init];
@@ -64,27 +66,38 @@
         NSString *bloodSampleValue;
         switch (txf.tag) {
             case 0:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"hemoglobin"] stringValue];
+//                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"hemoglobin"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.hemoglobin) stringValue];
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             case 1:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"thrombocytes"] stringValue];
+                //bloodSampleValue = [[self.selectedBloodSample objectForKey:@"thrombocytes"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.thrombocytes) stringValue];
+
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             case 2:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"leukocytes"] stringValue];
+                //bloodSampleValue = [[self.selectedBloodSample objectForKey:@"leukocytes"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.leukocytes) stringValue];
+
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             case 3:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"neutrofile"] stringValue];
+                //bloodSampleValue = [[self.selectedBloodSample objectForKey:@"neutrofile"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.neutroFile) stringValue];
+
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             case 4:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"crp"] stringValue];
+                //bloodSampleValue = [[self.selectedBloodSample objectForKey:@"crp"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.crp) stringValue];
+
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             case 5:
-                bloodSampleValue = [[self.selectedBloodSample objectForKey:@"alat"] stringValue];
+                //bloodSampleValue = [[self.selectedBloodSample objectForKey:@"alat"] stringValue];
+                bloodSampleValue = [@(self.selectedBloodSample.alat) stringValue];
+
                 [txf setText:[NSString stringWithFormat:@"%@",bloodSampleValue]];
                 break;
             default:
@@ -119,13 +132,18 @@
 
 - (IBAction)addSample:(id)sender {
     
-    NSMutableDictionary *sampleData = [[NSMutableDictionary alloc]init];
-    NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
+    //NSMutableDictionary *sampleData = [[NSMutableDictionary alloc]init];
+    RTBloodSample *sampleData = [[RTBloodSample alloc]init];
+    //NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
+    RTMedicineData *dataToBeSaved = [self.realmService medicineDataAtDate:self.selectedDate];
     BOOL success = YES;
     
     if(dataToBeSaved == nil && self.selectedBloodSample == nil){
-        dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
+        //dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
+        dataToBeSaved = [self.realmService newMedicineData:self.selectedDate];
     }
+    
+    //ER NÅET HERTIL TODO
     
     for (UITextField *txf in self.txfBloodSamples)
     {
@@ -133,43 +151,52 @@
         
         if ([self isProperValue:trimmedValue forInput:(int)txf.tag])
         {
-            NSNumber *bloodSampleValue;
+            //NSNumber *bloodSampleValue;
             switch (txf.tag) {
                 case 0:
-                    bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
-                    [sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
+                    //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                    //[sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
+                    sampleData.hemoglobin = trimmedValue.floatValue;
                     break;
                 case 1:
                     if ([trimmedValue isEqualToString:@""])
-                        [sampleData setObject:@"" forKey:@"thrombocytes"];
+                        //[sampleData setObject:@"" forKey:@"thrombocytes"];
+                        sampleData.thrombocytes = 0;
                     else {
-                        bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
-                        [sampleData setObject:bloodSampleValue forKey:@"thrombocytes"];
+                        //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                        //[sampleData setObject:bloodSampleValue forKey:@"thrombocytes"];
+                        sampleData.thrombocytes = trimmedValue.integerValue;
                     }
                     break;
                 case 2:
                     if ([trimmedValue isEqualToString:@""])
-                        [sampleData setObject:@"" forKey:@"leukocytes"];
+                        //[sampleData setObject:@"" forKey:@"leukocytes"];
+                        sampleData.leukocytes = 0.0;
                     else {
-                        bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
-                        [sampleData setObject:bloodSampleValue forKey:@"leukocytes"];
+                        //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                        //[sampleData setObject:bloodSampleValue forKey:@"leukocytes"];
+                        sampleData.leukocytes = trimmedValue.floatValue;
                     }
                     break;
                 case 3:
                     if ([trimmedValue isEqualToString:@""])
-                        [sampleData setObject:@"" forKey:@"neutrofile"];
+                        //[sampleData setObject:@"" forKey:@"neutrofile"];
+                        sampleData.neutroFile = 0.0;
                     else {
-                        bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
-                        [sampleData setObject:bloodSampleValue forKey:@"neutrofile"];
+                        //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
+                        //[sampleData setObject:bloodSampleValue forKey:@"neutrofile"];
+                        sampleData.neutroFile = trimmedValue.floatValue;
                     }
                     break;
                 case 4:
-                    bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
-                    [sampleData setObject:bloodSampleValue forKey:@"crp"];
+                    //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                    //[sampleData setObject:bloodSampleValue forKey:@"crp"];
+                    sampleData.crp = trimmedValue.integerValue;
                     break;
                 case 5:
-                    bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
-                    [sampleData setObject:bloodSampleValue forKey:@"alat"];
+                    //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
+                    //[sampleData setObject:bloodSampleValue forKey:@"alat"];
+                    sampleData.alat = trimmedValue.integerValue;
                     break;
                 default:
                     break;
@@ -193,8 +220,13 @@
     
     if (success)
     {
-        [dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
-        [self.dataManagement writeToPList];
+        //[dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
+        dataToBeSaved.bloodSample = sampleData;
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm addObject:dataToBeSaved];
+        [realm commitWriteTransaction];
+        //[self.dataManagement writeToPList];
     }
     [self resetView];
 }
@@ -229,7 +261,8 @@
         RTGraphCalendarViewController *controller = [segue destinationViewController];
         controller.delegate = self;
         controller.pickedDate = self.selectedDate;
-        controller.markedDates = [self.dataManagement datesWithBloodSamplesFromDate:self.selectedDate];
+        //controller.markedDates = [self.dataManagement datesWithBloodSamplesFromDate:self.selectedDate];
+        controller.markedDates = [self.realmService datesWithBloodSamplesFromDate:self.selectedDate];
         
         self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
         self.popover.delegate = self;
@@ -258,7 +291,8 @@
     [dateFormatter setDateFormat:@"MM"];
     NSString *monthString = [@(month) stringValue];
     NSDate *newDate = [dateFormatter dateFromString:monthString];
-    return [self.dataManagement datesWithBloodSamplesFromDate:newDate];
+    //return [self.dataManagement datesWithBloodSamplesFromDate:newDate];
+    return [self.realmService datesWithBloodSamplesFromDate:newDate];
 }
 
 @end

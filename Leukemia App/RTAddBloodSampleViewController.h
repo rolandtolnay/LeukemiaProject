@@ -12,6 +12,8 @@
 #import "RTGraphCalendarViewController.h"
 #import "RTService.h"
 #import "RTBloodSample.h"
+#import "RTMedicineData.h"
+#import "RTRealmService.h"
 
 @interface RTAddBloodSampleViewController : UIViewController <UIPopoverControllerDelegate,RTCalendarPickerDelegate,UITextFieldDelegate>
 

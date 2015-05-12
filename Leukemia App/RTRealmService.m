@@ -36,6 +36,126 @@ static RTRealmService *realmService = nil;
     return  dataToReturn;
 }
 
+-(RTMedicineData *)newMedicineData:(NSDate*)date{
+    
+    RTMedicineData *dataToBeSaved = [[RTMedicineData alloc]init];
+    
+    //ID and Date information
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    //[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    //[dataToBeSaved setObject:[dateFormatter stringFromDate:date] forKey:@"date"];
+    //[dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
+    dataToBeSaved.date = date;
+    dataToBeSaved.dataId = [[RTService singleton]dataID];
+    
+    //Kemo-data
+    //NSMutableDictionary *kemoTreatmentDictionary = [self relevantKemoTreatmentForDay:date];
+    RTKemoTreatment *kemoTreatment = [self relevantKemoTreatmentForDay:date];
+    
+//    if (kemoTreatmentDictionary != nil)
+    if (kemoTreatment != nil)
+
+    {
+//        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"mtx"] forKey:@"mtx"];
+//        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"mercaptopurin"] forKey:@"mercaptopurin"];
+//        [dataToBeSaved setObject:[kemoTreatmentDictionary objectForKey:@"kemoTreatment"] forKey:@"kemoTreatment"];
+        dataToBeSaved.mtx = kemoTreatment.mtx;
+        dataToBeSaved.mercaptopurin = kemoTreatment.mercaptopurin;
+        dataToBeSaved.kemoTreatment = kemoTreatment.kemoTreatmentType;
+    } else {
+//        [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"mtx"];
+//        [dataToBeSaved setObject:[NSNumber numberWithInt:0] forKey:@"mercaptopurin"];
+//        [dataToBeSaved setObject:@"" forKey:@"kemoTreatment"];
+        dataToBeSaved.mtx = 0;
+        dataToBeSaved.mercaptopurin = 0;
+        dataToBeSaved.kemoTreatment = @"";
+    }
+    
+    //BloodSample Data
+//    NSMutableDictionary *bloodSampleData = [[NSMutableDictionary alloc] init];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"hemoglobin"];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"thrombocytes"];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"leukocytes"];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"neutrofile"];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"crp"];
+//    [bloodSampleData setObject:[NSNumber numberWithInteger:[@"" intValue]] forKey:@"alat"];
+//    [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
+    
+    RTBloodSample *bloodSampleData = [[RTBloodSample alloc] init];
+    bloodSampleData.hemoglobin = 0.0;
+    bloodSampleData.thrombocytes = 0;
+    bloodSampleData.leukocytes = 0.0;
+    bloodSampleData.neutroFile = 0;
+    bloodSampleData.crp = 0;
+    bloodSampleData.alat = 0;
+    //[dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
+    dataToBeSaved.bloodSample = bloodSampleData;
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+
+    [realm beginWriteTransaction];
+    [realm addObject:dataToBeSaved];
+    [realm commitWriteTransaction];
+    //[self.medicineData addObject:dataToBeSaved];
+    return dataToBeSaved;
+}
+
+//Returns the kemoTreatment that is in progress for a given day
+-(RTKemoTreatment *) relevantKemoTreatmentForDay: (NSDate*) date
+{
+    RTKemoTreatment *kemoTreatment = [[RTKemoTreatment alloc]init];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    RTService *service = [RTService singleton];
+    
+    //a check to see if there was any treatment on a previous date than the current one
+    BOOL isKemo = NO;
+    
+    //if (self.kemoTreatmentArray.count>0)
+    if([RTKemoTreatment allObjects].count>0)
+    {
+//        NSDate *closestDate = [dateFormatter dateFromString:[self.kemoTreatmentArray[0] objectForKey:@"date"]];
+        NSDate *closestDate = [[[RTKemoTreatment allObjects] firstObject]date];
+
+//        for (NSMutableDictionary *kemoTreatmentRegistration in self.kemoTreatmentArray)
+//        {
+//            NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+//            NSDate *kemoTreatmentDate = [dateFormatter dateFromString:kemoTreatmentDateString];
+//            
+//            if ([service isDate:closestDate earlierThanDate:kemoTreatmentDate] && [service isDate:kemoTreatmentDate earlierThanDate:date])
+//            {
+//                closestDate = kemoTreatmentDate;
+//                kemoTreatment = kemoTreatmentRegistration;
+//                isKemo = YES;
+//            }
+//        }
+        for (RTKemoTreatment *kemoTreatmentRegistration in [RTKemoTreatment allObjects])
+        {
+            //NSString *kemoTreatmentDateString = [kemoTreatmentRegistration objectForKey:@"date"];
+            NSDate *kemoTreatmentDate = kemoTreatmentRegistration.date;
+            
+            if ([service isDate:closestDate earlierThanDate:kemoTreatmentDate] && [service isDate:kemoTreatmentDate earlierThanDate:date])
+            {
+                closestDate = kemoTreatmentDate;
+                kemoTreatment = kemoTreatmentRegistration;
+                isKemo = YES;
+            }
+        }
+
+        
+        if (!isKemo){
+            return nil;
+        }
+        
+    } else {
+        
+        return nil;
+    }
+    
+    return kemoTreatment;
+}
+
 #pragma mark - Retrieve bloodsample methods
 -(RTBloodSample *)bloodSampleForDate:(NSDate *) date
 {
@@ -47,6 +167,50 @@ static RTRealmService *realmService = nil;
  */
 -(RLMResults*)daysWithBloodSamplesSorted{
     return [[RTBloodSample allObjects]sortedResultsUsingProperty:@"date" ascending:YES];
+}
+
+-(NSArray *) datesWithBloodSamplesFromDate:(NSDate*) currentDate{
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    
+    //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    //[dateFormatter setDateFormat:@"-MM-"];
+    //NSString *thisMonth = [dateFormatter stringFromDate:currentDate];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *nowComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:currentDate];
+    
+    [nowComponents setDay:1];
+    
+    NSDate *beginningOfCurrentMonth = [calendar dateFromComponents:nowComponents];
+    
+    NSDateComponents *oneMonth = [[NSDateComponents alloc] init];
+    
+    [oneMonth setMonth:1];
+    
+    NSDate *beginningOfNextMonth = [calendar dateByAddingComponents:oneMonth toDate:beginningOfCurrentMonth options:0];
+    RLMResults *datesWithBloodsamplesInMonth = [RTBloodSample objectsWhere:@"date >= %@ && date < %@",beginningOfCurrentMonth,beginningOfNextMonth];
+    
+    if(datesWithBloodsamplesInMonth != nil){
+    for (RTBloodSample *bloodSample in datesWithBloodsamplesInMonth)
+    {
+//        NSDictionary *bloodSamples = [medicineRegistration objectForKey:@"bloodSample"];
+//        if (bloodSamples != nil)
+//        {
+//            NSString *timeStamp = [medicineRegistration objectForKey:@"date"];
+//            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+//            if ([timeStamp rangeOfString:thisMonth].location != NSNotFound)
+//            {
+//                NSDate *timeStampDate = [dateFormatter dateFromString:timeStamp];
+//                NSNumber *dateToBeAdded = [NSNumber numberWithInt:[timeStampDate day]];
+//                [dates addObject:dateToBeAdded];
+//            }
+//        }
+         NSNumber *dateToBeAdded = [NSNumber numberWithInt:[bloodSample.date day]];
+        [dates addObject:dateToBeAdded];
+    }
+    }
+    
+    return [dates copy];
 }
 
 #pragma mark - Retrieve pain data methods

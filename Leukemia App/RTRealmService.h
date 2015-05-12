@@ -13,6 +13,7 @@
 #import "RTBloodSample.h"
 #import "RTKemoTreatment.h"
 #import "NSDate+convenience.h"
+#import "RTService.h"
 
 
 @interface RTRealmService : NSObject
@@ -26,8 +27,11 @@
 //BloodSampleData
 -(RTBloodSample *)bloodSampleForDate:(NSDate *) date;
 -(RLMResults*)daysWithBloodSamplesSorted;
+-(NSArray*) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 //MedicineData
 -(RTMedicineData *) medicineDataAtDate:(NSDate*) date;
+-(RTMedicineData *) newMedicineData:(NSDate*)date;
+-(RTKemoTreatment *) relevantKemoTreatmentForDay: (NSDate*) date;
 //Kemodata
 //-(NSArray *)kemoForDate:(NSDate*) date;
 -(RTKemoTreatment *) kemoTreatmentForDay: (NSDate*)date;
