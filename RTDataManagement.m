@@ -497,14 +497,7 @@ static RTDataManagement *dataManagement = nil;
 }
 
 
-#pragma mark - Saving data methods
--(void)saveMucositisData:(RTMucositisData *)data{
-    NSLog(@"DATA: %@",data);
-}
 
--(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date{
-    return 0;
-}
 
 
 

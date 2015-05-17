@@ -62,10 +62,6 @@
 //Service methods for bloodsample data-management
 -(NSArray *) datesWithBloodSamplesFromDate: (NSDate*) currentDate;
 
-//Service methods for mucositis data-management
--(void)saveMucositisData:(RTMucositisData *) data;
--(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date;
-
 //testing method
 -(void) initTestData;
 

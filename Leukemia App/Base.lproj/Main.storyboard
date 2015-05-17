@@ -1461,12 +1461,6 @@
                                                     <outlet property="lblMTX" destination="SOr-iL-ZrY" id="krP-5e-Dr8"/>
                                                     <outlet property="lblNeutrofile" destination="lg3-In-Can" id="Fdd-kH-7ZM"/>
                                                     <outlet property="lblThromboCyt" destination="fgi-5j-6YK" id="5xr-82-DFT"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="fgi-5j-6YK" id="ndX-W8-5G0"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="m5h-yp-Y9q" id="sjo-Vm-rip"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="792-1o-z6C" id="Obj-Zg-tr2"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="tU5-gj-v7k" id="fAJ-fa-Gir"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="ZKA-nJ-7ca" id="eis-g9-gUb"/>
-                                                    <outletCollection property="bloodSampleLabels" destination="lg3-In-Can" id="eYP-5x-OIR"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

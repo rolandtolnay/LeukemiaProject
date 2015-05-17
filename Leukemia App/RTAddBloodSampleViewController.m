@@ -23,6 +23,7 @@
     [super viewDidLoad];
     
     //self.dataManagement = [RTDataManagement singleton];
+    self.realmService = [RTRealmService singleton];
     
     if (self.selectedBloodSample != nil) //Editing blood sample
     {
@@ -133,7 +134,7 @@
 - (IBAction)addSample:(id)sender {
     
     //NSMutableDictionary *sampleData = [[NSMutableDictionary alloc]init];
-    RTBloodSample *sampleData = [[RTBloodSample alloc]init];
+    //RTBloodSample *sampleData = [[RTBloodSample alloc]init];
     //NSMutableDictionary *dataToBeSaved = [self.dataManagement medicineDataAtDate:self.selectedDate];
     RTMedicineData *dataToBeSaved = [self.realmService medicineDataAtDate:self.selectedDate];
     BOOL success = YES;
@@ -141,9 +142,9 @@
     if(dataToBeSaved == nil && self.selectedBloodSample == nil){
         //dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
         dataToBeSaved = [self.realmService newMedicineData:self.selectedDate];
+        NSLog(@"1. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+
     }
-    
-    //ER NÅET HERTIL TODO
     
     for (UITextField *txf in self.txfBloodSamples)
     {
@@ -156,47 +157,59 @@
                 case 0:
                     //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
                     //[sampleData setObject:bloodSampleValue forKey:@"hemoglobin"];
-                    sampleData.hemoglobin = trimmedValue.floatValue;
+                    //sampleData.hemoglobin = trimmedValue.floatValue;
+                    dataToBeSaved.bloodSample.hemoglobin = trimmedValue.floatValue;
                     break;
                 case 1:
                     if ([trimmedValue isEqualToString:@""])
                         //[sampleData setObject:@"" forKey:@"thrombocytes"];
-                        sampleData.thrombocytes = 0;
+                        //sampleData.thrombocytes = 0;
+                        dataToBeSaved.bloodSample.thrombocytes = 0;
                     else {
                         //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
                         //[sampleData setObject:bloodSampleValue forKey:@"thrombocytes"];
-                        sampleData.thrombocytes = trimmedValue.integerValue;
+                        //sampleData.thrombocytes = trimmedValue.integerValue;
+                        dataToBeSaved.bloodSample.thrombocytes = trimmedValue.integerValue;
                     }
                     break;
                 case 2:
                     if ([trimmedValue isEqualToString:@""])
                         //[sampleData setObject:@"" forKey:@"leukocytes"];
-                        sampleData.leukocytes = 0.0;
+                        //sampleData.leukocytes = 0.0;
+                        dataToBeSaved.bloodSample.leukocytes = 0.0;
                     else {
                         //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
                         //[sampleData setObject:bloodSampleValue forKey:@"leukocytes"];
-                        sampleData.leukocytes = trimmedValue.floatValue;
+                        //sampleData.leukocytes = trimmedValue.floatValue;
+                        dataToBeSaved.bloodSample.leukocytes = trimmedValue.floatValue;
+
                     }
                     break;
                 case 3:
                     if ([trimmedValue isEqualToString:@""])
                         //[sampleData setObject:@"" forKey:@"neutrofile"];
-                        sampleData.neutroFile = 0.0;
+                        //sampleData.neutroFile = 0.0;
+                        dataToBeSaved.bloodSample.neutroFile = 0.0;
                     else {
                         //bloodSampleValue = [NSNumber numberWithFloat:[trimmedValue floatValue]];
                         //[sampleData setObject:bloodSampleValue forKey:@"neutrofile"];
-                        sampleData.neutroFile = trimmedValue.floatValue;
+                        //sampleData.neutroFile = trimmedValue.floatValue;
+                        dataToBeSaved.bloodSample.neutroFile = trimmedValue.floatValue;
+
                     }
                     break;
                 case 4:
                     //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
                     //[sampleData setObject:bloodSampleValue forKey:@"crp"];
-                    sampleData.crp = trimmedValue.integerValue;
+                    //sampleData.crp = trimmedValue.integerValue;
+                    dataToBeSaved.bloodSample.crp = trimmedValue.integerValue;
                     break;
                 case 5:
                     //bloodSampleValue = [NSNumber numberWithInteger:[trimmedValue integerValue]];
                     //[sampleData setObject:bloodSampleValue forKey:@"alat"];
-                    sampleData.alat = trimmedValue.integerValue;
+                    //sampleData.alat = trimmedValue.integerValue;
+                    dataToBeSaved.bloodSample.alat = trimmedValue.integerValue;
+
                     break;
                 default:
                     break;
@@ -217,11 +230,10 @@
             break;
         }
     }
-    
     if (success)
     {
         //[dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
-        dataToBeSaved.bloodSample = sampleData;
+        //dataToBeSaved.bloodSample = sampleData;
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [realm addObject:dataToBeSaved];

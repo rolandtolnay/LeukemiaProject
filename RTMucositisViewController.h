@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RTDataManagement.h"
 #import "RTMouthDrawViewController.h"
+#import "RTRealmService.h"
 
 @interface RTMucositisViewController : UIViewController <UIPopoverControllerDelegate>
 
@@ -29,7 +30,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *weightTxt;
 
 //General properties
-@property (strong, nonatomic) RTDataManagement *dataManagement;
+//@property (strong, nonatomic) RTDataManagement *dataManagement;
+@property (strong, nonatomic) RTRealmService *realmService;
 @property (nonatomic) NSInteger painScore;
 @property (nonatomic) NSInteger rednessScore;
 @property (nonatomic) NSInteger foodConsumptionScore;

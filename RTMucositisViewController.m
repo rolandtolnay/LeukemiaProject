@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataManagement = [RTDataManagement singleton];
+    //self.dataManagement = [RTDataManagement singleton];
     self.btnPressedColor = [UIColor colorWithRed:105.0/255.0 green:147.0/255.0 blue:197.0/255.0 alpha:1.0];
     self.painScore = 0;
     self.rednessScore = 0;
@@ -64,7 +64,8 @@
     data.fluidsInDropML = [self.fluidsInDropTxt.text integerValue];
     data.urinML = [self.urinTxt.text integerValue];
     data.weightKG = [self.weightTxt.text integerValue];
-    [self.dataManagement saveMucositisData:data];
+    //[self.dataManagement saveMucositisData:data];
+    [self.realmService saveMucositisData:data];
     [self resetView];
 }
 

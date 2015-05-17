@@ -39,6 +39,8 @@ static RTRealmService *realmService = nil;
 -(RTMedicineData *)newMedicineData:(NSDate*)date{
     
     RTMedicineData *dataToBeSaved = [[RTMedicineData alloc]init];
+    NSLog(@"1. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+
     
     //ID and Date information
     //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -47,6 +49,8 @@ static RTRealmService *realmService = nil;
     //[dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     dataToBeSaved.date = date;
     dataToBeSaved.dataId = [[RTService singleton]dataID];
+    NSLog(@"2. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+
     
     //Kemo-data
     //NSMutableDictionary *kemoTreatmentDictionary = [self relevantKemoTreatmentForDay:date];
@@ -82,6 +86,7 @@ static RTRealmService *realmService = nil;
 //    [dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
     
     RTBloodSample *bloodSampleData = [[RTBloodSample alloc] init];
+    bloodSampleData.date = date;
     bloodSampleData.hemoglobin = 0.0;
     bloodSampleData.thrombocytes = 0;
     bloodSampleData.leukocytes = 0.0;
@@ -92,11 +97,13 @@ static RTRealmService *realmService = nil;
     dataToBeSaved.bloodSample = bloodSampleData;
     
     RLMRealm *realm = [RLMRealm defaultRealm];
-
-    [realm beginWriteTransaction];
-    [realm addObject:dataToBeSaved];
-    [realm commitWriteTransaction];
+    NSLog(@"3. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+//    [realm beginWriteTransaction];
+//    [realm addObject:dataToBeSaved];
+//    [realm commitWriteTransaction];
     //[self.medicineData addObject:dataToBeSaved];
+    NSLog(@"4. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+
     return dataToBeSaved;
 }
 
@@ -308,5 +315,14 @@ static RTRealmService *realmService = nil;
     
     //return date relative from date
     return [calendar dateFromComponents:dateComponents];
+}
+
+#pragma mark - Saving MucositisData methods
+-(void)saveMucositisData:(RTMucositisData *)data{
+    NSLog(@"DATA: %@",data);
+}
+
+-(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date{
+    return 0;
 }
 @end
