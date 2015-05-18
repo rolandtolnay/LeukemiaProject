@@ -142,13 +142,20 @@
     if(dataToBeSaved == nil && self.selectedBloodSample == nil){
         //dataToBeSaved = [self.dataManagement newMedicineData:self.selectedDate];
         dataToBeSaved = [self.realmService newMedicineData:self.selectedDate];
-        NSLog(@"1. DataToBeSaved ID: %@",dataToBeSaved.dataId);
-
     }
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    [realm beginWriteTransaction];
     
     for (UITextField *txf in self.txfBloodSamples)
     {
+        
         NSString *trimmedValue = [txf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+//        NSLog(@"trimmedvalue: %@",trimmedValue);
+//        NSLog(@"Is proper value: %hhd",[self isProperValue:trimmedValue forInput:(int)txf.tag]);
+        
         
         if ([self isProperValue:trimmedValue forInput:(int)txf.tag])
         {
@@ -217,9 +224,9 @@
         }
         else
         {
-            success = NO;
-            
-            NSString *message = [NSString stringWithFormat: NSLocalizedString(@"Unexpected input at textfield %d", @"Message on bloodsample error"),txf.tag];
+            //success = NO;
+            UILabel *lbl = [self.lblBloodSamples objectAtIndex:txf.tag];
+            NSString *message = [NSString stringWithFormat: NSLocalizedString(@"Unexpected input at textfield: %@\nThe correct format is:\n%@", @"Message on bloodsample error"),lbl.text,txf.placeholder];
             
             UIAlertView *toast = [[UIAlertView alloc] initWithTitle:@"Error"
                                                             message:message
@@ -230,42 +237,63 @@
             break;
         }
     }
-    if (success)
-    {
-        //[dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
-        //dataToBeSaved.bloodSample = sampleData;
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        [realm addObject:dataToBeSaved];
-        [realm commitWriteTransaction];
-        //[self.dataManagement writeToPList];
-    }
+    [realm addObject:dataToBeSaved];
+    [realm commitWriteTransaction];
+    
+//    if (success)
+//    {
+//        //[dataToBeSaved setObject:sampleData forKey:@"bloodSample"];
+//        //dataToBeSaved.bloodSample = sampleData;
+//        RLMRealm *realm = [RLMRealm defaultRealm];
+//        [realm beginWriteTransaction];
+//        //[realm addObject:dataToBeSaved];
+//        [RTMedicineData createOrUpdateInRealm:realm withObject:dataToBeSaved];
+//        [realm commitWriteTransaction];
+//        //[self.dataManagement writeToPList];
+    //}
     [self resetView];
 }
 
 
 -(BOOL) isProperValue:(NSString*) value forInput:(int) tag
 {
+    BOOL isProperValue = NO;
     switch (tag) {
         case 0:
-            if ([value floatValue] >= 2.0 && [value floatValue]<=10.0) return YES;
+            if ([value floatValue] >= 2.0 && [value floatValue]<=10.0) {
+                isProperValue = YES;
+            }
+            break;
         case 1:
-            if ([value isEqualToString:@""]) return YES;
-            if ([value integerValue] >= 0 && [value integerValue] <= 999) return YES;
+            if ([value isEqualToString:@""]||([value integerValue] >= 0 && [value integerValue] <= 999)) {
+                isProperValue = YES;
+            };
+            break;
         case 2:
-            if ([value isEqualToString:@""]) return YES;
-            if ([value floatValue] >= 0.0 && [value floatValue]<=100.0) return YES;
+            if ([value isEqualToString:@""]||([value floatValue] >= 0.0 && [value floatValue]<=100.0)) {
+                isProperValue = YES;
+            };
+            break;
         case 3:
-            if ([value isEqualToString:@""]) return YES;
-            if ([value floatValue] >= 0.0 && [value floatValue]<=20.0) return YES;
+            if ([value isEqualToString:@""]||([value floatValue] >= 0.0 && [value floatValue]<=20.0)) {
+                isProperValue = YES;
+            };
+            break;
         case 4:
-            if ([value integerValue] >= 1 && [value integerValue] <= 999) return YES;
+            if ([value integerValue] >= 1 && [value integerValue] <= 999) {
+                isProperValue = YES;
+            };
+            break;
         case 5:
-            if ([value integerValue] >= 99 && [value integerValue] <= 9999) return YES;
+            if ([value integerValue] >= 99 && [value integerValue] <= 9999) {
+                isProperValue = YES;
+            };
+            break;
         default:
-            return NO;
+            isProperValue = NO;
+            break;
     }
-    return NO;
+    return isProperValue;
 }
 
 -(void)prepareForSegue:(UIStoryboardPopoverSegue *)segue sender:(id)sender{

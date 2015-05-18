@@ -39,7 +39,6 @@ static RTRealmService *realmService = nil;
 -(RTMedicineData *)newMedicineData:(NSDate*)date{
     
     RTMedicineData *dataToBeSaved = [[RTMedicineData alloc]init];
-    NSLog(@"1. DataToBeSaved ID: %@",dataToBeSaved.dataId);
 
     
     //ID and Date information
@@ -49,7 +48,6 @@ static RTRealmService *realmService = nil;
     //[dataToBeSaved setObject:[[RTService singleton] dataID] forKey:@"id"];
     dataToBeSaved.date = date;
     dataToBeSaved.dataId = [[RTService singleton]dataID];
-    NSLog(@"2. DataToBeSaved ID: %@",dataToBeSaved.dataId);
 
     
     //Kemo-data
@@ -96,13 +94,11 @@ static RTRealmService *realmService = nil;
     //[dataToBeSaved setObject:bloodSampleData forKey:@"bloodSample"];
     dataToBeSaved.bloodSample = bloodSampleData;
     
-    RLMRealm *realm = [RLMRealm defaultRealm];
-    NSLog(@"3. DataToBeSaved ID: %@",dataToBeSaved.dataId);
+    //RLMRealm *realm = [RLMRealm defaultRealm];
 //    [realm beginWriteTransaction];
 //    [realm addObject:dataToBeSaved];
 //    [realm commitWriteTransaction];
     //[self.medicineData addObject:dataToBeSaved];
-    NSLog(@"4. DataToBeSaved ID: %@",dataToBeSaved.dataId);
 
     return dataToBeSaved;
 }
@@ -319,7 +315,7 @@ static RTRealmService *realmService = nil;
 
 #pragma mark - Saving MucositisData methods
 -(void)saveMucositisData:(RTMucositisData *)data{
-    NSLog(@"DATA: %@",data);
+
 }
 
 -(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date{

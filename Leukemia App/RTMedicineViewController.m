@@ -151,6 +151,7 @@
         kemoTreatment.date = [[NSDate date] dateWithoutTime];
         kemoTreatment.mtx = [self.mtxText.text integerValue];
         kemoTreatment.mercaptopurin = [self.m6Text.text integerValue];
+        kemoTreatment.kemoTreatmentType = @"";
         //[self.dataManagement.kemoTreatmentArray addObject:kemoTreatment];
         [realm beginWriteTransaction];
         [realm addObject:kemoTreatment];
@@ -159,10 +160,12 @@
     else{
 //        [kemoTreatment setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
 //        [kemoTreatment setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"mercaptopurin"];
+//        kemoTreatment.mtx = [self.mtxText.text integerValue];
+//        kemoTreatment.mercaptopurin = [self.m6Text.text integerValue];
+        [realm beginWriteTransaction];
+        //[RTKemoTreatment createOrUpdateInRealm:realm withObject:kemoTreatment];
         kemoTreatment.mtx = [self.mtxText.text integerValue];
         kemoTreatment.mercaptopurin = [self.m6Text.text integerValue];
-        [realm beginWriteTransaction];
-        [RTKemoTreatment createOrUpdateInRealm:realm withObject:kemoTreatment];
         [realm commitWriteTransaction];
     }
     
@@ -172,10 +175,12 @@
     {
         //[medicineRegistration setObject:[NSNumber numberWithInt:[self.mtxText.text intValue]] forKey:@"mtx"];
         //[medicineRegistration setObject:[NSNumber numberWithInt:[self.m6Text.text intValue]] forKey:@"mercaptopurin"];
+//        kemoTreatment.mtx = [self.mtxText.text integerValue];
+//        kemoTreatment.mercaptopurin = [self.m6Text.text integerValue];
+        [realm beginWriteTransaction];
         kemoTreatment.mtx = [self.mtxText.text integerValue];
         kemoTreatment.mercaptopurin = [self.m6Text.text integerValue];
-        [realm beginWriteTransaction];
-        [RTMedicineData createOrUpdateInRealm:realm withObject:medicineRegistration];
+        //[RTMedicineData createOrUpdateInRealm:realm withObject:medicineRegistration];
         [realm commitWriteTransaction];
     }
     
@@ -286,9 +291,10 @@
     if (medicineRegistration !=nil)
     {
         //[medicineRegistration setObject:kemoType forKey:@"kemoTreatment"];
-        medicineRegistration.kemoTreatment = kemoType;
+        //medicineRegistration.kemoTreatment = kemoType;
         [realm beginWriteTransaction];
-        [RTMedicineData createOrUpdateInRealm:realm withObject:medicineRegistration];
+        medicineRegistration.kemoTreatment = kemoType;
+        //[RTMedicineData createOrUpdateInRealm:realm withObject:medicineRegistration];
         [realm commitWriteTransaction];
     }
     
@@ -352,7 +358,10 @@
     //self.selectedBloodSample = [[self.dataManagement medicineDataAtDate:cellDate] objectForKey:@"bloodSample"];
     self.selectedBloodSample = [[self.realmService medicineDataAtDate:cellDate]bloodSample];
     //[self.selectedBloodSample setObject:cellDate forKey:@"date"];
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
     self.selectedBloodSample.date = cellDate;
+    [realm commitWriteTransaction];
     [self performSegueWithIdentifier:@"showBloodSampleSegue" sender:self];
 }
 

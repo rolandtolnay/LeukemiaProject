@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnDateSelector;
 
 @property (nonatomic, strong) IBOutletCollection(UITextField) NSArray *txfBloodSamples;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *lblBloodSamples;
 
 @property NSDate *selectedDate;
 //@property NSDictionary *selectedBloodSample;
