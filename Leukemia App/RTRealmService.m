@@ -296,6 +296,17 @@ static RTRealmService *realmService = nil;
     return [dates copy];
 }
 
+#pragma mark - Retrieve MucositisData methods
+-(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date{
+    RTMucositisData *dataToReturn;
+    RLMResults *results = [RTMucositisData objectsWhere:@"date >= %@ && date =< %@",[self setTimeOnDate:date :0 :0 :0],[self setTimeOnDate:date :23 :59 :59]];
+    if (results.count==1) {
+        //dataToReturn = [results objectAtIndex:0];
+        dataToReturn = results.firstObject;
+    }
+    return dataToReturn;
+}
+
 #pragma mark - Dates helper method
 -(NSDate *)setTimeOnDate:(NSDate *) date :(NSInteger) hour :(NSInteger) minute :(NSInteger) second{
     //gather current calendar
@@ -313,12 +324,5 @@ static RTRealmService *realmService = nil;
     return [calendar dateFromComponents:dateComponents];
 }
 
-#pragma mark - Saving MucositisData methods
--(void)saveMucositisData:(RTMucositisData *)data{
 
-}
-
--(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date{
-    return 0;
-}
 @end

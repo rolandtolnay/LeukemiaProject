@@ -53,19 +53,21 @@
 #pragma mark - Methods related specific to saving data
 
 - (IBAction)saveAndSubmit:(id)sender {
-    RTMucositisData *data = [[RTMucositisData alloc]init];
-    data.painScore = self.painScore;
-    data.redNessScore = self.rednessScore;
-    data.foodScore = self.foodConsumptionScore;
-    data.drawingPath = @"";
-    data.nrOfVomitting = [self.vomittingTxt.text integerValue];
-    data.nrOfStools = [self.stoolsTxt.text integerValue];
-    data.fluidsDrunkML = [self.fluidsDrunkTxt.text integerValue];
-    data.fluidsInDropML = [self.fluidsInDropTxt.text integerValue];
-    data.urinML = [self.urinTxt.text integerValue];
-    data.weightKG = [self.weightTxt.text integerValue];
-    //[self.dataManagement saveMucositisData:data];
-    [self.realmService saveMucositisData:data];
+    RTMucositisData *dataToBeSaved = [[RTMucositisData alloc]init];
+    dataToBeSaved .painScore = self.painScore;
+    dataToBeSaved .redNessScore = self.rednessScore;
+    dataToBeSaved .foodScore = self.foodConsumptionScore;
+    dataToBeSaved .drawingPath = @"";
+    dataToBeSaved .nrOfVomitting = [self.vomittingTxt.text integerValue];
+    dataToBeSaved .nrOfStools = [self.stoolsTxt.text integerValue];
+    dataToBeSaved .fluidsDrunkML = [self.fluidsDrunkTxt.text integerValue];
+    dataToBeSaved .fluidsInDropML = [self.fluidsInDropTxt.text integerValue];
+    dataToBeSaved .urinML = [self.urinTxt.text integerValue];
+    dataToBeSaved .weightKG = [self.weightTxt.text integerValue];
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm addObject:dataToBeSaved];
+    [realm commitWriteTransaction];
     [self resetView];
 }
 
