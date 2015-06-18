@@ -36,7 +36,7 @@
 //-(NSArray *)kemoForDate:(NSDate*) date;
 -(RTKemoTreatment *) kemoTreatmentForDay: (NSDate*)date;
 //Service methods for mucositis data-management
--(void)saveMucositisData:(RTMucositisData *) data;
+//-(void)saveMucositisData:(RTMucositisData *) data;
 -(RTMucositisData *)readMucositisDataFromDate: (NSDate *)date;
 
 @end

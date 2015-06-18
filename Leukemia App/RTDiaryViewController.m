@@ -12,7 +12,7 @@
 
 @property VRGCalendarView *calendar;
 @property UIPopoverController *detailPopoverController;
-@property UIPopoverController *mucositisDetailController;
+//@property UIPopoverController *mucositisDetailController;
 @property (nonatomic, strong) RLMResults *painRegistrations;
 @property (nonatomic, strong) RLMResults *mucositisRegistrations;
 @property (nonatomic, strong) RTDiaryData *diaryRegistration;
@@ -226,9 +226,9 @@
     if(tableView.tag==0){
         nrOfRows = self.painRegistrations.count;
     }
-    if(tableView.tag==1){
-        nrOfRows = self.mucositisRegistrations.count;
-    }
+    //if(tableView.tag==1){
+      //  nrOfRows = self.mucositisRegistrations.count;
+    //}
     return nrOfRows;
 }
 
@@ -257,19 +257,19 @@
         
         cell.textLabel.text = cellText;
     }
-    if(tableView.tag == 1){
-        static NSString *CellIdentifier = @"mucositisDataCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        RTMucositisData *mucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
-        NSDate *date = mucositisRegistration.date;
-        [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
-        NSInteger totalMucositisScore = mucositisRegistration.painScore+mucositisRegistration.redNessScore+mucositisRegistration.foodScore;
-        
-        NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Total mucositis score: %d", nil),hour,totalMucositisScore];
-        
-        cell.textLabel.text = cellText;
-    }
+//    if(tableView.tag == 1){
+//        static NSString *CellIdentifier = @"mucositisDataCell";
+//        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//        RTMucositisData *mucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+//        NSDate *date = mucositisRegistration.date;
+//        [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+//        NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
+//        NSInteger totalMucositisScore = mucositisRegistration.painScore+mucositisRegistration.redNessScore+mucositisRegistration.foodScore;
+//        
+//        NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Total mucositis score: %d", nil),hour,totalMucositisScore];
+//        
+//        cell.textLabel.text = cellText;
+//    }
     
     return cell;
 }
@@ -279,9 +279,9 @@
     if(tableView.tag==0){
         sectionTitle = NSLocalizedString(@"Pain Registrations", nil);
     }
-    else if(tableView.tag==1){
-        sectionTitle = NSLocalizedString(@"Mucositis Registrations", nil);
-    }
+//    else if(tableView.tag==1){
+//        sectionTitle = NSLocalizedString(@"Mucositis Registrations", nil);
+//    }
     return sectionTitle;
 }
 
@@ -297,12 +297,12 @@
         [realm commitWriteTransaction];
         //[self.painRegistrations removeObjectAtIndex:indexPath.row];
         }
-        if(tableView.tag==1){
-            RTMucositisData *selectedRegMuc = [self.mucositisRegistrations objectAtIndex:indexPath.row];
-            [realm beginWriteTransaction];
-            [realm deleteObject:selectedRegMuc];
-            [realm commitWriteTransaction];
-        }
+//        if(tableView.tag==1){
+//            RTMucositisData *selectedRegMuc = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+//            [realm beginWriteTransaction];
+//            [realm deleteObject:selectedRegMuc];
+//            [realm commitWriteTransaction];
+//        }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -319,10 +319,10 @@
     [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
     }
     
-    if(tableView.tag==1){
-        self.selectedMucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
-        [self performSegueWithIdentifier:@"mucositisPopoverSegue" sender:self];
-    }
+//    if(tableView.tag==1){
+//        self.selectedMucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+//        [self performSegueWithIdentifier:@"mucositisPopoverSegue" sender:self];
+//    }
     [tableView deselectRowAtIndexPath:indexPath animated: YES];
 }
 //Segue from TableView
@@ -332,11 +332,6 @@
     {
         RTDiaryDetailViewController *detailPopover = [segue destinationViewController];
         detailPopover.selectedData = self.selectedRegistration;
-    }
-    if ([segue.identifier isEqualToString:@"mucositisPopoverSegue"])
-    {
-        RTMucositisDetailViewController *mucositisDetailPopover = [segue destinationViewController];
-        mucositisDetailPopover.selectedMucositisData = self.selectedMucositisRegistration;
     }
 }
 

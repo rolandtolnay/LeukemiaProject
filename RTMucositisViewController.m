@@ -54,6 +54,7 @@
 
 - (IBAction)saveAndSubmit:(id)sender {
     RTMucositisData *dataToBeSaved = [[RTMucositisData alloc]init];
+    dataToBeSaved.dataId = [[RTService singleton] dataID];
     dataToBeSaved.date = [NSDate date];
     dataToBeSaved .painScore = self.painScore;
     dataToBeSaved .redNessScore = self.rednessScore;

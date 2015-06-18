@@ -285,13 +285,20 @@ static RTRealmService *realmService = nil;
     
     RLMResults *datesWithPainDataInMonth = [RTPainData objectsWhere:@"date >= %@ && date < %@",beginningOfCurrentMonth,beginningOfNextMonth];
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    
     for (RTPainData *painData in datesWithPainDataInMonth)
     {
         NSDate *dateToBeAdded = painData.date;
         
         //check for duplicates
-            if ([dates count] < 1 || !([dates[dates.count-1]day]==dateToBeAdded.day))
+        if ([dates count] < 1 || !([[formatter stringFromDate:dates[dates.count-1]] isEqual:[formatter stringFromDate:dateToBeAdded]]))
                 [dates addObject:dateToBeAdded];
+    }
+    
+    for(NSDate *date in dates){
+        NSLog(@"Date: %@",date);
     }
     return [dates copy];
 }

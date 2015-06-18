@@ -10,7 +10,7 @@
 #import "VRGCalendarView.h"
 #import "NSDate+convenience.h"
 #import "RTDiaryDetailViewController.h"
-#import "RTMucositisDetailViewController.h"
+//#import "RTMucositisDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
 #import "RTService.h"
