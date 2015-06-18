@@ -12,9 +12,13 @@
 
 @property VRGCalendarView *calendar;
 @property UIPopoverController *detailPopoverController;
+@property UIPopoverController *mucositisDetailController;
 @property (nonatomic, strong) RLMResults *painRegistrations;
+@property (nonatomic, strong) RLMResults *mucositisRegistrations;
 @property (nonatomic, strong) RTDiaryData *diaryRegistration;
 @property (nonatomic, strong) RTPainData *selectedRegistration;
+@property (nonatomic, strong) RTMucositisData *selectedMucositisRegistration;
+
 @end
 
 @implementation RTDiaryViewController
@@ -28,6 +32,9 @@
     
     self.dataTableView.delegate = self;
     self.dataTableView.dataSource = self;
+    
+    self.mucositisDataTableView.delegate = self;
+    self.mucositisDataTableView.dataSource = self;
     
     self.textFieldProtocol.delegate = self;
     self.textViewNotes.delegate = self;
@@ -179,6 +186,10 @@
     self.currentSelectedDate = date;
     [self.dataTableView reloadData];
     
+    //MucositisData
+    //self.mucositisRegistrations = [self.realmService mucositisDataOnDate:date]; To-Do!!!
+    [self.mucositisDataTableView reloadData];
+    
     //DiaryData
     self.diaryRegistration = [self.realmService diaryDataOnDate:date];
     [self.textFieldProtocol setText:[@(self.diaryRegistration.protocolTreatmentDay) stringValue]];
@@ -211,37 +222,67 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.painRegistrations.count;
+    NSInteger nrOfRows=0;
+    if(tableView.tag==0){
+        nrOfRows = self.painRegistrations.count;
+    }
+    if(tableView.tag==1){
+        nrOfRows = self.mucositisRegistrations.count;
+    }
+    return nrOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"dataCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    RTPainData *painRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
-    NSDate *date = painRegistration.date;
-    [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
-    NSString *painLevel = [@(painRegistration.painLevel) stringValue];
-    NSString *painType = painRegistration.painType;
-    if ([painType isEqualToString:@"Mouth"]){
-        painType = NSLocalizedString(@"Mouth", nil);
+    UITableViewCell *cell;
+    if(tableView.tag == 0){
+        static NSString *CellIdentifier = @"dataCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        RTPainData *painRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
+        NSDate *date = painRegistration.date;
+        [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
+        NSString *painLevel = [@(painRegistration.painLevel) stringValue];
+        NSString *painType = painRegistration.painType;
+        if ([painType isEqualToString:@"Mouth"]){
+            painType = NSLocalizedString(@"Mouth", nil);
+        }
+        else if([painType isEqualToString:@"Stomach"]){
+            painType = NSLocalizedString(@"Stomach", nil);
+        }
+        else if([painType isEqualToString:@"Other"]){
+            painType = NSLocalizedString(@"Other", nil);
+        }
+        NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Pain Level: %@, Type: %@", nil),hour,painLevel,painType];
+        
+        cell.textLabel.text = cellText;
     }
-    else if([painType isEqualToString:@"Stomach"]){
-        painType = NSLocalizedString(@"Stomach", nil);
+    if(tableView.tag == 1){
+        static NSString *CellIdentifier = @"mucositisDataCell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        RTMucositisData *mucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+        NSDate *date = mucositisRegistration.date;
+        [self.dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString *hour = [[self.dateFormat stringFromDate:date] componentsSeparatedByString:@" "][1];
+        NSInteger totalMucositisScore = mucositisRegistration.painScore+mucositisRegistration.redNessScore+mucositisRegistration.foodScore;
+        
+        NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Total mucositis score: %d", nil),hour,totalMucositisScore];
+        
+        cell.textLabel.text = cellText;
     }
-    else if([painType isEqualToString:@"Other"]){
-        painType = NSLocalizedString(@"Other", nil);
-    }
-    NSString *cellText = [NSString stringWithFormat:NSLocalizedString(@"%@ - Pain Level: %@, Type: %@", nil),hour,painLevel,painType];
-    
-    cell.textLabel.text = cellText;
     
     return cell;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return NSLocalizedString(@"Pain Registrations", nil);
+    NSString *sectionTitle;
+    if(tableView.tag==0){
+        sectionTitle = NSLocalizedString(@"Pain Registrations", nil);
+    }
+    else if(tableView.tag==1){
+        sectionTitle = NSLocalizedString(@"Mucositis Registrations", nil);
+    }
+    return sectionTitle;
 }
 
 //Delete a registration
@@ -249,11 +290,19 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         RLMRealm *realm = [RLMRealm defaultRealm];
+        if(tableView.tag==0){
         RTPainData *selectedReg = [self.painRegistrations objectAtIndex:indexPath.row];
         [realm beginWriteTransaction];
         [realm deleteObject:selectedReg];
         [realm commitWriteTransaction];
         //[self.painRegistrations removeObjectAtIndex:indexPath.row];
+        }
+        if(tableView.tag==1){
+            RTMucositisData *selectedRegMuc = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+            [realm beginWriteTransaction];
+            [realm deleteObject:selectedRegMuc];
+            [realm commitWriteTransaction];
+        }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
@@ -261,12 +310,19 @@
 #pragma mark - Show details popover
 //Select row in TableView
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    self.selectedRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + self.dataTableView.frame.origin.y - self.dataTableView.contentOffset.y, 1, 1);
+    CGRect displayFrom = CGRectMake(cell.frame.origin.x + cell.frame.size.width / 2, cell.center.y + tableView.frame.origin.y - tableView.contentOffset.y, 1, 1);
     self.popoverAnchorButton.frame = displayFrom;
+    
+    if(tableView.tag==0){
+    self.selectedRegistration = [self.painRegistrations objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"detailPopoverSegue" sender:self];
+    }
+    
+    if(tableView.tag==1){
+        self.selectedMucositisRegistration = [self.mucositisRegistrations objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"mucositisPopoverSegue" sender:self];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated: YES];
 }
 //Segue from TableView
@@ -276,6 +332,11 @@
     {
         RTDiaryDetailViewController *detailPopover = [segue destinationViewController];
         detailPopover.selectedData = self.selectedRegistration;
+    }
+    if ([segue.identifier isEqualToString:@"mucositisPopoverSegue"])
+    {
+        RTMucositisDetailViewController *mucositisDetailPopover = [segue destinationViewController];
+        mucositisDetailPopover.selectedMucositisData = self.selectedMucositisRegistration;
     }
 }
 

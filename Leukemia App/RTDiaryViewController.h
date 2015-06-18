@@ -10,11 +10,13 @@
 #import "VRGCalendarView.h"
 #import "NSDate+convenience.h"
 #import "RTDiaryDetailViewController.h"
+#import "RTMucositisDetailViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Reachability.h"
 #import "RTService.h"
 #import "RTPainData.h"
 #import "RTRealmService.h"
+#import "RTMucositisData.h"
 
 
 @interface RTDiaryViewController : UIViewController <VRGCalendarViewDelegate, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate>
@@ -24,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *weekDayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monthLabel;
 @property (weak, nonatomic) IBOutlet UITableView *dataTableView;
+@property (weak, nonatomic) IBOutlet UITableView *mucositisDataTableView;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldProtocol;
 @property (weak, nonatomic) IBOutlet UITextView *textViewNotes;
 @property (weak, nonatomic) IBOutlet UILabel *labelNotesPlaceholder;

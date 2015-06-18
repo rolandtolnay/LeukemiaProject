@@ -12,6 +12,7 @@
 @interface RTMucositisData : RLMObject
 
 @property (strong, nonatomic) NSString *dataId;
+@property (strong, nonatomic) NSDate *date;
 @property (nonatomic) NSInteger painScore;
 @property (nonatomic) NSInteger redNessScore;
 @property (nonatomic) NSInteger foodScore;
